@@ -13,7 +13,7 @@ namespace EFEntity
 
         public MyDbContext() : base("sql")
         {
-
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyDbContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -22,5 +22,7 @@ namespace EFEntity
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
 
+        public DbSet<PublicChar> PublicChar { get; set; }
+        public DbSet<StandardDetails> StanderdDetails { get; set; }
     }
 }

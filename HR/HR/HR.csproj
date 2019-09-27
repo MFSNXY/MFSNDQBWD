@@ -9,13 +9,13 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DDBFB998-6CAB-41AF-B9D5-6CB11FCFD4EC}</ProjectGuid>
+    <ProjectGuid>{0B523AFF-D3C8-47A7-82FB-45C48C28CA7A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HR</RootNamespace>
     <AssemblyName>HR</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -44,9 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\..\Y2\资料\ASP\T3\Log4net\log4net-2.0.8-bin-newkey\log4net-2.0.8\bin\net\4.5\release\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -170,8 +167,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\Helper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PublicCharController.cs" />
+    <Compile Include="Controllers\StandardDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,19 +183,237 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bootstrap.css" />
-    <Content Include="bootstrap.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\cwcalendar.css" />
+    <Content Include="css\table.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="jquery-1.11.1.js" />
-    <Content Include="jquery.validate.js" />
-    <Content Include="jquery.validate.unobtrusive.js" />
+    <Content Include="javascript\calendar-ch.js" />
+    <Content Include="javascript\calendar\cal.js" />
+    <Content Include="javascript\calendar\calendar-win2k-cold-1.css" />
+    <Content Include="javascript\comm\comm.js" />
+    <Content Include="javascript\comm\list.js" />
+    <Content Include="javascript\comm\select.js" />
+    <Content Include="javascript\comm\time.js" />
+    <Content Include="javascript\easyui\jquery.easyui.min.js" />
+    <Content Include="javascript\easyui\themes\default\accordion.css" />
+    <Content Include="javascript\easyui\themes\default\calendar.css" />
+    <Content Include="javascript\easyui\themes\default\combo.css" />
+    <Content Include="javascript\easyui\themes\default\combobox.css" />
+    <Content Include="javascript\easyui\themes\default\datagrid.css" />
+    <Content Include="javascript\easyui\themes\default\datebox.css" />
+    <Content Include="javascript\easyui\themes\default\dialog.css" />
+    <Content Include="javascript\easyui\themes\default\easyui.css" />
+    <Content Include="javascript\easyui\themes\default\images\button_a_bg.gif" />
+    <Content Include="javascript\easyui\themes\default\images\button_plain_hover.png" />
+    <Content Include="javascript\easyui\themes\default\images\button_span_bg.gif" />
+    <Content Include="javascript\easyui\themes\default\images\calendar_nextmonth.gif" />
+    <Content Include="javascript\easyui\themes\default\images\calendar_nextyear.gif" />
+    <Content Include="javascript\easyui\themes\default\images\calendar_prevmonth.gif" />
+    <Content Include="javascript\easyui\themes\default\images\calendar_prevyear.gif" />
+    <Content Include="javascript\easyui\themes\default\images\combo_arrow.gif" />
+    <Content Include="javascript\easyui\themes\default\images\datagrid_header_bg.gif" />
+    <Content Include="javascript\easyui\themes\default\images\datagrid_sort_asc.gif" />
+    <Content Include="javascript\easyui\themes\default\images\datagrid_sort_desc.gif" />
+    <Content Include="javascript\easyui\themes\default\images\datagrid_title_bg.png" />
+    <Content Include="javascript\easyui\themes\default\images\layout_button_down.gif" />
+    <Content Include="javascript\easyui\themes\default\images\layout_button_left.gif" />
+    <Content Include="javascript\easyui\themes\default\images\layout_button_right.gif" />
+    <Content Include="javascript\easyui\themes\default\images\layout_button_up.gif" />
+    <Content Include="javascript\easyui\themes\default\images\menu.gif" />
+    <Content Include="javascript\easyui\themes\default\images\menu_downarrow.png" />
+    <Content Include="javascript\easyui\themes\default\images\menu_rightarrow.png" />
+    <Content Include="javascript\easyui\themes\default\images\menu_sep.png" />
+    <Content Include="javascript\easyui\themes\default\images\menu_split_downarrow.png" />
+    <Content Include="javascript\easyui\themes\default\images\messager_error.gif" />
+    <Content Include="javascript\easyui\themes\default\images\messager_info.gif" />
+    <Content Include="javascript\easyui\themes\default\images\messager_question.gif" />
+    <Content Include="javascript\easyui\themes\default\images\messager_warning.gif" />
+    <Content Include="javascript\easyui\themes\default\images\pagination_first.gif" />
+    <Content Include="javascript\easyui\themes\default\images\pagination_last.gif" />
+    <Content Include="javascript\easyui\themes\default\images\pagination_load.png" />
+    <Content Include="javascript\easyui\themes\default\images\pagination_loading.gif" />
+    <Content Include="javascript\easyui\themes\default\images\pagination_next.gif" />
+    <Content Include="javascript\easyui\themes\default\images\pagination_prev.gif" />
+    <Content Include="javascript\easyui\themes\default\images\panel_loading.gif" />
+    <Content Include="javascript\easyui\themes\default\images\panel_title.png" />
+    <Content Include="javascript\easyui\themes\default\images\panel_tools.gif" />
+    <Content Include="javascript\easyui\themes\default\images\panel_tool_collapse.gif" />
+    <Content Include="javascript\easyui\themes\default\images\panel_tool_expand.gif" />
+    <Content Include="javascript\easyui\themes\default\images\spinner_arrow_down.gif" />
+    <Content Include="javascript\easyui\themes\default\images\spinner_arrow_up.gif" />
+    <Content Include="javascript\easyui\themes\default\images\tabs_active.png" />
+    <Content Include="javascript\easyui\themes\default\images\tabs_close.gif" />
+    <Content Include="javascript\easyui\themes\default\images\tabs_enabled.png" />
+    <Content Include="javascript\easyui\themes\default\images\tabs_leftarrow.png" />
+    <Content Include="javascript\easyui\themes\default\images\tabs_rightarrow.png" />
+    <Content Include="javascript\easyui\themes\default\images\tree_arrows.gif" />
+    <Content Include="javascript\easyui\themes\default\images\tree_checkbox_0.gif" />
+    <Content Include="javascript\easyui\themes\default\images\tree_checkbox_1.gif" />
+    <Content Include="javascript\easyui\themes\default\images\tree_checkbox_2.gif" />
+    <Content Include="javascript\easyui\themes\default\images\tree_file.gif" />
+    <Content Include="javascript\easyui\themes\default\images\tree_folder.gif" />
+    <Content Include="javascript\easyui\themes\default\images\tree_folder_open.gif" />
+    <Content Include="javascript\easyui\themes\default\images\tree_loading.gif" />
+    <Content Include="javascript\easyui\themes\default\images\validatebox_pointer.gif" />
+    <Content Include="javascript\easyui\themes\default\images\validatebox_warning.png" />
+    <Content Include="javascript\easyui\themes\default\layout.css" />
+    <Content Include="javascript\easyui\themes\default\linkbutton.css" />
+    <Content Include="javascript\easyui\themes\default\menu.css" />
+    <Content Include="javascript\easyui\themes\default\menubutton.css" />
+    <Content Include="javascript\easyui\themes\default\messager.css" />
+    <Content Include="javascript\easyui\themes\default\pagination.css" />
+    <Content Include="javascript\easyui\themes\default\panel.css" />
+    <Content Include="javascript\easyui\themes\default\spinner.css" />
+    <Content Include="javascript\easyui\themes\default\splitbutton.css" />
+    <Content Include="javascript\easyui\themes\default\tabs.css" />
+    <Content Include="javascript\easyui\themes\default\tree.css" />
+    <Content Include="javascript\easyui\themes\default\validatebox.css" />
+    <Content Include="javascript\easyui\themes\default\window.css" />
+    <Content Include="javascript\easyui\themes\gray\accordion.css" />
+    <Content Include="javascript\easyui\themes\gray\calendar.css" />
+    <Content Include="javascript\easyui\themes\gray\combo.css" />
+    <Content Include="javascript\easyui\themes\gray\combobox.css" />
+    <Content Include="javascript\easyui\themes\gray\datagrid.css" />
+    <Content Include="javascript\easyui\themes\gray\datebox.css" />
+    <Content Include="javascript\easyui\themes\gray\dialog.css" />
+    <Content Include="javascript\easyui\themes\gray\easyui.css" />
+    <Content Include="javascript\easyui\themes\gray\images\button_a_bg.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\button_plain_hover.png" />
+    <Content Include="javascript\easyui\themes\gray\images\button_span_bg.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\calendar_nextmonth.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\calendar_nextyear.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\calendar_prevmonth.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\calendar_prevyear.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\combo_arrow.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\datagrid_header_bg.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\datagrid_sort_asc.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\datagrid_sort_desc.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\datagrid_title_bg.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\layout_button_down.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\layout_button_left.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\layout_button_right.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\layout_button_up.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\menu.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\menu_downarrow.png" />
+    <Content Include="javascript\easyui\themes\gray\images\menu_rightarrow.png" />
+    <Content Include="javascript\easyui\themes\gray\images\menu_sep.png" />
+    <Content Include="javascript\easyui\themes\gray\images\menu_split_downarrow.png" />
+    <Content Include="javascript\easyui\themes\gray\images\messager_error.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\messager_info.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\messager_question.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\messager_warning.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\pagination_first.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\pagination_last.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\pagination_load.png" />
+    <Content Include="javascript\easyui\themes\gray\images\pagination_loading.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\pagination_next.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\pagination_prev.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\panel_loading.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\panel_title.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\panel_tools.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\panel_tool_collapse.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\panel_tool_expand.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\spinner_arrow_down.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\spinner_arrow_up.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tabs_close.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tabs_enabled.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tabs_leftarrow.png" />
+    <Content Include="javascript\easyui\themes\gray\images\tabs_rightarrow.png" />
+    <Content Include="javascript\easyui\themes\gray\images\tree_arrows.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tree_checkbox_0.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tree_checkbox_1.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tree_checkbox_2.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tree_file.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tree_folder.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tree_folder_open.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\tree_loading.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\validatebox_pointer.gif" />
+    <Content Include="javascript\easyui\themes\gray\images\validatebox_warning.png" />
+    <Content Include="javascript\easyui\themes\gray\layout.css" />
+    <Content Include="javascript\easyui\themes\gray\linkbutton.css" />
+    <Content Include="javascript\easyui\themes\gray\menu.css" />
+    <Content Include="javascript\easyui\themes\gray\menubutton.css" />
+    <Content Include="javascript\easyui\themes\gray\messager.css" />
+    <Content Include="javascript\easyui\themes\gray\pagination.css" />
+    <Content Include="javascript\easyui\themes\gray\panel.css" />
+    <Content Include="javascript\easyui\themes\gray\spinner.css" />
+    <Content Include="javascript\easyui\themes\gray\splitbutton.css" />
+    <Content Include="javascript\easyui\themes\gray\tabs.css" />
+    <Content Include="javascript\easyui\themes\gray\tree.css" />
+    <Content Include="javascript\easyui\themes\gray\validatebox.css" />
+    <Content Include="javascript\easyui\themes\gray\window.css" />
+    <Content Include="javascript\easyui\themes\icon.css" />
+    <Content Include="javascript\easyui\themes\icons\back.png" />
+    <Content Include="javascript\easyui\themes\icons\cancel.png" />
+    <Content Include="javascript\easyui\themes\icons\cut.png" />
+    <Content Include="javascript\easyui\themes\icons\edit_add.png" />
+    <Content Include="javascript\easyui\themes\icons\edit_remove.png" />
+    <Content Include="javascript\easyui\themes\icons\filesave.png" />
+    <Content Include="javascript\easyui\themes\icons\help.png" />
+    <Content Include="javascript\easyui\themes\icons\no.png" />
+    <Content Include="javascript\easyui\themes\icons\ok.png" />
+    <Content Include="javascript\easyui\themes\icons\pencil.png" />
+    <Content Include="javascript\easyui\themes\icons\print.png" />
+    <Content Include="javascript\easyui\themes\icons\redo.png" />
+    <Content Include="javascript\easyui\themes\icons\reload.png" />
+    <Content Include="javascript\easyui\themes\icons\search.png" />
+    <Content Include="javascript\easyui\themes\icons\undo.png" />
+    <Content Include="javascript\human_check.js" />
+    <Content Include="javascript\human_input_check.js" />
+    <Content Include="javascript\human_register.js" />
+    <Content Include="javascript\input_control\Check.js" />
+    <Content Include="javascript\input_control\validation-config.xml" />
+    <Content Include="javascript\input_control\validation-framework.js" />
+    <Content Include="javascript\jquery-1.7.2.js" />
+    <Content Include="javascript\jquery.easyui.min.js" />
+    <Content Include="javascript\jquery.messager.js" />
+    <Content Include="javascript\locate.js" />
+    <Content Include="javascript\login.js" />
+    <Content Include="javascript\media\about.jpg" />
+    <Content Include="javascript\media\cj.jpg" />
+    <Content Include="javascript\media\dm.jpg" />
+    <Content Include="javascript\media\font.jpg" />
+    <Content Include="javascript\media\homepage.gif" />
+    <Content Include="javascript\media\homepage.jpg" />
+    <Content Include="javascript\media\left.gif" />
+    <Content Include="javascript\media\mt_dropdownC.js" />
+    <Content Include="javascript\media\mt_dropdown_initialize.js" />
+    <Content Include="javascript\media\mt_script.js" />
+    <Content Include="javascript\media\mt_style.css" />
+    <Content Include="javascript\media\net.jpg" />
+    <Content Include="javascript\media\opensrs.js" />
+    <Content Include="javascript\media\soft.jpg" />
+    <Content Include="javascript\media\sucai.jpg" />
+    <Content Include="javascript\media\text.jpg" />
+    <Content Include="javascript\media\trk_fmh_1.js" />
+    <Content Include="javascript\media\_images\landing_nav.gif" />
+    <Content Include="javascript\media\_images\landing_nav_sub.gif" />
+    <Content Include="javascript\media\_images\x.gif" />
+    <Content Include="javascript\media\__utm.js" />
+    <Content Include="javascript\print_page\testPrint2.html" />
+    <Content Include="javascript\right_add.js" />
+    <Content Include="javascript\right_list_information.js" />
+    <Content Include="javascript\select.js" />
+    <Content Include="javascript\selectAll.js" />
+    <Content Include="javascript\table\move.htm" />
+    <Content Include="javascript\table\movetable.js" />
+    <Content Include="javascript\table\onlineEditTable.css" />
+    <Content Include="javascript\table\onlineEditTable.js" />
+    <Content Include="javascript\time.js" />
+    <Content Include="javascript\tree\event.js" />
+    <Content Include="javascript\tree\tree.css" />
+    <Content Include="javascript\user_add.js" />
+    <Content Include="javascript\winopen\winopen.js" />
+    <Content Include="javascript\winopen\winopenm.js" />
+    <Content Include="javascript\winopen\winopenn.js" />
+    <Content Include="javascript\winopen\winopens.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="javascript\input_control\validation-config.dtd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -206,8 +425,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\vue-2.4.0.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="vue-2.4.0.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -219,6 +438,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -239,7 +461,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\PublicChar\Index.cshtml" />
     <Content Include="Unity.config" />
+    <Content Include="Views\PublicChar\Add.cshtml" />
+    <Content Include="Views\StandardDetails\Index.cshtml" />
+    <Content Include="Views\StandardDetails\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -251,6 +477,27 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{a40569dc-0ea7-432c-911c-6c58510df6e4}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBLL\IBLL.csproj">
+      <Project>{f8b7fd79-4ef6-4084-b3e0-3248f92f42c7}</Project>
+      <Name>IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IocContainer\IocContainer.csproj">
+      <Project>{8657e566-d757-4650-9fd2-72c2dc961e9d}</Project>
+      <Name>IocContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{8b62c9ca-9760-48f9-8b18-d2266cfd8509}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -268,7 +515,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>20727</DevelopmentServerPort>
+          <DevelopmentServerPort>64808</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:20727/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
