@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMechanismFirstBLL.cs" />
+    <Compile Include="IMechanismSecondBLL.cs" />
+    <Compile Include="IMechanismThirdBLL.cs" />
+    <Compile Include="IPermissionBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

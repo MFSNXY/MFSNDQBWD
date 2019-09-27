@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMechanismFirstDAO.cs" />
+    <Compile Include="IMechanismSecondDAO.cs" />
+    <Compile Include="IMechanismThirdDAO.cs" />
+    <Compile Include="IPermissionDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

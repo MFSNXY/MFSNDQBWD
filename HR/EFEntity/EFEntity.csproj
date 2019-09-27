@@ -49,7 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configer\MechanismFirstConfiger.cs" />
+    <Compile Include="Configer\MechanismSecondConfiger.cs" />
+    <Compile Include="Configer\MechanismThirdConfiger.cs" />
+    <Compile Include="Configer\PermissionConfiger.cs" />
+    <Compile Include="MechanismFirst.cs" />
+    <Compile Include="MechanismSecond.cs" />
+    <Compile Include="MechanismThird.cs" />
     <Compile Include="MyDbContext.cs" />
+    <Compile Include="Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

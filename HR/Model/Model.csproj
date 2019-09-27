@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MechanismFirstModel.cs" />
+    <Compile Include="MechanismSecondModel.cs" />
+    <Compile Include="MechanismThirdModel.cs" />
+    <Compile Include="PermissionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
