@@ -51,6 +51,10 @@
   <ItemGroup>
     <Compile Include="BaseDao.cs" />
     <Compile Include="LogHelper.cs" />
+    <Compile Include="MechanismFirstDAO.cs" />
+    <Compile Include="MechanismSecondDAO.cs" />
+    <Compile Include="MechanismThirdDAO.cs" />
+    <Compile Include="PermissionDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
