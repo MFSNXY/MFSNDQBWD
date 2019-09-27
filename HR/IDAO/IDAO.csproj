@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IConfigMajorDAO.cs" />
+    <Compile Include="IConfigMajorKindDAO.cs" />
+    <Compile Include="IConfigPublicCharDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

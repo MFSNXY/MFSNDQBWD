@@ -31,13 +31,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\..\..\Y2\作业\MVC\T8\ConsoleApplication1\ConsoleApplication1\bin\Debug\EntityFramework.dll</HintPath>
+      <HintPath>E:\Y2资料   作业\项目\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\..\Y2\作业\MVC\T8\ConsoleApplication1\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>E:\Y2资料   作业\项目\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\..\..\Y2\资料\ASP\T3\Log4net\log4net-2.0.8-bin-newkey\log4net-2.0.8\bin\net\4.5\release\log4net.dll</HintPath>
+      <HintPath>E:\Y2资料   作业\项目\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,6 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDao.cs" />
+    <Compile Include="ConfigMajorDAO.cs" />
+    <Compile Include="ConfigMajorKindDAO.cs" />
+    <Compile Include="ConfigPublicCharDAO.cs" />
+    <Compile Include="DBHelper.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

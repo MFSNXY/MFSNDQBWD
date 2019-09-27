@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IConfigMajorBLL.cs" />
+    <Compile Include="IConfigMajorKindBLL.cs" />
+    <Compile Include="IConfigPublicCharBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
