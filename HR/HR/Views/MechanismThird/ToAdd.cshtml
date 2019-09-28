@@ -29,8 +29,8 @@
                 </tr>
                 <tr>
                     <td align="right">
-                        <input type="submit" value="提交" class="BUTTON_STYLE1">
-                        <input type="button" value="返回" class="BUTTON_STYLE1"
+                        <input id="ssd" type="submit" value="提交" class="BUTTON_STYLE1">
+                        <input  type="button" value="返回" class="BUTTON_STYLE1"
                                onclick="history.back();">
                     </td>
                 </tr>
@@ -57,7 +57,7 @@
                     </td>
                     <td width="81%" class="TD_STYLE2">
                         <input name="SecondMName" id="SecondMName" type="hidden" v-model="MSName" />
-                        <select name="SecondMid"  id="secondKindId" class="INPUT_STYLE1" onchange="$('#SecondMName').val($(this).children('option:checked').text());$('#two').remove();" >
+                        <select name="SecondMid"  id="SecondMid" class="INPUT_STYLE1" onchange="$('#SecondMName').val($(this).children('option:checked').text());$('#two').remove();" >
                             <option id="two" value="0">--请选择II级机构--</option>
                             <option v-for="(item,i) in MSs" v-bind:value="item.SecondMid">{{item.SecondMName}}</option>
                         </select>
@@ -134,8 +134,18 @@
                         type: "post",
                         data:"id="+t.FirstMid,
                         success: function (rs) {
-                            t.MSName = eval("(" + rs + ")")[0].SecondMName;
-                            t.MSs = eval("(" + rs + ")");
+                            if (eval("(" + rs + ")").length>0){
+                                t.MSName = eval("(" + rs + ")")[0].SecondMName;
+                                t.MSs = eval("(" + rs + ")");
+                                $("#SecondMid").attr("disabled", false);
+                                $("#ssd").attr("disabled", false);
+                                $("#SecondMid").css("backgroundColor", "#FFFFCC")
+                            } else {
+                                t.MSs = [{ SecondMName: "暂无子机构", SecondMid: "0" }];
+                                $("#SecondMid").attr("disabled", "disabled");
+                                $("#ssd").attr("disabled", "disabled");
+                                $("#SecondMid").css("backgroundColor","#EEE")
+                            }
                         }
                     });
                 }
