@@ -170,12 +170,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\Helper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MechanismFirstController.cs" />
     <Compile Include="Controllers\MechanismSecondController.cs" />
     <Compile Include="Controllers\MechanismThirdController.cs" />
+    <Compile Include="Controllers\PublicCharController.cs" />
+    <Compile Include="Controllers\StandardDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1023,6 +1026,8 @@
     <Content Include="Views\MechanismThird\Index.cshtml" />
     <Content Include="Views\MechanismThird\ToAdd.cshtml" />
     <Content Include="Views\MechanismThird\ToUpdate.cshtml" />
+    <Content Include="Views\StandardDetails\Add.cshtml" />
+    <Content Include="Views\PublicChar\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
