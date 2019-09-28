@@ -52,7 +52,7 @@ namespace DAO
         public List<StandardDetailsModel> SelectStandardDetailsBy(int id)
         {
             MyDbContext db = CreateContext();
-            List<StandardDetails> list = db.StanderdDetails.AsNoTracking()
+            List<StandardDetails> list = db.StandardDetails.AsNoTracking()
                   .Where(e => e.item_id == id)
                   .Select(e => e)
                   .ToList();

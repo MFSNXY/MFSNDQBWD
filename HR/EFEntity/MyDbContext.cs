@@ -23,5 +23,12 @@ namespace EFEntity
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
 
+        public DbSet<MechanismFirst> MechanismFirsts { get; set; }
+        public DbSet<MechanismSecond> MechanismSeconds { get; set; }
+        public DbSet<MechanismThird> MechanismThirds { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<PublicChar> PublicChar { get; set; }
+        public DbSet<StandardDetails> StandardDetails { get; set; }
+
     }
 }
