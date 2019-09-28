@@ -92,4 +92,5 @@ namespace DAO
             return dt.Rows[0]["Majorkindname"].ToString();
         }
     }
+
 }

@@ -37,14 +37,7 @@ namespace HR.Controllers
 
         public ActionResult Add(MechanismThirdModel mt)
         {
-            if (imb.MechanismThirdAdd(mt) > 0)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return RedirectToAction("ToAdd");
-            }
+            return Content(imb.MechanismThirdAdd(mt).ToString());
         }
 
 

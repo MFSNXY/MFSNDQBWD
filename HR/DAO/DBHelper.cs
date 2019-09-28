@@ -10,7 +10,7 @@ namespace DAO
 {
     class DBHelper
     {
-        static string connStr = "Data Source=.;Initial Catalog=HR2;Integrated Security=True";
+        static string connStr = "Data Source=.;Initial Catalog=HR4;Integrated Security=True";
 
         public static DataTable select(string sql, params SqlParameter[] ps)
         {

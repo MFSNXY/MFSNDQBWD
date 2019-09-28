@@ -1036,11 +1036,11 @@
     <Content Include="Views\ConfigPublicChar\Index.cshtml" />
     <Content Include="Views\ConfigMajor\Index.cshtml" />
     <Content Include="Views\ConfigMajor\Create.cshtml" />
+    <Content Include="Views\PublicChar\Index.cshtml" />
+    <Content Include="Views\StandardDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="css\" />
-    <Folder Include="javascript\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

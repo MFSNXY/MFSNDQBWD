@@ -12,6 +12,9 @@
     <link rel="stylesheet"  href="../../css/table.css" type="text/css">
     <script type="text/javascript" src="../../javascript/comm/comm.js">
     </script>
+    <script src="~/jquery-1.11.1.js"></script>
+    <script src="~/jquery.validate.js"></script>
+    <script src="~/jquery.validate.unobtrusive.js"></script>
 </head>
 <body>
     @using(Html.BeginForm("Update", "MechanismFirst", FormMethod.Post)) { 
@@ -60,8 +63,10 @@
                     薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
                 </td>
                 <td class="TD_STYLE2">
-                    <textarea name="SalaryId" rows="4"
-                              class="TEXTAREA_STYLE1"  required="required">@Model.SalaryId</textarea>
+                    @*<textarea name="SalaryId" rows="4"
+                              class="TEXTAREA_STYLE1"  required="required">@Model.SalaryId</textarea>*@
+                    @Html.TextBox("SalaryId", null, new { @class = "INPUT_STYLE1" })
+                    @Html.ValidationMessage("SalaryId")
                 </td>
             </tr>
             <tr>
@@ -69,8 +74,10 @@
                     销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
                 </td>
                 <td class="TD_STYLE2">
-                    <textarea name="SalesId" rows="4"
-                              class="TEXTAREA_STYLE1"  required="required">@Model.SalesId</textarea>
+                    @*<textarea name="SalesId" rows="4"
+                              class="TEXTAREA_STYLE1"  required="required">@Model.SalesId</textarea>*@
+                    @Html.TextBox("SalesId", null, new { @class = "INPUT_STYLE1" })
+                    @Html.ValidationMessage("SalesId")
                 </td>
             </tr>
         </table>
