@@ -53,6 +53,7 @@
     <Compile Include="Configer\MechanismSecondConfiger.cs" />
     <Compile Include="Configer\MechanismThirdConfiger.cs" />
     <Compile Include="Configer\PermissionConfiger.cs" />
+    <Compile Include="ConfigMajor.cs" />
     <Compile Include="MechanismFirst.cs" />
     <Compile Include="MechanismSecond.cs" />
     <Compile Include="MechanismThird.cs" />
@@ -61,7 +62,6 @@
     <Compile Include="Configer\ConfigMajorConfiger.cs" />
     <Compile Include="Configer\ConfigMajorKindConfiger.cs" />
     <Compile Include="Configer\ConfigPublicCharConfiger.cs" />
-    <Compile Include="ConfigMajor.cs" />
     <Compile Include="ConfigMajorKind.cs" />
     <Compile Include="ConfigPublicChar.cs" />
     <Compile Include="MyDbContext.cs" />

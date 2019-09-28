@@ -31,13 +31,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\..\..\..\Documents\Tencent Files\1725561872\FileRecv\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\..\Y2\作业\MVC\T8\ConsoleApplication1\ConsoleApplication1\bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\..\..\Documents\Tencent Files\1725561872\FileRecv\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\..\Y2\作业\MVC\T8\ConsoleApplication1\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\..\..\..\Desktop\Y2\Asp03\Log4net\log4net-2.0.8-bin-newkey\log4net-2.0.8\bin\net\4.5\release\log4net.dll</HintPath>
+      <HintPath>..\..\..\..\Y2\资料\ASP\T3\Log4net\log4net-2.0.8-bin-newkey\log4net-2.0.8\bin\net\4.5\release\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
