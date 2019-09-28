@@ -39,6 +39,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +58,12 @@
     <Compile Include="MechanismThird.cs" />
     <Compile Include="Configer\PublicCharConfiger.cs" />
     <Compile Include="Configer\StandardDetailsConfiger.cs" />
+    <Compile Include="Configer\ConfigMajorConfiger.cs" />
+    <Compile Include="Configer\ConfigMajorKindConfiger.cs" />
+    <Compile Include="Configer\ConfigPublicCharConfiger.cs" />
+    <Compile Include="ConfigMajor.cs" />
+    <Compile Include="ConfigMajorKind.cs" />
+    <Compile Include="ConfigPublicChar.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

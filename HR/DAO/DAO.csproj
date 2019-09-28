@@ -50,6 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDao.cs" />
+    <Compile Include="ConfigMajorDAO.cs" />
+    <Compile Include="ConfigMajorKindDAO.cs" />
+    <Compile Include="ConfigPublicCharDAO.cs" />
+    <Compile Include="DBHelper.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MechanismFirstDAO.cs" />
     <Compile Include="MechanismSecondDAO.cs" />

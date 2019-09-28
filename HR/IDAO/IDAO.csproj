@@ -46,6 +46,9 @@
     <Compile Include="IPermissionDAO.cs" />
     <Compile Include="IPublicCharDAO.cs" />
     <Compile Include="IStandardDetailsDAO.cs" />
+    <Compile Include="IConfigMajorDAO.cs" />
+    <Compile Include="IConfigMajorKindDAO.cs" />
+    <Compile Include="IConfigPublicCharDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>..\..\..\..\Y2\资料\ASP\T3\Log4net\log4net-2.0.8-bin-newkey\log4net-2.0.8\bin\net\4.5\release\log4net.dll</HintPath>
+      <HintPath>E:\Y2资料   作业\项目\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -172,6 +172,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ConfigMajorController.cs" />
+    <Compile Include="Controllers\ConfigMajorKindController.cs" />
+    <Compile Include="Controllers\ConfigPublicCharController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MechanismFirstController.cs" />
@@ -1028,9 +1031,16 @@
     <Content Include="Views\MechanismThird\ToUpdate.cshtml" />
     <Content Include="Views\StandardDetails\Add.cshtml" />
     <Content Include="Views\PublicChar\Add.cshtml" />
+    <Content Include="Views\ConfigMajorKind\Index.cshtml" />
+    <Content Include="Views\ConfigMajorKind\Create.cshtml" />
+    <Content Include="Views\ConfigPublicChar\Index.cshtml" />
+    <Content Include="Views\ConfigMajor\Index.cshtml" />
+    <Content Include="Views\ConfigMajor\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="css\" />
+    <Folder Include="javascript\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

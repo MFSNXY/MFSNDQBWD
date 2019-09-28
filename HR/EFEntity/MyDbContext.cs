@@ -30,5 +30,8 @@ namespace EFEntity
         public DbSet<PublicChar> PublicChar { get; set; }
         public DbSet<StandardDetails> StandardDetails { get; set; }
 
+        public DbSet<ConfigMajorKind> ConfigMajorKind { get; set; }
+        public DbSet<ConfigPublicChar> ConfigPublicChar { get; set; }
+        public DbSet<ConfigMajor> ConfigMajor { get; set; }
     }
 }

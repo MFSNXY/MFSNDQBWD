@@ -44,6 +44,9 @@
     <Compile Include="MechanismSecondBLL.cs" />
     <Compile Include="MechanismThirdBLL.cs" />
     <Compile Include="PermissionBLL.cs" />
+    <Compile Include="ConfigMajorBLL.cs" />
+    <Compile Include="ConfigMajorKindBLL.cs" />
+    <Compile Include="ConfigPublicCharBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicCharBLL.cs" />
     <Compile Include="StandardDetailsBLL.cs" />

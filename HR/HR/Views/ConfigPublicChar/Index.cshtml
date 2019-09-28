@@ -1,0 +1,81 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <link href="http://localhost:20727/css/table.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="pro"> 
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <font color="black">
+                                您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--职称设置
+                            </font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right"></td>
+                    </tr>
+                </table>
+                <table width="100%" border="1" cellpadding=0 cellspacing=1
+                       bordercolorlight=#848284 bordercolordark=#eeeeee
+                       class="TABLE_STYLE1">
+                    <tr>
+                        <td width="80%" class="TD_STYLE1">
+                            职称名称
+                        </td>
+                        <td width="20%" class="TD_STYLE1" align="center">
+                            删除
+                        </td>
+                    </tr>
+
+                    <tr v-for="(item,i) in dt">
+                        <td class="TD_STYLE2">{{item.Attributename}}</td>
+                        <td class="TD_STYLE2" align="center">
+                            <a v-bind:href="['/ConfigPublicChar/Del/'+item.Id]" onclick="return confirm('确定删除吗？')">删除</a>
+
+                        </td>
+                    </tr>
+                   
+                </table>
+                <p>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#pro",
+            data: {
+                id:"",
+                dt: null
+            },
+            methods: {
+                load: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/ConfigPublicChar/Index2",
+                        type: "post",
+                        success: function (r) {
+                            var mdt = eval("(" + r + ")");
+                            t.dt = mdt;
+                        }
+                    });
+                }
+            },
+            created: function () {
+                this.load();
+            }
+        });
+    </script>
+</body>
+</html>
