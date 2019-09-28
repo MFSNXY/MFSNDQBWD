@@ -45,6 +45,8 @@
     <Compile Include="MechanismThirdBLL.cs" />
     <Compile Include="PermissionBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicCharBLL.cs" />
+    <Compile Include="StandardDetailsBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAO\DAO.csproj">

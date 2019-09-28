@@ -44,6 +44,8 @@
     <Compile Include="IMechanismSecondDAO.cs" />
     <Compile Include="IMechanismThirdDAO.cs" />
     <Compile Include="IPermissionDAO.cs" />
+    <Compile Include="IPublicCharDAO.cs" />
+    <Compile Include="IStandardDetailsDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
