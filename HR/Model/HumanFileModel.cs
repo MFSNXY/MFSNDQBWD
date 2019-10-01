@@ -77,6 +77,7 @@ namespace Model
             public bool HumanFileStatus { get; set; }
             public string HumanSocietySecurityId { get; set; }
 
+        public int Zhuangtai { get; set; }
 
 
     }

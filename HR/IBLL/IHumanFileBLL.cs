@@ -42,6 +42,9 @@ namespace IBLL
         List<XCFFSTModel> HumanFileSelectYJXQ(string fid);
         List<XCFFST2Model> HumanFileSelectEJXQ(string fid);
         string XCFFSTHID(string hid);
+        int HumanFileUpdate1(HumanFileModel ck);
+
+        int HumanFileUpdateGL();
 
     }
 }

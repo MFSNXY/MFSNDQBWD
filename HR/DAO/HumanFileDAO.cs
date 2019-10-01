@@ -1022,7 +1022,7 @@ namespace DAO
             string sql = (@"select * ,ManCount =(
 select Count(SecondMid)
 from dbo.HumanFile as b
-where a.SecondMid=b.SecondMid
+where a.SecondMid=b.SecondMid and b.Zhuangtai=0
 ),SumMoney=(
 select Sum(SalarySum)
 from HumanFile as b
@@ -1038,18 +1038,21 @@ from dbo.MechanismSecond  as a");
             foreach (DataRow item in dt.Rows)
             {
 
-                SalaryGrantModel sm = new SalaryGrantModel();
-                sm.Id = (int)item["Id"];
-                sm.Firstkindid = item["FirstMid"].ToString();
-                sm.Firstkindname = item["FirstMName"].ToString();
-                sm.Secondkindid = item["SecondMid"].ToString();
-                sm.Secondkindname = item["SecondMName"].ToString();
-                sm.Humanamount = (int)item["ManCount"];
-                sm.Salarygrantid = item["SalaryId"].ToString();
-                sm.Salarystandardsum = (item["SumMoney"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["SumMoney"]));
-                sm.Salarypaidsum = (item["PaidSalarySum"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["PaidSalarySum"]));
+                if ((int)item["ManCount"] > 0)
+                {
+                    SalaryGrantModel sm = new SalaryGrantModel();
+                    sm.Id = (int)item["Id"];
+                    sm.Firstkindid = item["FirstMid"].ToString();
+                    sm.Firstkindname = item["FirstMName"].ToString();
+                    sm.Secondkindid = item["SecondMid"].ToString();
+                    sm.Secondkindname = item["SecondMName"].ToString();
+                    sm.Humanamount = (int)item["ManCount"];
+                    sm.Salarygrantid = item["SalaryId"].ToString();
+                    sm.Salarystandardsum = (item["SumMoney"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["SumMoney"]));
+                    sm.Salarypaidsum = (item["PaidSalarySum"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["PaidSalarySum"]));
 
-                list2.Add(sm);
+                    list2.Add(sm);
+                }
             }
             return list2;
         }
@@ -1082,7 +1085,7 @@ from dbo.MechanismSecond  as a");
             string sql = (@"select * ,ManCount =(
 select Count(FirstMid)
 from dbo.HumanFile as b
-where a.FirstMid=b.FirstMid
+where a.FirstMid=b.FirstMid  and b.Zhuangtai=0
 ),SumMoney=(
 select Sum(SalarySum)
 from HumanFile as b
@@ -1097,15 +1100,17 @@ from MechanismFirst  as a");
             List<SalaryGrantModel> list2 = new List<SalaryGrantModel>();
             foreach (DataRow item in dt.Rows)
             {
-                SalaryGrantModel sm = new SalaryGrantModel();
-                sm.Id = (int)item["Id"];
-                sm.Firstkindid = item["FirstMid"].ToString();
-                sm.Firstkindname = item["FirstMName"].ToString();
-                sm.Humanamount = (int)item["ManCount"];
-                sm.Salarygrantid = item["SalaryId"].ToString();
-                sm.Salarystandardsum = (item["SumMoney"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["SumMoney"]));
-                sm.Salarypaidsum = (item["PaidSalarySum"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["PaidSalarySum"]));
-                list2.Add(sm);
+                if ((int)item["ManCount"] > 0) { 
+                    SalaryGrantModel sm = new SalaryGrantModel();
+                    sm.Id = (int)item["Id"];
+                    sm.Firstkindid = item["FirstMid"].ToString();
+                    sm.Firstkindname = item["FirstMName"].ToString();
+                    sm.Humanamount = (int)item["ManCount"];
+                    sm.Salarygrantid = item["SalaryId"].ToString();
+                    sm.Salarystandardsum = (item["SumMoney"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["SumMoney"]));
+                    sm.Salarypaidsum = (item["PaidSalarySum"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["PaidSalarySum"]));
+                    list2.Add(sm);
+                }
             }
             return list2;
         }
@@ -1138,6 +1143,30 @@ from MechanismFirst  as a");
             DataTable dt = DBHelper.select(sql);
             return dt.Rows[0]["SalaryStandardId"].ToString();
         }
+
+        /// <summary>
+        /// 发工资的方法
+        /// </summary>
+        /// <param name="ck"></param>
+        /// <returns></returns>
+        public int HumanFileUpdate1(HumanFileModel ck)
+        {
+            MyDbContext db = CreateContext();
+            string sql = string.Format(@"update dbo.HumanFile set Zhuangtai=1 where id={0}", ck.Id);
+
+            int list = db.Database.ExecuteSqlCommand(sql);
+            return list;
+        }
+
+        public int HumanFileUpdateGL()
+        {
+            MyDbContext db = CreateContext();
+            string sql = string.Format(@"update dbo.HumanFile set Zhuangtai=0 where Zhuangtai=1");
+
+            int list = db.Database.ExecuteSqlCommand(sql);
+            return list;
+        }
+
 
     }
 }

@@ -109,5 +109,14 @@ namespace BLL
             return ihd.XCFFSTHID(hid);
         }
 
+        public int HumanFileUpdate1(HumanFileModel ck)
+        {
+            return ihd.HumanFileUpdate1(ck);
+        }
+
+        public int HumanFileUpdateGL()
+        {
+            return ihd.HumanFileUpdateGL();
+        }
     }
 }

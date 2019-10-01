@@ -71,5 +71,6 @@ namespace EFEntity
         public bool HumanFileStatus { get; set; }
         public string HumanSocietySecurityId { get; set; }
         public string SalaryId { get; set; }
+        public int Zhuangtai { get; set; }
     }
 }

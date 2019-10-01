@@ -72,5 +72,6 @@ namespace EFEntity
 
         public string HumanSocietySecurityId { get; set; }
 
+        public int Zhuangtai { get; set; }
     }
 }

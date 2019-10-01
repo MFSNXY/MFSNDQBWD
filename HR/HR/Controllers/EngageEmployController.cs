@@ -117,8 +117,10 @@ namespace HR.Controllers
                     MailMessage mail = new MailMessage();
                     //发件人邮件地址
                     mail.From = new MailAddress("XY13308469744@163.com");
-                    //接收人的邮件地址
+                    //mail.From = new MailAddress("jw_112255@163.com");
+                    //接收S人的邮件地址
                     mail.To.Add(new MailAddress(er.HumanEmail));
+                    //mail.To.Add(new MailAddress("yisen.jiang@qq.com"));
                     //主题
                     mail.Subject = string.Format("恭喜{0}入职", er.HumanName);
                     mail.Body = string.Format("{0}，你通过了我们公司的面试。快点来入职。", er.HumanName);
@@ -132,6 +134,7 @@ namespace HR.Controllers
                     }; ;
                     //邮件服务发送的凭证
                     sc.Credentials = new NetworkCredential("XY13308469744@163.com", "123456qq");
+                    //sc.Credentials = new NetworkCredential("jw_112255@163.com", "jw88185566");
                     //发送
                     sc.Send(mail);
                 }

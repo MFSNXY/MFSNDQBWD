@@ -199,9 +199,13 @@ namespace HR.Controllers
                 sm.Salesum = Convert.ToDecimal(item["Salesum"]);
                 sm.Deductsum = Convert.ToDecimal(item["Deductsum"]);
                 sm.Salarypaidsum = Convert.ToDecimal(item["Salarypaidsum"]);
+                HumanFileModel hf = new HumanFileModel();
+                hf.Id = Convert.ToInt32(item["Id"]);
+                ihb.HumanFileUpdate1(hf);
                 //判断薪酬发放表是否添加过这条数据
                 if (isb.SelectPDSID(sm.Salarygrantid,sm.Humanid)>0)
                 {
+                    r2++;
                 }
                 else
                 {

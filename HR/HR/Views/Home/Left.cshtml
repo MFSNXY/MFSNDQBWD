@@ -32,7 +32,7 @@
                                 tools: [{
                                     iconCls: 'icon-mini-refresh',
                                     handler: function () {
-                                        var currTab = self.parent.$('#tabs').tabs('getSelected');
+                                        var currTab = $('#tabs').tabs('getSelected');
                                         var url = $(currTab.panel('options').content).attr('src');
                                         currTab.find("iframe").attr("src", url);
                                     }
@@ -45,7 +45,11 @@
         });
     </script>
 </head>
-<body style="width:160px;background-color:#E9DBE3;" >
-      <ul id="tt"></ul>
+<body  class="easyui-layout" style="background-color:#E4D7DD;" >
+    <div data-options="region:'west',title:'导航栏',split:true" style="width:175px;background-color:#E9DBE3;">
+        <ul id="tt"></ul>
+    </div>
+    <div id="tabs" class="easyui-tabs" data-options="region:'center'" style="padding:0px;background:url(../../images/无标题.png) 0px -50px no-repeat ;">
+    </div>
 </body>
 </html>
