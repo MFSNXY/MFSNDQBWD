@@ -73,16 +73,16 @@ namespace DAO
         {
             var list = CreateContext().Permissions.SqlQuery(string.Format(@"select [id],[text],[state],[Url],[Pid],checked=
                                                                             case 
-                                                                            when [PerID] is null then 0
+                                                                            when Perid is null then 0
                                                                             else 1
                                                                             end
                                                                             from [dbo].[Permission] p
                                                                             left join (
-                                                                                select [PerId]
-                                                                                from [dbo].[PermissionsRole]
-                                                                                where [Rid]={1}
+                                                                            select Perid
+                                                                            from [dbo].[PermissionsRole]
+                                                                            where [Rid]={1}
                                                                             ) rp on
-                                                                            p.id=rp.PerID
+                                                                            p.id=rp.Perid
                                                                             where [Pid]={0}", pid, rid)).ToList();
             List<PermissionModel> list2 = new List<PermissionModel>();
             foreach (var p in list)

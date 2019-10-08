@@ -175,6 +175,8 @@
     <Compile Include="Controllers\ConfigMajorController.cs" />
     <Compile Include="Controllers\ConfigMajorKindController.cs" />
     <Compile Include="Controllers\ConfigPublicCharController.cs" />
+    <Compile Include="Controllers\EngageController.cs" />
+    <Compile Include="Controllers\EngageResumeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MechanismFirstController.cs" />
@@ -1038,6 +1040,11 @@
     <Content Include="Views\ConfigMajor\Create.cshtml" />
     <Content Include="Views\PublicChar\Index.cshtml" />
     <Content Include="Views\StandardDetails\Index.cshtml" />
+    <Content Include="Views\Engage\ToAddEngageRelease.cshtml" />
+    <Content Include="Views\Engage\SelectUpdate.cshtml" />
+    <Content Include="Views\Engage\ToUpdate.cshtml" />
+    <Content Include="Views\Engage\SelectFB.cshtml" />
+    <Content Include="Views\EngageResume\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

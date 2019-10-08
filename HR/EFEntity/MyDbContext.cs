@@ -29,9 +29,11 @@ namespace EFEntity
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<PublicChar> PublicChar { get; set; }
         public DbSet<StandardDetails> StandardDetails { get; set; }
-
         public DbSet<ConfigMajorKind> ConfigMajorKind { get; set; }
         public DbSet<ConfigPublicChar> ConfigPublicChar { get; set; }
         public DbSet<ConfigMajor> ConfigMajor { get; set; }
+        public DbSet<Engage> Engages { get; set; }
+
+        public DbSet<EngageResume> EngageResume { get; set; }
     }
 }

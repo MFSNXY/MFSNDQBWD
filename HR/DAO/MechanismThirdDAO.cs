@@ -97,6 +97,29 @@ namespace DAO
             return list2;
         }
 
+        public List<MechanismThirdModel> MechanismThirdSelectFS(string fid, string sid)
+        {
+            var list = CreateContext().MechanismThirds.AsNoTracking().Where(e => e.FirstMid == fid && e.SecondMid == sid).Select(e => e).ToList();
+            List<MechanismThirdModel> list2 = new List<MechanismThirdModel>();
+            foreach (var p in list)
+            {
+                MechanismThirdModel mt = new MechanismThirdModel()
+                {
+                    Id = p.Id,
+                    FirstMid = p.FirstMid,
+                    FirstMName = p.FirstMName,
+                    IsRetail = p.IsRetail,
+                    SalesId = p.SalesId,
+                    SecondMid = p.SecondMid,
+                    SecondMName = p.SecondMName,
+                    ThirdMName = p.ThirdMName,
+                    ThirdMid = p.ThirdMid
+                };
+                list2.Add(mt);
+            }
+            return list2;
+        }
+
         public List<MechanismThirdModel> MechanismThirdSelectSecond(string secondId)
         {
             List<MechanismThird> list = CreateContext().MechanismThirds.AsNoTracking().Where(e => e.SecondMid == secondId).Select(e => e).ToList();

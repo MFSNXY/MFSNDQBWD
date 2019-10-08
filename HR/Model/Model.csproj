@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EngageModel.cs" />
+    <Compile Include="EngageResumeModel.cs" />
     <Compile Include="MechanismFirstModel.cs" />
     <Compile Include="MechanismSecondModel.cs" />
     <Compile Include="MechanismThirdModel.cs" />

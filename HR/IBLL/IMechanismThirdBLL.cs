@@ -22,5 +22,7 @@ namespace IBLL
 
         List<MechanismThirdModel> MechanismThirdSelectFirst(string firstId);
         List<MechanismThirdModel> MechanismThirdSelectSecond(string secondId);
+
+        List<MechanismThirdModel> MechanismThirdSelectFS(string fid, string sid);
     }
 }

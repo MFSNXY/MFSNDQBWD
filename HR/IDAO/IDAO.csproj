@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEngageDAO.cs" />
+    <Compile Include="IEngageResumeDAO.cs" />
     <Compile Include="IMechanismFirstDAO.cs" />
     <Compile Include="IMechanismSecondDAO.cs" />
     <Compile Include="IMechanismThirdDAO.cs" />

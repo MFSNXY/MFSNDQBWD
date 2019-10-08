@@ -63,7 +63,9 @@
                         II级机构名称
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="SecondMName" readonly="readonly" class="INPUT_STYLE1" value="@Model.SecondMName">
+                        @*<input type="text" name="SecondMName" readonly="readonly" class="INPUT_STYLE1" value="@Model.SecondMName">*@
+                        @Html.TextBox("SecondMName", @Model.SecondMName, new { @class = "INPUT_STYLE1" })
+                        @Html.ValidationMessage("SecondMName")
                     </td>
                 </tr>
                 <tr>
@@ -71,7 +73,7 @@
                         薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
                     </td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("SalaryId", null, new { @class = "INPUT_STYLE1" })
+                        @Html.TextBox("SalaryId", @Model.SalaryId, new { @class = "INPUT_STYLE1" })
                         @Html.ValidationMessage("SalaryId")
                     </td>
                 </tr>
@@ -80,7 +82,7 @@
                         销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
                     </td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("SalesId", null, new { @class = "INPUT_STYLE1" })
+                        @Html.TextBox("SalesId", @Model.SalesId, new { @class = "INPUT_STYLE1" })
                         @Html.ValidationMessage("SalesId")
                     </td>
                 </tr>

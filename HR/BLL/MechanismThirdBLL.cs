@@ -40,6 +40,11 @@ namespace BLL
             return imd.MechanismThirdSelectFirst(firstId);
         }
 
+        public List<MechanismThirdModel> MechanismThirdSelectFS(string fid, string sid)
+        {
+            return imd.MechanismThirdSelectFS(fid, sid);
+        }
+
         public List<MechanismThirdModel> MechanismThirdSelectSecond(string secondId)
         {
             return imd.MechanismThirdSelectSecond(secondId);

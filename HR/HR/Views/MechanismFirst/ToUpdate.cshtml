@@ -54,8 +54,10 @@
                     I级机构名称
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="FirstMName" value="@Model.FirstMName"
-                           readonly="readonly" class="INPUT_STYLE1">
+                    @*<input type="text" name="FirstMName" value="@Model.FirstMName"
+                           readonly="readonly" class="INPUT_STYLE1">*@
+                    @Html.TextBox("FirstMName", @Model.FirstMName, new { @class = "INPUT_STYLE1" })
+                    @Html.ValidationMessage("FirstMName")
                 </td>
             </tr>
             <tr>
@@ -65,7 +67,7 @@
                 <td class="TD_STYLE2">
                     @*<textarea name="SalaryId" rows="4"
                               class="TEXTAREA_STYLE1"  required="required">@Model.SalaryId</textarea>*@
-                    @Html.TextBox("SalaryId", null, new { @class = "INPUT_STYLE1" })
+                    @Html.TextBox("SalaryId", @Model.SalaryId, new { @class = "INPUT_STYLE1" })
                     @Html.ValidationMessage("SalaryId")
                 </td>
             </tr>
@@ -76,7 +78,7 @@
                 <td class="TD_STYLE2">
                     @*<textarea name="SalesId" rows="4"
                               class="TEXTAREA_STYLE1"  required="required">@Model.SalesId</textarea>*@
-                    @Html.TextBox("SalesId", null, new { @class = "INPUT_STYLE1" })
+                    @Html.TextBox("SalesId", @Model.SalesId, new { @class = "INPUT_STYLE1" })
                     @Html.ValidationMessage("SalesId")
                 </td>
             </tr>

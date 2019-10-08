@@ -75,19 +75,21 @@
                     </td>
                 </tr>
                 <tr>
-    <td class="TD_STYLE1">
-        III级机构名称
-    </td>
-</tr>
-<tr>
-    </td>
-            <td class="TD_STYLE2">
-                <input type="text" readonly="readonly" class="INPUT_STYLE1" name="ThirdMName" value="@Model.ThirdMName" />
-            <td class="TD_STYLE1">
+                <td class="TD_STYLE1">
+                    III级机构名称
+                </td>
+                    <td class="TD_STYLE2">
+                        @Html.TextBox("ThirdMName", Model.ThirdMName, new { @class = "INPUT_STYLE1" })
+                        @Html.ValidationMessage("ThirdMName")
+                    <td class="TD_STYLE1">
+            </tr>
+            <tr>
+               <td class="TD_STYLE1">
                 销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
             </td>
             <td class="TD_STYLE2">
-                <textarea rows="4" cols="120" class="TEXTAREA_STYLE1" name="SalesId" required="required">@Model.SalesId</textarea>
+                @Html.TextBox("SalesId", @Model.SalesId, new { @class = "INPUT_STYLE1" })
+                @Html.ValidationMessage("SalesId")
             </td>
         </tr>
                 <tr>
