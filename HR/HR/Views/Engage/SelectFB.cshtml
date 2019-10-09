@@ -71,7 +71,7 @@
                     {{item.Deadline|timeFormate}}
                 </td>
                 <td class="TD_STYLE2">
-                    <a >申请该职位</a>
+                    <a v-bind:href="['../EngageResume/Index/'+item.Id]" >申请该职位</a>
                 </td>
             </tr>
         </table>

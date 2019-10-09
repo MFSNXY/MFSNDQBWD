@@ -585,6 +585,7 @@
     <Content Include="javascript\input_control\Check.js" />
     <Content Include="javascript\input_control\validation-config.xml" />
     <Content Include="javascript\input_control\validation-framework.js" />
+    <Content Include="javascript\jquery-1.10.2.js" />
     <Content Include="javascript\jquery-1.7.2.js" />
     <Content Include="javascript\jquery.easyui.min.js" />
     <Content Include="javascript\jquery.messager.js" />
@@ -630,6 +631,7 @@
     <Content Include="javascript\winopen\winopens.js" />
     <Content Include="jquery-1.11.1.js" />
     <Content Include="jquery-1.7.1.js" />
+    <Content Include="jquery-1.9.1.min.js" />
     <Content Include="jquery-easyui-1.3.5\changelog.txt" />
     <Content Include="jquery-easyui-1.3.5\easyloader.js" />
     <Content Include="jquery-easyui-1.3.5\jquery.easyui.min.js" />
@@ -1045,6 +1047,7 @@
     <Content Include="Views\Engage\ToUpdate.cshtml" />
     <Content Include="Views\Engage\SelectFB.cshtml" />
     <Content Include="Views\EngageResume\Index.cshtml" />
+    <Content Include="Views\EngageResume\JLSX.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

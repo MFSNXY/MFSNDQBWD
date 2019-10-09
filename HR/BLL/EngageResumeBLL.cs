@@ -35,6 +35,11 @@ namespace BLL
             return ied.EngageResumeBy(id);
         }
 
+        public List<EngageResumeModel> EngageResumeSelectSX(string mkid, string mid, string gjz, DateTime startTime, DateTime endTime)
+        {
+            return ied.EngageResumeSelectSX(mkid, mid, gjz, startTime, endTime);
+        }
+
         public int EngageResumeUpdate(EngageResumeModel ck)
         {
             return ied.EngageResumeUpdate(ck);

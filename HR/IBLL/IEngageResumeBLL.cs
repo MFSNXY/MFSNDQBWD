@@ -15,5 +15,7 @@ namespace IBLL
         int EngageResumeDelete(int id);
         List<EngageResumeModel> EngageResumeSelect();
         EngageResumeModel EngageResumeSelectBy(int id);
+
+        List<EngageResumeModel> EngageResumeSelectSX(string mkid, string mid, string gjz, DateTime startTime, DateTime endTime);
     }
 }

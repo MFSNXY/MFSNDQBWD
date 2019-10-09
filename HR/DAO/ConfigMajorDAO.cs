@@ -81,6 +81,30 @@ namespace DAO
             return list2;
         }
 
+        public List<ConfigMajorModel> ConfigMajorSelectMKId(string id)
+        {
+            MyDbContext db = CreateContext();
+            List<ConfigMajor> list = db.ConfigMajor.AsNoTracking()
+                  .Where(e => e.Majorkindid==id)
+                  .Select(e => e)
+                  .ToList();
+            List<ConfigMajorModel> list2 = new List<ConfigMajorModel>();
+            foreach (ConfigMajor item in list)
+            {
+                ConfigMajorModel sm = new ConfigMajorModel()
+                {
+                    Id = item.Id,
+                    Majorkindid = item.Majorname,
+                    Majorkindname = item.Majorkindname,
+                    Majorid = item.Majorid,
+                    Majorname = item.Majorname,
+                    Testamount = item.Testamount
+                };
+                list2.Add(sm);
+            }
+            return list2;
+        }
+
         public int ConfigMajorUpdate(ConfigMajorModel ck)
         {
             ConfigMajor cmk = new ConfigMajor()

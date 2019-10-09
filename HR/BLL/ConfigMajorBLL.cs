@@ -33,6 +33,11 @@ namespace BLL
             return icd.ConfigMajorSelectBy(id);
         }
 
+        public List<ConfigMajorModel> ConfigMajorSelectMKId(string id)
+        {
+            return icd.ConfigMajorSelectMKId(id);
+        }
+
         public int ConfigMajorUpdate(ConfigMajorModel ck)
         {
             return icd.ConfigMajorUpdate(ck);
