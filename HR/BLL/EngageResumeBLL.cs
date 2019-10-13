@@ -35,9 +35,19 @@ namespace BLL
             return ied.EngageResumeBy(id);
         }
 
-        public List<EngageResumeModel> EngageResumeSelectSX(string mkid, string mid, string gjz, DateTime startTime, DateTime endTime)
+        public List<EngageResumeModel> EngageResumeSelectMSJL(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, DateTime? startTime, DateTime? endTime)
         {
-            return ied.EngageResumeSelectSX(mkid, mid, gjz, startTime, endTime);
+            return ied.EngageResumeSelectMSJL(currentPage, pageSize, out rows, mkid, mid, gjz, startTime, endTime);
+        }
+
+        public List<EngageResumeModel> EngageResumeSelectSX(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, DateTime? startTime, DateTime? endTime)
+        {
+            return ied.EngageResumeSelectSX(currentPage,pageSize,out rows,mkid, mid, gjz, startTime, endTime);
+        }
+
+        public List<EngageResumeModel> EngageResumeSelectYXSX(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, DateTime? startTime, DateTime? endTime)
+        {
+            return ied.EngageResumeSelectYXSX(currentPage, pageSize, out rows, mkid, mid, gjz, startTime, endTime);
         }
 
         public int EngageResumeUpdate(EngageResumeModel ck)

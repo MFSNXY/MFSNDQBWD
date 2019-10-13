@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>JLSX</title>
+    <title>YXSX</title>
     <link rel="stylesheet"
           href="../../../css/table.css" type="text/css">
     <link rel="stylesheet"
@@ -37,25 +37,24 @@
     <script src="~/vue-2.4.0.js"></script>
 </head>
 <body>
-    <div id="aa"> 
-        <form action="../EngageResume/GetEngageResumeSX" method="post">
+    <div id="aa">
+        <form action="/EngageResume/GetEngageResumeYXSX" method="post">
             <input type="hidden" name="engageResume.humanMajorKindName"
                    id="majorKindName" />
             <input type="hidden" name="engageResume.humanMajorName"
                    id="majorName" />
             <input type="hidden" name="engageResume.checkStatus"
-                   value="false" />
-
+                   value="true" />
             <table width="100%">
                 <tr>
                     <td>
-                        <font color="black">您正在做的业务是：人力资源--招聘管理--简历管理--简历筛选 </font>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--简历查询--有效简历查询</font>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">
 
-                        <input type="submit" value="开始" class="BUTTON_STYLE1" >
+                        <input type="submit" value="开始" class="BUTTON_STYLE1">
                     </td>
                 </tr>
             </table>
@@ -68,26 +67,6 @@
                         请选择职位分类
                     </td>
                     <td class="TD_STYLE2" width="30%">
-                        @*<select name="engageResume.humanMajorKindId" multiple="multiple" style="width: 290;height: 100"
-                                id="majorKindId" class="SELECT_STYLE2">
-                            <option value="0">--请选择--</option>
-
-                            <option value="01">销售</option>
-
-                            <option value="02">软件开发</option>
-
-                            <option value="03">人力资源</option>
-
-                            <option value="04">生产部</option>
-
-                        </select>
-                        <select name="engageResume.humanMajorId" multiple="multiple" style="width: 290;height: 100"
-                                id="majorId" size="5"
-                                class="SELECT_STYLE2">
-                            <option>
-                                --请选择--
-                            </option>
-                        </select>*@
                         <select name="HumanMajorKindId" id="MajorKindid" class="SELECT_STYLE2" style="width: 290px;height: 100px;" size="5" v-on:change="GetMs()">
                             <option v-for="(item,i) in MKs" v-bind:value="item.Majorkindid">{{item.Majorkindname}}</option>
                         </select>
@@ -103,8 +82,7 @@
                         请输入关键字
                     </td>
                     <td width="84%">
-                        <input type="text" name="GJZ" value=""
-                               class="INPUT_STYLE2" />
+                        <input type="text" name="GJZ" value="" class="INPUT_STYLE2" />
                     </td>
                 </tr>
 
@@ -117,14 +95,15 @@
                         <input type="text" name="StartTime" onclick="aa('StartTime')"
                                style="width: 14%" class="INPUT_STYLE2">
                         至
-                        <input type="text" name="EndTime"  style="width: 14%" class="INPUT_STYLE2" onclick="aa('EndTime')">
+                        <input type="text" name="EndTime" style="width: 14%" class="INPUT_STYLE2" onclick="aa('EndTime')">
                         （YYYY-MM-DD）
                     </td>
                 </tr>
             </table>
         </form>
+ 
     </div>
-    <script type="text/javascript" >
+    <script type="text/javascript">
         var vm = new Vue({
             el: "#aa",
             data: {

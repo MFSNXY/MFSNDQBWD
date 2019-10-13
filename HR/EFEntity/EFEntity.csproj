@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configer\EngageConfiger.cs" />
+    <Compile Include="Configer\EngageInterviewConfiger.cs" />
     <Compile Include="Configer\EngageResumeConfiger.cs" />
     <Compile Include="Configer\MechanismFirstConfiger.cs" />
     <Compile Include="Configer\MechanismSecondConfiger.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Configer\PermissionConfiger.cs" />
     <Compile Include="ConfigMajor.cs" />
     <Compile Include="Engage.cs" />
+    <Compile Include="EngageInterview.cs" />
     <Compile Include="EngageResume.cs" />
     <Compile Include="MechanismFirst.cs" />
     <Compile Include="MechanismSecond.cs" />

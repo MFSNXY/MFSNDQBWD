@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IEngageBLL.cs" />
+    <Compile Include="IEngageInterviewBLL.cs" />
     <Compile Include="IEngageResumeBLL.cs" />
     <Compile Include="IMechanismFirstBLL.cs" />
     <Compile Include="IMechanismSecondBLL.cs" />

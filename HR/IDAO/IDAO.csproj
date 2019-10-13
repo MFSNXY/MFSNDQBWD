@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IEngageDAO.cs" />
+    <Compile Include="IEngageInterviewDAO.cs" />
     <Compile Include="IEngageResumeDAO.cs" />
     <Compile Include="IMechanismFirstDAO.cs" />
     <Compile Include="IMechanismSecondDAO.cs" />

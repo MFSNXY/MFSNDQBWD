@@ -55,6 +55,7 @@
     <Compile Include="ConfigPublicCharDAO.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="EngageDAO.cs" />
+    <Compile Include="EngageInterviewDAO.cs" />
     <Compile Include="EngageResumeDAO.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MechanismFirstDAO.cs" />

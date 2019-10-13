@@ -176,6 +176,7 @@
     <Compile Include="Controllers\ConfigMajorKindController.cs" />
     <Compile Include="Controllers\ConfigPublicCharController.cs" />
     <Compile Include="Controllers\EngageController.cs" />
+    <Compile Include="Controllers\EngageInterviewController.cs" />
     <Compile Include="Controllers\EngageResumeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -408,6 +409,7 @@
     <Content Include="images\tuopu_33.gif" />
     <Content Include="images\tuopu_34.gif" />
     <Content Include="images\无标题.png" />
+    <Content Include="Image\2019\10\12\9AF0F81FC0855943BC39655879833F86.jpg" />
     <Content Include="javascript\calendar-ch.js" />
     <Content Include="javascript\calendar\cal.js" />
     <Content Include="javascript\calendar\calendar-win2k-cold-1.css" />
@@ -977,6 +979,12 @@
     <Content Include="images\images\Thumbs.db" />
     <Content Include="images\Thumbs.db" />
     <Content Include="javascript\input_control\validation-config.dtd" />
+    <Content Include="Wp\jquery.js" />
+    <Content Include="Wp\style.css" />
+    <Content Include="Wp\upload.js" />
+    <Content Include="Wp\Uploader.swf" />
+    <Content Include="Wp\webuploader.css" />
+    <Content Include="Wp\webuploader.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1048,6 +1056,14 @@
     <Content Include="Views\Engage\SelectFB.cshtml" />
     <Content Include="Views\EngageResume\Index.cshtml" />
     <Content Include="Views\EngageResume\JLSX.cshtml" />
+    <Content Include="Views\EngageResume\GetEngageResumeSX.cshtml" />
+    <Content Include="Views\EngageResume\FH.cshtml" />
+    <Content Include="Views\EngageResume\YXSX.cshtml" />
+    <Content Include="Views\EngageResume\GetEngageResumeYXSX.cshtml" />
+    <Content Include="Views\EngageResume\JLXX.cshtml" />
+    <Content Include="Views\EngageInterview\Index.cshtml" />
+    <Content Include="Views\EngageInterview\EngageInterviewMSJG.cshtml" />
+    <Content Include="Views\EngageInterview\EngageInterviewDJ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
