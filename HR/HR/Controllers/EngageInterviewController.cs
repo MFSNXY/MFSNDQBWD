@@ -47,13 +47,8 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(dic));
         }
 
-        public ActionResult EngageInterviewDJ(int id, string HumanMajorKindId = "", string HumanMajorId = "", string GJZ = "", DateTime? StartTime = null, DateTime? EndTime = null)
+        public ActionResult EngageInterviewDJ(int id)
         {
-            TempData["HumanMajorKindId"] = HumanMajorKindId;
-            TempData["HumanMajorId"] = HumanMajorId;
-            TempData["GJZ"] = GJZ;
-            TempData["StartTime"] = StartTime;
-            TempData["EndTime"] = EndTime;
             EngageInterviewModel eim = ieib.EngageInterviewSelectResumeId(id);
             ViewBag.InterviewCount = 1;
             if (eim != null)
@@ -64,7 +59,7 @@ namespace HR.Controllers
             return View(ierb.EngageResumeSelectBy(id));
         }
 
-        public ActionResult EngageInterviewRegister(EngageInterviewModel eim, string HumanMajorKindId = "", string HumanMajorId = "", string GJZ = "", DateTime? StartTime = null, DateTime? EndTime = null)
+        public ActionResult EngageInterviewRegister(EngageInterviewModel eim)
         {
             bool flag = false;
             if (eim.Id>1)
@@ -77,7 +72,7 @@ namespace HR.Controllers
             }
             if (flag)
             {
-                return Content("<script>alert('登记成功!');location='/EngageInterview/EngageInterviewMSJG?HumanMajorKindId="+ HumanMajorKindId + "&HumanMajorId="+HumanMajorId + "&GJZ="+GJZ + "&StartTime="+StartTime + "&EndTime="+EndTime +"';</script>");
+                return Content("<script>alert('登记成功!');location='/EngageInterview/Index';</script>");
             }
             else
             {
@@ -93,7 +88,7 @@ namespace HR.Controllers
         public ActionResult GetEngageInterviewSX(int currentPage, int pageSize)
         {
             int rows = 0;
-            List<EngageInterviewModel> list = ieib.EngageInterviewFY(currentPage, pageSize, out rows);
+            List<EngageInterviewModel> list = ieib.EngageInterviewMSSX(currentPage, pageSize, out rows);
             Dictionary<string, object> dic = new Dictionary<string, object>()
             {
                 {"list",list },

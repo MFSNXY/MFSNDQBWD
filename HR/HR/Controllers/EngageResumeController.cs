@@ -120,11 +120,11 @@ namespace HR.Controllers
             er.PassCheckTime = DateTime.Now;
             if (ierb.EngageResumeUpdate(er) > 0)
             {
-                return Content("<script>alert('复核成功');location='../EngageResume/Index';</script>");
+                return Content("<script>alert('复核成功');location='../EngageResume/JLSX';</script>");
             }
             else
             {
-                return Content("<script>alert('复核失败');location='../EngageResume/Index';</script>");
+                return Content("<script>alert('复核失败');</script>");
             }
 
         }

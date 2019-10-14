@@ -57,6 +57,7 @@
     <Compile Include="EngageDAO.cs" />
     <Compile Include="EngageInterviewDAO.cs" />
     <Compile Include="EngageResumeDAO.cs" />
+    <Compile Include="HumanFileDAO.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MechanismFirstDAO.cs" />
     <Compile Include="MechanismSecondDAO.cs" />

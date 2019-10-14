@@ -37,6 +37,7 @@ namespace EFEntity
         public DbSet<EngageResume> EngageResume { get; set; }
 
         public DbSet<EngageInterview> EngageInterview { get; set; }
+        public DbSet<HumanFile> HumanFile { get; set; }
 
     }
 }

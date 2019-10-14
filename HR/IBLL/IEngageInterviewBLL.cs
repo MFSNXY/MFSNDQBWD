@@ -23,5 +23,7 @@ namespace IBLL
 
         List<EngageInterviewModel> EngageInterviewFY(int currentPage, int pageSize, out int rows);
 
+        List<EngageInterviewModel> EngageInterviewMSSX(int currentPage, int pageSize, out int rows);
+
     }
 }

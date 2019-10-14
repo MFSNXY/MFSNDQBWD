@@ -35,6 +35,11 @@ namespace BLL
             return ied.EngageInterviewFY(currentPage, pageSize, out rows);
         }
 
+        public List<EngageInterviewModel> EngageInterviewMSSX(int currentPage, int pageSize, out int rows)
+        {
+            return ied.EngageInterviewMSSX(currentPage, pageSize, out rows);
+        }
+
         public List<EngageInterviewModel> EngageInterviewSelect()
         {
             return ied.EngageInterviewSelect();

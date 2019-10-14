@@ -20,5 +20,11 @@ namespace IBLL
         List<EngageResumeModel> EngageResumeSelectYXSX(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, DateTime? startTime, DateTime? endTime);
 
         List<EngageResumeModel> EngageResumeSelectMSJL(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, DateTime? startTime, DateTime? endTime);
+
+        List<EngageResumeModel> EngageResumeSelectLYSQ(int currentPage, int pageSize, out int rows);
+
+        List<EngageResumeModel> EngageResumeSelectLYSP(int currentPage, int pageSize, out int rows);
+
+        List<EngageResumeModel> EngageResumeSelectLYCX(int currentPage, int pageSize, out int rows);
     }
 }

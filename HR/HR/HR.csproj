@@ -177,9 +177,11 @@
     <Compile Include="Controllers\ConfigMajorKindController.cs" />
     <Compile Include="Controllers\ConfigPublicCharController.cs" />
     <Compile Include="Controllers\EngageController.cs" />
+    <Compile Include="Controllers\EngageEmployController.cs" />
     <Compile Include="Controllers\EngageInterviewController.cs" />
     <Compile Include="Controllers\EngageResumeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HumanFileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MechanismFirstController.cs" />
     <Compile Include="Controllers\MechanismSecondController.cs" />
@@ -980,6 +982,12 @@
     <Content Include="images\images\Thumbs.db" />
     <Content Include="images\Thumbs.db" />
     <Content Include="javascript\input_control\validation-config.dtd" />
+    <Content Include="Wp2\jquery.js" />
+    <Content Include="Wp2\style.css" />
+    <Content Include="Wp2\upload.js" />
+    <Content Include="Wp2\Uploader.swf" />
+    <Content Include="Wp2\webuploader.css" />
+    <Content Include="Wp2\webuploader.js" />
     <Content Include="Wp\jquery.js" />
     <Content Include="Wp\style.css" />
     <Content Include="Wp\upload.js" />
@@ -1067,6 +1075,14 @@
     <Content Include="Views\EngageInterview\EngageInterviewDJ.cshtml" />
     <Content Include="Views\EngageInterview\EngageInterviewSX.cshtml" />
     <Content Include="Views\EngageInterview\EngageInterviewMSSX.cshtml" />
+    <Content Include="Views\EngageEmploy\Index.cshtml" />
+    <Content Include="Views\EngageEmploy\GoEngageEmploySQ.cshtml" />
+    <Content Include="Views\EngageEmploy\LYSP.cshtml" />
+    <Content Include="Views\EngageEmploy\GoEngageEmploySP.cshtml" />
+    <Content Include="Views\EngageEmploy\LYCX.cshtml" />
+    <Content Include="Views\EngageEmploy\EngageEmployLYCX.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileRegister.cshtml" />
+    <Content Include="Views\HumanFile\HumanFilePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

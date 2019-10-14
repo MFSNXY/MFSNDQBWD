@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>EngageInterviewMSSX</title>
+    <title>GoEngageEmploySQ</title>
     <link rel="stylesheet"
           href="../../../css/table.css" type="text/css">
     <link rel="stylesheet"
@@ -38,53 +38,39 @@
             src="../../../javascript/select.js">
 
     </script>
-    <script type="text/javascript"
-            src="../../../javascript/comm/time.js"></script>
-
-    <script type="text/javascript">
+    <script  type="text/javascript">
         $(function () {
-            $(".zp").hover(function(){
+            $(".zp").hover(function () {
                 $(".dt").show();
             },
-            function(){
+            function () {
                 $(".dt").hide();
             });
         });
-        function mians() {
-            document.getElementById("passCheckcomment").value = "建议面试";
-
+        function sf() {
+            document.getElementById("passCheckcomment").value = "不通过";
         }
-        function bis() {
-            document.getElementById("passCheckcomment").value = "建议笔试";
-        }
-        function luy() {
-            document.getElementById("passCheckcomment").value = "建议录用";
-
-        }
-        function del() {
-            document.getElementById("passCheckcomment").value = "删除简历";
-
+        function ly() {
+            document.getElementById("passCheckcomment").value = "通过";
         }
     </script>
 </head>
 <body>
-    <div id="aa">
-        <form action="/EngageInterview/SX" method="post" enctype="multipart/form-data">
-
+    <div>
+        <form action="/EngageEmploy/EngageEmploySQ"  method="post" >
+            @*<input type="hidden" name="operate" value="doAdopt">*@
+            <input type="hidden" name="Id" value="@((Model["er"] as EngageResumeModel).Id)" />
             <table width="100%">
                 <tr>
                     <td>
-                        <font color="black">您正在做的业务是：人力资源--招聘管理--面试管理--面试筛选  </font>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--录用管理--录用申请  </font>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">
-                        <input type="hidden" name="Id" value="@((Model["er"] as EngageResumeModel).Id)" />
-                        <input type="radio" name="Result" value="建议面试" onclick="mians()">建议面试
-                        <input type="radio" name="Result" value="建议笔试" onclick="bis()">建议笔试
-                        <input type="radio" name="Result" value="建议录用" checked="checked" onclick="luy()">建议录用
-                        <input type="radio" name="Result" value="删除简历" onclick="del()">删除简历
-                        <input type="submit" value="确认" class="BUTTON_STYLE1" >
+                        <input type="radio" name="er.id" value="释放简历" onclick="sf()">释放简历
+                        <input type="radio" name="er.id" value="申请录用" checked="checked" onclick="ly()">申请录用
+                        <input type="submit" value="确认" class="BUTTON_STYLE1">
                         <input type="button" value="返回" class="BUTTON_STYLE1"
                                onclick="history.back();">
 
@@ -305,20 +291,11 @@
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">
-                        档案附件
-                    </td>
-                    <td colspan="7" class="TD_STYLE2">
-                        <input type="text" name="er.checker" readonly="readonly" class="INPUT_STYLE2">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="TD_STYLE1">
                         个人履历
                     </td>
                     <td colspan="7" class="TD_STYLE2">
                         <textarea name="engageResume.humanHistoryRecords" rows="4"
-                                  class="TEXTAREA_STYLE1" readonly="readonly"> @((Model["er"] as EngageResumeModel).HumanHistoryRecords)
-                        </textarea>
+                                  class="TEXTAREA_STYLE1" readonly="readonly">@((Model["er"] as EngageResumeModel).HumanHistoryRecords)</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -327,125 +304,121 @@
                     </td>
                     <td colspan="7" class="TD_STYLE2">
                         <textarea name="engageResume.humanHistoryRecords" rows="4"
-                                  class="TEXTAREA_STYLE1" readonly="readonly">@((Model["er"] as EngageResumeModel).Remark)
-                        </textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="TD_STYLE1">
-                        筛选推荐意见
-                    </td>
-                    <td colspan="7" class="TD_STYLE2">
-                        <textarea name="engageResume.humanHistoryRecords" rows="4"
-                                  class="TEXTAREA_STYLE1" readonly="readonly">@((Model["er"] as EngageResumeModel).Recomandation)
-                        </textarea>
-                         </td>
-                </tr>
+                                  class="TEXTAREA_STYLE1" readonly="readonly">@((Model["er"] as EngageResumeModel).Remark)</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            筛选推荐意见
+                        </td>
+                        <td colspan="7" class="TD_STYLE2">
+                            <textarea name="engageResume.humanHistoryRecords" rows="4"
+                                      class="TEXTAREA_STYLE1" readonly="readonly">@((Model["er"] as EngageResumeModel).Recomandation)</textarea>
+                            </td>
+                        </tr>
 
 
 
-                <tr>
-                    <td class="TD_STYLE1">
-                        面试次数
-                    </td>
-                    <td class="TD_STYLE2">
-                        <input type="text" name="engageInterview.interviewAmount" value="@((Model["ei"] as EngageInterviewModel).InterviewCount)" class="INPUT_STYLE2" readonly="readonly" />
-                    </td>
-                    <td class="TD_STYLE1">
-                        形象评价
-                    </td>
-                    <td class="TD_STYLE2">
+                        <tr>
+                            <td class="TD_STYLE1">
+                                面试次数
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input type="text" name="engageInterview.interviewAmount" value="@((Model["ei"] as EngageInterviewModel).InterviewCount)" class="INPUT_STYLE2" readonly="readonly" />
+                            </td>
+                            <td class="TD_STYLE1">
+                                形象评价
+                            </td>
+                            <td class="TD_STYLE2">
 
-                        <input type="text" name="engageInterview.imageDegree" value="@((Model["ei"] as EngageInterviewModel).ImageDegree)" class="INPUT_STYLE2" readonly="readonly" />
+                                <input type="text" name="engageInterview.imageDegree" value="@((Model["ei"] as EngageInterviewModel).ImageDegree)" class="INPUT_STYLE2" readonly="readonly" />
 
-                    </td>
-                    <td class="TD_STYLE1">
-                        口才评价
-                    </td>
-                    <td class="TD_STYLE2">
+                            </td>
+                            <td class="TD_STYLE1">
+                                口才评价
+                            </td>
+                            <td class="TD_STYLE2">
 
-                        <input type="text" name="engageInterview.nativeLanguageDegree" value="@((Model["ei"] as EngageInterviewModel).NativeLanguageDegree)" class="INPUT_STYLE2" readonly="readonly" />
+                                <input type="text" name="engageInterview.nativeLanguageDegree" value="@((Model["ei"] as EngageInterviewModel).NativeLanguageDegree)" class="INPUT_STYLE2" readonly="readonly" />
 
-                    </td>
-                    <td class="TD_STYLE1">
-                        外语口语能力
-                    </td>
-                    <td class="TD_STYLE1">
+                            </td>
+                            <td class="TD_STYLE1">
+                                外语口语能力
+                            </td>
+                            <td class="TD_STYLE1">
+                                <input type="text" name="engageInterview.foreignLanguageDegree" value="@((Model["ei"] as EngageInterviewModel).ForeignLanguageDegree)" class="INPUT_STYLE2" readonly="readonly" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="TD_STYLE1">
+                                应变能力
+                            </td>
+                            <td class="TD_STYLE2">
 
-                        <input type="text" name="engageInterview.foreignLanguageDegree" value="@((Model["ei"] as EngageInterviewModel).ForeignLanguageDegree)" class="INPUT_STYLE2" readonly="readonly" />
+                                <input type="text" name="engageInterview.responseSpeedDegree" value="@((Model["ei"] as EngageInterviewModel).ResponseSpeedDegree)" class="INPUT_STYLE2" readonly="readonly" />
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="TD_STYLE1">
-                        应变能力
-                    </td>
-                    <td class="TD_STYLE2">
+                            </td>
+                            <td class="TD_STYLE1">
+                                EQ
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input type="text" name="engageInterview.eqDegree" value="@((Model["ei"] as EngageInterviewModel).EQDegree)" class="INPUT_STYLE2" readonly="readonly" />
 
-                        <input type="text" name="engageInterview.responseSpeedDegree" value="@((Model["ei"] as EngageInterviewModel).ResponseSpeedDegree)" class="INPUT_STYLE2" readonly="readonly" />
+                            </td>
+                            <td class="TD_STYLE1">
+                                IQ
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input type="text" name="engageInterview.iqDegree" value="@((Model["ei"] as EngageInterviewModel).IQDegree)" class="INPUT_STYLE2" readonly="readonly" />
 
-                    </td>
-                    <td class="TD_STYLE1">
-                        EQ
-                    </td>
-                    <td class="TD_STYLE2">
-                        <input type="text" name="engageInterview.eqDegree" value="@((Model["ei"] as EngageInterviewModel).EQDegree)" class="INPUT_STYLE2" readonly="readonly" />
+                            </td>
+                            <td class="TD_STYLE1">
+                                综合素质
+                            </td>
+                            <td class="TD_STYLE1">
+                                <input type="text" name="engageInterview.multiQualityDegree" value="@((Model["ei"] as EngageInterviewModel).MultiQualityDegree)" class="INPUT_STYLE2" readonly="readonly" />
 
-                    </td>
-                    <td class="TD_STYLE1">
-                        IQ
-                    </td>
-                    <td class="TD_STYLE2">
-                        <input type="text" name="engageInterview.iqDegree" value="@((Model["ei"] as EngageInterviewModel).IQDegree)" class="INPUT_STYLE2" readonly="readonly" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="TD_STYLE1">
+                                面试人
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input type="text" name="engageInterview.register" value="@((Model["ei"] as EngageInterviewModel).Register)" class="INPUT_STYLE2" />
+                            </td>
+                            <td class="TD_STYLE1">
+                                面试时间
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input type="text" name="engageInterview.registeTime" value="@((Model["ei"] as EngageInterviewModel).RegisteTime.ToString().Replace("/","-"))" class="INPUT_STYLE2" />
 
-                    </td>
-                    <td class="TD_STYLE1">
-                        综合素质
-                    </td>
-                    <td class="TD_STYLE1">
-                        <input type="text" name="engageInterview.multiQualityDegree" value="@((Model["ei"] as EngageInterviewModel).MultiQualityDegree)" class="INPUT_STYLE2" readonly="readonly" />
+                            </td>
+                            <td class="TD_STYLE1">
+                                筛选人
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input type="text" name="Checker" value="@((Model["ei"] as EngageInterviewModel).Checker)" readonly="readonly" class="INPUT_STYLE2" />
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="TD_STYLE1">
-                        面试人
-                    </td>
-                    <td class="TD_STYLE2">
-                        <input type="text" name="engageInterview.register" value="@((Model["ei"] as EngageInterviewModel).Register)" class="INPUT_STYLE2" />
-                    </td>
-                    <td class="TD_STYLE1">
-                        面试时间
-                    </td>
-                    <td class="TD_STYLE2">
-                        <input type="text" name="engageInterview.registeTime" value="@((Model["ei"] as EngageInterviewModel).RegisteTime.ToString().Replace("/","-"))" class="INPUT_STYLE2" />
-
-                    </td>
-                    <td class="TD_STYLE1">
-                        筛选人
-                    </td>
-                    <td class="TD_STYLE2">
-                        <input type="text" name="Checker" value="" required="required" class="INPUT_STYLE2" />
-
-                    </td>
-                    <td class="TD_STYLE1">
-                        筛选时间
-                    </td>
-                    <td class="TD_STYLE2">
-                        <input type="text" name="CheckTime"
-                              required="required"  id="nowTime" onclick="aa('CheckTime')"
-                               class="INPUT_STYLE2">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="TD_STYLE1">
-                        录用申请审核意见
-                    </td>
-                    <td class="TD_STYLE2" colspan="7">
-                        <textarea name="CheckComment" class="TEXTAREA_STYLE1" rows="4" readonly="readonly" id="passCheckcomment">建议录用</textarea>
-                    </td>
-                </tr>
-            </table>
+                            </td>
+                            <td class="TD_STYLE1">
+                                筛选时间
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input type="text" name="CheckTime" value="@((Model["ei"] as EngageInterviewModel).CheckTime.ToString().Replace("/","-"))"
+                                        id="nowTime" readonly="readonly"
+                                       class="INPUT_STYLE2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="TD_STYLE1">
+                                录用申请审核意见
+                            </td>
+                            <td class="TD_STYLE2" colspan="7">
+                                <textarea name="PassCheckComment" class="TEXTAREA_STYLE1" rows="4" readonly="readonly" id="passCheckcomment">通过</textarea>
+                            </td>
+                        </tr>
+                    </table>
         </form> 
     </div>
 </body>

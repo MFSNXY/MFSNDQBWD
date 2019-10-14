@@ -44,6 +44,7 @@
     <Compile Include="EngageInterviewModel.cs" />
     <Compile Include="EngageModel.cs" />
     <Compile Include="EngageResumeModel.cs" />
+    <Compile Include="HumanFileModel.cs" />
     <Compile Include="MechanismFirstModel.cs" />
     <Compile Include="MechanismSecondModel.cs" />
     <Compile Include="MechanismThirdModel.cs" />

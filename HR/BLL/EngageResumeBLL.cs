@@ -35,6 +35,21 @@ namespace BLL
             return ied.EngageResumeBy(id);
         }
 
+        public List<EngageResumeModel> EngageResumeSelectLYCX(int currentPage, int pageSize, out int rows)
+        {
+            return ied.EngageResumeSelectLYCX(currentPage, pageSize, out rows);
+        }
+
+        public List<EngageResumeModel> EngageResumeSelectLYSP(int currentPage, int pageSize, out int rows)
+        {
+            return ied.EngageResumeSelectLYSP(currentPage, pageSize, out rows);
+        }
+
+        public List<EngageResumeModel> EngageResumeSelectLYSQ(int currentPage, int pageSize, out int rows)
+        {
+            return ied.EngageResumeSelectLYSQ(currentPage, pageSize, out rows);
+        }
+
         public List<EngageResumeModel> EngageResumeSelectMSJL(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, DateTime? startTime, DateTime? endTime)
         {
             return ied.EngageResumeSelectMSJL(currentPage, pageSize, out rows, mkid, mid, gjz, startTime, endTime);
