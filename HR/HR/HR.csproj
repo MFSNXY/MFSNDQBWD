@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -1064,6 +1065,8 @@
     <Content Include="Views\EngageInterview\Index.cshtml" />
     <Content Include="Views\EngageInterview\EngageInterviewMSJG.cshtml" />
     <Content Include="Views\EngageInterview\EngageInterviewDJ.cshtml" />
+    <Content Include="Views\EngageInterview\EngageInterviewSX.cshtml" />
+    <Content Include="Views\EngageInterview\EngageInterviewMSSX.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

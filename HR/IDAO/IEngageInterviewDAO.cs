@@ -18,5 +18,9 @@ namespace IDAO
         EngageInterviewModel EngageInterviewBy(int id);
 
         List<EngageInterviewModel> EngageInterviewSelect();
+
+        EngageInterviewModel EngageInterviewSelectResumeId(int rid);
+
+        List<EngageInterviewModel> EngageInterviewFY(int currentPage, int pageSize, out int rows);
     }
 }

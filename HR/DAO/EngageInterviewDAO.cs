@@ -119,6 +119,45 @@ namespace DAO
             return list2;
         }
 
+        public EngageInterviewModel EngageInterviewSelectResumeId(int rid)
+        {
+            EngageInterview p = CreateContext().EngageInterview.AsNoTracking().Where(e => e.ResumeId == rid).SingleOrDefault();
+            if (p != null)
+            {
+                return new EngageInterviewModel()
+                {
+                    Id = p.Id,
+                    EQDegree = p.EQDegree,
+                    IQDegree = p.IQDegree,
+                    CheckComment = p.CheckComment,
+                    MultiQualityDegree = p.MultiQualityDegree,
+                    Checker = p.Checker,
+                    CheckStatus = p.CheckStatus,
+                    ForeignLanguageDegree = p.ForeignLanguageDegree,
+                    CheckTime = p.CheckTime,
+                    HumanMajorId = p.HumanMajorId,
+                    HumanMajorKindId = p.HumanMajorKindId,
+                    HumanMajorKindName = p.HumanMajorKindName,
+                    HumanMajorName = p.HumanMajorName,
+                    HumanName = p.HumanName,
+                    ImageDegree = p.ImageDegree,
+                    InterviewComment = p.InterviewComment,
+                    InterviewCount = p.InterviewCount,
+                    InterviewStatus = p.InterviewStatus,
+                    NativeLanguageDegree = p.NativeLanguageDegree,
+                    Register = p.Register,
+                    RegisteTime = p.RegisteTime,
+                    ResponseSpeedDegree = p.ResponseSpeedDegree,
+                    Result = p.Result,
+                    ResumeId = p.ResumeId
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public int EngageInterviewUpdate(EngageInterviewModel p)
         {
             EngageInterview ei = new EngageInterview()
@@ -150,5 +189,51 @@ namespace DAO
             };
             return Update(ei);
         }
+
+
+        public List<EngageInterviewModel> EngageInterviewFY(int currentPage, int pageSize, out int rows)
+        {
+
+            var list = CreateContext().EngageInterview.AsNoTracking().OrderBy(e => e.Id);
+            rows = list.Count();
+            var data = list
+                 .Skip((currentPage - 1) * pageSize)
+                 .Take(pageSize)
+                 .ToList();
+            List<EngageInterviewModel> list2 = new List<EngageInterviewModel>();
+            foreach (var p in data)
+            {
+                EngageInterviewModel ei = new EngageInterviewModel()
+                {
+                    Id = p.Id,
+                    EQDegree = p.EQDegree,
+                    IQDegree = p.IQDegree,
+                    CheckComment = p.CheckComment,
+                    MultiQualityDegree = p.MultiQualityDegree,
+                    Checker = p.Checker,
+                    CheckStatus = p.CheckStatus,
+                    ForeignLanguageDegree = p.ForeignLanguageDegree,
+                    CheckTime = p.CheckTime,
+                    HumanMajorId = p.HumanMajorId,
+                    HumanMajorKindId = p.HumanMajorKindId,
+                    HumanMajorKindName = p.HumanMajorKindName,
+                    HumanMajorName = p.HumanMajorName,
+                    HumanName = p.HumanName,
+                    ImageDegree = p.ImageDegree,
+                    InterviewComment = p.InterviewComment,
+                    InterviewCount = p.InterviewCount,
+                    InterviewStatus = p.InterviewStatus,
+                    NativeLanguageDegree = p.NativeLanguageDegree,
+                    Register = p.Register,
+                    RegisteTime = p.RegisteTime,
+                    ResponseSpeedDegree = p.ResponseSpeedDegree,
+                    Result = p.Result,
+                    ResumeId = p.ResumeId
+                };
+                list2.Add(ei);
+            }
+            return list2;
+        }
+
     }
 }

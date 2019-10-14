@@ -1,13 +1,14 @@
-﻿@model Model.EngageResumeModel
+﻿@model Dictionary<string, object>
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>EngageInterviewDJ</title>
+    <title>EngageInterviewMSSX</title>
     <link rel="stylesheet"
           href="../../../css/table.css" type="text/css">
     <link rel="stylesheet"
@@ -38,11 +39,10 @@
 
     </script>
     <script type="text/javascript"
-            src="../../../javascript/comm/time.js">
-    </script>
+            src="../../../javascript/comm/time.js"></script>
+
     <script type="text/javascript">
         $(function () {
-            $("#InterviewCount").val("第"+@ViewBag.InterviewCount+"次面试")
             $(".zp").hover(function(){
                 $(".dt").show();
             },
@@ -50,35 +50,41 @@
                 $(".dt").hide();
             });
         });
+        function mians() {
+            document.getElementById("passCheckcomment").value = "建议面试";
+
+        }
+        function bis() {
+            document.getElementById("passCheckcomment").value = "建议笔试";
+        }
+        function luy() {
+            document.getElementById("passCheckcomment").value = "建议录用";
+
+        }
+        function del() {
+            document.getElementById("passCheckcomment").value = "删除简历";
+
+        }
     </script>
-    <script src="~/vue-2.4.0.js"></script>
 </head>
 <body>
     <div id="aa">
-        <form action="/EngageInterview/EngageInterviewRegister" method="post">
-            <input type="hidden" id="HumanMajorKindId" value="@TempData["HumanMajorKindId"]" />
-            <input type="hidden" id="HumanMajorId" value="@TempData["HumanMajorId"]" />
-            <input type="hidden" id="GJZ" value="@TempData["GJZ"]" />
-            <input type="hidden" id="StartTime" value="@TempData["StartTime"]" />
-            <input type="hidden" id="EndTime" value="@TempData["EndTime"]" />
-            <input type="hidden" name="operate" value="doAdopt">
-            <!--	<input type="hidden" name="engageInterview.checkStatus" value=""/>
-            <input type="hidden" name="engageInterview.checkComment" value=""/>
-              -->
-            <input type="hidden" name="Id" value="@ViewBag.EIid" />
-            <input type="hidden" name="Result" value="完成" />
-            <input type="hidden" name="ResumeId" value="@Model.Id" />
-           @* <input type="hidden" name="engageResume.resId" value="542" />*@
-            <input type="hidden" name="InterviewStatus" value="1" />
+        <form action="/EngageInterview/SX" method="post" enctype="multipart/form-data">
+
             <table width="100%">
                 <tr>
                     <td>
-                        <font color="black">您正在做的业务是：人力资源--招聘管理--面试管理--面试结果登记  </font>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--面试管理--面试筛选  </font>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">
-                        <input type="submit" value="面试登记" class="BUTTON_STYLE1" >
+                        <input type="hidden" name="Id" value="@((Model["er"] as EngageResumeModel).Id)" />
+                        <input type="radio" name="Result" value="建议面试" onclick="mians()">建议面试
+                        <input type="radio" name="Result" value="建议笔试" onclick="bis()">建议笔试
+                        <input type="radio" name="Result" value="建议录用" checked="checked" onclick="luy()">建议录用
+                        <input type="radio" name="Result" value="删除简历" onclick="del()">删除简历
+                        <input type="submit" value="确认" class="BUTTON_STYLE1" >
                         <input type="button" value="返回" class="BUTTON_STYLE1"
                                onclick="history.back();">
 
@@ -93,25 +99,25 @@
                         职位分类
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="hidden" value="@Model.HumanMajorKindId" name="HumanMajorKindId" />
-                        <input type="text" value="@Model.HumanMajorKindName"name="HumanMajorKindName" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="hidden" value="@((Model["er"] as EngageResumeModel).HumanMajorKindId)" name="HumanMajorKindId" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanMajorKindName)" name="HumanMajorKindName" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         职位名称
                     </td>
                     <td class="TD_STYLE2" width="20%">
-                        <input type="hidden" value="@Model.HumanMajorId" name="HumanMajorId" />
-                        <input type="text" value="@Model.HumanMajorName" name="HumanMajorName" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="hidden" value="@((Model["er"] as EngageResumeModel).HumanMajorId)" name="HumanMajorId" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanMajorName)" name="HumanMajorName" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td width="11%" class="TD_STYLE1">
                         招聘类型
                     </td>
                     <td class="TD_STYLE2" colspan="2">
-                        <input type="text" value="@Model.EngageType" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).EngageType)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td rowspan="6">
-                        <img class="zp" style="margin-left:100px;width:100px;height:100px;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
-                        <img class="dt" style="position:absolute;width:400px;height:400px;margin:-110px 0px 0px -320px;display:none;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
+                        <img class="zp" style="margin-left:100px;width:100px;height:100px;" src="@((Model["er"] as EngageResumeModel).HumanPicture.Substring((Model["er"] as EngageResumeModel).HumanPicture.IndexOf(@"\Image")))" />
+                        <img class="dt" style="position:absolute;width:400px;height:400px;margin:-110px 0px 0px -320px;display:none;" src="@((Model["er"] as EngageResumeModel).HumanPicture.Substring((Model["er"] as EngageResumeModel).HumanPicture.IndexOf(@"\Image")))" />
                     </td>
                 </tr>
                 <tr>
@@ -119,19 +125,19 @@
                         姓名
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanName"  name="HumanName" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanName)" name="HumanName" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         性别
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanSex" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanSex)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         EMAIL
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanEmail" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanEmail)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                 </tr>
                 <tr>
@@ -139,19 +145,19 @@
                         电话
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanTelephone" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanTelephone)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         家庭电话
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanHomephone" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanHomephone)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         手机
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanMobilephone" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanMobilephone)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                 </tr>
                 <tr>
@@ -159,14 +165,14 @@
                         住址
                     </td>
                     <td colspan="3" class="TD_STYLE2">
-                        <input type="text" value="@Model" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanAddress)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
 
                     <td class="TD_STYLE1">
                         邮编
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanAddress" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanPostcode)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                 </tr>
 
@@ -175,19 +181,19 @@
                         国籍
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanNationality" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanNationality)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         出生地
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanBirthplace" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanBirthplace)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         生日
                     </td>
                     <td width="13%" colspan="2" class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanBirthday.ToString().Replace("/", "-")" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanBirthday.ToString().Replace("/", "-"))" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
 
                 </tr>
@@ -196,19 +202,19 @@
                         民族
                     </td>
                     <td class="TD_STYLE2" width="14%">
-                        <input type="text" value="@Model.HumanRace" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanRace)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         宗教信仰
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanReligion" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanReligion)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         政治面貌
                     </td>
                     <td class="TD_STYLE2" colspan="2">
-                        <input type="text" value="@Model.HumanParty" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanParty)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
 
 
@@ -218,26 +224,26 @@
                         身份证号码
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanIdcard" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanIdcard)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         年龄
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanAge" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanAge)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         毕业院校
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanCollege" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanCollege)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
 
                     <td class="TD_STYLE1">
                         学历
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanEducatedDegree" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanEducatedDegree)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
 
                 </tr>
@@ -246,26 +252,26 @@
                         教育年限
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanEducatedYears" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanEducatedYears)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         学历专业
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanEducatedMajor" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanEducatedMajor)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
 
                     <td class="TD_STYLE1">
                         薪酬要求
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.DemandSalaryStandard" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).DemandSalaryStandard)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         注册时间
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.RegistTime.ToString().Replace("/", "-")" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).RegistTime.ToString().Replace("/", "-"))" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
 
                 </tr>
@@ -275,26 +281,34 @@
                         特长
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanSpecility" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanSpecility)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         爱好
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanHobby" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).HumanHobby)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         推荐人
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.Checker" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).Checker)" class="INPUT_STYLE2" readonly="readonly" />
 
                     </td>
                     <td class="TD_STYLE1">
                         推荐时间
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.CheckTime.ToString().Replace("/", "-")" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" value="@((Model["er"] as EngageResumeModel).CheckTime.ToString().Replace("/", "-"))" class="INPUT_STYLE2" readonly="readonly" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        档案附件
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <input type="text" name="er.checker" readonly="readonly" class="INPUT_STYLE2">
                     </td>
                 </tr>
                 <tr>
@@ -302,26 +316,32 @@
                         个人履历
                     </td>
                     <td colspan="7" class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanHistoryRecords" class="INPUT_STYLE2" readonly="readonly" />
+                        <textarea name="engageResume.humanHistoryRecords" rows="4"
+                                  class="TEXTAREA_STYLE1" readonly="readonly"> &#20010;&#20154;&#23653;&#21382;
+                        </textarea>
                     </td>
                 </tr>
-
                 <tr>
                     <td class="TD_STYLE1">
                         备注
                     </td>
                     <td colspan="7" class="TD_STYLE2">
-                        <input type="text" value="@Model.Remark" class="INPUT_STYLE2" readonly="readonly" />
+                        <textarea name="engageResume.humanHistoryRecords" rows="4"
+                                  class="TEXTAREA_STYLE1" readonly="readonly">@((Model["er"] as EngageResumeModel).Remark)
+                        </textarea>
                     </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">
-                        推荐意见
+                        筛选推荐意见
                     </td>
                     <td colspan="7" class="TD_STYLE2">
-                        <input type="text" value="@Model.Recomandation" class="INPUT_STYLE2" readonly="readonly" />
-                    </td>
+                        <textarea name="engageResume.humanHistoryRecords" rows="4"
+                                  class="TEXTAREA_STYLE1" readonly="readonly">@((Model["er"] as EngageResumeModel).Recomandation)
+                        </textarea>
+                         </td>
                 </tr>
+
 
 
                 <tr>
@@ -329,38 +349,31 @@
                         面试次数
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="hidden" value="@ViewBag.InterviewCount" name="InterviewCount" />
-                        <input type="text" value="" id="InterviewCount" class="INPUT_STYLE2" readonly="readonly" />
+                        <input type="text" name="engageInterview.interviewAmount" value="@((Model["ei"] as EngageInterviewModel).InterviewCount)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
                     <td class="TD_STYLE1">
                         形象评价
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="ImageDegree" class="SELECT_STYLE1">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
+
+                        <input type="text" name="engageInterview.imageDegree" value="@((Model["ei"] as EngageInterviewModel).ImageDegree)" class="INPUT_STYLE2" readonly="readonly" />
+
                     </td>
                     <td class="TD_STYLE1">
                         口才评价
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="NativeLanguageDegree" class="SELECT_STYLE1">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
+
+                        <input type="text" name="engageInterview.nativeLanguageDegree" value="@((Model["ei"] as EngageInterviewModel).NativeLanguageDegree)" class="INPUT_STYLE2" readonly="readonly" />
+
                     </td>
                     <td class="TD_STYLE1">
                         外语口语能力
                     </td>
                     <td class="TD_STYLE1">
-                        <select name="ForeignLanguageDegree" class="SELECT_STYLE1">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
+
+                        <input type="text" name="engageInterview.foreignLanguageDegree" value="@((Model["ei"] as EngageInterviewModel).ForeignLanguageDegree)" class="INPUT_STYLE2" readonly="readonly" />
+
                     </td>
                 </tr>
                 <tr>
@@ -368,41 +381,30 @@
                         应变能力
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="ResponseSpeedDegree" class="SELECT_STYLE1">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
+
+                        <input type="text" name="engageInterview.responseSpeedDegree" value="@((Model["ei"] as EngageInterviewModel).ResponseSpeedDegree)" class="INPUT_STYLE2" readonly="readonly" />
+
                     </td>
                     <td class="TD_STYLE1">
                         EQ
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="EQDegree" class="SELECT_STYLE1">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
+                        <input type="text" name="engageInterview.eqDegree" value="@((Model["ei"] as EngageInterviewModel).EQDegree)" class="INPUT_STYLE2" readonly="readonly" />
+
                     </td>
                     <td class="TD_STYLE1">
                         IQ
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="IQDegree" class="SELECT_STYLE1">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
+                        <input type="text" name="engageInterview.iqDegree" value="@((Model["ei"] as EngageInterviewModel).IQDegree)" class="INPUT_STYLE2" readonly="readonly" />
+
                     </td>
                     <td class="TD_STYLE1">
                         综合素质
                     </td>
                     <td class="TD_STYLE1">
-                        <select name="MultiQualityDegree" class="SELECT_STYLE1">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
+                        <input type="text" name="engageInterview.multiQualityDegree" value="@((Model["ei"] as EngageInterviewModel).MultiQualityDegree)" class="INPUT_STYLE2" readonly="readonly" />
+
                     </td>
                 </tr>
                 <tr>
@@ -410,43 +412,41 @@
                         面试人
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageInterview.register" value="" class="INPUT_STYLE2" />*@
-                        @Html.TextBox("Register",null,new { @class = "INPUT_STYLE2", @required = "required" })
-                        @Html.ValidationMessage("Register")
+                        <input type="text" name="engageInterview.register" value="@((Model["ei"] as EngageInterviewModel).Register)" class="INPUT_STYLE2" />
                     </td>
                     <td class="TD_STYLE1">
                         面试时间
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageInterview.registeTime" onclick="aa('engageInterview.registeTime')"
-                               class="INPUT_STYLE2" id="date">*@
-                        @Html.TextBox("RegisteTime", null, new { @class = "INPUT_STYLE2", @id = "date", @onclick = "aa('RegisteTime')" , @required = "required" })
-                        @Html.ValidationMessage("RegisteTime")
+                        <input type="text" name="engageInterview.registeTime" value="@((Model["ei"] as EngageInterviewModel).RegisteTime.ToString().Replace("/","-"))" class="INPUT_STYLE2" />
 
                     </td>
                     <td class="TD_STYLE1">
-                        &nbsp;
+                        筛选人
                     </td>
                     <td class="TD_STYLE2">
-                        &nbsp;
+                        <input type="text" name="Checker" value="" required="required" class="INPUT_STYLE2" />
+
                     </td>
                     <td class="TD_STYLE1">
-                        &nbsp;
+                        筛选时间
                     </td>
                     <td class="TD_STYLE2">
-                        &nbsp;
+                        <input type="text" name="CheckTime"
+                              required="required"  id="nowTime" onclick="aa('CheckTime')"
+                               class="INPUT_STYLE2">
                     </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">
-                        面试评价
+                        录用申请审核意见
                     </td>
                     <td class="TD_STYLE2" colspan="7">
-                        <textarea name="InterviewComment" required="required" class="TEXTAREA_STYLE1" rows="4"></textarea>
+                        <textarea name="CheckComment" class="TEXTAREA_STYLE1" rows="4" readonly="readonly" id="passCheckcomment">建议录用</textarea>
                     </td>
                 </tr>
             </table>
-        </form>
+        </form> 
     </div>
 </body>
 </html>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
@@ -23,9 +24,10 @@ namespace Model
         public string EQDegree { get; set; }
         public string IQDegree { get; set; }
         public string MultiQualityDegree { get; set; }
+        [Required(ErrorMessage ="请填写面试人")]
         public string Register { get; set; }
         public string Checker { get; set; }
-
+        [Required(ErrorMessage ="请填写面试时间")]
         public DateTime RegisteTime { get; set; }
 
         public DateTime CheckTime { get; set; }

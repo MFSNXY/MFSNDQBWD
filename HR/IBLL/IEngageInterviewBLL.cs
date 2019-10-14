@@ -19,5 +19,9 @@ namespace IBLL
 
         List<EngageInterviewModel> EngageInterviewSelect();
 
+        EngageInterviewModel EngageInterviewSelectResumeId(int rid);
+
+        List<EngageInterviewModel> EngageInterviewFY(int currentPage, int pageSize, out int rows);
+
     }
 }

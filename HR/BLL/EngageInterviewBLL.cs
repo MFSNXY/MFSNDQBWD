@@ -30,14 +30,26 @@ namespace BLL
             return ied.EngageInterviewDelete(id);
         }
 
+        public List<EngageInterviewModel> EngageInterviewFY(int currentPage, int pageSize, out int rows)
+        {
+            return ied.EngageInterviewFY(currentPage, pageSize, out rows);
+        }
+
         public List<EngageInterviewModel> EngageInterviewSelect()
         {
             return ied.EngageInterviewSelect();
+        }
+
+        public EngageInterviewModel EngageInterviewSelectResumeId(int rid)
+        {
+            return ied.EngageInterviewSelectResumeId(rid);
         }
 
         public int EngageInterviewUpdate(EngageInterviewModel p)
         {
             return ied.EngageInterviewUpdate(p);
         }
+
+
     }
 }
