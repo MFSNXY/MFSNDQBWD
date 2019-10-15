@@ -50,15 +50,15 @@ namespace EFEntity
         public decimal SalaySum { get; set; }
         public decimal DemandSalaraySum { get; set; }
         public decimal PaidSalarySum { get; set; }
-        public int MajorChangeAmount { get; set; }
-        public int BonusAmount { get; set; }
-        public int TrainingAmount { get; set; }
-        public int FileChangAmount { get; set; }
+        public Int16 MajorChangeAmount { get; set; }
+        public Int16 BonusAmount { get; set; }
+        public Int16 TrainingAmount { get; set; }
+        public Int16 FileChangAmount { get; set; }
         public string HumanHistoryRecords { get; set; }
         public string HumanFamilyMembership { get; set; }
         public string HumanPicture { get; set; }
         public string AttachmentName { get; set; }
-        public int CheckStatus { get; set; }
+        public Int16 CheckStatus { get; set; }
         public string Register { get; set; }
         public string Checker { get; set; }
         public string Changer { get; set; }
@@ -69,6 +69,8 @@ namespace EFEntity
         public DateTime DeleteTime { get; set; }
         public DateTime RecoveryTime { get; set; }
         public bool HumanFileStatus { get; set; }
+
+        public string HumanSocietySecurityId { get; set; }
 
     }
 }

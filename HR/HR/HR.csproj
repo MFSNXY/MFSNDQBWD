@@ -208,6 +208,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HumanFileImage\2019\10\15\55D93D681381019D7933284219BF9BD6.png" />
+    <Content Include="HumanFileImage\2019\10\15\602D6BFF96099AE9D294C8901DC47446.jpg" />
+    <Content Include="HumanFileImage\2019\10\15\AAEFA706F6D158F712F21B86C9D5C634.jpeg" />
+    <Content Include="HumanFileImage\2019\10\15\C74763C956C3B90B8BA8732E73BB99FA.jpeg" />
+    <Content Include="HumanFileImage\2019\10\15\CA8FF3E1F63F8B4ECF28F4506C63D8B6.jpeg" />
     <Content Include="images\11041R35400-19.jpg" />
     <Content Include="images\2.JPG" />
     <Content Include="images\2003122615534015613.jpg" />
@@ -1083,6 +1088,8 @@
     <Content Include="Views\EngageEmploy\EngageEmployLYCX.cshtml" />
     <Content Include="Views\HumanFile\HumanFileRegister.cshtml" />
     <Content Include="Views\HumanFile\HumanFilePicture.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileCheckList.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileCheck.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

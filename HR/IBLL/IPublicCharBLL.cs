@@ -15,5 +15,7 @@ namespace IBLL
         List<PublicCharModel> PublicCharSelect();
         List<PublicCharModel> SelectPublicCharBy(int id);
         List<PublicCharModel> PublicCharFenYe<K>(int currentPage, int PageSize, out int rows);
+
+        List<PublicCharModel> PublicCharGet(string type);
     }
 }

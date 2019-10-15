@@ -53,5 +53,12 @@ namespace HR.Controllers
                 return View();
             }
         }
+
+        public ActionResult GetPCs(string type)
+        {
+            return Content(JsonConvert.SerializeObject(ipb.PublicCharGet(type)));
+        }
+
+
     }
 }

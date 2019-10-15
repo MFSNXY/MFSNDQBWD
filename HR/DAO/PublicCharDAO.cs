@@ -90,5 +90,25 @@ namespace DAO
         {
             throw new NotImplementedException();
         }
+
+
+        public List<PublicCharModel> PublicCharGet(string type)
+        {
+            var list = CreateContext().PublicChar.AsNoTracking().Where(e => e.attribute_kind == type).Select(e => e).ToList();
+            List<PublicCharModel> list2 = new List<PublicCharModel>();
+            foreach (var p in list)
+            {
+                PublicCharModel pc = new PublicCharModel()
+                {
+                    Pbc_id = p.pbc_id,
+                    Attribute_kind = p.attribute_kind,
+                    Attribute_name = p.attribute_name
+                };
+                list2.Add(pc);
+            }
+            return list2;
+        }
+
+
     }
 }

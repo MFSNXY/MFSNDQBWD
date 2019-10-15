@@ -27,22 +27,33 @@ namespace BLL
 
         public int HumanFileDelete(int id)
         {
-            throw new NotImplementedException();
+            return ihd.HumanFileDelete(id);
         }
 
         public List<HumanFileModel> HumanFileFY(int currentPage, int pageSize, out int rows)
         {
-            throw new NotImplementedException();
+            return ihd.HumanFileFY(currentPage, pageSize, out rows);
         }
 
         public List<HumanFileModel> HumanFileSelect()
         {
-            throw new NotImplementedException();
+            return ihd.HumanFileSelect();
+        }
+
+        public int HumanFileSetPic(string hfid, string pic)
+        {
+            return ihd.HumanFileSetPic(hfid, pic);
         }
 
         public int HumanFileUpdate(HumanFileModel p)
         {
-            throw new NotImplementedException();
+            return ihd.HumanFileUpdate(p);
         }
+        
+        public List<HumanFileModel> HumanFileCheckList(int currentPage, int pageSize, out int rows)
+        {
+            return ihd.HumanFileCheckList(currentPage, pageSize, out rows);
+        }
+
     }
 }

@@ -11,9 +11,9 @@ using DAO;
 
 namespace BLL
 {
-    public class PublicCharBLL:IPublicCharBLL
+    public class PublicCharBLL : IPublicCharBLL
     {
-        IPublicCharDAO ist = IocCreate.CreateDao<IPublicCharDAO,PublicCharDAO>();
+        IPublicCharDAO ist = IocCreate.CreateDao<IPublicCharDAO, PublicCharDAO>();
 
         public List<PublicCharModel> SelectPublicCharBy(int id)
         {
@@ -43,6 +43,11 @@ namespace BLL
         public int PublicCharUpdate(PublicCharModel sm)
         {
             return ist.PublicCharUpdate(sm);
+        }
+
+        public List<PublicCharModel> PublicCharGet(string type)
+        {
+            return ist.PublicCharGet(type);
         }
     }
 }

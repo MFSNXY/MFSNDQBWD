@@ -54,7 +54,7 @@
     </script>
 </head>
 <body>
-    <div> 
+    <div id="aa"> 
         @using (Html.BeginForm("Update", "Engage", FormMethod.Post)) { 
             <table width="100%">
                 <tr>
@@ -106,9 +106,8 @@
                     </td>
                     <td class="TD_STYLE2" colspan="2">
 
-                        <select name="EngageType" id="EngageType" class="SELECT_STYLE1">
-                            <option value="校园招聘" selected>校园招聘</option>
-                            <option value="社会招聘" selected>社会招聘</option>
+                        <select name="EngageType" v-model="ZP" id="EngageType" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in ZPLX" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                 </tr>
@@ -190,5 +189,25 @@
             </table>
         }
     </div>
+    <script type="text/javascript" >
+        var vm = new Vue({
+            el: "#aa",
+            data:{
+                ZPLX:null,
+                ZP:"@Model.EngageType",
+            },
+            methods: {
+                GetZPLX: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=招聘类型", function (rs) {
+                        t.ZPLX = eval("(" + rs + ")");
+                    });
+                }
+            },
+            created: function () {
+                this.GetZPLX();
+            }
+        });
+    </script>
 </body>
 </html>

@@ -20,5 +20,9 @@ namespace IDAO
         List<HumanFileModel> HumanFileSelect();
 
         List<HumanFileModel> HumanFileFY(int currentPage, int pageSize, out int rows);
+
+        int HumanFileSetPic(string hfid, string pic);
+
+        List<HumanFileModel> HumanFileCheckList(int currentPage, int pageSize, out int rows);
     }
 }

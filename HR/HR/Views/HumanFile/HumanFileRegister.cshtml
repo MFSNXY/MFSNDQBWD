@@ -1,4 +1,4 @@
-﻿
+﻿@model Model.HumanFileModel
 @{
     Layout = null;
 }
@@ -13,7 +13,7 @@
           href="../../css/table.css" type="text/css">
     <link rel="stylesheet"
           href="../../css/cwcalendar.css" type="text/css">
-    <script type="text/javascript"
+    @*<script type="text/javascript"
             src="../../javascript/jquery-1.7.2.js">
     </script>
     <script type="text/javascript"
@@ -36,11 +36,104 @@
     </script>
     <script type="text/javascript"
             src="../../javascript/human_input_check.js">
+    </script>*@
+    <script src="~/jquery-1.11.1.js"></script>
+    <script src="~/jquery.validate.js"></script>
+    <script src="~/jquery.validate.unobtrusive.js"></script>
+    <script src="~/vue-2.4.0.js"></script>
+    <script type="text/javascript">
+ 			window.onload=check();
+		function tick() {
+			var now = new Date();
+			var hours, minutes, seconds, noon;
+			var intHours, intMinutes, intSeconds;
+			intHours = now.getHours();
+			intMinutes = now.getMinutes();
+			intSeconds = now.getSeconds();
+			if (intHours < 24) {
+				hours = intHours+":";
+				noon = "A.M.";
+			} else {
+				intHours = intHours - 24;
+				hours = intHours + ":";
+				noon = "P.M.";
+			}
+			if (intMinutes < 10) {
+				minutes = "0"+intMinutes+":";
+			} else {
+				minutes = intMinutes+":";
+			}
+			if (intSeconds < 10) {
+				seconds = "0"+intSeconds+" ";
+			} else {
+				seconds = intSeconds+" ";
+			}
+			timeString = hours+minutes+seconds;
+			$("#nowTime").val(now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+timeString);
+			window.setTimeout("tick();", 1000);
+		}
+
+		//load事件
+		function check(){
+			//获得系统当前时间的方法
+		  	tick();
+		}
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#HumanBirthday").blur(function () {
+                var thetime = $("#HumanBirthday").val();
+                if (thetime != null && thetime != "") {
+                    var d = new Date(Date.parse(thetime.replace(/-/g, "/")));
+                    var curDate = new Date();
+                    var year = new Date().getFullYear();
+                    var mon = new Date().getMonth() + 1;
+                    var day = new Date().getDate();
+                    var hours = new Date().getHours();
+                    var minutes = new Date().getMinutes();
+                    var seconds = new Date().getSeconds();
+                    if (hours < 10) {
+                        hours = '0' + hours;
+                    }
+                    if (minutes < 10) {
+                        minutes = '0' + minutes;
+                    }
+                    if (seconds < 10) {
+                        seconds = '0' + seconds;
+                    }
+                    var sr = year + "-" + mon + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+                    if (d > curDate) {
+                        alert("请选择小于今天的日期！");
+                        $("#HumanBirthday").val(sr);
+                    } else {
+                        var year1 = thetime.substring(0, thetime.indexOf("-"));
+                        $("#HumanAge").val(year - year1);
+                    }
+                }
+            });
+            $("#HFform").submit(function () {
+                if ($("#SecondMid").attr("flag") == "true") {
+                    if ($("#ThirdMid").attr("flag") == "true") {
+                        if ($("#Majorid").attr("flag") == "true") {
+                            return true;
+                        } else {
+                            alert("请选择职位名称!");
+                        }
+                    } else {
+                        alert("请选择III级机构!");
+                    }
+                } else {
+                    alert("请选择II级机构!");
+                }
+                return false;
+            });
+        });
     </script>
 </head>
 <body>
     <div id="aa">
-        <form method="post" action="register_choose_picture.html">
+            @using(Html.BeginForm("Register", "HumanFile", FormMethod.Post,new {@id="HFform" })) {
+            <input type="hidden" value="0" name="CheckStatus" />
             <table width="100%">
                 <tr>
                     <td>
@@ -62,31 +155,31 @@
                         I级机构
                     </td>
                     <td width="14%" class="TD_STYLE2">
-                        <select name="humanFile.firstKindId" class="SELECT_STYLE1" id="firstKind">
-                            <option value="0">请选择</option>
-                            <option>集团</option>
+                        <input type="hidden" name="FirstMName" v-model="MFName" />
+                        <select name="FirstMid" id="FirstMid" class="SELECT_STYLE1" v-on:change="GetMSs()">
+                            <option id="qxz1">--请选择--</option>
+                            <option v-for="(item,i) in MFs" v-bind:value="item.FirstMId">{{item.FirstMName}}</option>
                         </select>
-                        <input type="hidden" name="humanFile.firstKindName" />
                     </td>
                     <td width="11%" class="TD_STYLE1">
                         II级机构
                     </td>
                     <td width="14%" class="TD_STYLE2">
-                        <select name="humanFile.secondKindId" class="SELECT_STYLE1" id="secondKind">
-                            <option value="0">请选择</option>
-                            <option>湖南分校</option>
+                        <input type="hidden" name="SecondMName" v-model="MSName" />
+                        <select name="SecondMid" flag="false" id="SecondMid" class="SELECT_STYLE1" style="background-color:#eee;" disabled="disabled" v-on:change="GetMTs()">
+                            <option id="two" value="">--请先选择I级机构--</option>
+                            <option v-for="(item,i) in MSs" v-bind:value="item.SecondMid">{{item.SecondMName}}</option>
                         </select>
-                        <input type="hidden" name="humanFile.secondKindName" />
                     </td>
                     <td width="11%" class="TD_STYLE1">
                         III级机构
                     </td>
                     <td class="TD_STYLE2" colspan="2">
-                        <select name="humanFile.thirdKindId" class="SELECT_STYLE1" id="thirdKind">
-                            <option value="0">请选择</option>
-                            <option>长沙华瑞</option>
+                        <input type="hidden" name="ThirdMName" v-model="MTName" />
+                        <select name="ThirdMid" flag="false" id="ThirdMid" class="SELECT_STYLE1" style="background-color:#eee;" disabled="disabled" v-on:change="GetMTName()">
+                            <option id="third" value="">--请先选择II级机构--</option>
+                            <option v-for="(item,i) in MTs" v-bind:value="item.ThirdMid">{{item.ThirdMName}}</option>
                         </select>
-                        <input type="hidden" name="humanFile.thirdKindName" />
                     </td>
                     <td rowspan="5" style="text-align: center;"></td>
                 </tr>
@@ -95,30 +188,28 @@
                         职位分类
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanMajorKindId" class="SELECT_STYLE1" id="majorKind">
-                            <option>销售</option>
-                            <option>软件开发</option>
+                        <input type="hidden" name="HumanMajorKindName" v-model="MKName" />
+                        <select name="HumanMajorKindId" id="MajorKindid" class="SELECT_STYLE1" v-on:change="GetMs()">
+                            <option id="qxz2">--请选择--</option>
+                            <option v-for="(item,i) in MKs" v-bind:value="item.Majorkindid">{{item.Majorkindname}}</option>
                         </select>
-                        <input type="hidden" name="humanFile.humanMajorKindName" />
                     </td>
                     <td class="TD_STYLE1">
                         职位名称
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanMajorId" class="SELECT_STYLE1" id="majorName">
-                            <option>区域经理</option>
-                            <option>总经理</option>
+                        <input type="hidden" name="HumanMajorName" v-model="MName" />
+                        <select name="HumanMajorId" flag="false" id="Majorid" class="SELECT_STYLE1" v-on:change="GetMName()" style="background-color:#eee;" disabled="disabled">
+                            <option id="www">请选择职位分类</option>
+                            <option v-for="(item,i) in Ms" v-bind:value="item.Majorid">{{item.Majorname}}</option>
                         </select>
-                        <input type="hidden" name="humanFile.hunmaMajorName" />
                     </td>
                     <td class="TD_STYLE1">
                         职称
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <select name="humanFile.humanProDesignation" class="SELECT_STYLE1">
-                            <option>工程师</option>
-                            <option>助理</option>
-                            <option>经理</option>
+                        <select name="HumanProDesignation" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in CPs" v-bind:value="item.Attributename" >{{item.Attributename}}</option>
                         </select>
                     </td>
                 </tr>
@@ -127,14 +218,14 @@
                         姓名
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" id="humanName" name="humanFile.humanName"
-                               class="INPUT_STYLE2" />
+                        @Html.TextBox("HumanName",null,new { @class = "INPUT_STYLE2" })
+                        @Html.ValidationMessage("HumanName")
                     </td>
                     <td class="TD_STYLE1">
                         性别
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanSex" class="SELECT_STYLE1">
+                        <select name="HumanSex" class="SELECT_STYLE1">
                             <option value="男" selected="selected">
                                 男
                             </option>
@@ -147,8 +238,7 @@
                         EMAIL
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanEmail" id="humanEmail"
-                               class="INPUT_STYLE2">
+                        <input type="text" name="HumanEmail" id="humanEmail"  class="INPUT_STYLE2">
                     </td>
                 </tr>
                 <tr>
@@ -156,22 +246,20 @@
                         电话
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanTelephone" id="humanTelephone"
-                               class="INPUT_STYLE2">
+                        @Html.TextBox("HumanTelephone", null, new { @class = "INPUT_STYLE2" })
+                        @Html.ValidationMessage("HumanTelephone")
                     </td>
                     <td class="TD_STYLE1">
                         QQ
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanQq" id="humanQq"
-                               class="INPUT_STYLE2">
+                        <input type="text" name="HumanQQ" class="INPUT_STYLE2" />
                     </td>
                     <td class="TD_STYLE1">
                         手机
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanMobilephone" id="humanMobilephone"
-                               class="INPUT_STYLE2">
+                        <input type="text" name="HumanMobilephone" class="INPUT_STYLE2" />
                     </td>
                 </tr>
                 <tr>
@@ -179,15 +267,13 @@
                         住址
                     </td>
                     <td colspan="3" class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanAddress"
-                               class="INPUT_STYLE2">
+                        <input type="text" name="HumanAddress" class="INPUT_STYLE2" />
                     </td>
                     <td class="TD_STYLE1">
                         邮编
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanPostcode"
-                               class="INPUT_STYLE2">
+                        <input type="text" name="HumanPostcode" class="INPUT_STYLE2" />
                     </td>
                 </tr>
                 <tr>
@@ -195,32 +281,38 @@
                         国籍
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanNationality" class="SELECT_STYLE1">
-                            <option>中国</option>
-                            <option>美国</option>
+                        <select name="HumanNationality" class="SELECT_STYLE1">
+                            <option value="中国">中国</option>
+                            <option value="美国">美国</option>
+                            <option value="日本">日本</option>
+                            <option value="英国">英国</option>
+                            <option value="法国">法国</option>
+                            <option value="韩国">韩国</option>
+                            <option value="俄罗斯">俄罗斯</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         出生地
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanBirthplace"
-                               class="INPUT_STYLE2">
+                        <input type="text" name="HumanBirthplace" class="INPUT_STYLE2" />
                     </td>
                     <td class="TD_STYLE1">
                         生日
                     </td>
                     <td width="13%" class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanBirthday" readonly="readonly"
-                               class="INPUT_STYLE2" id="birthday">
+                        <input type="text" name="HumanBirthday" class="INPUT_STYLE2" id = "HumanBirthday" />
                     </td>
                     <td width="11%" class="TD_STYLE1">
                         民族
                     </td>
                     <td class="TD_STYLE2" width="14%">
-                        <select name="humanFile.humanRace" class="SELECT_STYLE1">
-                            <option>汉族</option>
-                            <option>回族</option>
+                        <select name="HumanRace" class="SELECT_STYLE1">
+                            <option value="汉族">汉族</option>
+                            <option value="回族">回族</option>
+                            <option value="维吾尔族">维吾尔族</option>
+                            <option value="藏族">藏族</option>
+                            <option value="蒙古族">蒙古族</option>
                         </select>
                     </td>
                 </tr>
@@ -229,33 +321,34 @@
                         宗教信仰
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanReligion" class="SELECT_STYLE1">
-                            <option>无</option>
-                            <option>佛教</option>
+                        <select name="HumanReligion" class="SELECT_STYLE1">
+                            <option value="无">无</option>
+                            <option value="佛教">佛教</option>
+                            <option value="基督教">基督教</option>
+                            <option value="伊斯兰教">伊斯兰教</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         政治面貌
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanParty" class="SELECT_STYLE1">
-                            <option>群众</option>
-                            <option>党员</option>
+                        <select name="HumanParty" class="SELECT_STYLE1">
+                            <option value="党员">党员</option>
+                            <option value="群众">群众</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         身份证号码
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanIdCard" id="humanIdCard"
-                               class="INPUT_STYLE2">
+                        @Html.TextBox("HumanIdcard", null, new { @class = "INPUT_STYLE2" })
+                        @Html.ValidationMessage("HumanIdcard")
                     </td>
                     <td class="TD_STYLE1">
                         社会保障号码
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanSocietySecurityId"
-                               class="INPUT_STYLE2">
+                        <input type="text" name="HumanSocietySecurityId" class="INPUT_STYLE2" />
                     </td>
                 </tr>
                 <tr>
@@ -263,35 +356,36 @@
                         年龄
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanAge" id="humanAge"
-                               class="INPUT_STYLE2">
+                        <input type="text" name="HumanAge" id="HumanAge" class="INPUT_STYLE2" readonly="readonly">
                     </td>
                     <td class="TD_STYLE1">
                         学历
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanEducatedDegree" class="SELECT_STYLE1">
-                            <option>高中</option>
-                            <option>本科</option>
-                            <option>大专</option>
+                        <select name="HumanEducatedDegree" class="SELECT_STYLE1">
+                            <option value="初中">初中</option>
+                            <option value="高中">高中</option>
+                            <option value="大专">大专</option>
+                            <option value="本科">本科</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         教育年限
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanEducatedYears" class="SELECT_STYLE1">
-                            <option>12</option>
-                            <option>16</option>
+                        <select name="HumanEducatedYears" class="SELECT_STYLE1">
+                            <option value="12">12</option>
+                            <option value="16">16</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         学历专业
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanEducatedMajor" class="SELECT_STYLE1">
-                            <option>生物工程</option>
-                            <option>计算机</option>
+                        <select name="HumanEducatedMajor" class="SELECT_STYLE1">
+                            <option value="生物工程">生物工程</option>
+                            <option value="计算机">计算机</option>
+                            <option value="土木工程">土木工程</option>
                         </select>
                     </td>
                 </tr>
@@ -300,30 +394,31 @@
                         薪酬标准
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.salaryStandardId" class="SELECT_STYLE1">
-                            <option>薪酬标准1</option>
-                            <option>薪酬标准2</option>
+                        <input type="hidden" v-model="SalaryStandardName" name="SalaryStandardName"  />
+                        <select name="SalaryStandardId" v-on:change="SetSalaryStandardName" id="SalaryStandardId" class="SELECT_STYLE1">
+                            <option value="1" >薪酬标准1</option>
+                            <option value="2" >薪酬标准2</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
-                        开户行
+                        开户银行
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanBank"
+                        <input type="text" name="HumanBank"
                                class="INPUT_STYLE2">
                     </td>
                     <td class="TD_STYLE1">
                         帐号
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.humanAccount"
+                        <input type="text" name="HumanAccount"
                                class="INPUT_STYLE2">
                     </td>
                     <td class="TD_STYLE1">
                         登记人
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.register" value="谢鹏"
+                        <input type="text" name="Register" value="窝窝头"
                                readonly="readonly" class="INPUT_STYLE2">
                     </td>
                 </tr>
@@ -332,25 +427,32 @@
                         建档时间
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="humanFile.registTime" id="create_time" readonly="readonly"
+                        <input type="text" name="RegisteTime" id="nowTime" readonly="readonly"
                                class="INPUT_STYLE2">
                     </td>
                     <td class="TD_STYLE1">
                         特长
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanSpeciality" class="SELECT_STYLE1">
-                            <option>java</option>
-                            <option>数据库</option>
+                        <select name="HumanSpecility" class="SELECT_STYLE1">
+                            <option value="数据库">数据库</option>
+                            <option value="java">java</option>
+                            <option value="ADC">ADC</option>
+                            <option value="中路">中路</option>
+                            <option value="打野">打野</option>
+                            <option value="上路">上路</option>
+                            <option value="辅助">辅助</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         爱好
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="humanFile.humanHobby" class="SELECT_STYLE1">
-                            <option>篮球</option>
-                            <option>跳舞</option>
+                        <select name="HumanHobby" class="SELECT_STYLE1">
+                            <option value="篮球">篮球</option>
+                            <option value="舞蹈">舞蹈</option>
+                            <option value="唱歌">唱歌</option>
+                            <option value="rap">rap</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
@@ -365,7 +467,7 @@
                         个人履历
                     </td>
                     <td colspan="7" class="TD_STYLE2">
-                        <textarea name="humanFile.humanHistroyRecords" rows="4"
+                        <textarea name="HumanHistoryRecords" rows="4"
                                   class="TEXTAREA_STYLE1"></textarea>
                     </td>
                 </tr>
@@ -374,7 +476,7 @@
                         家庭关系信息
                     </td>
                     <td colspan="7" class="TD_STYLE2">
-                        <textarea name="humanFile.humanFamilyMembership" rows="4"
+                        <textarea name="HumanFamilyMembership" rows="4"
                                   class="TEXTAREA_STYLE1"></textarea>
                     </td>
                 </tr>
@@ -383,11 +485,169 @@
                         备注
                     </td>
                     <td colspan="7" class="TD_STYLE2">
-                        <textarea name="humanFile.remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                        <textarea name="Remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
                     </td>
                 </tr>
             </table>
-        </form> 
+            }
     </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#aa",
+            data: {
+                MFs: null,
+                MSs: null,
+                MTs: null,
+                Ms: null,
+                MKs: null,
+                MFName: null,
+                MSName: null,
+                MTName: null,
+                MKName: null,
+                MName: null,
+                CPs: null,
+                SalaryStandardName: $("#SalaryStandardId option:checked").text(),
+            },
+            methods: {
+                GetMFs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "../MechanismFirst/GetMFs",
+                        type: "post",
+                        success: function (rs) {
+                            t.MFName = eval("(" + rs + ")")[0].FirstMName;
+                            t.MFs = eval("(" + rs + ")");
+                        }
+                    });
+                },
+                GetMSs: function () {
+                    var t = this;
+                    t.MFName = $("#FirstMid option:checked").text();
+                    $.ajax({
+                        url: "../MechanismThird/GetMSsWhereFirst",
+                        type: "post",
+                        data: "id=" + $("#FirstMid").val(),
+                        success: function (rs) {
+                            $("#qxz1").remove();
+                            if (eval("(" + rs + ")").length > 0) {
+                                $("#two").remove();
+                                t.MSName = eval("(" + rs + ")")[0].SecondMName;
+                                t.MSs = eval("(" + rs + ")");
+                                $("#SecondMid").attr("disabled", false);
+                                $("#SecondMid").attr("flag", "true");
+                                $("#ssd").attr("disabled", false);
+                                $("#SecondMid").css("backgroundColor", "#F5EDE1")
+                                t.GetMTs(eval("(" + rs + ")")[0].SecondMid);
+                            } else {
+                                $("#SecondMid").attr("flag", "false");
+                                t.Flag2 = false;
+                                t.MSName = "";
+                                t.MSs = [{ SecondMName: "暂无子机构,请重新选择I级机构", SecondMid: "0" }];
+                                $("#SecondMid").attr("disabled", "disabled");
+                                $("#ssd").attr("disabled", "disabled");
+                                $("#SecondMid").css("backgroundColor", "#EEE")
+                                t.GetMTs("0");
+                            }
+                        }
+                    });
+                },
+                GetMTs: function (ss) {
+                    var t = this;
+                    var sid = ss != null ? ss : $("#SecondMid").val();
+                    $.ajax({
+                        url: "../Engage/GetMTs",
+                        type: "post",
+                        data: "fid=" + $("#FirstMid").val() + "&sid=" + sid,
+                        success: function (rs) {
+                            t.MSName = $("#SecondMid option:checked").text();
+                            if (eval("(" + rs + ")").length > 0) {
+                                $("#third").remove();
+                                t.MTName = eval("(" + rs + ")")[0].ThirdMName;
+                                $("#ThirdMid").attr("flag", "true");
+                                t.MTs = eval("(" + rs + ")");
+                                $("#ThirdMid").attr("disabled", false);
+                                $("#ssd").attr("disabled", false);
+                                $("#ThirdMid").css("backgroundColor", "#F5EDE1")
+                            } else {
+                                $("#ThirdMid").attr("flag", "false");
+                                t.Flag2 = false;
+                                t.MTName = "";
+                                t.MTs = [{ ThirdMName: "暂无子机构,请重新选择II级机构", ThirdMid: "0" }];
+                                $("#ThirdMid").attr("disabled", "disabled");
+                                $("#ssd").attr("disabled", "disabled");
+                                $("#ThirdMid").css("backgroundColor", "#EEE")
+                            }
+                        }
+                    });
+                },
+                GetMTName: function () {
+                    this.MTName = $("#ThirdMid option:checked").text();
+                },
+                GetMK: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "../ConfigMajorKind/Index2",
+                        type: "post",
+                        success: function (r) {
+                            var mdt = eval("(" + r + ")");
+                            t.MKName = mdt[0].Majorkindname;
+                            t.MKs = mdt;
+                        }
+                    });
+                },
+                GetMKName: function () {
+                    this.MKName = $("#MajorKindid option:checked").text();
+                },
+                GetMs: function () {
+                    var t = this;
+                    t.MKName = $("#MajorKindid option:checked").text();
+                    $.ajax({
+                        url: "../Engage/GetMs",
+                        type: "post",
+                        data:"id="+$("#MajorKindid").val(),
+                        success: function (r) {
+                            var mdt = eval("(" + r + ")");
+                            if (mdt.length > 0) {
+                                t.MName = mdt[0].Majorname;
+                                t.Ms = mdt;
+                                $("#www").remove();
+                                $("#qxz2").remove();
+                                t.MName = eval("(" + r + ")")[0].Majorname;
+                                t.Ms = eval("(" + r + ")");
+                                $("#Majorid").attr("disabled", false);
+                                $("#Majorid").attr("flag", "true");
+                                $("#ssd").attr("disabled", false);
+                                $("#Majorid").css("backgroundColor", "#F5EDE1")
+                            } else {
+                                t.MName = "";
+                                t.Ms = [{ Majorname: "请重新选择职位分类", Majorid: "0" }];
+                                $("#Majorid").attr("disabled", "disabled");
+                                $("#Majorid").attr("flag", "false");
+                                $("#ssd").attr("disabled", "disabled");
+                                $("#Majorid").css("backgroundColor", "#EEE")
+                            }
+                        }
+                    });
+                },
+                GetMName: function () {
+                    this.MName = $("#Majorid option:checked").text();
+                },
+                GetCPs: function () {
+                    var t = this;
+                    $.post("/HumanFile/GetCPC", function (rs) {
+                        t.CPs = eval("(" + rs + ")");
+                    });
+                },
+                SetSalaryStandardName: function () {
+                    this.SalaryStandardName = $("#SalaryStandardId option:checked").text();
+                }
+            },
+            created: function () {
+                this.GetMFs();
+                this.GetMK();
+                this.GetCPs();
+            }
+        });
+    </script>
 </body>
 </html>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
@@ -16,6 +17,7 @@ namespace Model
             public string SecondMName { get; set; }
             public string ThirdMid { get; set; }
             public string ThirdMName { get; set; }
+            [Required(ErrorMessage ="请输入姓名")]
             public string HumanName { get; set; }
             public string HumanAddress { get; set; }
             public string HumanPostcode { get; set; }
@@ -24,6 +26,8 @@ namespace Model
             public string HumanMajorKindName { get; set; }
             public string HumanMajorId { get; set; }
             public string HumanMajorName { get; set; }
+            [Required(ErrorMessage ="请输入电话号码")]
+            [RegularExpression(@"^(13[0-9]|14[5-9]|15[0-3,5-9]|16[2,5,6,7]|17[0-8]|18[0-9]|19[1,3,5,8,9])\d{8}$", ErrorMessage = "请输入正确的电话号码")]
             public string HumanTelephone { get; set; }
             public string HumanMobilephone { get; set; }
             public string HumanBank { get; set; }
@@ -43,6 +47,8 @@ namespace Model
             public string HumanEducatedDegree { get; set; }
             public int HumanEducatedYears { get; set; }
             public string HumanEducatedMajor { get; set; }
+            [Required(ErrorMessage ="请输入身份证号码")]
+            [RegularExpression(@"^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{6}$", ErrorMessage = "请输入正确的身份证号码")]
             public string HumanIdcard { get; set; }
             public string Remark { get; set; }
             public string SalaryStandardId { get; set; }
@@ -50,15 +56,15 @@ namespace Model
             public decimal SalaySum { get; set; }
             public decimal DemandSalaraySum { get; set; }
             public decimal PaidSalarySum { get; set; }
-            public int MajorChangeAmount { get; set; }
-            public int BonusAmount { get; set; }
-            public int TrainingAmount { get; set; }
-            public int FileChangAmount { get; set; }
+            public Int16 MajorChangeAmount { get; set; }
+            public Int16 BonusAmount { get; set; }
+            public Int16 TrainingAmount { get; set; }
+            public Int16 FileChangAmount { get; set; }
             public string HumanHistoryRecords { get; set; }
             public string HumanFamilyMembership { get; set; }
             public string HumanPicture { get; set; }
             public string AttachmentName { get; set; }
-            public int CheckStatus { get; set; }
+            public Int16 CheckStatus { get; set; }
             public string Register { get; set; }
             public string Checker { get; set; }
             public string Changer { get; set; }
@@ -69,7 +75,9 @@ namespace Model
             public DateTime DeleteTime { get; set; }
             public DateTime RecoveryTime { get; set; }
             public bool HumanFileStatus { get; set; }
+            public string HumanSocietySecurityId { get; set; }
 
-        
+
+
     }
 }
