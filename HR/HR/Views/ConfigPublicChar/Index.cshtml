@@ -42,7 +42,7 @@
                     </tr>
 
                     <tr v-for="(item,i) in dt">
-                        <td class="TD_STYLE2">{{item.Attributename}}</td>
+                        <td class="TD_STYLE2">{{item.Attribute_name}}</td>
                         <td class="TD_STYLE2" align="center">
                             <a v-bind:href="['/ConfigPublicChar/Del/'+item.Id]" onclick="return confirm('确定删除吗？')">删除</a>
 
@@ -62,14 +62,11 @@
             methods: {
                 load: function () {
                     var t = this;
-                    $.ajax({
-                        url: "../ConfigPublicChar/Index2",
-                        type: "post",
-                        success: function (r) {
+                    $.post("/PublicChar/GetPCs", "type=职称", function (r) {
                             var mdt = eval("(" + r + ")");
                             t.dt = mdt;
                         }
-                    });
+                    );
                 }
             },
             created: function () {
