@@ -1525,6 +1525,7 @@
     <Content Include="images\images\Thumbs.db" />
     <Content Include="images\Thumbs.db" />
     <Content Include="javascript\input_control\validation-config.dtd" />
+    <Content Include="vue-2.4.0.js" />
     <Content Include="Wp2\jquery.js" />
     <Content Include="Wp2\style.css" />
     <Content Include="Wp2\upload.js" />
@@ -1557,7 +1558,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="vue-2.4.0.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
