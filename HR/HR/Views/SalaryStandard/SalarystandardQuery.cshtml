@@ -1,0 +1,216 @@
+﻿@model SalaryStandardModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SalarystandardQuery</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/vue-2.4.0.js"></script>
+    <link href="~/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/jquery-1.11.1.js"></script>
+    <style type="text/css">
+        #d {
+            background-color: #FFFFBB;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            filter: alpha(opacity:20);
+            opacity: 0.2;
+            position: fixed;
+            display: none;
+        }
+        .zt{
+            font-weight:400;
+        }
+        #parent {
+            border: 1px solid #FFDB6F;
+            width: 400px;
+            height: 200px;
+            position: absolute;
+            z-index: 2;
+            top: 20%;
+            left: 25%;
+            position: fixed;
+            display: none;
+        }
+
+        #child {
+            width: 100%;
+            height: 100%;
+            color: #C66C35;
+            font-size: 15px;
+            text-align: center;
+            line-height: 25px;
+            font-weight: bold;
+        }
+
+        .button {
+            height: 30px;
+            width: 90px;
+            border-color: #D4DEE7;
+            background-color: #D4DEE7;
+            font-weight: bold;
+            font-size: 15px;
+            color: #481858;
+            cursor: pointer;
+            BORDER-BOTTOM: #D4DEE7 1px solid;
+            FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
+        }
+    </style>
+
+</head>
+<body>
+    <div> 
+
+            <input type="hidden" name="standard.standardId" value="1353320112255">
+
+            <div id="d"></div>
+            <div id="parent">
+                <div id="child">
+                    <br><br>
+                    zhangsan,您确认打印此页面的信息吗？<br><br><br>
+                    <input type="button" class="button" value="确 定" id="sure" />
+                    <input type="button" class="button" value="取 消" id="close" />
+                </div>
+            </div>
+
+
+            <table width="100%" id="table1">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记查询</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="right">
+                            <input type="button" value="打印" id="button1"
+                                   class="BUTTON_STYLE1">
+                            <input type="button" value="返回"
+                                   onclick="javascript:windows.location='/HR_Fist/salaryCriterion/salaryCriterionAction!querysalarystandardByPage?page.startPage=1'"
+                                   class="BUTTON_STYLE1">
+                        </div>
+                    </td>
+                </tr>
+            </table><table width="100%" border="1" cellpadding=0 cellspacing=1
+       bordercolorlight='#848284' bordercolordark='#eeeeee'
+       class="TABLE_STYLE1">
+    <tr>
+        <td width="12%" class="TD_STYLE1">
+            薪酬编号
+        </td>
+        <td width="15%" class="TD_STYLE2">
+            @*@Html.TextBox("Standardid", Model.Standardid)*@
+            @Html.Label("Standardid", Model.Standardid, new { @class = "zt" })
+            @Html.TextBox("Id", Model.Id, new { @class = "zt", @id = "xcbh", @type = "hidden" })
+        </td>
+        <td width="12%" class="TD_STYLE1">
+            薪酬标准名称
+        </td>
+        <td width="11%" class="TD_STYLE2">
+            @Html.Label("Standardname", Model.Standardname, new { @class = "zt", @id = "standardName" })
+            @*<input type="text" name="standard.standardName" id="standardName" value="薪酬标准3" class="INPUT_STYLE2">*@
+
+        </td>
+        <td width="11%" class="TD_STYLE1">
+            薪酬总额
+        </td>
+        <td width="17%" class="TD_STYLE2">
+            @Html.Label("Salarysum", Model.Salarysum.ToString(), new { @class = "zt", @id = "sumSalary" })
+            @*<input type="text" name="standard.salarySum" value="0.0" id="sumSalary" class="INPUT_STYLE2">*@
+        </td>
+        <td width="12%" class="TD_STYLE1">
+            &nbsp;
+        </td>
+        <td width="10%" class="TD_STYLE2">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td class="TD_STYLE1">
+            制定人
+        </td>
+        <td class="TD_STYLE2">
+            @Html.Label("Designer", Model.Designer, new { @class = "zt", @id = "designer" })
+            @*<input type="text" name="standard.designer" id="designer" value="杨阳" class="INPUT_STYLE2">*@
+
+        </td>
+        <td class="TD_STYLE1">
+            复核人
+        </td>
+        <td class="TD_STYLE2">
+            @Html.Label("Checker", Model.Checker, new { @class = "zt", @id = "fhr" })
+            @*<input type="text" name="standard.checker" value="better_admin" class="INPUT_STYLE2">*@
+        </td>
+        <td class="TD_STYLE1">
+            复核时间
+        </td>
+        <td class="TD_STYLE2">
+            @Html.Label("Checktime", Model.Checktime.ToString(), new { @class = "zt", @id = "Tdate" })
+            @*<input type="text" name="standard.checkTime" id="Tdate" class="INPUT_STYLE2">*@
+        </td>
+        <td class="TD_STYLE1">
+            &nbsp;
+        </td>
+        <td class="TD_STYLE2">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td class="TD_STYLE1">
+           备注
+        </td>
+        <td colspan="7" class="TD_STYLE2" height="70">
+            @Html.Label("Remark", Model.Remark, new { @rows = "4", @class="INPUT_STYLE2 zt" })
+            @*<textarea name="standard.checkComment" rows="4" class="INPUT_STYLE2"></textarea>*@
+
+        </td>
+    </tr>
+    <tr>
+        <td class="TD_STYLE1">
+            序号
+        </td>
+        <td colspan="3" class="TD_STYLE1">
+            薪酬项目名称
+        </td>
+        <td colspan="4" class="TD_STYLE1">
+            金额
+        </td>
+    </tr>
+    <tbody id="show">
+        @foreach (var item in @ViewBag.list2 as List<SalaryStandardDetailsModel>)
+        {
+            <tr class="TD_STYLE2" style="border:1px solid #000000;">
+                <td align="center">
+                    <input type="hidden" class="jebh" name="@item.Id" value="@item.Id" />
+                    <label name="Itemid" class="zt">@item.Itemid</label>
+                </td>
+                <td colspan="3">
+                    <label name="Itemname" class="zt">@item.Itemname</label>
+                </td>
+                <td>
+                    <input type="text" readonly="readonly" style="border:0px;" id="@item.Id" value="@item.Salary" name="salary" class="INPUT_STYLE2 dd">
+
+                </td>
+                <td colspan="3">
+                    &nbsp;
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+    </div>
+</body>
+</html>

@@ -68,7 +68,7 @@
 
                 <tr v-for="(item,i) in es" class="TD_STYLE2">
                     <td>
-                        <a href="salarystandard_query.html">{{item.Standardid}}</a>
+                        <a v-bind:href="['/SalaryStandard/SalarystandardQuery?id='+item.Id]">{{item.Standardid}}</a>
                     </td>
                     <td>
                         {{item.Standardname}}

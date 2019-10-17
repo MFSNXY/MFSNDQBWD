@@ -270,6 +270,7 @@
     <Content Include="Views\SalaryStandard\QuertLocate.cshtml" />
     <Content Include="Views\SalaryStandard\XCFFCX.cshtml" />
     <Content Include="Views\SalaryStandard\DenjiCG.cshtml" />
+    <Content Include="Views\SalaryStandard\SalarystandardQuery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

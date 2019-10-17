@@ -39,7 +39,7 @@ namespace HR.Controllers
             return Content(dh);
         }
 
-        //
+        //登记成功跳转的页面
         public ActionResult DenjiCG()
         {
             return View();
@@ -173,6 +173,17 @@ namespace HR.Controllers
         {
 
             return Content(TempData["rows"].ToString());
+        }
+
+        //薪酬标准登记查询打印的页面
+        public ActionResult SalarystandardQuery(int id)
+        {
+            List<SalaryStandardModel> list = isb.SalaryStandardSelectBy(id);
+            SalaryStandardModel ck = list[0];
+            string dh = ck.Standardid;
+            List<SalaryStandardDetailsModel> list2 = isd.SalaryGrantdetailsSelectSID(dh);
+            ViewBag.list2 = list2;
+            return View(ck);
         }
     }
 }
