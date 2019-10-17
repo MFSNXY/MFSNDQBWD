@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+@using (Html.BeginForm("ad", "SalaryGrant", FormMethod.Post)) { 
+    <input type="hidden" name="page.startPage" value="0">
+    <table width="100%">
+        <tr>
+            <td>
+                <font color="black">您正在做的业务是：人力资源--薪酬发放管理--薪酬发放登记</font>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <input id='Submit1' type='submit' class='btn btn-default' value='提交' />
+                @*<input type="button" value="确定" class="btn btn-default"
+                       onclick="window.location.href = '/SalaryGrant/Cha';">*@
+            </td>
+        </tr>
+    </table>
+    <table width="100%" border="1" cellpadding=0 cellspacing=1
+           bordercolorlight=#848284 bordercolordark=#eeeeee
+           class="TABLE_STYLE1">
+        <tr>
+            <td width="27%" class="TD_STYLE1">
+                薪酬发放方式
+            </td>
+            <td width="22%" class="TD_STYLE1">
+
+                @*@Html.TextBox("zz", null, new { @class = "form-control" })*@
+                        @Html.DropDownList("sid", ViewBag.s as IEnumerable<SelectListItem>, new { @class = "INPUT_STYLE2",@id="sid" })
+                @*<select name="submitType" id="submitType" class="INPUT_STYLE2">
+                    <option selected="selected" value="1">一级机构发放方式</option>
+                    <option selected="selected" value="2">二级机构发放方式</option>
+                    <option selected="selected" value="3">三级机构发放方式</option>
+                </select>*@
+            </td>
+            <td width="60%" class="TD_STYLE1"></td>
+    </table>
+        }
+    </div>
+</body>
+</html>

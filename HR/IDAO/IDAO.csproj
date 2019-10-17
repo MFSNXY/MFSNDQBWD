@@ -43,6 +43,11 @@
     <Compile Include="IConfigMajorDAO.cs" />
     <Compile Include="IConfigMajorKindDAO.cs" />
     <Compile Include="IConfigPublicCharDAO.cs" />
+    <Compile Include="ISalaryGrantDAO.cs" />
+    <Compile Include="ISalaryGrantdetailsDAO.cs" />
+    <Compile Include="ISalaryStandardDAO.cs" />
+    <Compile Include="ISalaryStandardDetailsDAO.cs" />
+    <Compile Include="IStandardDetailsDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -176,6 +177,8 @@
     <Compile Include="Controllers\ConfigMajorKindController.cs" />
     <Compile Include="Controllers\ConfigPublicCharController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SalaryGrantController.cs" />
+    <Compile Include="Controllers\SalaryStandardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -249,10 +252,28 @@
     <Content Include="Views\ConfigPublicChar\Index.cshtml" />
     <Content Include="Views\ConfigMajor\Index.cshtml" />
     <Content Include="Views\ConfigMajor\Create.cshtml" />
+    <Content Include="Views\SalaryStandard\Create.cshtml" />
+    <Content Include="Views\SalaryGrant\Index.cshtml" />
+    <Content Include="Views\SalaryGrant\YJJG.cshtml" />
+    <Content Include="Views\SalaryGrant\EJJG.cshtml" />
+    <Content Include="Views\SalaryGrant\SJJG.cshtml" />
+    <Content Include="Views\SalaryGrant\SelectFH.cshtml" />
+    <Content Include="Views\SalaryGrant\Commit.cshtml" />
+    <Content Include="Views\SalaryGrant\Check.cshtml" />
+    <Content Include="Views\SalaryGrant\Querlocate.cshtml" />
+    <Content Include="Views\SalaryGrant\XCFFCX.cshtml" />
+    <Content Include="Views\SalaryGrant\zz.cshtml" />
+    <Content Include="Views\SalaryGrant\registersuccess.cshtml" />
+    <Content Include="Views\SalaryGrant\ckeckstersuccess.cshtml" />
+    <Content Include="Views\SalaryStandard\Checklist.cshtml" />
+    <Content Include="Views\SalaryStandard\Check.cshtml" />
+    <Content Include="Views\SalaryStandard\QuertLocate.cshtml" />
+    <Content Include="Views\SalaryStandard\XCFFCX.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="css\" />
+    <Folder Include="images\" />
     <Folder Include="javascript\" />
   </ItemGroup>
   <ItemGroup>

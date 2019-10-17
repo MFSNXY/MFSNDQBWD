@@ -44,6 +44,11 @@
     <Compile Include="ConfigMajorKindBLL.cs" />
     <Compile Include="ConfigPublicCharBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalaryGrantBLL.cs" />
+    <Compile Include="SalaryGrantdetailsBLL.cs" />
+    <Compile Include="SalaryStandardBLL.cs" />
+    <Compile Include="SalaryStandardDetailsBLL.cs" />
+    <Compile Include="StandardDetailsBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAO\DAO.csproj">

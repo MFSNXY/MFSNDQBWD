@@ -45,6 +45,11 @@
     <Compile Include="ConfigMajorModel.cs" />
     <Compile Include="ConfigPublicCharModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalaryGrantdetailsModel.cs" />
+    <Compile Include="SalaryGrantModel.cs" />
+    <Compile Include="SalaryStandardDetailsModel.cs" />
+    <Compile Include="SalaryStandardModel.cs" />
+    <Compile Include="StandardDetailsModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
