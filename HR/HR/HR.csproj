@@ -1090,6 +1090,7 @@
     <Content Include="Views\HumanFile\HumanFilePicture.cshtml" />
     <Content Include="Views\HumanFile\HumanFileCheckList.cshtml" />
     <Content Include="Views\HumanFile\HumanFileCheck.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileQueryLocate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

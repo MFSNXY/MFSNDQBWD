@@ -96,5 +96,23 @@ namespace HR.Controllers
             return View(ihf.HumanFileBy(id));
         }
 
+        public ActionResult HumanFileCheckUpdate(HumanFileModel hf)
+        {
+            hf.CheckStatus = 1;
+            if (ihf.HumanFileUpdate(hf) > 0)
+            {
+                return Content("<script>alert('复核成功!');location='/HumanFile/HumanFileCheckList';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('复核失败!');</script>");
+            }
+        }
+
+        public ActionResult HumanFileQueryLocate()
+        {
+            return View();
+        }
+
     }
 }

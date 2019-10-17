@@ -32,16 +32,58 @@
     <script type="text/javascript"
             src="../../javascript/human_check.js">
     </script>
-    <script type="text/javascript"
+    @*<script type="text/javascript"
             src="../../javascript/human_input_check.js">
-    </script>
+    </script>*@
     <script src="~/jquery.validate.js"></script>
     <script src="~/jquery.validate.unobtrusive.js"></script>
     <script src="~/vue-2.4.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#HumanBirthday").blur(function () {
+                var thetime = $("#HumanBirthday").val();
+                if (thetime != null && thetime != "") {
+                    var d = new Date(Date.parse(thetime.replace(/-/g, "/")));
+                    var curDate = new Date();
+                    var year = new Date().getFullYear();
+                    var mon = new Date().getMonth() + 1;
+                    var day = new Date().getDate();
+                    var hours = new Date().getHours();
+                    var minutes = new Date().getMinutes();
+                    var seconds = new Date().getSeconds();
+                    if (hours < 10) {
+                        hours = '0' + hours;
+                    }
+                    if (minutes < 10) {
+                        minutes = '0' + minutes;
+                    }
+                    if (seconds < 10) {
+                        seconds = '0' + seconds;
+                    }
+                    var sr = year + "-" + mon + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+                    if (d > curDate) {
+                        alert("请选择小于今天的日期！");
+                        $("#HumanBirthday").val(sr);
+                    } else {
+                        var year1 = thetime.substring(0, thetime.indexOf("-"));
+                        $("#HumanAge").val(year - year1);
+                    }
+                }
+            });
+            $(function () {
+                $(".zp").hover(function () {
+                    $(".dt").show();
+                },
+                function () {
+                    $(".dt").hide();
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div id="aa">
-        <form action="register_choose_picture.html" method="post" enctype="multipart/form-data">
+        <form action="/HumanFile/HumanFileCheckUpdate" method="post" >
             <input type="hidden" name="Id" value="@Model.Id" />
             <table width="100%">
                 <tr>
@@ -69,7 +111,8 @@
                         @Model.HumanId
                     </td>
                     <td rowspan="6" width="13%" style="text-align: center;">
-                        <img src="../../images/regular.jpg" style="width:120px;height:150px;" />
+                        <img class="zp" style="margin-left:0px;width:140px;height:140px;" src="@(Model.HumanPicture.Substring(Model.HumanPicture.IndexOf(@"\HumanFileImage")))" />
+                        <img class="dt" style="position:absolute;width:400px;height:400px;margin:-140px 0px 0px -400px;display:none;"src="@(Model.HumanPicture.Substring(Model.HumanPicture.IndexOf(@"\HumanFileImage")))" />
                     </td>
                 </tr>
                 <tr>
@@ -119,8 +162,8 @@
                         职称
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <select name="HumanProDesignation" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in CPs" v-bind:value="item.Attributename">{{item.Attributename}}</option>
+                        <select v-model="HZC" name="HumanProDesignation" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in ZC" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                 </tr>
@@ -136,7 +179,7 @@
                         性别
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanSex" class="SELECT_STYLE1">
+                        <select v-model="SEX" name="HumanSex" class="SELECT_STYLE1">
                             <option value="男">男</option>
                             <option value="女">女</option>
                         </select>
@@ -188,14 +231,8 @@
                         国籍
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanNationality" class="SELECT_STYLE1">
-                            <option value="中国">中国</option>
-                            <option value="美国">美国</option>
-                            <option value="日本">日本</option>
-                            <option value="英国">英国</option>
-                            <option value="法国">法国</option>
-                            <option value="韩国">韩国</option>
-                            <option value="俄罗斯">俄罗斯</option>
+                        <select v-model="HGJ" name="HumanNationality" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in GJ" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
@@ -208,18 +245,14 @@
                         生日
                     </td>
                     <td width="13%" class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanBirthday" name="HumanBirthday" class="INPUT_STYLE2" id="HumanBirthday" />
+                        <input type="text" value="@(Model.HumanBirthday.ToString()=="0001/1/1 0:00:00"?"":Model.HumanBirthday.ToString())" name="HumanBirthday" class="INPUT_STYLE2" id="HumanBirthday" />
                     </td>
                     <td width="10%" class="TD_STYLE1">
                         民族
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanRace" class="SELECT_STYLE1">
-                            <option value="汉族">汉族</option>
-                            <option value="回族">回族</option>
-                            <option value="维吾尔族">维吾尔族</option>
-                            <option value="藏族">藏族</option>
-                            <option value="蒙古族">蒙古族</option>
+                        <select  v-model="HMZ"  name="HumanRace" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in MZ" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                 </tr>
@@ -228,20 +261,16 @@
                         宗教信仰
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanReligion" class="SELECT_STYLE1">
-                            <option value="无">无</option>
-                            <option value="佛教">佛教</option>
-                            <option value="基督教">基督教</option>
-                            <option value="伊斯兰教">伊斯兰教</option>
+                        <select  v-model="HZJXY"  name="HumanReligion" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in ZJXY" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         政治面貌
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanParty" class="SELECT_STYLE1">
-                            <option value="党员">党员</option>
-                            <option value="群众">群众</option>
+                        <select v-model="HZZMM" name="HumanParty" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in ZZMM" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
@@ -263,36 +292,30 @@
                         年龄
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" value="@Model.HumanAge" name="HumanAge" id="HumanAge" class="INPUT_STYLE2" readonly="readonly">
+                        <input type="text" value="@(Model.HumanAge.ToString()=="0"?"":Model.HumanAge.ToString())" name="HumanAge" id="HumanAge" class="INPUT_STYLE2" readonly="readonly">
                     </td>
                     <td class="TD_STYLE1">
                         学历
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanEducatedDegree" class="SELECT_STYLE1">
-                            <option value="初中">初中</option>
-                            <option value="高中">高中</option>
-                            <option value="大专">大专</option>
-                            <option value="本科">本科</option>
+                        <select v-model="HXL" name="HumanEducatedDegree" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in XL" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         教育年限
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanEducatedYears" class="SELECT_STYLE1">
-                            <option value="12">12</option>
-                            <option value="16">16</option>
+                        <select v-model="HJYNX" name="HumanEducatedYears" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in JYNX" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         学历专业
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanEducatedMajor" class="SELECT_STYLE1">
-                            <option value="生物工程">生物工程</option>
-                            <option value="计算机">计算机</option>
-                            <option value="土木工程">土木工程</option>
+                        <select v-model="HXLZY" name="HumanEducatedMajor" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in XLZY" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                 </tr>
@@ -302,7 +325,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <input type="hidden" v-model="SalaryStandardName" name="SalaryStandardName" />
-                        <select name="SalaryStandardId" v-on:change="SetSalaryStandardName" id="SalaryStandardId" class="SELECT_STYLE1">
+                        <select v-model="XC" name="SalaryStandardId" v-on:change="SetSalaryStandardName" id="SalaryStandardId" class="SELECT_STYLE1">
                             <option value="1">薪酬标准1</option>
                             <option value="2">薪酬标准2</option>
                         </select>
@@ -342,25 +365,16 @@
                         特长
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanSpecility" class="SELECT_STYLE1">
-                            <option value="数据库">数据库</option>
-                            <option value="java">java</option>
-                            <option value="ADC">ADC</option>
-                            <option value="中路">中路</option>
-                            <option value="打野">打野</option>
-                            <option value="上路">上路</option>
-                            <option value="辅助">辅助</option>
+                        <select v-model="HTC" name="HumanSpecility" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in TC" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
                         爱好
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanHobby" class="SELECT_STYLE1">
-                            <option value="篮球">篮球</option>
-                            <option value="舞蹈">舞蹈</option>
-                            <option value="唱歌">唱歌</option>
-                            <option value="rap">rap</option>
+                        <select v-model="HAH" name="HumanHobby" class="SELECT_STYLE1">
+                            <option v-for="(item,i) in AH" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
@@ -410,22 +424,114 @@
         var vm = new Vue({
             el: "#aa",
             data: {
-                CPs: null,
                 SalaryStandardName: $("#SalaryStandardId option:checked").text(),
+                ZPLX: null,
+                GJ: null,
+                MZ: null,
+                ZJXY: null,
+                ZZMM: null,
+                XL: null,
+                JYNX: null,
+                XLZY: null,
+                TC: null,
+                AH: null,
+                ZC: null,
+                HGJ: "@Model.HumanNationality",
+                HMZ: "@Model.HumanRace",
+                HZJXY: "@Model.HumanReligion",
+                HZZMM: "@Model.HumanParty",
+                HXL: "@Model.HumanEducatedDegree",
+                HJYNX: "@Model.HumanEducatedYears",
+                HXLZY: "@Model.HumanEducatedMajor",
+                HTC: "@Model.HumanSpecility",
+                HAH: "@Model.HumanHobby",
+                HZC: "@Model.HumanProDesignation",
+                SEX: "@Model.HumanSex",
+                XC:"@Model.SalaryStandardId"
             },
             methods: {
-                GetCPs: function () {
-                    var t = this;
-                    $.post("/HumanFile/GetCPC", function (rs) {
-                        t.CPs = eval("(" + rs + ")");
-                    });
-                },
                 SetSalaryStandardName: function () {
                     this.SalaryStandardName = $("#SalaryStandardId option:checked").text();
+                },
+                GetZPLX: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=招聘类型", function (rs) {
+                        t.ZPLX = eval("(" + rs + ")");
+                    });
+                },
+                GetGJ: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=国籍", function (rs) {
+                        t.GJ = eval("(" + rs + ")");
+                    });
+                },
+                GetMZ: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=民族", function (rs) {
+                        t.MZ = eval("(" + rs + ")");
+                    });
+                },
+                GetZJXY: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=宗教信仰", function (rs) {
+                        t.ZJXY = eval("(" + rs + ")");
+                    });
+                },
+                GetZZMM: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=政治面貌", function (rs) {
+                        t.ZZMM = eval("(" + rs + ")");
+                    });
+                },
+                GetXL: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=学历", function (rs) {
+                        t.XL = eval("(" + rs + ")");
+                    });
+                },
+                GetJYNX: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=教育年限", function (rs) {
+                        t.JYNX = eval("(" + rs + ")");
+                    });
+                },
+                GetXLZY: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=学历专业", function (rs) {
+                        t.XLZY = eval("(" + rs + ")");
+                    });
+                },
+                GetTC: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=特长", function (rs) {
+                        t.TC = eval("(" + rs + ")");
+                    });
+                },
+                GetAH: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=爱好", function (rs) {
+                        t.AH = eval("(" + rs + ")");
+                    });
+                },
+                GetZC: function () {
+                    var t = this;
+                    $.post("/PublicChar/GetPCs", "type=职称", function (rs) {
+                        t.ZC = eval("(" + rs + ")");
+                    });
                 }
             },
             created: function () {
-                this.GetCPs();
+                this.GetZPLX();
+                this.GetGJ();
+                this.GetMZ();
+                this.GetZJXY();
+                this.GetZZMM();
+                this.GetXL();
+                this.GetJYNX();
+                this.GetXLZY();
+                this.GetTC();
+                this.GetAH();
+                this.GetZC();
             }
         });
     </script>
