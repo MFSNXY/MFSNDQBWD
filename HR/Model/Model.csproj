@@ -67,6 +67,11 @@
     <Compile Include="UsersModel.cs" />
     <Compile Include="View_AuthorityroleModel.cs" />
     <Compile Include="View_UserModel.cs" />
+    <Compile Include="SalaryGrantdetailsModel.cs" />
+    <Compile Include="SalaryGrantModel.cs" />
+    <Compile Include="SalaryStandardDetailsModel.cs" />
+    <Compile Include="SalaryStandardModel.cs" />
+    <Compile Include="StandardDetailsModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

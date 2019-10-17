@@ -85,6 +85,10 @@
     <Compile Include="Configer\UsersmanConfiger.cs" />
     <Compile Include="Configer\View_AuthorityroleConfiger.cs" />
     <Compile Include="Configer\View_UserConfiger.cs" />
+    <Compile Include="Configer\SalaryGrantConfiger.cs" />
+    <Compile Include="Configer\SalaryGrantdetailsConfiger.cs" />
+    <Compile Include="Configer\SalaryStandardDetailsConfiger.cs" />
+    <Compile Include="Configer\StandardDetailsConfiger.cs" />
     <Compile Include="ConfigMajor.cs" />
     <Compile Include="ConfigMajorKind.cs" />
     <Compile Include="Major_change.cs" />
@@ -100,6 +104,12 @@
     <Compile Include="Usersman.cs" />
     <Compile Include="View_Authorityrole.cs" />
     <Compile Include="View_User.cs" />
+    <Compile Include="SalaryGrant.cs" />
+    <Compile Include="SalaryGrantdetails.cs" />
+    <Compile Include="SalaryStandard.cs" />
+    <Compile Include="Configer\SalaryStandardConfiger.cs" />
+    <Compile Include="SalaryStandardDetails.cs" />
+    <Compile Include="StandardDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

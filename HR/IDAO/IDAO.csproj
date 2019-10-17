@@ -65,6 +65,11 @@
     <Compile Include="IUsersmanDAO.cs" />
     <Compile Include="IView_AuthorityroleDAO.cs" />
     <Compile Include="IView_UserDAO.cs" />
+    <Compile Include="ISalaryGrantDAO.cs" />
+    <Compile Include="ISalaryGrantdetailsDAO.cs" />
+    <Compile Include="ISalaryStandardDAO.cs" />
+    <Compile Include="ISalaryStandardDetailsDAO.cs" />
+    <Compile Include="IStandardDetailsDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

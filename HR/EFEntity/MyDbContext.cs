@@ -52,5 +52,10 @@ namespace EFEntity
         public DbSet<EngageInterview> EngageInterview { get; set; }
         public DbSet<HumanFile> HumanFile { get; set; }
 
+        public DbSet<SalaryStandard> SalaryStandard { get; set; }
+        public DbSet<SalaryStandardDetails> SalaryStandardDetails { get; set; }
+        public DbSet<SalaryGrant> SalaryGrant { get; set; }
+        public DbSet<SalaryGrantdetails> SalaryGrantdetails { get; set; }
+        public DbSet<StandardDetails> StandardDetails { get; set; }
     }
 }

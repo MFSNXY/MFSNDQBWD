@@ -65,6 +65,11 @@
     <Compile Include="IUsersmanBLL.cs" />
     <Compile Include="IView_AuthorityroleBLL.cs" />
     <Compile Include="IView_UserBLL.cs" />
+    <Compile Include="ISalaryGrantBLL.cs" />
+    <Compile Include="ISalaryGrantdetailsBLL.cs" />
+    <Compile Include="ISalaryStandardBLL.cs" />
+    <Compile Include="ISalaryStandardDetailsBLL.cs" />
+    <Compile Include="IStandardDetailsBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
