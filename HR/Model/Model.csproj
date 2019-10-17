@@ -41,9 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorityroleModel.cs" />
+    <Compile Include="ConfigMajorKindModel.cs" />
+    <Compile Include="ConfigMajorModel.cs" />
+    <Compile Include="Major_changeModel.cs" />
+    <Compile Include="MechanismFirstModel.cs" />
+    <Compile Include="MechanismSecondModel.cs" />
+    <Compile Include="MechanismThirdModel.cs" />
+    <Compile Include="PermissionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicCharModel.cs" />
     <Compile Include="StandardDetailsModel.cs" />
+    <Compile Include="UsersmanModel.cs" />
+    <Compile Include="UsersModel.cs" />
+    <Compile Include="View_AuthorityroleModel.cs" />
+    <Compile Include="View_UserModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

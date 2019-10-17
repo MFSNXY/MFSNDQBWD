@@ -40,8 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAuthorityroleDAO.cs" />
+    <Compile Include="IConfigMajorDAO.cs" />
+    <Compile Include="IConfigMajorKindDAO.cs" />
+    <Compile Include="IMajor_changeDAO.cs" />
+    <Compile Include="IMechanismFirstDAO.cs" />
+    <Compile Include="IMechanismSecondDAO.cs" />
+    <Compile Include="IMechanismThirdDAO.cs" />
+    <Compile Include="IPermissionDAO.cs" />
     <Compile Include="IPublicCharDAO.cs" />
     <Compile Include="IStandardDetailsDAO.cs" />
+    <Compile Include="IUsersDAO.cs" />
+    <Compile Include="IUsersmanDAO.cs" />
+    <Compile Include="IView_AuthorityroleDAO.cs" />
+    <Compile Include="IView_UserDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
