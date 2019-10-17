@@ -40,14 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAuthorityroleBLL.cs" />
-    <Compile Include="IConfigMajorBLL.cs" />
-    <Compile Include="IConfigMajorKindBLL.cs" />
-    <Compile Include="IMajor_changeBLL.cs" />
-    <Compile Include="IMechanismFirstBLL.cs" />
-    <Compile Include="IMechanismSecondBLL.cs" />
-    <Compile Include="IMechanismThirdBLL.cs" />
-    <Compile Include="IPermissionBLL.cs" />
     <Compile Include="IEngageBLL.cs" />
     <Compile Include="IEngageInterviewBLL.cs" />
     <Compile Include="IEngageResumeBLL.cs" />
@@ -61,15 +53,6 @@
     <Compile Include="IConfigMajorBLL.cs" />
     <Compile Include="IConfigMajorKindBLL.cs" />
     <Compile Include="IConfigPublicCharBLL.cs" />
-    <Compile Include="IUsersBLL.cs" />
-    <Compile Include="IUsersmanBLL.cs" />
-    <Compile Include="IView_AuthorityroleBLL.cs" />
-    <Compile Include="IView_UserBLL.cs" />
-    <Compile Include="ISalaryGrantBLL.cs" />
-    <Compile Include="ISalaryGrantdetailsBLL.cs" />
-    <Compile Include="ISalaryStandardBLL.cs" />
-    <Compile Include="ISalaryStandardDetailsBLL.cs" />
-    <Compile Include="IStandardDetailsBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

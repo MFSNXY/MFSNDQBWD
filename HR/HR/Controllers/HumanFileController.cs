@@ -111,7 +111,6 @@ namespace HR.Controllers
 
         public ActionResult HumanFileQueryLocate()
         {
-            HumanFileModel hf = new HumanFileModel();
             return View();
         }
 

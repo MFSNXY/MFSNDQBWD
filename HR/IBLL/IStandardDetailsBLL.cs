@@ -17,17 +17,3 @@ namespace IBLL
         List<StandardDetailsModel> StandardDetailsFenYe<K>(int currentPage, int PageSize, out int rows);
     }
 }
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
-
-namespace IBLL
-{
-    public interface IStandardDetailsBLL
-    {
-        List<StandardDetailsModel> StandardDetailsSelect();
-    }
-}
