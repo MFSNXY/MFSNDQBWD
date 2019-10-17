@@ -39,7 +39,11 @@ namespace HR.Controllers
             return Content(dh);
         }
 
-
+        //
+        public ActionResult DenjiCG()
+        {
+            return View();
+        }
 
         public ActionResult Add()
         {
