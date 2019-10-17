@@ -40,6 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorityroleBLL.cs" />
+    <Compile Include="ConfigMajorBLL.cs" />
+    <Compile Include="ConfigMajorKindBLL.cs" />
+    <Compile Include="Major_changeBLL.cs" />
+    <Compile Include="MechanismFirstBLL.cs" />
+    <Compile Include="MechanismSecondBLL.cs" />
+    <Compile Include="MechanismThirdBLL.cs" />
+    <Compile Include="PermissionBLL.cs" />
     <Compile Include="EngageBLL.cs" />
     <Compile Include="EngageInterviewBLL.cs" />
     <Compile Include="EngageResumeBLL.cs" />
@@ -54,6 +62,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicCharBLL.cs" />
     <Compile Include="StandardDetailsBLL.cs" />
+    <Compile Include="UsersBLL.cs" />
+    <Compile Include="UsersmanBLL.cs" />
+    <Compile Include="View_AuthorityroleBLL.cs" />
+    <Compile Include="View_UserBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAO\DAO.csproj">
