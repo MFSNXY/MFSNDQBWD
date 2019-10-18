@@ -172,7 +172,7 @@
                     swf: '~/Wp/Uploader.swf',
                     chunked: false,
                     chunkSize: 512 * 1024,
-                    server: '/HumanFile/HumanFileSCPicture',
+                    server: '/HumanFile/HumanFileSCPicture?gn='+@Request["gn"],
                     // runtimeOrder: 'flash',
 
                      accept: {
@@ -583,11 +583,17 @@
 
                 uploader.on('uploadSuccess', function (file, response) {
                     //console.info(response._raw);
+                    alert(response);
                     if (response == "1") {
                         //上传成功后跳转页面
                         alert("上传成功!");
                         window.location.href = "/HumanFile/HumanFileRegister";
-                    } else {
+                    }else  if (response == "2") {
+                        //上传成功后跳转页面
+                        alert("上传成功!");
+                        window.location.href = "/HumanFile/HumanFileChangeLocate";
+                    } 
+                    else {
                         alert("上传失败!");
                     }
                 });

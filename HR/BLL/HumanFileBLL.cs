@@ -55,5 +55,10 @@ namespace BLL
             return ihd.HumanFileCheckList(currentPage, pageSize, out rows);
         }
 
+        public List<HumanFileModel> HumanFileQueryList(int currentPage, int pageSize, out int rows, string FirstMid, string SecondMid, string ThirdMid, string HumanMajorKindId, string HumanMajorId, DateTime? startTime, DateTime? endTime, string gjz)
+        {
+            return ihd.HumanFileQueryList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
+        }
+
     }
 }

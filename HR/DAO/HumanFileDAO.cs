@@ -476,5 +476,117 @@ namespace DAO
             return list2;
         }
 
+
+        public List<HumanFileModel> HumanFileQueryList(int currentPage, int pageSize, out int rows,string FirstMid,string SecondMid,string ThirdMid,string HumanMajorKindId,string HumanMajorId,DateTime? startTime,DateTime? endTime,string gjz)
+        {
+            string sql = "select * from HumanFile where 1=1 ";
+            if (FirstMid != ""&&FirstMid != "0")
+            {
+                sql += string.Format(" and FirstMid ='{0}'",FirstMid);
+            }
+            if (SecondMid != "" && SecondMid != "0")
+            {
+                sql += string.Format(" and SecondMid ='{0}'", SecondMid);
+            }
+            if (ThirdMid != "" && ThirdMid != "0")
+            {
+                sql += string.Format(" and ThirdMid ='{0}'", ThirdMid);
+            }
+            if (HumanMajorKindId != "" && HumanMajorKindId != "0")
+            {
+                sql += string.Format(" and HumanMajorKindId ='{0}'", HumanMajorKindId);
+            }
+            if (HumanMajorId != "" && HumanMajorId != "0")
+            {
+                sql += string.Format(" and HumanMajorId ='{0}'", HumanMajorId);
+            }
+            if (startTime != null&& endTime != null)
+            {
+                sql += string.Format(" and RegisteTime >='{0}'  and RegisteTime <='{0}'", startTime,endTime);
+            }
+            if (gjz != "")
+            {
+                sql += string.Format(" and HumanName like '%{0}%' or HumanTelephone like '%{0}%' or HumanAddress like '%{0}%' ", gjz);
+            }
+            var list = CreateContext().HumanFile.SqlQuery(sql).AsNoTracking().OrderBy(e => e.Id);
+            rows = list.Count();
+            var data = list
+                 .Skip((currentPage - 1) * pageSize)
+                 .Take(pageSize)
+                 .ToList();
+            List<HumanFileModel> list2 = new List<HumanFileModel>();
+            foreach (var p in data)
+            {
+                #region
+                HumanFileModel hf = new HumanFileModel()
+                {
+                    AttachmentName = p.AttachmentName,
+                    DeleteTime = p.DeleteTime,
+                    BonusAmount = p.BonusAmount,
+                    FileChangAmount = p.FileChangAmount,
+                    Changer = p.Changer,
+                    HumanQQ = p.HumanQQ,
+                    ChangeTime = p.ChangeTime,
+                    Checker = p.Checker,
+                    CheckStatus = p.CheckStatus,
+                    CheckTime = p.CheckTime,
+                    FirstMid = p.FirstMid,
+                    DemandSalaraySum = p.DemandSalaraySum,
+                    FirstMName = p.FirstMName,
+                    HumanAccount = p.HumanAccount,
+                    HumanAddress = p.HumanAddress,
+                    HumanAge = p.HumanAge,
+                    HumanBank = p.HumanBank,
+                    HumanBirthday = p.HumanBirthday,
+                    MajorChangeAmount = p.MajorChangeAmount,
+                    HumanBirthplace = p.HumanBirthplace,
+                    HumanEducatedDegree = p.HumanEducatedDegree,
+                    HumanEducatedMajor = p.HumanEducatedMajor,
+                    TrainingAmount = p.TrainingAmount,
+                    HumanEducatedYears = p.HumanEducatedYears,
+                    HumanEmail = p.HumanEmail,
+                    HumanFamilyMembership = p.HumanFamilyMembership,
+                    HumanFileStatus = p.HumanFileStatus,
+                    HumanHistoryRecords = p.HumanHistoryRecords,
+                    HumanHobby = p.HumanHobby,
+                    HumanId = p.HumanId,
+                    HumanIdcard = p.HumanIdcard,
+                    HumanMajorId = p.HumanMajorId,
+                    HumanMajorKindId = p.HumanMajorKindId,
+                    HumanMajorKindName = p.HumanMajorKindName,
+                    HumanMajorName = p.HumanMajorName,
+                    HumanMobilephone = p.HumanMobilephone,
+                    RecoveryTime = p.RecoveryTime,
+                    HumanName = p.HumanName,
+                    HumanNationality = p.HumanNationality,
+                    HumanParty = p.HumanParty,
+                    HumanPicture = p.HumanPicture,
+                    HumanPostcode = p.HumanPostcode,
+                    HumanProDesignation = p.HumanProDesignation,
+                    HumanRace = p.HumanRace,
+                    HumanReligion = p.HumanReligion,
+                    HumanSex = p.HumanSex,
+                    HumanSpecility = p.HumanSpecility,
+                    HumanTelephone = p.HumanTelephone,
+                    Id = p.Id,
+                    LastlyChangeTime = p.LastlyChangeTime,
+                    PaidSalarySum = p.PaidSalarySum,
+                    Register = p.Register,
+                    RegisteTime = p.RegisteTime,
+                    Remark = p.Remark,
+                    SalaryStandardId = p.SalaryStandardId,
+                    SalaryStandardName = p.SalaryStandardName,
+                    SalaySum = p.SalaySum,
+                    SecondMid = p.SecondMid,
+                    SecondMName = p.SecondMName,
+                    ThirdMid = p.ThirdMid,
+                    ThirdMName = p.ThirdMName
+                };
+                #endregion
+                list2.Add(hf);
+            }
+            return list2;
+        }
+
     }
 }

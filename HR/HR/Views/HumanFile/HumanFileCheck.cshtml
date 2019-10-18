@@ -79,12 +79,39 @@
                 });
             });
         });
+        setInterval(function () {
+            var year = new Date().getFullYear();
+            var mon = new Date().getMonth() + 1;
+            var day = new Date().getDate();
+            var hours = new Date().getHours();
+            var minutes = new Date().getMinutes();
+            var seconds = new Date().getSeconds();
+            if (hours < 10) {
+                hours = '0' + hours;
+            }
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+            $('#aaa').val(year + "-" + mon + "-" + day + " " + hours + ":" + minutes + ":" + seconds);
+        }, 1000);
     </script>
+    <style type="text/css">
+        .aa {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <div id="aa">
         <form action="/HumanFile/HumanFileCheckUpdate" method="post" >
             <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" name="HumanId" value="@Model.HumanId" />
+            <input type="hidden" name="Register" value="@Model.Register" />
+            <input type="hidden" name="RegisteTime" value="@Model.RegisteTime" />
+            <input type="hidden" name="HumanPicture" value="@Model.HumanPicture" />
             <table width="100%">
                 <tr>
                     <td>
@@ -107,7 +134,7 @@
                     <td class="TD_STYLE1" width="10%">
                         档案编号
                     </td>
-                    <td colspan="6" class="TD_STYLE2">
+                    <td colspan="6" class="TD_STYLE2 aa">
                         @Model.HumanId
                     </td>
                     <td rowspan="6" width="13%" style="text-align: center;">
@@ -119,7 +146,7 @@
                     <td class="TD_STYLE1" width="10%">
                         I级机构
                     </td>
-                    <td width="13%" class="TD_STYLE2">
+                    <td width="13%" class="TD_STYLE2 aa">
                         <input type="hidden" name="FirstMName" value="@Model.FirstMName" />
                         <input type="hidden" name="FirstMid" value="@Model.FirstMid" />
                         @Model.FirstMName
@@ -127,7 +154,7 @@
                     <td width="10%" class="TD_STYLE1">
                         II级机构
                     </td>
-                    <td width="13%" class="TD_STYLE2">
+                    <td width="13%" class="TD_STYLE2 aa">
                         <input type="hidden" name="SecondMName" value="@Model.SecondMName" />
                         <input type="hidden" name="SecondMid" value="@Model.SecondMid" />
                         @Model.SecondMName
@@ -135,7 +162,7 @@
                     <td width="10%" class="TD_STYLE1">
                         III级机构
                     </td>
-                    <td class="TD_STYLE2" colspan="2" width="2%">
+                    <td class="TD_STYLE2 aa" colspan="2" width="2%">
                         <input type="hidden" name="ThirdMName" value="@Model.ThirdMName" />
                         <input type="hidden" name="ThirdMid" value="@Model.ThirdMid" />
                         @Model.ThirdMName
@@ -145,7 +172,7 @@
                     <td class="TD_STYLE1">
                         职位分类
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="hidden" name="HumanMajorKindName" value="@Model.HumanMajorKindName" />
                         <input type="hidden" name="HumanMajorKindId" value="@Model.HumanMajorKindId" />
                         @Model.HumanMajorKindName
@@ -153,7 +180,7 @@
                     <td class="TD_STYLE1">
                         职位名称
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="hidden" name="HumanMajorName" value="@Model.HumanMajorName" />
                         <input type="hidden" name="HumanMajorId" value="@Model.HumanMajorId" />
                         @Model.HumanMajorName
@@ -161,7 +188,7 @@
                     <td class="TD_STYLE1">
                         职称
                     </td>
-                    <td colspan="2" class="TD_STYLE2">
+                    <td colspan="2" class="TD_STYLE2 aa">
                         <select v-model="HZC" name="HumanProDesignation" class="SELECT_STYLE1">
                             <option v-for="(item,i) in ZC" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -171,14 +198,14 @@
                     <td class="TD_STYLE1">
                         姓名
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         @Html.TextBox("HumanName",Model.HumanName, new { @class = "INPUT_STYLE2" })
                         @Html.ValidationMessage("HumanName")
                     </td>
                     <td class="TD_STYLE1">
                         性别
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select v-model="SEX" name="HumanSex" class="SELECT_STYLE1">
                             <option value="男">男</option>
                             <option value="女">女</option>
@@ -187,7 +214,7 @@
                     <td class="TD_STYLE1">
                         EMAIL
                     </td>
-                    <td colspan="2" class="TD_STYLE2">
+                    <td colspan="2" class="TD_STYLE2 aa">
                         <input type="text" name="HumanEmail" value="@Model.HumanEmail" id="humanEmail" class="INPUT_STYLE2">
                     </td>
                 </tr>
@@ -195,20 +222,20 @@
                     <td class="TD_STYLE1">
                         电话
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         @Html.TextBox("HumanTelephone", Model.HumanTelephone, new { @class = "INPUT_STYLE2" })
                         @Html.ValidationMessage("HumanTelephone")
                     </td>
                     <td class="TD_STYLE1">
                         QQ
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" value="@Model.HumanQQ" name="HumanQQ" class="INPUT_STYLE2" />
                     </td>
                     <td class="TD_STYLE1">
                         手机
                     </td>
-                    <td colspan="2" class="TD_STYLE2">
+                    <td colspan="2" class="TD_STYLE2 aa">
                         <input type="text" value="@Model.HumanMobilephone" name="HumanMobilephone" class="INPUT_STYLE2" />
                     </td>
                 </tr>
@@ -216,13 +243,13 @@
                     <td class="TD_STYLE1">
                         住址
                     </td>
-                    <td colspan="3" class="TD_STYLE2">
+                    <td colspan="3" class="TD_STYLE2 aa">
                         <input type="text" value="@Model.HumanAddress" name="HumanAddress" class="INPUT_STYLE2" />
                     </td>
                     <td class="TD_STYLE1">
                         邮编
                     </td>
-                    <td colspan="2" class="TD_STYLE2">
+                    <td colspan="2" class="TD_STYLE2 aa">
                         <input type="text" value="@Model.HumanPostcode" name="HumanPostcode" class="INPUT_STYLE2" />
                     </td>
                 </tr>
@@ -230,7 +257,7 @@
                     <td class="TD_STYLE1">
                         国籍
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select v-model="HGJ" name="HumanNationality" class="SELECT_STYLE1">
                             <option v-for="(item,i) in GJ" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -238,19 +265,19 @@
                     <td class="TD_STYLE1">
                         出生地
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" value="@Model.HumanBirthplace" name="HumanBirthplace" class="INPUT_STYLE2" />
                     </td>
                     <td class="TD_STYLE1">
                         生日
                     </td>
-                    <td width="13%" class="TD_STYLE2">
+                    <td width="13%" class="TD_STYLE2 aa">
                         <input type="text" value="@(Model.HumanBirthday.ToString()=="0001/1/1 0:00:00"?"":Model.HumanBirthday.ToString())" name="HumanBirthday" class="INPUT_STYLE2" id="HumanBirthday" />
                     </td>
                     <td width="10%" class="TD_STYLE1">
                         民族
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select  v-model="HMZ"  name="HumanRace" class="SELECT_STYLE1">
                             <option v-for="(item,i) in MZ" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -260,7 +287,7 @@
                     <td class="TD_STYLE1">
                         宗教信仰
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select  v-model="HZJXY"  name="HumanReligion" class="SELECT_STYLE1">
                             <option v-for="(item,i) in ZJXY" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -268,7 +295,7 @@
                     <td class="TD_STYLE1">
                         政治面貌
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select v-model="HZZMM" name="HumanParty" class="SELECT_STYLE1">
                             <option v-for="(item,i) in ZZMM" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -276,14 +303,14 @@
                     <td class="TD_STYLE1">
                         身份证号码
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         @Html.TextBox("HumanIdcard",@Model.HumanIdcard, new { @class = "INPUT_STYLE2" })
                         @Html.ValidationMessage("HumanIdcard")
                     </td>
                     <td class="TD_STYLE1">
                         社会保障号码
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" value="@Model.HumanSocietySecurityId" name="HumanSocietySecurityId" class="INPUT_STYLE2" />
                     </td>
                 </tr>
@@ -291,13 +318,13 @@
                     <td class="TD_STYLE1">
                         年龄
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" value="@(Model.HumanAge.ToString()=="0"?"":Model.HumanAge.ToString())" name="HumanAge" id="HumanAge" class="INPUT_STYLE2" readonly="readonly">
                     </td>
                     <td class="TD_STYLE1">
                         学历
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select v-model="HXL" name="HumanEducatedDegree" class="SELECT_STYLE1">
                             <option v-for="(item,i) in XL" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -305,7 +332,7 @@
                     <td class="TD_STYLE1">
                         教育年限
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select v-model="HJYNX" name="HumanEducatedYears" class="SELECT_STYLE1">
                             <option v-for="(item,i) in JYNX" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -313,7 +340,7 @@
                     <td class="TD_STYLE1">
                         学历专业
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select v-model="HXLZY" name="HumanEducatedMajor" class="SELECT_STYLE1">
                             <option v-for="(item,i) in XLZY" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -323,7 +350,7 @@
                     <td class="TD_STYLE1">
                         薪酬标准
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="hidden" v-model="SalaryStandardName" name="SalaryStandardName" />
                         <select v-model="XC" name="SalaryStandardId" v-on:change="SetSalaryStandardName" id="SalaryStandardId" class="SELECT_STYLE1">
                             <option value="1">薪酬标准1</option>
@@ -333,21 +360,21 @@
                     <td class="TD_STYLE1">
                         开户银行
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" name="HumanBank" value="@Model.HumanBank"
                                class="INPUT_STYLE2">
                     </td>
                     <td class="TD_STYLE1">
                         帐号
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" name="HumanAccount" value="@Model.HumanAccount"
                                class="INPUT_STYLE2">
                     </td>
                     <td class="TD_STYLE1">
                         复核人
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" name="Checker" value="烤山药"
                                readonly="readonly" class="INPUT_STYLE2">
                     </td>
@@ -356,15 +383,15 @@
                     <td class="TD_STYLE1">
                         复核时间
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" name="CheckTime"
-                               id="create_time" readonly="readonly"
+                               id="aaa" readonly="readonly"
                                class="INPUT_STYLE2">
                     </td>
                     <td class="TD_STYLE1">
                         特长
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select v-model="HTC" name="HumanSpecility" class="SELECT_STYLE1">
                             <option v-for="(item,i) in TC" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -372,7 +399,7 @@
                     <td class="TD_STYLE1">
                         爱好
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <select v-model="HAH" name="HumanHobby" class="SELECT_STYLE1">
                             <option v-for="(item,i) in AH" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
@@ -380,7 +407,7 @@
                     <td class="TD_STYLE1">
                         &nbsp;
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         &nbsp;
                     </td>
                 </tr>
@@ -388,14 +415,14 @@
                     <td class="TD_STYLE1">
                         档案附件
                     </td>
-                    <td colspan="7" class="TD_STYLE2">
+                    <td colspan="7" class="TD_STYLE2 aa">
                     </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">
                         个人履历
                     </td>
-                    <td colspan="7" class="TD_STYLE2">
+                    <td colspan="7" class="TD_STYLE2 aa">
                         <textarea name="HumanHistoryRecords" rows="4"
                                   class="TEXTAREA_STYLE1">@Model.HumanHistoryRecords</textarea>
                     </td>
@@ -404,7 +431,7 @@
                     <td class="TD_STYLE1">
                         家庭关系信息
                     </td>
-                    <td colspan="7" class="TD_STYLE2">
+                    <td colspan="7" class="TD_STYLE2 aa">
                         <textarea name="HumanFamilyMembership" rows="4"
                                   class="TEXTAREA_STYLE1">@Model.HumanFamilyMembership</textarea>
                     </td>
@@ -413,7 +440,7 @@
                     <td class="TD_STYLE1">
                         备注
                     </td>
-                    <td colspan="7" class="TD_STYLE2">
+                    <td colspan="7" class="TD_STYLE2 aa">
                         <textarea name="Remark" rows="4" class="TEXTAREA_STYLE1">@Model.Remark</textarea>
                     </td>
                 </tr>

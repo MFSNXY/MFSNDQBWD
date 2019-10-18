@@ -1091,6 +1091,13 @@
     <Content Include="Views\HumanFile\HumanFileCheckList.cshtml" />
     <Content Include="Views\HumanFile\HumanFileCheck.cshtml" />
     <Content Include="Views\HumanFile\HumanFileQueryLocate.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileQueryList.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileQueryKeywords.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileQueryListInformation.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileChangeLocate.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileChangeKeywords.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileChangeList.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileChangeListInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

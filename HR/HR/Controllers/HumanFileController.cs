@@ -37,7 +37,7 @@ namespace HR.Controllers
             if (ihf.HumanFileAdd(hf) > 0)
             {
                 TempData["hfid"] = hf.HumanId;
-                return Content("<script>alert('登记成功!');location='/HumanFile/HumanFilePicture';</script>");
+                return Content("<script>alert('登记成功!');location='/HumanFile/HumanFilePicture?gn=1';</script>");
             }
             else
             {
@@ -50,7 +50,7 @@ namespace HR.Controllers
             return View();
         }
 
-        public ActionResult HumanFileSCPicture(HttpPostedFileBase file)
+        public ActionResult HumanFileSCPicture(HttpPostedFileBase file,int gn)
         {
             byte[] bts = MD5.Create().ComputeHash(file.InputStream);
             StringBuilder sb = new StringBuilder();
@@ -65,7 +65,7 @@ namespace HR.Controllers
             file.SaveAs(path);
             if (ihf.HumanFileSetPic((string)TempData["hfid"], path) > 0)
             {
-                return Content("1");
+                return Content(gn+"");
             }
             else
             {
@@ -113,6 +113,97 @@ namespace HR.Controllers
         {
             return View();
         }
+
+        public ActionResult HumanFileQueryKeywords()
+        {
+            return View();
+        }
+        public ActionResult HumanFileQueryListInformation(int id)
+        {
+            return View(ihf.HumanFileBy(id));
+        }
+
+
+        public ActionResult HumanFileQueryList(string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
+        {
+            TempData["FirstMid"] = FirstMid;
+            TempData["SecondMid"] = SecondMid;
+            TempData["ThirdMid"] = ThirdMid;
+            TempData["HumanMajorKindId"] = HumanMajorKindId;
+            TempData["HumanMajorId"] = HumanMajorId;
+            TempData["GJZ"] = gjz;
+            TempData["StartTime"] = startTime;
+            TempData["EndTime"] = endTime;
+            return View();
+        }
+
+        public ActionResult HumanFileGetHuman(int currentPage, int pageSize, string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
+        {
+            int rows = 0;
+            List<HumanFileModel> list = ihf.HumanFileQueryList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
+            Dictionary<string, object> dic = new Dictionary<string, object>()
+            {
+                {"list",list },
+                {"rows",rows }
+            };
+            return Content(JsonConvert.SerializeObject(dic));
+        }
+
+        public ActionResult HumanFileChangeLocate()
+        {
+            return View();
+        }
+
+        public ActionResult HumanFileChangeKeywords()
+        {
+            return View();
+        }
+        public ActionResult HumanFileChangeList(string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
+        {
+            TempData["FirstMid"] = FirstMid;
+            TempData["SecondMid"] = SecondMid;
+            TempData["ThirdMid"] = ThirdMid;
+            TempData["HumanMajorKindId"] = HumanMajorKindId;
+            TempData["HumanMajorId"] = HumanMajorId;
+            TempData["GJZ"] = gjz;
+            TempData["StartTime"] = startTime;
+            TempData["EndTime"] = endTime;
+            return View();
+        }
+
+        public ActionResult HumanFileChangeGetHuman(int currentPage, int pageSize, string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
+        {
+            int rows = 0;
+            List<HumanFileModel> list = ihf.HumanFileQueryList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
+            Dictionary<string, object> dic = new Dictionary<string, object>()
+            {
+                {"list",list },
+                {"rows",rows }
+            };
+            return Content(JsonConvert.SerializeObject(dic));
+        }
+    
+
+        public ActionResult HumanFileChangeListInformation(int id)
+        {
+            return View(ihf.HumanFileBy(id));
+        }
+
+        public ActionResult HumanFileChangeUpdate(HumanFileModel hf)
+        {
+            if (ihf.HumanFileUpdate(hf) > 0)
+            {
+                TempData["hfid"] = hf.HumanId;
+                return Content("<script>alert('修改成功!');location='/HumanFile/HumanFilePicture?gn=2';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('修改成功!');</script>");
+            }
+        }
+
+
+
 
     }
 }
