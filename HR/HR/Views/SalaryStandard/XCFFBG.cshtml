@@ -1,0 +1,262 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>XCFFBG</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/jquery-1.11.1.js"></script>
+    <script src="~/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="aa">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记查询</font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    符合条件的薪酬标准总数: 3 例
+                </td>
+            </tr>
+        </table>
+
+        <input id="Standardid" type="hidden" value="@TempData["Standardid"]" />
+        <input id="GJZ" type="hidden" value=" @TempData["GJZ"]" />
+        <input id="startDate" type="hidden" value="@TempData["startDate"]" />
+        <input id="endDate" type="hidden" value="@TempData["endDate"]" />
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="15%" class="TD_STYLE1">
+                    <span>薪酬标准编号</span>
+                </td>
+                <td width="20%" class="TD_STYLE1">
+                    <span>薪酬标准名称</span>
+                </td>
+                <td width="15%" class="TD_STYLE1">
+                    <span>制定人</span>
+                </td>
+                <td width="30%" class="TD_STYLE1">
+                    <span>登记时间</span>
+                </td>
+                <td class="TD_STYLE1" width="15%">
+                    薪酬总额
+                </td>
+                <td class="TD_STYLE1" width="15%">
+                    变更
+                </td>
+            </tr>
+
+
+            <tr v-for="(item,i) in es" class="TD_STYLE2">
+                <td>
+                   {{item.Standardid}}
+                </td>
+                <td>
+                    {{item.Standardname}}
+                </td>
+                <td>
+                    {{item.Designer}}
+                </td>
+                <td>
+                    {{shijian(item.Registtime)}}
+                </td>
+                <td>
+                    {{item.Salarysum}}
+                </td>
+                <td>
+                    <a v-bind:href="['/SalaryStandard/Biangeng?id='+item.Id]">变 更</a>
+                    @*<a href="#">变更</a>*@
+                </td>
+            </tr>
+
+
+            @*<tr class="TD_STYLE2">
+                    <td>
+                        <a href="salarystandard_query.html">1353320112255</a>
+                    </td>
+                    <td>
+                        董事长
+
+                    </td>
+                    <td>
+                        杨阳
+
+                    </td>
+                    <td>
+                        2012年11月19日
+                    </td>
+                    <td>
+                        &nbsp;
+                        135827.0
+                    </td>
+                </tr>*@
+
+
+
+
+        </table>
+
+
+        <html>
+        <head>
+        </head>
+        <body>
+            <p>
+                <div align="center" style="font-size: 18px;color: gray">
+                    &nbsp;&nbsp;总数：
+                    <font style="color: maroon;font-weight: bold;">{{rows}}</font>
+                    例
+                    &nbsp;&nbsp;&nbsp;
+                    每页显示 <font style="color: maroon;font-weight: bold;">{{pageSize}}</font>
+                    条
+                    &nbsp;&nbsp;&nbsp;
+                    当前第 <font style="color: maroon;font-weight: bold;">{{currentPage}}</font>
+                    页
+                    &nbsp;&nbsp;&nbsp;共
+                    <font style="color: maroon;font-weight: bold;">{{pages}}</font>
+                    页
+                    <a style="color: navy;font-weight: bold" v-on:click="SY()">首页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       v-on:click="Prev()">上一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       v-on:click="Next()">下一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       v-on:click="Next()">末页</a>
+                    &nbsp;&nbsp;&nbsp;跳到第
+                    <input name=page v-on:change="SetCurrent()" type=text class=input1 id="currPage" size=1> 页&nbsp;&nbsp;
+                    <input type="image" src="~/images/go.bmp" onclick="tj('1')" width=18 height=18 border=0>
+
+
+                    @*页&nbsp;&nbsp;
+                        <input type="image" onclick="dopagebybutton()" src="../../images/go.bmp" width=18 height=18 border=0>
+                        <input type="hidden" name="page.startPage" id="startpage" value="1">*@
+                </div>
+                <script type="text/javascript">
+function dopagebybutton() {
+	var reg = /^[0-9]*[1-9][0-9]*$/;
+	if (reg.test(document.getElementById("page").value)) {
+		document.getElementById("startpage").value= document.getElementById("page").value;
+	} else {
+		alert("您的输入有误");
+		document.getElementById("page").value = document.getElementById("startpage").value;
+	}
+	document.forms[0].submit();
+
+}
+function doPage(startsize) {
+	document.getElementById("startpage").value =startsize;
+	document.forms[0].submit();
+
+}
+                </script>
+
+
+
+        </body>
+    </html>
+
+</div>
+
+<script type="text/javascript">
+        var vm = new Vue({
+            el: "#aa",
+            data: {
+                es: null,
+                rows: 0,
+                currentPage: 1,
+                pageSize: 5,
+                pages:0,
+            },
+            methods: {
+                GetEs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "../SalaryStandard/XCFFBG2",
+                        type: "post",
+                        data: "currentPage=" + t.currentPage + "&pageSize=" + t.pageSize + "&Standardid=" + $("#Standardid").val() + "&GJZ=" + $("#GJZ").val() + "&startDate=" + $("#startDate").val() + "&endDate=" + $("#endDate").val(),
+                        success: function (rs) {
+                            t.es = eval("(" + rs + ")");
+                            $.ajax({
+                                url: "../SalaryStandard/GetRow2",
+                                type: "post",
+                                success: function (rs) {
+                                    t.rows = rs;
+                                    t.pages = Math.ceil(t.rows / t.pageSize);
+                                }
+                            });
+                        }
+                    });
+                },
+                shijian(sj) {
+                    var t1 = sj.substring(0, sj.indexOf("T"));
+                    var year = t1.substring(0, t1.indexOf("-"));
+                    var month = t1.substring(t1.indexOf("-") + 1, t1.lastIndexOf("-"));
+                    var day = t1.substring(t1.lastIndexOf("-") + 1, t1.length);
+                    return year + "年" + month + "月" + day + "日";
+                },
+                Next: function () {
+                    if (this.currentPage + 1 <= this.pages) {
+                        this.currentPage += 1;
+                    }
+                    this.GetEs();
+                },
+                Prev: function () {
+                    if (this.currentPage - 1 >= 1) {
+                        this.currentPage -= 1;
+                    }
+                    this.GetEs();
+                },
+                SY: function () {
+
+                        this.currentPage = 1;
+                    this.GetEs();
+                },
+                MY: function () {
+                    this.currentPage = this.pages;
+                    this.GetEs();
+                },
+                SetCurrent: function () {
+                    if ($("#currPage").val() < 1 || $("#currPage").val() > this.pages || isNaN($("#currPage").val())) {
+                        $("#currPage").val(1);
+                        this.currentPage = 1;
+                    } else {
+                        this.currentPage = $("#currPage").val();
+                    }
+                    this.GetEs();
+                },
+            },
+            created: function () {
+                this.GetEs();
+            }
+            //filters: {
+            //    timeFormate: function (v) {
+            //        var value = v.substring(0, v.indexOf("T"))
+            //        var y = value.substring(0,value.indexOf("-"));
+            //        var m = value.substring(value.indexOf("-")+1, value.lastIndexOf("-"));
+            //        var d = value.substring(value.lastIndexOf("-")+1, value.length);
+            //        return y + '年' + m + '月' + d+'日';
+            //    }
+            //}
+        });
+</script>
+</body>
+</html>

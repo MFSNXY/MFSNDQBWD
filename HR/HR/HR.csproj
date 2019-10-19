@@ -187,6 +187,7 @@
     <Compile Include="Controllers\MechanismSecondController.cs" />
     <Compile Include="Controllers\MechanismThirdController.cs" />
     <Compile Include="Controllers\PublicCharController.cs" />
+    <Compile Include="Controllers\SalaryStandardController.cs" />
     <Compile Include="Controllers\StandardDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1117,6 +1118,9 @@
     <Content Include="Views\SalaryStandard\XCFFCX.cshtml" />
     <Content Include="Views\SalaryStandard\DenjiCG.cshtml" />
     <Content Include="Views\SalaryStandard\SalarystandardQuery.cshtml" />
+    <Content Include="Views\SalaryStandard\Biangeng.cshtml" />
+    <Content Include="Views\SalaryStandard\XCFFBG.cshtml" />
+    <Content Include="Views\SalaryStandard\QuertLocate2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

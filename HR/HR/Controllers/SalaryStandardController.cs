@@ -112,6 +112,55 @@ namespace HR.Controllers
             return View(ck);
         }
 
+        //薪酬标准变更
+        public ActionResult QuertLocate2()
+        {
+            return View();
+        }
+        public ActionResult Biangeng(int id)
+        {
+            List<SalaryStandardModel> list = isb.SalaryStandardSelectBy(id);
+            SalaryStandardModel ck = list[0];
+            string dh = ck.Standardid;
+            List<SalaryStandardDetailsModel> list2 = isd.SalaryGrantdetailsSelectSID(dh);
+            ViewBag.list2 = list2;
+            return View(ck);
+        }
+
+        public ActionResult bg()
+        {
+            SalaryStandardModel sg = new SalaryStandardModel();
+            sg.Id = Convert.ToInt32(Request["Id"]);
+            sg.Salarysum = Convert.ToDecimal(Request["Salarysum"]);
+            sg.Changer = Request["Changer"];
+            sg.Changetime = Convert.ToDateTime(Request["Changetime"]);
+            sg.Remark = Request["Remark"];
+
+            int r1 = isb.SalaryStandardUpdate2(sg);
+
+            string arry = Request["arry"];
+            List<Dictionary<string, object>> sdm = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(arry);
+            int r2 = 0;
+            foreach (var item in sdm)
+            {
+                SalaryStandardDetailsModel sm = new SalaryStandardDetailsModel();
+                sm.Id = int.Parse(item["Id"].ToString());
+                sm.Salary = Convert.ToDecimal(item["money"]);
+
+                if (isd.SalaryStandardDetailsUpdate(sm) > 0)
+                {
+                    r2++;
+                }
+
+            }
+            string flag = "false";
+            if (r1 > 0 && r2 == sdm.Count)
+            {
+                flag = "true";
+            }
+            return Content(flag);
+        }
+
         public ActionResult xg()
         {
             SalaryStandardModel sg = new SalaryStandardModel();
@@ -146,10 +195,27 @@ namespace HR.Controllers
             return Content(flag);
         }
 
+        
+        public ActionResult XCFFBG(string Standardid = "", string GJZ = "", DateTime? startDate = null, DateTime? endDate = null)
+        {
+            TempData["Standardid"] = Standardid;
+            TempData["GJZ"] = GJZ;
+            TempData["startDate"] = startDate;
+            TempData["endDate"] = endDate;
+            return View();
+        }
         //薪酬标准查询
         public ActionResult QuertLocate()
         {
             return View();
+        }
+        public ActionResult XCFFBG2(int currentPage, int pageSize, string Standardid = "", string GJZ = "", DateTime? startDate = null, DateTime? endDate = null)
+        {
+            int rows = 0;
+            string c = "0";
+            List<SalaryStandardModel> list = isb.SalaryStandardFYW(currentPage, pageSize, out rows, c, Standardid, GJZ, startDate, endDate);
+            TempData["rows"] = rows;
+            return Content(JsonConvert.SerializeObject(list));
         }
 
         public ActionResult XCFFCX(string Standardid = "", string GJZ = "", DateTime? startDate = null, DateTime? endDate = null)
@@ -164,7 +230,8 @@ namespace HR.Controllers
         public ActionResult XCFFCX2(int currentPage, int pageSize, string Standardid = "", string GJZ = "", DateTime? startDate = null, DateTime? endDate = null)
         {
             int rows = 0;
-            List<SalaryStandardModel> list = isb.SalaryStandardFYW(currentPage, pageSize, out rows, Standardid, GJZ, startDate, endDate);
+            string c = "";
+            List<SalaryStandardModel> list = isb.SalaryStandardFYW(currentPage, pageSize, out rows, c,Standardid, GJZ, startDate, endDate);
             TempData["rows"] = rows;
             return Content(JsonConvert.SerializeObject(list));
         }

@@ -8,15 +8,19 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Check</title>
+    <title>Biangeng</title>
     <link href="~/css/table.css" rel="stylesheet" />
     <script src="~/jquery-1.11.1.js"></script>
     <script src="~/vue-2.4.0.js"></script>
     <link href="~/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.js"></script>
-    <style type="text/css" >
-        body{
-            background-color:#F5EDE1;
+    <style type="text/css">
+        .aa {
+            border: 1px solid black;
+        }
+
+        body {
+            background-color: #F5EDE1;
         }
     </style>
 </head>
@@ -27,13 +31,13 @@
         <table width="100%">
             <tr>
                 <td>
-                    <font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核</font>
+                    <font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记变更</font>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div align="right">
-                        <input type="button" value="复核通过" class="BUTTON_STYLE1" v-on:click="xunhuan">
+                        <input type="button" value="变更" class="BUTTON_STYLE1" v-on:click="xunhuan">
                         @*<input id='Submit1' type='button' class='BUTTON_STYLE1' v-on:click="xunhuan" value='复核通过' />*@
                         <input type="button" value="返回" onclick="history.back();" class="BUTTON_STYLE1">
                     </div>
@@ -49,14 +53,14 @@
                     薪酬编号
                 </td>
                 <td width="15%" class="TD_STYLE2">
-                    @Html.TextBox("Standardid", Model.Standardid,new { @readonly = "readonly", @class = "INPUT_STYLE2" })
+                    @Html.TextBox("Standardid", Model.Standardid,new { @class = "INPUT_STYLE2", @readonly = "readonly" })
                     @Html.TextBox("Id", Model.Id, new { @class = "INPUT_STYLE2", @id = "xcbh", @type = "hidden" })
                 </td>
                 <td width="12%" class="TD_STYLE1">
                     薪酬标准名称
                 </td>
                 <td width="11%" class="TD_STYLE2">
-                    @Html.TextBox("Standardname", Model.Standardname, new { @class = "INPUT_STYLE2", @id = "standardName",@readonly = "readonly" })
+                    @Html.TextBox("Standardname", Model.Standardname, new { @class = "INPUT_STYLE2", @id = "standardName" })
                     @*<input type="text" name="standard.standardName" id="standardName" value="薪酬标准3" class="INPUT_STYLE2">*@
 
                 </td>
@@ -64,7 +68,7 @@
                     薪酬总额
                 </td>
                 <td width="17%" class="TD_STYLE2">
-                    @Html.TextBox("Salarysum", Model.Salarysum, new { @class = "INPUT_STYLE2", @id = "sumSalary", @readonly = "readonly" })
+                    @Html.TextBox("Salarysum", Model.Salarysum, new { @class = "INPUT_STYLE2", @id = "sumSalary" })
                     @*<input type="text" name="standard.salarySum" value="0.0" id="sumSalary" class="INPUT_STYLE2">*@
                 </td>
                 <td width="12%" class="TD_STYLE1">
@@ -79,22 +83,22 @@
                     制定人
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.TextBox("Designer", Model.Designer, new { @class = "INPUT_STYLE2", @id = "designer", @readonly = "readonly" })
+                    @Html.TextBox("Designer", Model.Designer, new { @class = "INPUT_STYLE2", @id = "designer" })
                     @*<input type="text" name="standard.designer" id="designer" value="杨阳" class="INPUT_STYLE2">*@
 
                 </td>
                 <td class="TD_STYLE1">
-                    复核人
+                    变更人
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.TextBox("Checker", Model.Checker, new { @class = "INPUT_STYLE2", @id = "fhr" })
+                    @Html.TextBox("Changer", Model.Changer, new { @class = "INPUT_STYLE2", @id = "fhr" })
                     @*<input type="text" name="standard.checker" value="better_admin" class="INPUT_STYLE2">*@
                 </td>
                 <td class="TD_STYLE1">
                     复核时间
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.TextBox("Checktime", Model.Checktime, new { @class = "INPUT_STYLE2", @id = "Tdate" })
+                    @Html.TextBox("Changetime", Model.Changetime, new { @class = "INPUT_STYLE2", @id = "Tdate" })
                     @*<input type="text" name="standard.checkTime" id="Tdate" class="INPUT_STYLE2">*@
                 </td>
                 <td class="TD_STYLE1">
@@ -106,10 +110,10 @@
             </tr>
             <tr>
                 <td class="TD_STYLE1">
-                    复核意见
+                    备注
                 </td>
                 <td colspan="7" class="TD_STYLE2">
-                    @Html.TextBox("Checkcomment", Model.Checkcomment, new { @class = "INPUT_STYLE2", @id = "yj", @rows = "4" })
+                    @Html.TextBox("Remark", Model.Remark, new { @class = "INPUT_STYLE2", @id = "yj", @rows = "4" })
                     @*<textarea name="standard.checkComment" rows="4" class="INPUT_STYLE2"></textarea>*@
 
                 </td>
@@ -137,7 +141,7 @@
                             <label name="Itemname">@item.Itemname</label>
                         </td>
                         <td>
-                            <input readonly="readonly" type="text" id="@item.Id" value="@item.Salary" name="salary"
+                            <input type="text" id="@item.Id" value="@item.Salary" name="salary"
                                    onkeyup="countMoney('@item.Id','@item.Id')" class="INPUT_STYLE2 dd">
 
                         </td>
@@ -231,7 +235,7 @@
 
 
     </div>
-        <script type="text/javascript">
+    <script type="text/javascript">
         var vm = new Vue({
             el: "#pro",
             data: {
@@ -276,24 +280,25 @@
                     //    alert($(this).find(".jebh").var());
                     //})
                         $.ajax({
-                            url: "/SalaryStandard/xg",
+                            url: "/SalaryStandard/bg",
                             type: "post",
-                            data: "Id=" + $("#xcbh").val() + "&Salarysum=" + $("#sumSalary").val() + "&Checker=" + $("#fhr").val() + "&Checktime=" + $("#Tdate").val() + "&Checkcomment=" + $("#yj").val() + "&arry=" + JSON.stringify(arry),
+                            data: "Id=" + $("#xcbh").val() + "&Salarysum=" + $("#sumSalary").val() + "&Changer=" + $("#fhr").val() + "&Changetime=" + $("#Tdate").val() + "&Remark=" + $("#yj").val() + "&arry=" + JSON.stringify(arry),
                             success: function (flag) {
                                 if (flag == "true") {
-                                    alert("复合成功！");
-                                    window.location.href = "/SalaryStandard/QuertLocate";
+                                    alert("变更成功！");
+
+                                    window.location.href = "/SalaryStandard/QuertLocate2";
                                 } else {
-                                    alert("复合失败!");
+                                    alert("变更失败!");
                                 }
                             }
                         })
-                   
+
 
                 }
             }
         });
 
-        </script>
+    </script>
 </body>
 </html>

@@ -42,7 +42,7 @@ namespace HR.Controllers
         public ActionResult Del(int id)
         {
             StandardDetailsModel sd = new StandardDetailsModel();
-            sd.Item_id = id;
+            sd.item_id = id;
             if (isb.StandardDetailsDelete(sd) > 0)
             {
                 return RedirectToAction("Index");

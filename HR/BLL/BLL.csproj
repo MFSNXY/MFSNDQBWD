@@ -53,6 +53,8 @@
     <Compile Include="ConfigPublicCharBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicCharBLL.cs" />
+    <Compile Include="SalaryStandardBLL.cs" />
+    <Compile Include="SalaryStandardDetailsBLL.cs" />
     <Compile Include="StandardDetailsBLL.cs" />
   </ItemGroup>
   <ItemGroup>

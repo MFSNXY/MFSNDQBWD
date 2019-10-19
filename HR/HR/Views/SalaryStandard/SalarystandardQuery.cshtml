@@ -66,6 +66,14 @@
             FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);
         }
     </style>
+    <style type="text/css">
+        .aa {
+            border: 1px solid black;
+        }
+         body{
+            background-color:#F5EDE1;
+        }
+    </style>
 
 </head>
 <body>
@@ -96,7 +104,7 @@
                             <input type="button" value="打印" id="button1"
                                    class="BUTTON_STYLE1">
                             <input type="button" value="返回"
-                                   onclick="javascript:windows.location='/HR_Fist/salaryCriterion/salaryCriterionAction!querysalarystandardByPage?page.startPage=1'"
+                                   onclick="history.back()"
                                    class="BUTTON_STYLE1">
                         </div>
                     </td>
@@ -108,7 +116,7 @@
         <td width="12%" class="TD_STYLE1">
             薪酬编号
         </td>
-        <td width="15%" class="TD_STYLE2">
+        <td width="15%" class="TD_STYLE2 aa">
             @*@Html.TextBox("Standardid", Model.Standardid)*@
             @Html.Label("Standardid", Model.Standardid, new { @class = "zt" })
             @Html.TextBox("Id", Model.Id, new { @class = "zt", @id = "xcbh", @type = "hidden" })
@@ -116,7 +124,7 @@
         <td width="12%" class="TD_STYLE1">
             薪酬标准名称
         </td>
-        <td width="11%" class="TD_STYLE2">
+        <td width="11%" class="TD_STYLE2 aa">
             @Html.Label("Standardname", Model.Standardname, new { @class = "zt", @id = "standardName" })
             @*<input type="text" name="standard.standardName" id="standardName" value="薪酬标准3" class="INPUT_STYLE2">*@
 
@@ -124,14 +132,14 @@
         <td width="11%" class="TD_STYLE1">
             薪酬总额
         </td>
-        <td width="17%" class="TD_STYLE2">
+        <td width="17%" class="TD_STYLE2 aa">
             @Html.Label("Salarysum", Model.Salarysum.ToString(), new { @class = "zt", @id = "sumSalary" })
             @*<input type="text" name="standard.salarySum" value="0.0" id="sumSalary" class="INPUT_STYLE2">*@
         </td>
         <td width="12%" class="TD_STYLE1">
             &nbsp;
         </td>
-        <td width="10%" class="TD_STYLE2">
+        <td width="10%" class="TD_STYLE2 aa">
             &nbsp;
         </td>
     </tr>
@@ -139,7 +147,7 @@
         <td class="TD_STYLE1">
             制定人
         </td>
-        <td class="TD_STYLE2">
+        <td class="TD_STYLE2 aa">
             @Html.Label("Designer", Model.Designer, new { @class = "zt", @id = "designer" })
             @*<input type="text" name="standard.designer" id="designer" value="杨阳" class="INPUT_STYLE2">*@
 
@@ -147,21 +155,21 @@
         <td class="TD_STYLE1">
             复核人
         </td>
-        <td class="TD_STYLE2">
+        <td class="TD_STYLE2 aa">
             @Html.Label("Checker", Model.Checker, new { @class = "zt", @id = "fhr" })
             @*<input type="text" name="standard.checker" value="better_admin" class="INPUT_STYLE2">*@
         </td>
         <td class="TD_STYLE1">
             复核时间
         </td>
-        <td class="TD_STYLE2">
+        <td class="TD_STYLE2 aa">
             @Html.Label("Checktime", Model.Checktime.ToString(), new { @class = "zt", @id = "Tdate" })
             @*<input type="text" name="standard.checkTime" id="Tdate" class="INPUT_STYLE2">*@
         </td>
         <td class="TD_STYLE1">
             &nbsp;
         </td>
-        <td class="TD_STYLE2">
+        <td class="TD_STYLE2 aa">
             &nbsp;
         </td>
     </tr>
@@ -169,8 +177,9 @@
         <td class="TD_STYLE1">
            备注
         </td>
-        <td colspan="7" class="TD_STYLE2" height="70">
-            @Html.Label("Remark", Model.Remark, new { @rows = "4", @class="INPUT_STYLE2 zt" })
+        <td colspan="7" class="TD_STYLE2 aa" height="70">
+            @Model.Remark
+            @*@Html.Label("Remark", Model.Remark, new { @rows = "4", @class="INPUT_STYLE2 zt" })*@
             @*<textarea name="standard.checkComment" rows="4" class="INPUT_STYLE2"></textarea>*@
 
         </td>
@@ -189,7 +198,7 @@
     <tbody id="show">
         @foreach (var item in @ViewBag.list2 as List<SalaryStandardDetailsModel>)
         {
-            <tr class="TD_STYLE2" style="border:1px solid #000000;">
+            <tr class="TD_STYLE2 aa" style="border:1px solid #000000;">
                 <td align="center">
                     <input type="hidden" class="jebh" name="@item.Id" value="@item.Id" />
                     <label name="Itemid" class="zt">@item.Itemid</label>

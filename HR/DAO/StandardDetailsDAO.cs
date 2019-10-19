@@ -15,8 +15,8 @@ namespace DAO
         {
             StandardDetails sd = new StandardDetails()
             {
-                item_id=s.Item_id,
-                item_name=s.Item_name,
+                item_id=s.item_id,
+                item_name=s.item_name
             };
 
             return Add(sd);
@@ -26,8 +26,8 @@ namespace DAO
         {
             StandardDetails sd = new StandardDetails()
             {
-                item_id = s.Item_id,
-                item_name = s.Item_name,
+                item_id = s.item_id,
+                item_name = s.item_name,
             };
 
             return Delete(sd);
@@ -41,8 +41,8 @@ namespace DAO
             {
                 StandardDetailsModel sd = new StandardDetailsModel()
                 {
-                    Item_id=item.item_id,
-                    Item_name=item.item_name,
+                    item_id=item.item_id,
+                    item_name=item.item_name,
                 };
                 list2.Add(sd);
             }
@@ -61,8 +61,8 @@ namespace DAO
             {
                 StandardDetailsModel sd = new StandardDetailsModel()
                 {
-                    Item_id = item.item_id,
-                    Item_name = item.item_name,
+                    item_id = item.item_id,
+                    item_name = item.item_name,
                 };
                 list2.Add(sd);
             }
@@ -73,8 +73,8 @@ namespace DAO
         {
             StandardDetails sd = new StandardDetails()
             {
-                item_id = s.Item_id,
-                item_name = s.Item_name,
+                item_id = s.item_id,
+                item_name = s.item_name,
             };
             return Update(sd);
         }
