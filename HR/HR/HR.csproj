@@ -186,9 +186,14 @@
     <Compile Include="Controllers\MechanismFirstController.cs" />
     <Compile Include="Controllers\MechanismSecondController.cs" />
     <Compile Include="Controllers\MechanismThirdController.cs" />
+    <Compile Include="Controllers\MobilizationEnquiryController.cs" />
+    <Compile Include="Controllers\Mobilization_auditController.cs" />
     <Compile Include="Controllers\PublicCharController.cs" />
+    <Compile Include="Controllers\Register_locateController.cs" />
     <Compile Include="Controllers\SalaryStandardController.cs" />
     <Compile Include="Controllers\StandardDetailsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UsersmanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1121,6 +1126,32 @@
     <Content Include="Views\SalaryStandard\Biangeng.cshtml" />
     <Content Include="Views\SalaryStandard\XCFFBG.cshtml" />
     <Content Include="Views\SalaryStandard\QuertLocate2.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileDeleteLocate.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileDeleteKeywords.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileDeleteList.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileDeleteListInformation.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileRecoveryLocate.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileRecoveryListInformation.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileRecoveryKeywords.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileRecoveryList.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileDeleteForeverList.cshtml" />
+    <Content Include="Views\Mobilization_audit\check.cshtml" />
+    <Content Include="Views\Mobilization_audit\check_list.cshtml" />
+    <Content Include="Views\Mobilization_audit\check_success.cshtml" />
+    <Content Include="Views\MobilizationEnquiry\detail.cshtml" />
+    <Content Include="Views\MobilizationEnquiry\list.cshtml" />
+    <Content Include="Views\MobilizationEnquiry\locate.cshtml" />
+    <Content Include="Views\Register_locate\Index.cshtml" />
+    <Content Include="Views\Register_locate\register.cshtml" />
+    <Content Include="Views\Register_locate\register_list.cshtml" />
+    <Content Include="Views\Register_locate\register_success.cshtml" />
+    <Content Include="Views\Users\Add.cshtml" />
+    <Content Include="Views\Users\DengLu.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Update.cshtml" />
+    <Content Include="Views\Usersman\Add.cshtml" />
+    <Content Include="Views\Usersman\Index.cshtml" />
+    <Content Include="Views\Usersman\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,5 +23,8 @@ namespace IBLL
         List<PermissionModel> PermissionFY(int currentPage, int pageSize, out int rows);
 
         List<PermissionModel> PermissionRole(int pid, int rid);
+
+        List<PermissionModel> PermissionSelectPid(int pid);
+        List<QxModel> qx(int c, int d);
     }
 }

@@ -1,0 +1,176 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <link href="~/javascript/calendar/calendar-win2k-cold-1.css" rel="stylesheet" />
+    <script src="~/javascript/calendar/cal.js"></script>
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/comm/list.js"></script>
+    <script type="text/javascript" src="../../javascript/jquery-1.7.2.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <link href="~/css/cwcalendar.css" rel="stylesheet" />
+    <script src="~/Scripts/vue-2.4.0.js"></script>
+</head>
+<body>
+    @using (Html.BeginForm("register_list", "Register_locate", FormMethod.Post))
+    {
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--调动管理--调动登记查询 </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="查询"
+                           class="BUTTON_STYLE1">
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="page.startPage" value="0">
+        <div id="aa">
+            <table width="101%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr class="TR_STYLE1">
+                    <td width="13%" class="TD_STYLE1">
+                        请选择员工所在I级机构
+                    </td>
+                    <td width="29%" class="TD_STYLE2">
+                        <select name="mkid" id="FirstMid" class="SELECT_STYLE1" v-on:change="GetMSs()">
+                            <option v-for="(item,i) in MFs" v-bind:value="item.FirstMId">{{item.FirstMName}}</option>
+                        </select>
+                    </td>
+                    <td width="13%" class="TD_STYLE1">
+                        请选择员工所在II级机构
+                    </td>
+                    <td width="45%" class="TD_STYLE2">
+                        <select name="mid" id="SecondMid" class="SELECT_STYLE1" style="background-color:#eee;" disabled="disabled" v-on:change="GetMTs()">
+                            <option id="two" value="">--请先选择I级机构--</option>
+                            <option v-for="(item,i) in MSs" v-bind:value="item.SecondMid">{{item.SecondMName}}</option>
+                        </select>
+                    </td>
+                    <td width="0%"></td>
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td width="13%" class="TD_STYLE1">
+                        请选择员工所在III级机构
+                    </td>
+                    <td width="29%" class="TD_STYLE2">
+                        <select name="gjz" id="ThirdMid" class="SELECT_STYLE1" style="background-color:#eee;" disabled="disabled" v-on:change="GetMTName()">
+                            <option id="third" value="">--请先选择II级机构--</option>
+                            <option v-for="(item,i) in MTs" v-bind:value="item.ThirdMid">{{item.ThirdMName}}</option>
+                        </select>
+                    </td>
+                    <td height="18" class="TD_STYLE1">
+                        请输入建档时间
+                    </td>
+                    <td width="45%" class="TD_STYLE2">
+                        <input name="stateTime" onclick="aa('stateTime')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " value="" size="30">
+                        至<input type="text" name="endTime" onclick="aa('endTime')" value="" style="width:24% " class="INPUT_STYLE2" id="date_end">
+                        （YYYY-MM-DD）
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#aa",
+            data: {
+                MFs: null,
+                MSs: null,
+                MTs: null,
+                Ms: null,
+                MKs: null,
+                MFName: null,
+                MSName: null,
+                MTName: null,
+                MKName: null,
+                MName: null,
+            },
+            methods: {
+                GetMFs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/Register_locate/Index2",
+                        type: "post",
+                        success: function (rs) {
+                            alert(rs);
+                            t.MFName = eval("(" + rs + ")")[0].FirstMName;
+                            t.MFs = eval("(" + rs + ")");
+                        }
+                    });
+                },
+                GetMSs: function () {
+                    var t = this;
+                    t.MFName = $("#FirstMid option:checked").text();
+                    $.ajax({
+                        url: "/Register_locate/GetMSsWhereFirst",
+                        type: "post",
+                        data: "id=" + $("#FirstMid").val(),
+                        success: function (rs) {
+                            if (eval("(" + rs + ")").length > 0) {
+                                $("#two").remove();
+                                t.MSName = eval("(" + rs + ")")[0].SecondMName;
+                                t.MSs = eval("(" + rs + ")");
+                                $("#SecondMid").attr("disabled", false);
+                                $("#ssd").attr("disabled", false);
+                                $("#SecondMid").css("backgroundColor", "#FFFFCC")
+                                t.GetMTs(eval("(" + rs + ")")[0].SecondMid);
+                            } else {
+                                t.Flag2 = false;
+                                t.MSName = "";
+                                t.MSs = [{ SecondMName: "暂无子机构,请重新选择I级机构", SecondMid: "0" }];
+                                $("#SecondMid").attr("disabled", "disabled");
+                                $("#ssd").attr("disabled", "disabled");
+                                $("#SecondMid").css("backgroundColor", "#EEE")
+                                t.GetMTs("0");
+                            }
+                        }
+                    });
+                },
+                GetMTs: function (ss) {
+                    var t = this;
+                    var sid = ss != null ? ss : $("#SecondMid").val();
+                    $.ajax({
+                        url: "/Register_locate/GetMTs",
+                        type: "post",
+                        data: "fid=" + $("#FirstMid").val() + "&sid=" + sid,
+                        success: function (rs) {
+                            t.MSName = $("#SecondMid option:checked").text();
+                            if (eval("(" + rs + ")").length > 0) {
+                                $("#third").remove();
+                                t.MTName = eval("(" + rs + ")")[0].ThirdMName;
+                                t.MTs = eval("(" + rs + ")");
+                                $("#ThirdMid").attr("disabled", false);
+                                $("#ssd").attr("disabled", false);
+                                $("#ThirdMid").css("backgroundColor", "#FFFFCC")
+                            } else {
+                                t.Flag2 = false;
+                                t.MTName = "";
+                                t.MTs = [{ ThirdMName: "暂无子机构,请重新选择II级机构", ThirdMid: "0" }];
+                                $("#ThirdMid").attr("disabled", "disabled");
+                                $("#ssd").attr("disabled", "disabled");
+                                $("#ThirdMid").css("backgroundColor", "#EEE")
+                            }
+                        }
+                    });
+                },
+            },
+            created: function () {
+                this.GetMFs();
+            }
+        });
+    </script>
+</body>
+</html>

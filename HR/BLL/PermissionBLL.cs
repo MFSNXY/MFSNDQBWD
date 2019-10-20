@@ -49,5 +49,15 @@ namespace BLL
         {
             return ipd.PermissionUpdate(p);
         }
+
+        public List<PermissionModel> PermissionSelectPid(int pid)
+        {
+            return ipd.PermissionSelectPid(pid);
+        }
+        public List<QxModel> qx(int c, int d)
+        {
+            return ipd.qx(c, d);
+        }
+
     }
 }

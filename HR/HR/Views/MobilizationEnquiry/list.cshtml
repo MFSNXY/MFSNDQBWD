@@ -1,0 +1,105 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>list</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/vue-2.4.0.js"></script>
+</head>
+<body>
+    <form id="tj" action="list.html" method="post">
+        <font color="black"> 您在做的业务是-人力资源-调动管理-调动查询列表 </font>
+        <br /><br /><br />
+        <input type="hidden" name="HumanMajorKindId" value="@TempData["mkid"]" />
+        <input type="hidden" name="HumanMajorId" value="@TempData["mid"]" />
+        <input type="hidden" name="GJZ" value="@TempData["gjz"]" />
+        <input type="hidden" name="zwfl" value="@TempData["zwfl"]" />
+        <input type="hidden" name="zwmc" value="@TempData["zwmc"]" />
+        <input type="hidden" name="StartTime" value="@TempData["stateTime"]" />
+        <input type="hidden" name="EndTime" value="@TempData["endTime"]" />
+    </form>
+        <div id="aa">
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr height="21">
+                    <td width="19%" class="TD_STYLE1">
+                        I级机构
+                    </td>
+                    <td width="19%" class="TD_STYLE1">
+                        II级机构
+                    </td>
+                    <td width="19%" class="TD_STYLE1">
+                        Ⅲ级机构
+                    </td>
+                    <td width="19%" class="TD_STYLE1">
+                        薪酬标准
+                    </td>
+                    <td width="19%" class="TD_STYLE1">
+                        名字
+                    </td>
+                    <td width="5%" class="TD_STYLE1">
+                        查看
+                    </td>
+                </tr>
+                <tr height="21" v-for="(item,i) in nums">
+                    <td class="TD_STYLE2">
+                        {{item.New_first_kind_name}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.New_second_kind_name}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.New_third_kind_name}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.New_salary_standard_name}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.Human_name}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        <a v-bind:href="['/MobilizationEnquiry/detail?id='+item.Mch_id]">
+                            查看
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <br>
+    
+    <script type="text/javascript">
+        var va = new Vue({
+            el: "#aa",
+            data: {
+                nums:""
+            },
+            methods: {
+                cx: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/MobilizationEnquiry/list",
+                        type: "post",
+                        data:$("#tj").serialize(),
+                        success: function (msg) {
+                            var ms = eval("(" + msg + ")");
+                            t.nums = ms;
+                        }
+                    })
+                }
+            },
+            created: function () {
+                this.cx();
+            }
+        })
+    </script>
+</body>
+</html>

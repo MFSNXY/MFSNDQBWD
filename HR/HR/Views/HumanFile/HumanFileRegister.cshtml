@@ -129,6 +129,31 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        var getCode = function (t) {
+            if ($(t).val() != "") {
+                var ele = $(t).val();
+                var birth = ele.substring(6, 10) + "-" + ele.substring(10, 12) + "-" + ele.substring(12, 14);
+                $("#HumanBirthday").val(birth);
+                var sex = "";
+                if (parseInt(ele.substr(16, 1)) % 2 == 1) {
+                    sex = "男";
+                } else {
+                    sex = "女";
+                }
+                $("#HumanSex").val(sex);
+                //获取年龄
+                var myDate = new Date();
+                var month = myDate.getMonth() + 1;
+                var day = myDate.getDate();
+                var age = myDate.getFullYear() - ele.substring(6, 10) - 1;
+                if (ele.substring(10, 12) < month || ele.substring(10, 12) == month && ele.substring(12, 14) <= day) {
+                    age++;
+                }
+                $("#HumanAge").val(age);
+            }
+        };
+    </script>
 </head>
 <body>
     <div id="aa">
@@ -225,7 +250,7 @@
                         性别
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanSex" class="SELECT_STYLE1">
+                        <select id="HumanSex" name="HumanSex" class="SELECT_STYLE1">
                             <option value="男" selected="selected">
                                 男
                             </option>
@@ -295,7 +320,7 @@
                         生日
                     </td>
                     <td width="13%" class="TD_STYLE2">
-                        <input type="text" name="HumanBirthday" class="INPUT_STYLE2" id = "HumanBirthday" />
+                        <input type="text" readonly="readonly" name="HumanBirthday" class="INPUT_STYLE2" id = "HumanBirthday" />
                     </td>
                     <td width="11%" class="TD_STYLE1">
                         民族
@@ -327,7 +352,7 @@
                         身份证号码
                     </td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("HumanIdcard", null, new { @class = "INPUT_STYLE2" })
+                        @Html.TextBox("HumanIdcard", null, new { @class = "INPUT_STYLE2",@onchange= "getCode(this)" })
                         @Html.ValidationMessage("HumanIdcard")
                     </td>
                     <td class="TD_STYLE1">
@@ -375,9 +400,9 @@
                     </td>
                     <td class="TD_STYLE2">
                         <input type="hidden" v-model="SalaryStandardName" name="SalaryStandardName"  />
+                        <input type="hidden" v-model="SalarySum" name="SalarySum" />
                         <select name="SalaryStandardId" v-on:change="SetSalaryStandardName" id="SalaryStandardId" class="SELECT_STYLE1">
-                            <option value="1" >薪酬标准1</option>
-                            <option value="2" >薪酬标准2</option>
+                            <option v-for="(item,i) in SSs" v-bind:ze="item.Salarysum" v-bind:value="item.Standardid" >{{item.Standardname}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
@@ -488,6 +513,8 @@
                 TC: null,
                 AH: null,
                 ZC: null,
+                SalarySum:null,
+                SSs:null,
             },
             methods: {
                 GetMFs: function () {
@@ -613,9 +640,6 @@
                 GetMName: function () {
                     this.MName = $("#Majorid option:checked").text();
                 },
-                SetSalaryStandardName: function () {
-                    this.SalaryStandardName = $("#SalaryStandardId option:checked").text();
-                },
                 GetZPLX: function () {
                     var t = this;
                     $.post("/PublicChar/GetPCs", "type=招聘类型", function (rs) {
@@ -681,7 +705,17 @@
                     $.post("/PublicChar/GetPCs", "type=职称", function (rs) {
                         t.ZC = eval("(" + rs + ")");
                     });
-                }
+                },
+                GetSSs:function(){
+                    var t = this;
+                    $.post("/SalaryStandard/GetSalaryStandardController", function (rs) {
+                        t.SSs = eval("(" + rs + ")");
+                    });
+                },
+                SetSalaryStandardName: function () {
+                    this.SalaryStandardName = $("#SalaryStandardId option:checked").text();
+                    this.SalarySum = $("#SalaryStandardId option:checked").attr("ze");
+                },
             },
             created: function () {
                 this.GetMFs();
@@ -697,6 +731,7 @@
                 this.GetTC();
                 this.GetAH();
                 this.GetZC();
+                this.GetSSs();
             }
         });
     </script>

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorityroleDAO.cs" />
     <Compile Include="BaseDao.cs" />
     <Compile Include="ConfigMajorDAO.cs" />
     <Compile Include="ConfigMajorKindDAO.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="EngageResumeDAO.cs" />
     <Compile Include="HumanFileDAO.cs" />
     <Compile Include="LogHelper.cs" />
+    <Compile Include="Major_changeDAO.cs" />
     <Compile Include="MechanismFirstDAO.cs" />
     <Compile Include="MechanismSecondDAO.cs" />
     <Compile Include="MechanismThirdDAO.cs" />
@@ -68,6 +70,10 @@
     <Compile Include="SalaryStandardDAO.cs" />
     <Compile Include="SalaryStandardDetailsDAO.cs" />
     <Compile Include="StandardDetailsDAO.cs" />
+    <Compile Include="UsersDAO.cs" />
+    <Compile Include="UsersmanDAO.cs" />
+    <Compile Include="View_AuthorityroleDAO.cs" />
+    <Compile Include="View_UserDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EFEntity\EFEntity.csproj">

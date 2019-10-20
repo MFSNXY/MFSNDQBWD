@@ -252,5 +252,11 @@ namespace HR.Controllers
             ViewBag.list2 = list2;
             return View(ck);
         }
+
+        public ActionResult GetSalaryStandardController()
+        {
+            return Content(JsonConvert.SerializeObject(isb.SalaryStandardSelect()));
+        }
+
     }
 }

@@ -113,8 +113,14 @@ namespace HR.Controllers
             return Content("1");
         }
 
-        public ActionResult EngageResumeFH(EngageResumeModel er)
+        public ActionResult EngageResumeFH(EngageResumeModel a)
         {
+            EngageResumeModel er = ierb.EngageResumeSelectBy(a.Id);
+            er.CheckStatus = a.CheckStatus;
+            er.PassCheckComment = a.PassCheckComment;
+            er.PassPassComment=a.PassPassComment;
+            er.InterviewStatus = a.InterviewStatus;
+            er.Checker = a.Checker;
             er.TestCheckTime = DateTime.Now;
             er.PassEegistTime = DateTime.Now;
             er.PassCheckTime = DateTime.Now;

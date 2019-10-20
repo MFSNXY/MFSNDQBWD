@@ -119,29 +119,30 @@
             });
         });
     </script>
+    <style type="text/css">
+        .aa {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
-    <div id="aa"> 
+    <div>
         <form method="post" action="/EngageResume/EngageResumeFH">
             <table width="100%">
                 <tr>
                     <td>
-                        <font color="black">
-                            您正在做的业务是：人力资源--招聘管理--简历管理--简历筛选--简历筛选编辑
-                        </font>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--简历管理--简历筛选--简历筛选复核</font>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">
-                        <input type="hidden" name="HumanPicture" value="@Model.HumanPicture" />
                         <input type="hidden" name="PassCheckComment" value="不通过" />
                         <input type="hidden" name="PassPassComment" value="不通过" />
                         <input type="hidden" name="Id" value="@Model.Id" />
                         <input type="hidden" name="CheckStatus" value="1" />
                         <input type="hidden" name="InterviewStatus" value="1" />
-                        <input type="submit" value="推荐" class="BUTTON_STYLE1" >
-                        <input type="button" value="返回" class="BUTTON_STYLE1"
-                               onclick=history.back();>
+                        <input type="submit" value="推荐" class="BUTTON_STYLE1">
+                        <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back();">
                     </td>
                 </tr>
             </table>
@@ -152,99 +153,79 @@
                     <td class="TD_STYLE1">
                         职位分类
                     </td>
-                    <td class="TD_STYLE2">
-                        <input type="hidden" name="HumanMajorKindName" v-model="MKName" />
-                        <select name="HumanMajorKindId" v-model="MKId" id="MajorKindid" class="SELECT_STYLE1" v-on:change="GetMs()">
-                            <option v-for="(item,i) in MKs"  v-bind:value="item.Majorkindid">{{item.Majorkindname}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanMajorKindName
                     </td>
-                    <td class="TD_STYLE1">
+                    <td width="12%" class="TD_STYLE1">
                         职位名称
                     </td>
-                    <td class="TD_STYLE2" width="20%">
-                        <input type="hidden" name="HumanMajorName" v-model="MName" />
-                        <select name="HumanMajorId" id="Majorid" v-model="MId" class="SELECT_STYLE1" v-on:change="GetMName()" style="background-color:#eee;" disabled="disabled">
-                            <option id="www">请选择职位分类</option>
-                            <option v-for="(item,i) in Ms" v-bind:value="item.Majorid">{{item.Majorname}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa" width="12%">
+                        @Model.HumanMajorName
                     </td>
-                    <td width="11%" class="TD_STYLE1">
+                    <td width="12%" class="TD_STYLE1">
                         招聘类型
                     </td>
-                    <td class="TD_STYLE2" colspan="2">
-                        <select v-model="EngageType" name="EngageType" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in ZPLX" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa" colspan="2">
+                        @Model.EngageType
                     </td>
-                    <td rowspan="6">
-                        @*E:\TDXY\新建文件夹\HR\HR\Image\2019\10\12/C74763C956C3B90B8BA8732E73BB99FA.jpeg*@
-                       <img class="zp" style="margin-left:100px;width:100px;height:100px;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
-                        <img class="dt" style="position:absolute;width:400px;height:400px;margin:-110px 0px 0px -320px;display:none;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
+                    <td width="5%" rowspan="6">
+                        <img class="zp" style="margin:10px;width:100px;height:100px;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
+                        <img class="dt" style="position:absolute;width:400px;height:400px;margin:-114px 0px 0px -400px;display:none;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
                     </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">
                         姓名
                     </td>
-                    <td class="TD_STYLE2">
-                        @Html.TextBox("HumanName", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanName")
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanName
                     </td>
                     <td class="TD_STYLE1">
                         性别
                     </td>
-                    <td class="TD_STYLE2">
-                        <select v-model="HumanSex" name="HumanSex" class="SELECT_STYLE1">
-                            <option value="男">男</option>
-                            <option value="女">女</option>
-                        </select>
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanSex
                     </td>
                     <td class="TD_STYLE1">
                         EMAIL
                     </td>
-                    <td colspan="2" class="TD_STYLE2">
-                       @Html.TextBox("HumanEmail", null, new { @class = "INPUT_STYLE2" })
-                    @Html.ValidationMessage("HumanEmail")
+                    <td colspan="2" class="TD_STYLE2 aa">
+                        @Model.HumanEmail
                     </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">
                         电话
                     </td>
-                    <td class="TD_STYLE2">
-                        @Html.TextBox("HumanTelephone", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanTelephone")
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanTelephone
                     </td>
                     <td class="TD_STYLE1">
                         家庭电话
                     </td>
-                    <td class="TD_STYLE2">
-                      @Html.TextBox("HumanHomephone", null, new { @class = "INPUT_STYLE2" })
-                    @Html.ValidationMessage("HumanHomephone")
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanHomephone
                     </td>
                     <td class="TD_STYLE1">
                         手机
                     </td>
-                    <td colspan="2" class="TD_STYLE2">
-                        @Html.TextBox("HumanMobilephone", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanMobilephone")
+                    <td colspan="2" class="TD_STYLE2 aa">
+                        @Model.HumanMobilephone
                     </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">
                         住址
                     </td>
-                    <td colspan="3" class="TD_STYLE2">
-                        @Html.TextBox("HumanAddress", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanAddress")
+                    <td colspan="3" class="TD_STYLE2 aa">
+                        @Model.HumanAddress
                     </td>
 
                     <td class="TD_STYLE1">
                         邮编
                     </td>
-                    <td colspan="2" class="TD_STYLE2">
-                        @Html.TextBox("HumanPostcode", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanPostcode")
+                    <td colspan="2" class="TD_STYLE2 aa">
+                        @Model.HumanAddress
                     </td>
                 </tr>
 
@@ -252,24 +233,20 @@
                     <td class="TD_STYLE1">
                         国籍
                     </td>
-                    <td class="TD_STYLE2">
-                        <select v-model="HumanNationality" name="HumanNationality" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in GJ" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanNationality
                     </td>
                     <td class="TD_STYLE1">
                         出生地
                     </td>
-                    <td class="TD_STYLE2">
-                        @Html.TextBox("HumanBirthplace", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanBirthplace")
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanBirthplace
                     </td>
                     <td class="TD_STYLE1">
                         生日
                     </td>
-                    <td width="13%" colspan="2" class="TD_STYLE2">
-                        @Html.TextBox("HumanBirthday",Model.HumanBirthday.ToString().Replace("/", "-"), new { @class = "INPUT_STYLE2", @id = "HumanBirthday" })
-                        @Html.ValidationMessage("HumanBirthday")
+                    <td width="13%" colspan="2" class="TD_STYLE2 aa">
+                        @Model.HumanBirthday.ToString().Replace("/", "-")
                     </td>
 
                 </tr>
@@ -277,26 +254,20 @@
                     <td width="11%" class="TD_STYLE1">
                         民族
                     </td>
-                    <td class="TD_STYLE2" width="14%">
-                        <select v-model="HumanRace" name="HumanRace" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in MZ" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa" width="14%">
+                        @Model.HumanRace
                     </td>
                     <td class="TD_STYLE1">
                         宗教信仰
                     </td>
-                    <td class="TD_STYLE2">
-                        <select v-model="HumanReligion" name="HumanReligion" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in ZJXY" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanReligion
                     </td>
                     <td class="TD_STYLE1">
                         政治面貌
                     </td>
-                    <td class="TD_STYLE2" colspan="2">
-                        <select v-model="HumanParty" name="HumanParty" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in ZZMM" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa" colspan="2">
+                        @Model.HumanParty
                     </td>
 
 
@@ -305,31 +276,27 @@
                     <td class="TD_STYLE1">
                         身份证号码
                     </td>
-                    <td class="TD_STYLE2">
-                        @Html.TextBox("HumanIdcard", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanIdcard")
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanIdcard
                     </td>
                     <td class="TD_STYLE1">
                         年龄
                     </td>
-                    <td class="TD_STYLE2">
-                        <input type="text" name="HumanAge" id="HumanAge" value="@Model.HumanAge" class="INPUT_STYLE2" readonly="readonly">
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanAge
                     </td>
                     <td class="TD_STYLE1">
                         毕业院校
                     </td>
-                    <td class="TD_STYLE2">
-                        @Html.TextBox("HumanCollege", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanCollege")
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanCollege
                     </td>
 
                     <td class="TD_STYLE1">
                         学历
                     </td>
-                    <td class="TD_STYLE2">
-                        <select v-model="HumanEducatedDegree" name="HumanEducatedDegree" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in XL" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanEducatedDegree
                     </td>
 
                 </tr>
@@ -337,34 +304,27 @@
                     <td class="TD_STYLE1">
                         教育年限
                     </td>
-                    <td class="TD_STYLE2">
-                        <select v-model="HumanEducatedYears" name="HumanEducatedYears" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in JYNX" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanEducatedYears
                     </td>
                     <td class="TD_STYLE1">
                         学历专业
                     </td>
-                    <td class="TD_STYLE2">
-                        <select v-model="HumanEducatedMajor" name="HumanEducatedMajor" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in XLZY" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanEducatedMajor
                     </td>
 
                     <td class="TD_STYLE1">
                         薪酬要求
                     </td>
-                    <td class="TD_STYLE2">
-                        @Html.TextBox("DemandSalaryStandard", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("DemandSalaryStandard")
+                    <td class="TD_STYLE2 aa">
+                        @Model.DemandSalaryStandard
                     </td>
                     <td class="TD_STYLE1">
                         注册时间
                     </td>
-                    <td class="TD_STYLE2">
-                        <input type="text" name="RegistTime"
-                               id="RegistTime" value="@Model.RegistTime.ToString().Replace("/","-")" readonly="readonly"
-                               class="INPUT_STYLE2">
+                    <td class="TD_STYLE2 aa">
+                        @Model.RegistTime.ToString().Replace("/", "-")
                     </td>
 
                 </tr>
@@ -373,45 +333,38 @@
                     <td class="TD_STYLE1">
                         特长
                     </td>
-                    <td class="TD_STYLE2">
-                        <select v-model="HumanSpecility" name="HumanSpecility" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in TC" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanSpecility
                     </td>
                     <td class="TD_STYLE1">
                         爱好
                     </td>
-                    <td class="TD_STYLE2">
-                        <select v-model="HumanHobby" name="HumanHobby" class="SELECT_STYLE1">
-                            <option v-for="(item,i) in AH" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
-                        </select>
+                    <td class="TD_STYLE2 aa">
+                        @Model.HumanHobby
                     </td>
                     <td class="TD_STYLE1">
                         推荐人
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" name="Checker"
-                               value=""
+                               value="TM小米"
                                class="INPUT_STYLE2" />
-
                     </td>
                     <td class="TD_STYLE1">
                         推荐时间
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" name="CheckTime"
                                id="nowTime" readonly="readonly"
                                class="INPUT_STYLE2">
-
                     </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">
                         个人履历
                     </td>
-                    <td colspan="7" class="TD_STYLE2">
-                        @Html.TextBox("HumanHistoryRecords", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanHistoryRecords")
+                    <td colspan="7" class="TD_STYLE2 aa">
+                        @Model.HumanHistoryRecords
                     </td>
                 </tr>
 
@@ -419,188 +372,20 @@
                     <td class="TD_STYLE1">
                         备注
                     </td>
-                    <td colspan="7" class="TD_STYLE2">
-                        @Html.TextBox("Remark", null, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("Remark")
+                    <td colspan="7" class="TD_STYLE2 aa">
+                        <textarea name="item.remark" rows="4" class="TEXTAREA_STYLE1" readonly="readonly">@Model.Remark</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">
                         推荐意见
                     </td>
-                    <td colspan="7" class="TD_STYLE2">
-                        <textarea name="Recomandation" rows="4"
-                                  class="TEXTAREA_STYLE1"></textarea>
+                    <td colspan="7" class="TD_STYLE2 aa">
+                        <textarea name="item.remark" rows="4" class="TEXTAREA_STYLE1" readonly="readonly">@Model.Recomandation</textarea>
                     </td>
                 </tr>
             </table>
-        </form>
-    </div>
-    <script type="text/javascript">
-        var vm = new Vue({
-            el: "#aa",
-            data: {
-                MKName: "@Model.HumanMajorKindName",
-                MKs: null,
-                MName: "@Model.HumanMajorName",
-                Ms:null,
-                MKId:@Model.HumanMajorKindId,
-                MId:"@Model.HumanMajorId",
-                EngageType:"@Model.EngageType",
-                HumanSex:"@Model.HumanSex",
-                HumanNationality:"@Model.HumanNationality",
-                HumanRace:"@Model.HumanRace",
-                HumanReligion:"@Model.HumanReligion",
-                HumanParty:"@Model.HumanParty",
-                HumanEducatedDegree:"@Model.HumanEducatedDegree",
-                HumanEducatedYears:"@Model.HumanEducatedYears",
-                HumanEducatedMajor:"@Model.HumanEducatedMajor",
-                HumanSpecility:"@Model.HumanSpecility",
-                HumanHobby:"@Model.HumanHobby",
-                ZPLX:null,
-                GJ:null,
-                MZ:null,
-                ZJXY:null,
-                ZZMM:null,
-                XL:null,
-                JYNX:null,
-                XLZY:null,
-                TC:null,
-                AH:null,
-            },
-            methods: {
-                GetMK: function (id) {
-                    var t = this;
-                    $.ajax({
-                        url: "/ConfigMajorKind/Index2",
-                        type: "post",
-                        success: function (r) {
-                            var mdt = eval("(" + r + ")");
-                            //t.MKName = mdt[0].Majorkindname;
-                            t.MKs = mdt;
-                            for(var q in t.MKs){
-                                if(t.MKs[q]["Majorkindid"]==(@Model.HumanMajorKindId)){
-                                    t.GetMs(t.MKs[q]["Majorkindid"]);
-                                }
-                            }
-                        }
-                    });
-                },
-                GetMs: function (id) {
-                    var t = this;
-                    var flag=false;
-                    if(id==null){
-                        flag=true;
-                        id=$("#MajorKindid").val();
-                        t.MKName = $("#MajorKindid option:checked").text();
-                    }
-
-                    $.ajax({
-                        url: "/Engage/GetMs",
-                        type: "post",
-                        data: "id=" + id,
-                        success: function (r) {
-                            var mdt = eval("(" + r + ")");
-                            if (mdt.length > 0) {
-                                t.Ms = mdt;
-                                if(flag){
-                                    t.MId=mdt[0].Majorid;
-                                    t.MName = mdt[0].Majorname;
-                                }
-                                $("#www").remove();
-                                //t.MName = eval("(" + r + ")")[0].Majorname;
-                                t.Ms = eval("(" + r + ")");
-                                $("#Majorid").attr("disabled", false);
-                                $("#ssd").attr("disabled", false);
-                                $("#Majorid").css("backgroundColor", "#F5EDE1")
-                            } else {
-                                t.MName = "";
-                                t.Ms = [{ Majorname: "请重新选择职位分类", Majorid: "0" }];
-                                $("#Majorid").attr("disabled", "disabled");
-                                $("#ssd").attr("disabled", "disabled");
-                                $("#Majorid").css("backgroundColor", "#EEE")
-                            }
-                        }
-                    });
-                },
-                GetMName: function () {
-                    this.MName = $("#Majorid option:checked").text();
-                },
-                GetZPLX: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=招聘类型", function (rs) {
-                        t.ZPLX = eval("(" + rs + ")");
-                    });
-                },
-                GetGJ: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=国籍", function (rs) {
-                        t.GJ = eval("(" + rs + ")");
-                    });
-                },
-                GetMZ: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=民族", function (rs) {
-                        t.MZ = eval("(" + rs + ")");
-                    });
-                },
-                GetZJXY: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=宗教信仰", function (rs) {
-                        t.ZJXY = eval("(" + rs + ")");
-                    });
-                },
-                GetZZMM: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=政治面貌", function (rs) {
-                        t.ZZMM = eval("(" + rs + ")");
-                    });
-                },
-                GetXL: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=学历", function (rs) {
-                        t.XL = eval("(" + rs + ")");
-                    });
-                },
-                GetJYNX: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=教育年限", function (rs) {
-                        t.JYNX = eval("(" + rs + ")");
-                    });
-                },
-                GetXLZY: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=学历专业", function (rs) {
-                        t.XLZY = eval("(" + rs + ")");
-                    });
-                },
-                GetTC: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=特长", function (rs) {
-                        t.TC = eval("(" + rs + ")");
-                    });
-                },
-                GetAH: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=爱好", function (rs) {
-                        t.AH = eval("(" + rs + ")");
-                    });
-                },
-            },
-            created: function () {
-                this.GetMK();
-                this.GetZPLX();
-                this.GetGJ();
-                this.GetMZ();
-                this.GetZJXY();
-                this.GetZZMM();
-                this.GetXL();
-                this.GetJYNX();
-                this.GetXLZY();
-                this.GetTC();
-                this.GetAH();
-            }
-        });
-    </script>
+            </form>
+</div>
 </body>
 </html>

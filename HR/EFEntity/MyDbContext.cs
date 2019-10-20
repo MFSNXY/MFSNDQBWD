@@ -42,5 +42,15 @@ namespace EFEntity
         public DbSet<SalaryStandard> SalaryStandard { get; set; }
         public DbSet<SalaryStandardDetails> SalaryStandardDetails { get; set; }
 
+        public DbSet<Qx> Qx { get; set; }
+        public DbSet<Users> Users { get; set; }
+
+        public DbSet<Usersman> Usersman { get; set; }
+        public DbSet<View_User> View_User { get; set; }
+        public DbSet<Authorityrole> Authorityrole { get; set; }
+        public DbSet<View_Authorityrole> View_Authorityrole { get; set; }
+
+        public DbSet<Major_change> Major_change { get; set; }
+
     }
 }

@@ -96,9 +96,12 @@ namespace HR.Controllers
             return View(ihf.HumanFileBy(id));
         }
 
-        public ActionResult HumanFileCheckUpdate(HumanFileModel hf)
+        public ActionResult HumanFileCheckUpdate(HumanFileModel e)
         {
+            HumanFileModel hf = ihf.HumanFileBy(e.Id);
             hf.CheckStatus = 1;
+            hf.Checker = e.Checker;
+            hf.CheckTime = e.CheckTime;
             if (ihf.HumanFileUpdate(hf) > 0)
             {
                 return Content("<script>alert('复核成功!');location='/HumanFile/HumanFileCheckList';</script>");
@@ -202,8 +205,142 @@ namespace HR.Controllers
             }
         }
 
+        public ActionResult HumanFileDeleteLocate()
+        {
+            return View();
+        }
+
+        public ActionResult HumanFileDeleteKeywords()
+        {
+            return View();
+        }
+        public ActionResult HumanFileDeleteListInformation(int id)
+        {
+            return View(ihf.HumanFileBy(id));
+        }
 
 
+        public ActionResult HumanFileDeleteList(string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
+        {
+            TempData["FirstMid"] = FirstMid;
+            TempData["SecondMid"] = SecondMid;
+            TempData["ThirdMid"] = ThirdMid;
+            TempData["HumanMajorKindId"] = HumanMajorKindId;
+            TempData["HumanMajorId"] = HumanMajorId;
+            TempData["GJZ"] = gjz;
+            TempData["StartTime"] = startTime;
+            TempData["EndTime"] = endTime;
+            return View();
+        }
+
+        public ActionResult HumanFileGetDeleteHuman(int currentPage, int pageSize, string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
+        {
+            int rows = 0;
+            List<HumanFileModel> list = ihf.HumanFileDeleteList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
+            Dictionary<string, object> dic = new Dictionary<string, object>()
+            {
+                {"list",list },
+                {"rows",rows }
+            };
+            return Content(JsonConvert.SerializeObject(dic));
+        }
+
+        public ActionResult HumanFileDelete(int id)
+        {
+            HumanFileModel hf = ihf.HumanFileBy(id);
+            hf.HumanFileStatus = true;
+            if (ihf.HumanFileUpdate(hf)>0)
+            {
+                return Content("<script>alert('删除成功!');location='/HumanFile/HumanFileDeleteLocate';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('删除失败!');</script>");
+            }
+        }
+
+        public ActionResult HumanFileRecoveryLocate()
+        {
+            return View();
+        }
+
+        public ActionResult HumanFileRecoveryKeywords()
+        {
+            return View();
+        }
+        public ActionResult HumanFileRecoveryListInformation(int id)
+        {
+            return View(ihf.HumanFileBy(id));
+        }
+
+
+        public ActionResult HumanFileRecoveryList(string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
+        {
+            TempData["FirstMid"] = FirstMid;
+            TempData["SecondMid"] = SecondMid;
+            TempData["ThirdMid"] = ThirdMid;
+            TempData["HumanMajorKindId"] = HumanMajorKindId;
+            TempData["HumanMajorId"] = HumanMajorId;
+            TempData["GJZ"] = gjz;
+            TempData["StartTime"] = startTime;
+            TempData["EndTime"] = endTime;
+            return View();
+        }
+
+        public ActionResult HumanFileGetRecoveryHuman(int currentPage, int pageSize, string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
+        {
+            int rows = 0;
+            List<HumanFileModel> list = ihf.HumanFileRecoveryList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
+            Dictionary<string, object> dic = new Dictionary<string, object>()
+            {
+                {"list",list },
+                {"rows",rows }
+            };
+            return Content(JsonConvert.SerializeObject(dic));
+        }
+
+        public ActionResult HumanFileRecovery(int id)
+        {
+            HumanFileModel hf = ihf.HumanFileBy(id);
+            hf.HumanFileStatus = false;
+            if (ihf.HumanFileUpdate(hf) > 0)
+            {
+                return Content("<script>alert('恢复成功!');location='/HumanFile/HumanFileRecoveryLocate';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('恢复失败!');</script>");
+            }
+        }
+
+        public ActionResult HumanFileDeleteForeverList()
+        {
+            return View();
+        }
+
+        public ActionResult HumanFileGetDeleteForeverHuman(int currentPage, int pageSize, string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
+        {
+            int rows = 0;
+            List<HumanFileModel> list = ihf.HumanFileRecoveryList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
+            Dictionary<string, object> dic = new Dictionary<string, object>()
+            {
+                {"list",list },
+                {"rows",rows }
+            };
+            return Content(JsonConvert.SerializeObject(dic));
+        }
+
+        public ActionResult HumanFileDeleteForever(int id)
+        {
+            if (ihf.HumanFileDelete(id) > 0)
+            {
+                return Content("<script>alert('永久删除成功!');location='/HumanFile/HumanFileDeleteForeverList';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('永久删除失败!');</script>");
+            }
+        }
 
     }
 }

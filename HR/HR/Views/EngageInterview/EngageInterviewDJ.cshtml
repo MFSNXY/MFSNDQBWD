@@ -411,8 +411,11 @@
                     </td>
                     <td class="TD_STYLE2">
                         @*<input type="text" name="engageInterview.register" value="" class="INPUT_STYLE2" />*@
-                        @Html.TextBox("Register",null,new { @class = "INPUT_STYLE2", @required = "required" })
-                        @Html.ValidationMessage("Register")
+                        @*@Html.TextBox("Register",null,new { @class = "INPUT_STYLE2", @required = "required" })
+                        @Html.ValidationMessage("Register")*@
+                        <select name="Register" class = "INPUT_STYLE2" required = "required"  >
+                            <option v-for="(item,i) in users" v-bind:value="item.U_true_name" >{{item.U_true_name}}</option>
+                        </select>
                     </td>
                     <td class="TD_STYLE1">
                         面试时间
@@ -448,5 +451,24 @@
             </table>
         </form>
     </div>
+    <script type="text/javascript" >
+        var vm = new Vue({
+            el: "#aa",
+            data: {
+                users:null,
+            },
+            methods: {
+                GetUsers: function () {
+                    var t = this;
+                    $.post("/Users/GetUsers", function (rs) {
+                        t.users = eval("(" + rs + ")");
+                    });
+                }
+            },
+            created: function () {
+                this.GetUsers();
+            }
+        });
+    </script>
 </body>
 </html>

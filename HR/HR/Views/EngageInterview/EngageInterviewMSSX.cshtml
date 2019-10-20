@@ -49,6 +49,7 @@
             function(){
                 $(".dt").hide();
             });
+            aaa();
         });
         function mians() {
             document.getElementById("passCheckcomment").value = "建议面试";
@@ -65,6 +66,28 @@
             document.getElementById("passCheckcomment").value = "删除简历";
 
         }
+        function aaa() {
+            var year = new Date().getFullYear();
+            var mon = new Date().getMonth() + 1;
+            var day = new Date().getDate();
+            var hours = new Date().getHours();
+            var minutes = new Date().getMinutes();
+            var seconds = new Date().getSeconds();
+            if (hours < 10) {
+                hours = '0' + hours;
+            }
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+            $('#nowTime').val(year + "-" + mon + "-" + day + " " + hours + ":" + minutes + ":" + seconds);
+        }
+
+        setInterval(function () {
+            aaa();
+        }, 1000);
     </script>
 </head>
 <body>
@@ -425,7 +448,7 @@
                         筛选人
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="Checker" value="" required="required" class="INPUT_STYLE2" />
+                        <input type="text" name="Checker" value="两块烤山药" required="required" class="INPUT_STYLE2" />
 
                     </td>
                     <td class="TD_STYLE1">
@@ -433,7 +456,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <input type="text" name="CheckTime"
-                              required="required"  id="nowTime" onclick="aa('CheckTime')"
+                               readonly="readonly"  id="nowTime"
                                class="INPUT_STYLE2">
                     </td>
                 </tr>

@@ -41,6 +41,11 @@
             });
         });
     </script>
+    <style type="text/css">
+        .aa {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -60,82 +65,82 @@
                bordercolorlight=#848284 bordercolordark=#eeeeee
                class="TABLE_STYLE1">
             <tr>
-                <td class="TD_STYLE1">
+                <td width="12%" class="TD_STYLE1">
                     职位分类
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanMajorKindName" class="INPUT_STYLE2" readonly="readonly" />
+                <td width="12%" class="TD_STYLE2 aa">
+                    @Model.HumanMajorKindName
                 </td>
-                <td class="TD_STYLE1">
+                <td width="12%" class="TD_STYLE1">
                     职位名称
                 </td>
-                <td class="TD_STYLE2" width="20%">
-                    <input type="text" value="@Model.HumanMajorName" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa" width="12%">
+                    @Model.HumanMajorName
                 </td>
-                <td width="11%" class="TD_STYLE1">
+                <td width="12%" class="TD_STYLE1">
                     招聘类型
                 </td>
-                <td class="TD_STYLE2" colspan="2">
-                    <input type="text" value="@Model.EngageType" class="INPUT_STYLE2" readonly="readonly" />
+                <td width="12%" class="TD_STYLE2 aa" colspan="2">
+                    @Model.EngageType
                 </td>
-                <td rowspan="6">
-                    <img class="zp" style="margin-left:100px;width:100px;height:100px;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
-                    <img class="dt" style="position:absolute;width:400px;height:400px;margin:-110px 0px 0px -320px;display:none;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
+                <td width="5%" rowspan="6">
+                    <img class="zp" style="margin:10px;width:100px;height:100px;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
+                    <img class="dt" style="position:absolute;width:400px;height:400px;margin:-114px 0px 0px -400px;display:none;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
                 </td>
             </tr>
             <tr>
                 <td class="TD_STYLE1">
                     姓名
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanName" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanName
                 </td>
                 <td class="TD_STYLE1">
                     性别
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanSex" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanSex
                 </td>
                 <td class="TD_STYLE1">
                     EMAIL
                 </td>
-                <td colspan="2" class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanEmail" class="INPUT_STYLE2" readonly="readonly" />
+                <td colspan="2" class="TD_STYLE2 aa">
+                    @Model.HumanEmail
                 </td>
             </tr>
             <tr>
                 <td class="TD_STYLE1">
                     电话
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanTelephone" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanTelephone
                 </td>
                 <td class="TD_STYLE1">
                     家庭电话
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanHomephone" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanHomephone
                 </td>
                 <td class="TD_STYLE1">
                     手机
                 </td>
-                <td colspan="2" class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanMobilephone" class="INPUT_STYLE2" readonly="readonly" />
+                <td colspan="2" class="TD_STYLE2 aa">
+                    @Model.HumanMobilephone
                 </td>
             </tr>
             <tr>
                 <td class="TD_STYLE1">
                     住址
                 </td>
-                <td colspan="3" class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanAddress" class="INPUT_STYLE2" readonly="readonly" />
+                <td colspan="3" class="TD_STYLE2 aa">
+                    @Model.HumanAddress
                 </td>
 
                 <td class="TD_STYLE1">
                     邮编
                 </td>
-                <td colspan="2" class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanAddress" class="INPUT_STYLE2" readonly="readonly" />
+                <td colspan="2" class="TD_STYLE2 aa">
+                    @Model.HumanAddress
                 </td>
             </tr>
 
@@ -143,20 +148,20 @@
                 <td class="TD_STYLE1">
                     国籍
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanNationality" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanNationality
                 </td>
                 <td class="TD_STYLE1">
                     出生地
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanBirthplace" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanBirthplace
                 </td>
                 <td class="TD_STYLE1">
                     生日
                 </td>
-                <td width="13%" colspan="2" class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanBirthday.ToString().Replace("/", "-")" class="INPUT_STYLE2" readonly="readonly" />
+                <td width="13%" colspan="2" class="TD_STYLE2 aa">
+                    @Model.HumanBirthday.ToString().Replace("/", "-")
                 </td>
 
             </tr>
@@ -164,20 +169,20 @@
                 <td width="11%" class="TD_STYLE1">
                     民族
                 </td>
-                <td class="TD_STYLE2" width="14%">
-                    <input type="text" value="@Model.HumanRace" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa" width="14%">
+                    @Model.HumanRace
                 </td>
                 <td class="TD_STYLE1">
                     宗教信仰
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanReligion" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanReligion
                 </td>
                 <td class="TD_STYLE1">
                     政治面貌
                 </td>
-                <td class="TD_STYLE2" colspan="2">
-                    <input type="text" value="@Model.HumanParty" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa" colspan="2">
+                    @Model.HumanParty
                 </td>
 
 
@@ -186,27 +191,27 @@
                 <td class="TD_STYLE1">
                     身份证号码
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanIdcard" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanIdcard
                 </td>
                 <td class="TD_STYLE1">
                     年龄
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanAge" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanAge
                 </td>
                 <td class="TD_STYLE1">
                     毕业院校
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanCollege" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanCollege
                 </td>
 
                 <td class="TD_STYLE1">
                     学历
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanEducatedDegree" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanEducatedDegree
                 </td>
 
             </tr>
@@ -214,27 +219,27 @@
                 <td class="TD_STYLE1">
                     教育年限
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanEducatedYears" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanEducatedYears
                 </td>
                 <td class="TD_STYLE1">
                     学历专业
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanEducatedMajor" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanEducatedMajor
                 </td>
 
                 <td class="TD_STYLE1">
                     薪酬要求
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.DemandSalaryStandard" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.DemandSalaryStandard
                 </td>
                 <td class="TD_STYLE1">
                     注册时间
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.RegistTime.ToString().Replace("/", "-")" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.RegistTime.ToString().Replace("/", "-")
                 </td>
 
             </tr>
@@ -243,35 +248,35 @@
                 <td class="TD_STYLE1">
                     特长
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanSpecility" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanSpecility
                 </td>
                 <td class="TD_STYLE1">
                     爱好
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanHobby" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.HumanHobby
                 </td>
                 <td class="TD_STYLE1">
                     推荐人
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.Checker" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.Checker
 
                 </td>
                 <td class="TD_STYLE1">
                     推荐时间
                 </td>
-                <td class="TD_STYLE2">
-                    <input type="text" value="@Model.CheckTime.ToString().Replace("/", "-")" class="INPUT_STYLE2" readonly="readonly" />
+                <td class="TD_STYLE2 aa">
+                    @Model.CheckTime.ToString().Replace("/", "-")
                 </td>
             </tr>
             <tr>
                 <td class="TD_STYLE1">
                     个人履历
                 </td>
-                <td colspan="7" class="TD_STYLE2">
-                    <input type="text" value="@Model.HumanHistoryRecords" class="INPUT_STYLE2" readonly="readonly" />
+                <td colspan="7" class="TD_STYLE2 aa">
+                    @Model.HumanHistoryRecords
                 </td>
             </tr>
 
@@ -279,16 +284,16 @@
                 <td class="TD_STYLE1">
                     备注
                 </td>
-                <td colspan="7" class="TD_STYLE2">
-                    <input type="text" value="@Model.Remark" class="INPUT_STYLE2" readonly="readonly" />
+                <td colspan="7" class="TD_STYLE2 aa">
+                    <textarea name="item.remark" rows="4" class="TEXTAREA_STYLE1" readonly="readonly">@Model.Remark</textarea>
                 </td>
             </tr>
             <tr>
                 <td class="TD_STYLE1">
                     推荐意见
                 </td>
-                <td colspan="7" class="TD_STYLE2">
-                    <input type="text" value="@Model.Recomandation" class="INPUT_STYLE2" readonly="readonly" />
+                <td colspan="7" class="TD_STYLE2 aa">
+                    <textarea name="item.remark" rows="4" class="TEXTAREA_STYLE1" readonly="readonly">@Model.Recomandation</textarea>
                 </td>
             </tr>
         </table>

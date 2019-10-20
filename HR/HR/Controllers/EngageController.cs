@@ -79,7 +79,7 @@ namespace HR.Controllers
         {
             if (ieb.EngageUpdate(em) > 0)
             {
-                return RedirectToAction("SelectUpdate");
+                return Content("<script>alert('修改成功!');location='/Engage/SelectUpdate';</script>");
             }
             else
             {

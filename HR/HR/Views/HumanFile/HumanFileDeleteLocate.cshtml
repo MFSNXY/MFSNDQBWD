@@ -1,0 +1,287 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HumanFileDeleteLocate</title>
+    <link rel="stylesheet"
+          href="../../css/table.css" type="text/css" />
+    <link rel="stylesheet"
+          href="../../css/cwcalendar.css" type="text/css">
+    <script src="~/jquery-1.11.1.js"></script>
+    <script type="text/javascript"
+            src="../../../javascript/comm/comm.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/comm/list.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/calendar-ch.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/locate.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/select.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/comm/time.js">
+    </script>
+    <script src="~/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="aa">
+        <form method="post" action="/HumanFile/HumanFileDeleteList">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案删除 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="查询" class="BUTTON_STYLE1" />
+                        <input type="button" value="搜索" class="BUTTON_STYLE1"
+                               onclick="location.href = '/HumanFile/HumanFileDeleteKeywords'">
+                        <input type="hidden" name="result" value="toQueryList" />
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr class="TR_STYLE1">
+                    <td width="16%" class="TD_STYLE1">
+                        请选择员工所在I级机构
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select name="FirstMid" size="5" id="FirstMid" v-on:change="GetMSs()" class="SELECT_STYLE2">
+                            <option value="0">全部</option>
+                            <option v-for="(item,i) in MFs" v-bind:value="item.FirstMId">{{item.FirstMName}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        请选择员工所在II级机构
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select name="SecondMid" size="5" id="SecondMid" v-on:change="GetMTs()"
+                                class="SELECT_STYLE2">
+                            <option value="0">
+                                全部
+                            </option>
+                            <option v-for="(item,i) in MSs" v-bind:value="item.SecondMid">{{item.SecondMName}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td width="16%" class="TD_STYLE1">
+                        请选择员工所在III级机构
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select name="ThirdMid" class="SELECT_STYLE2" size="5" v-on:change="GetMTName()" id="thirdKind">
+                            <option value="0">
+                                全部
+                            </option>
+                            <option v-for="(item,i) in MTs" v-bind:value="item.ThirdMid">{{item.ThirdMName}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        请选择职位分类
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select name="HumanMajorKindId" id="MajorKindid" size="5" class="SELECT_STYLE2" v-on:change="GetMs()">
+                            <option value="" selected="selected">
+                                全部
+                            </option>
+                            <option v-for="(item,i) in MKs" v-bind:value="item.Majorkindid">{{item.Majorkindname}}</option>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td width="16%" class="TD_STYLE1">
+                        请选择职位名称
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select name="HumanMajorId" flag="false" size="5" id="Majorid" class="SELECT_STYLE2" v-on:change="GetMName()">
+                            <option value="0">
+                                全部
+                            </option>
+                            <option v-for="(item,i) in Ms" v-bind:value="item.Majorid">{{item.Majorname}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        请输入建档时间
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <input type="text" name="startTime" readonly
+                               style="width: 14%" class="INPUT_STYLE2" onclick="aa('startTime')">
+                        至
+                        <input type="text" name="endTime" readonly="readonly"
+                               style="width: 14%" onclick="aa('endTime')" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#aa",
+            data: {
+                MFs: null,
+                MSs: null,
+                MTs: null,
+                Ms: null,
+                MKs: null,
+                MFName: null,
+                MSName: null,
+                MTName: null,
+                MKName: null,
+            },
+            methods: {
+                GetMFs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "../MechanismFirst/GetMFs",
+                        type: "post",
+                        success: function (rs) {
+                            t.MFName = eval("(" + rs + ")")[0].FirstMName;
+                            t.MFs = eval("(" + rs + ")");
+                        }
+                    });
+                },
+                GetMSs: function () {
+                    var t = this;
+                    t.MFName = $("#FirstMid option:checked").text();
+                    $.ajax({
+                        url: "../MechanismThird/GetMSsWhereFirst",
+                        type: "post",
+                        data: "id=" + $("#FirstMid").val(),
+                        success: function (rs) {
+                            $("#qxz1").remove();
+                            if (eval("(" + rs + ")").length > 0) {
+                                $("#two").remove();
+                                t.MSName = eval("(" + rs + ")")[0].SecondMName;
+                                t.MSs = eval("(" + rs + ")");
+                                $("#SecondMid").attr("disabled", false);
+                                $("#SecondMid").attr("flag", "true");
+                                $("#ssd").attr("disabled", false);
+                                $("#SecondMid").css("backgroundColor", "#F5EDE1")
+                                t.GetMTs(eval("(" + rs + ")")[0].SecondMid);
+                            } else {
+                                $("#SecondMid").attr("flag", "false");
+                                t.Flag2 = false;
+                                t.MSName = "";
+                                t.MSs = null;
+                                //t.MSs = [{ SecondMName: "暂无子机构,请重新选择I级机构", SecondMid: "0" }];
+                                //$("#SecondMid").attr("disabled", "disabled");
+                                //$("#ssd").attr("disabled", "disabled");
+                                //$("#SecondMid").css("backgroundColor", "#EEE")
+                                t.GetMTs("0");
+                            }
+                        }
+                    });
+                },
+                GetMTs: function (ss) {
+                    var t = this;
+                    var sid = ss != null ? ss : $("#SecondMid").val();
+                    $.ajax({
+                        url: "../Engage/GetMTs",
+                        type: "post",
+                        data: "fid=" + $("#FirstMid").val() + "&sid=" + sid,
+                        success: function (rs) {
+                            t.MSName = $("#SecondMid option:checked").text();
+                            if (eval("(" + rs + ")").length > 0) {
+                                $("#third").remove();
+                                t.MTName = eval("(" + rs + ")")[0].ThirdMName;
+                                $("#ThirdMid").attr("flag", "true");
+                                t.MTs = eval("(" + rs + ")");
+                                $("#ThirdMid").attr("disabled", false);
+                                $("#ssd").attr("disabled", false);
+                                $("#ThirdMid").css("backgroundColor", "#F5EDE1")
+                            } else {
+                                $("#ThirdMid").attr("flag", "false");
+                                t.Flag2 = false;
+                                t.MTName = "";
+                                t.MTs = null;
+                                //t.MTs = [{ ThirdMName: "暂无子机构,请重新选择II级机构", ThirdMid: "0" }];
+                                //$("#ThirdMid").attr("disabled", "disabled");
+                                //$("#ssd").attr("disabled", "disabled");
+                                //$("#ThirdMid").css("backgroundColor", "#EEE")
+                            }
+                        }
+                    });
+                },
+                GetMTName: function () {
+                    this.MTName = $("#ThirdMid option:checked").text();
+                },
+                GetMK: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "../ConfigMajorKind/Index2",
+                        type: "post",
+                        success: function (r) {
+                            var mdt = eval("(" + r + ")");
+                            t.MKName = mdt[0].Majorkindname;
+                            t.MKs = mdt;
+                        }
+                    });
+                },
+                GetMKName: function () {
+                    this.MKName = $("#MajorKindid option:checked").text();
+                },
+                GetMs: function () {
+                    var t = this;
+                    t.MKName = $("#MajorKindid option:checked").text();
+                    $.ajax({
+                        url: "../Engage/GetMs",
+                        type: "post",
+                        data: "id=" + $("#MajorKindid").val(),
+                        success: function (r) {
+                            var mdt = eval("(" + r + ")");
+                            if (mdt.length > 0) {
+                                t.MName = mdt[0].Majorname;
+                                t.Ms = mdt;
+                                $("#www").remove();
+                                $("#qxz2").remove();
+                                t.MName = eval("(" + r + ")")[0].Majorname;
+                                t.Ms = eval("(" + r + ")");
+                                $("#Majorid").attr("disabled", false);
+                                $("#Majorid").attr("flag", "true");
+                                $("#ssd").attr("disabled", false);
+                                $("#Majorid").css("backgroundColor", "#F5EDE1")
+                            } else {
+                                t.MName = "";
+                                t.Ms = null;
+                                //t.Ms = [{ Majorname: "请重新选择职位分类", Majorid: "0" }];
+                                //$("#Majorid").attr("disabled", "disabled");
+                                //$("#Majorid").attr("flag", "false");
+                                //$("#ssd").attr("disabled", "disabled");
+                                //$("#Majorid").css("backgroundColor", "#EEE")
+                            }
+                        }
+                    });
+                },
+                GetMName: function () {
+                    this.MName = $("#Majorid option:checked").text();
+                },
+            },
+            created: function () {
+                this.GetMFs();
+                this.GetMK();
+            }
+        });
+    </script>
+</body>
+</html>
