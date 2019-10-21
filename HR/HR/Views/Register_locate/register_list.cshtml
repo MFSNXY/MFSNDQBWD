@@ -51,22 +51,22 @@
 
                 <tr height="21" v-for="(item,i) in ERs">
                     <td class="TD_STYLE2">
-                        {{item.First_kind_name}}
+                        {{item.FirstMName}}
                     </td>
                     <td class="TD_STYLE2">
-                        {{item.Second_kind_name}}
+                        {{item.SecondMName}}
                     </td>
                     <td class="TD_STYLE2">
-                        {{item.Third_kind_name}}
+                        {{item.ThirdMName}}
                     </td>
                     <td class="TD_STYLE2">
-                        {{item.Salary_standard_name}}
+                        {{item.SalaryStandardName}}
                     </td>
                     <td class="TD_STYLE2">
-                        {{item.Human_name}}
+                        {{item.HumanName}}
                     </td>
                     <td class="TD_STYLE2">
-                        <a v-bind:href="['/Register_locate/register/'+item.Mch_id]">
+                        <a v-bind:href="['/Register_locate/register/'+item.Id]">
                             调动
                         </a>
                     </td>
@@ -85,7 +85,7 @@
                 ERs:null,
                 rows: 0,
                 currentPage: 1,
-                pageSize: 1,
+                pageSize:5,
                 pages:0,
             },
             methods: {

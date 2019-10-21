@@ -90,10 +90,11 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(dic));
 
         }
-
+        
         public ActionResult HumanFileCheck(int id)
         {
-            return View(ihf.HumanFileBy(id));
+            HumanFileModel hf = ihf.HumanFileBy(id);
+            return View(hf);
         }
 
         public ActionResult HumanFileCheckUpdate(HumanFileModel e)

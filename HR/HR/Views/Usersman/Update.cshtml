@@ -43,21 +43,21 @@
                    class="TABLE_STYLE1">
                 <tr>
                     <td class="TD_STYLE1">角色编号</td>
-                    <td class="TD_STYLE2">@Html.TextBox("U_oid", null, new { @class = "readonly",id = "oid" })</td>
+                    <td class="TD_STYLE2">@Html.TextBox("U_oid", null, new { @id = "oid", @class = "INPUT_STYLE2 readonly" })</td>
                     <td class="TD_STYLE1">角色名称</td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("U_name1", null)
+                        @Html.TextBox("U_name1", null,new { @class = "INPUT_STYLE2" })
                         <input type="hidden" name="sysRole.roleId" value="2" />
                     </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">角色说明</td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("U_sm", null)
+                        @Html.TextBox("U_sm", null, new { @class = "INPUT_STYLE2" })
                     </td>
                     <td class="TD_STYLE1">角色是否可用</td>
                     <td class="TD_STYLE2">
-                        <select name="U_sf">
+                        <select class = "SELECT_STYLE1" name="U_sf">
                             <option value="是">是</option>
                             <option value="否">否</option>
                         </select>
@@ -77,7 +77,7 @@
                 onLoadSuccess: function (node, data) {
                     if (data != null) {
                         for (var i in data) {
-                            console.info(data[i]);
+                            //console.info(data[i]);
                             if (data[i].state == "closed") {
                                 $('#tt').tree("expandAll");
                             }

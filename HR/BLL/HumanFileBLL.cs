@@ -69,5 +69,14 @@ namespace BLL
         {
             return ihd.HumanFileRecoveryList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
         }
+
+        public List<HumanFileModel> HumanFileSelectSX(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, DateTime? startTime, DateTime? endTime)
+        {
+            return ihd.HumanFileSelectSX(currentPage, pageSize, out rows, mkid, mid, gjz, startTime, endTime);
+        }
+        public int HumanFileUp(string humid)
+        {
+            return ihd.HumanFileUp(humid);
+        }
     }
 }

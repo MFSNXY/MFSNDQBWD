@@ -31,7 +31,7 @@ namespace BLL
 
         public List<View_UserModel> View_UserFenYe<K>(int currentPage, int PageSize, out int rows)
         {
-            throw new NotImplementedException();
+            return ist.View_UserFenYe<K>(currentPage, PageSize, out rows);
         }
 
         public List<View_UserModel> View_UserSelect()

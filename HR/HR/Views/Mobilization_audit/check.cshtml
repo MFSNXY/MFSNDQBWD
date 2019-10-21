@@ -41,7 +41,7 @@
                     </td>
                     <td class="TD_STYLE2" width="10%">
                         <input type="hidden" name="Mch_id" value="@Model.Mch_id" />
-                        @Html.TextBox("123", @Model.Human_id, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        @Html.TextBox("Human_id", @Model.Human_id, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
                     </td>
                     <td class="TD_STYLE1" width="8%">
                         姓名
@@ -343,7 +343,7 @@
                                 }
                                 $("#SecondMid").attr("disabled", false);
                                 $("#ssd").attr("disabled", false);
-                                $("#SecondMid").css("backgroundColor", "#FFFFCC")
+                                $("#SecondMid").css("backgroundColor", "#F5EDE1")
                                 t.GetMTs(eval("(" + rs + ")")[0].SecondMid, flag);
                             } else {
                                 t.Flag2 = false;
@@ -378,7 +378,7 @@
                                 }
                                 $("#ThirdMid").attr("disabled", false);
                                 $("#ssd").attr("disabled", false);
-                                $("#ThirdMid").css("backgroundColor", "#FFFFCC")
+                                $("#ThirdMid").css("backgroundColor", "#F5EDE1")
                             } else {
                                 t.Flag2 = false;
                                 t.MTName = "";
@@ -427,7 +427,7 @@
                                 }
                                 $("#Majorid").attr("disabled", false);
                                 $("#ssd").attr("disabled", false);
-                                $("#Majorid").css("backgroundColor", "#FFFFCC")
+                                $("#Majorid").css("backgroundColor", "#F5EDE1")
                             } else {
                                 t.MName = "";
                                 t.Ms = [{ Majorname: "请重新选择职位分类", Majorid: "0" }];

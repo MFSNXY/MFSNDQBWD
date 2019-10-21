@@ -96,7 +96,26 @@ namespace DAO
 
         public List<View_UserModel> View_UserFenYe<K>(int currentPage, int PageSize, out int rows)
         {
-            throw new NotImplementedException();
+            var list = CreateContext().View_User.AsNoTracking().OrderBy(e => e.u_id).ToList();
+            rows = list.Count();
+            var data = list
+                 .Skip((currentPage - 1) * PageSize)
+                 .Take(PageSize)
+                 .ToList();
+            List<View_UserModel> list2 = new List<View_UserModel>();
+            foreach (var item in data)
+            {
+                View_UserModel sd = new View_UserModel()
+                {
+                    U_id = item.u_id,
+                    U_name = item.u_name,
+                    U_true_name = item.u_true_name,
+                    U_password = item.u_password,
+                    U_name1 = item.u_name1
+                };
+                list2.Add(sd);
+            }
+            return list2;
         }
     }
 }

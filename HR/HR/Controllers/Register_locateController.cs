@@ -19,6 +19,7 @@ namespace HR.Controllers
         IMajor_changeBLL imc = IocCreate.CreateBLL<IMajor_changeBLL>("Major_changeBLL");
         IConfigMajorBLL icb = IocCreate.CreateBLL<IConfigMajorBLL>("ConfigMajorBLL");
         ISalaryStandardBLL isb = IocCreate.CreateBLL<ISalaryStandardBLL>("SalaryStandardBLL");
+        IHumanFileBLL ihb = IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
         // GET: Register_locate
         public ActionResult Index()
         {
@@ -49,7 +50,7 @@ namespace HR.Controllers
         public ActionResult YXJL(int currentPage, int pageSize, string HumanMajorKindId = "", string HumanMajorId = "", string GJZ = "", DateTime? StartTime = null, DateTime? EndTime = null)
         {
             int rows = 0;
-            List<Major_changeModel> list = imc.Major_changeSelectSX(currentPage, pageSize, out rows, HumanMajorKindId, HumanMajorId, GJZ, StartTime, EndTime);
+            List<HumanFileModel> list = ihb.HumanFileSelectSX(currentPage, pageSize, out rows, HumanMajorKindId, HumanMajorId, GJZ, StartTime, EndTime);
             Dictionary<string, object> dic = new Dictionary<string, object>()
             {
                 {"list",list },
@@ -59,8 +60,8 @@ namespace HR.Controllers
         }
         public ActionResult register(int id)
         {
-            List<Major_changeModel> list = imc.SelectMajor_changeBy(id);
-            return View(list[0]);
+            HumanFileModel hm = ihb.HumanFileBy(id);  
+            return View(hm);
         }
         public ActionResult Index3()
         {
@@ -73,24 +74,7 @@ namespace HR.Controllers
         [ActionName("up")]
         public ActionResult Update(Major_changeModel mc)
         {
-            Major_changeModel mcm = imc.SelectMajor_changeBy(mc.Mch_id)[0];
-            mcm.New_first_kind_id = mc.New_first_kind_id;
-            mcm.New_first_kind_name = mc.New_first_kind_name;
-            mcm.New_second_kind_id = mc.New_second_kind_id;
-            mcm.New_second_kind_name = mc.New_second_kind_name;
-            mcm.New_third_kind_id = mc.New_third_kind_id;
-            mcm.New_third_kind_name = mc.New_third_kind_name;
-            mcm.New_major_id = mc.New_major_id;
-            mcm.New_major_name = mc.New_major_name;
-            mcm.New_major_kind_id = mc.New_major_kind_id;
-            mcm.New_major_kind_name = mc.New_major_kind_name;
-            mcm.New_salary_standard_id = mc.New_salary_standard_id;
-            mcm.New_salary_standard_name = mc.New_salary_standard_name;
-            mcm.New_salary_sum = mc.New_salary_sum;
-            mcm.Change_reason = mc.Change_reason;
-            mcm.Register = mc.Register;
-            mcm.Regist_time = DateTime.Now;
-            if (imc.Major_changeUpdate(mcm) > 0)
+            if (imc.Major_changeAdd(mc) > 0)
             {
                 return View("register_success");
             }

@@ -1,4 +1,4 @@
-﻿@model Model.Major_changeModel
+﻿@model Model.HumanFileModel
 @{
     Layout = null;
 }
@@ -32,7 +32,6 @@
             </tr>
         </table>
         <div id="aa">
-            <input type="hidden" name="Mch_id" value="@Model.Mch_id" />
             <table width="100%" border="1" cellpadding=0 cellspacing=1
                    bordercolorlight=#848284 bordercolordark=#eeeeee
                    class="TABLE_STYLE1">
@@ -41,13 +40,13 @@
                         档案编号
                     </td>
                     <td class="TD_STYLE2" width="10%">
-                        @Html.TextBox("123", @Model.Human_id, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        @Html.TextBox("Human_id", @Model.HumanId, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
                     </td>
                     <td class="TD_STYLE1" width="8%">
                         姓名
                     </td>
                     <td class="TD_STYLE2" width="10%">
-                        @Html.TextBox("123", @Model.Human_name, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        @Html.TextBox("Human_name", @Model.HumanName, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
                     </td>
                     <td class="TD_STYLE1" width="8%"></td>
                     <td class="TD_STYLE2" width="10%"></td>
@@ -60,22 +59,22 @@
                         原一级机构
                     </td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("123", @Model.First_kind_name, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
-                        <input type="hidden" name="majorChange.firstKindId" value="1353318953319">
+                        @Html.TextBox("First_kind_name", @Model.FirstMName, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        <input type="hidden" name="First_kind_id" value="@Model.FirstMid">
                     </td>
                     <td class="TD_STYLE1" width="8%">
                         原二级机构
                     </td>
                     <td class="TD_STYLE2" width="10%">
-                        @Html.TextBox("123", @Model.Second_kind_name, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
-                        <input type="hidden" name="majorChange.secondKindId" value="1353318979558">
+                        @Html.TextBox("Second_kind_name", @Model.SecondMName, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        <input type="hidden" name="Second_kind_id" value="@Model.SecondMid">
                     </td>
                     <td class="TD_STYLE1" width="8%">
                         原三级机构
                     </td>
                     <td class="TD_STYLE2" width="10%">
-                        @Html.TextBox("123", @Model.Third_kind_name , new { @class = "INPUT_STYLE2", @readonly = "readonly" })
-                        <input type="hidden" name="majorChange.thirdKindId" value="1353319077370">
+                        @Html.TextBox("Third_kind_name", @Model.ThirdMName, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        <input type="hidden" name="Third_kind_id" value="@Model.ThirdMid">
                     </td>
                     <td class="TD_STYLE1" width="8%"></td>
                     <td class="TD_STYLE2" width="10%"></td>
@@ -86,28 +85,28 @@
                         原职位分类
                     </td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("123", @Model.Major_kind_name, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
-                        <input type="hidden" name="majorChange.majorKindId" value="02">
+                        @Html.TextBox("Major_kind_name", @Model.HumanMajorKindName, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        <input type="hidden" name="Major_kind_id" value="@Model.HumanMajorKindId">
                     </td>
                     <td class="TD_STYLE1" width="12%">
                         原职位名称
                     </td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("123", @Model.Major_name, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
-                        <input type="hidden" name="majorChange.majorId" value="02">
+                        @Html.TextBox("Major_name", @Model.HumanMajorName, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        <input type="hidden" name="Major_id" value="@Model.HumanMajorId">
                     </td>
                     <td class="TD_STYLE1">
                         原薪酬标准
                     </td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("123", @Model.Salary_standard_name, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
-                        <input type="hidden" name="majorChange.salaryStandardId" value="1353320082662">
+                        @Html.TextBox("Salary_standard_name", @Model.SalaryStandardName, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        <input type="hidden" name="Salary_standard_id" value="@Model.SalaryStandardId">
                     </td>
                     <td class="TD_STYLE1">
                         原薪酬总额
                     </td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("123", @Model.Salary_sum, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                        @Html.TextBox("Salary_sum", @Model.SalaySum, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
                     </td>
                 </tr>
                 <tr>
@@ -168,7 +167,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <input type="hidden" v-model="XBs" name="New_salary_standard_name"/>
-                        <select name="New_salary_standard_id " id="salary_standard_id" width="15%" class="SELECT_STYLE1" v-on:change="GetBz()">
+                        <select name="New_salary_standard_id" id="salary_standard_id" width="15%" class="SELECT_STYLE1" v-on:change="GetBz()">
                             <option v-for="(item,i) in BZs" v-bind:ze="item.Salarysum" v-bind:value="item.Standardid">{{item.Standardname}}</option>
                         </select>
                     </td>
@@ -187,7 +186,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <input type="text" name="Register" id="asda" readonly="readonly"
-                               value="www" class="INPUT_STYLE2">
+                               value="@(((View_UserModel)Session["user"]).U_true_name)" class="INPUT_STYLE2">
                     </td>
                     <td class="TD_STYLE1">
                         登记时间
@@ -303,7 +302,7 @@
                                 t.MSs = eval("(" + rs + ")");
                                 $("#SecondMid").attr("disabled", false);
                                 $("#ssd").attr("disabled", false);
-                                $("#SecondMid").css("backgroundColor", "#FFFFCC")
+                                $("#SecondMid").css("backgroundColor", "#F5EDE1")
                                 t.GetMTs(eval("(" + rs + ")")[0].SecondMid);
                             } else {
                                 t.Flag2 = false;
@@ -332,7 +331,7 @@
                                 t.MTs = eval("(" + rs + ")");
                                 $("#ThirdMid").attr("disabled", false);
                                 $("#ssd").attr("disabled", false);
-                                $("#ThirdMid").css("backgroundColor", "#FFFFCC")
+                                $("#ThirdMid").css("backgroundColor", "#F5EDE1")
                             } else {
                                 t.Flag2 = false;
                                 t.MTName = "";
@@ -373,7 +372,7 @@
                                 t.Ms = eval("(" + r + ")");
                                 $("#Majorid").attr("disabled", false);
                                 $("#ssd").attr("disabled", false);
-                                $("#Majorid").css("backgroundColor", "#FFFFCC")
+                                $("#Majorid").css("backgroundColor", "#F5EDE1")
                             } else {
                                 t.MName = "";
                                 t.Ms = [{ Majorname: "请重新选择职位分类", Majorid: "0" }];

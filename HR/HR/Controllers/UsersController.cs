@@ -23,10 +23,16 @@ namespace HR.Controllers
         }
 
 
-        public ActionResult Index2()
+        public ActionResult Index2(int currentPage,int pageSize)
         {
-            List<View_UserModel> list = iub.View_UserSelect();
-            return Content(JsonConvert.SerializeObject(list));
+            int rows = 0;
+            List<View_UserModel> list = iub.View_UserFenYe<View_UserModel>(currentPage, pageSize, out rows);
+            Dictionary<string, object> dic = new Dictionary<string, object>()
+            {
+                {"list",list },
+                {"rows",rows }
+            };
+            return Content(JsonConvert.SerializeObject(dic));
         }
         public ActionResult Add()
         {

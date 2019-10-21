@@ -13,6 +13,7 @@ namespace HR.Controllers
     public class Mobilization_auditController : Controller
     {
         IMajor_changeBLL imc = IocCreate.CreateBLL<IMajor_changeBLL>("Major_changeBLL");
+        IHumanFileBLL ihb = IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
         // GET: Mobilization_audit
         public ActionResult check_list()
         {
@@ -48,7 +49,7 @@ namespace HR.Controllers
             mcm.Check_status = mc.Check_status;
             if (mcm.Check_status==1)
             {
-                if (imc.Major_changeUpdate(mcm)>0)
+                if (imc.Major_changeUpdate(mcm)>0&&ihb.HumanFileUp(mc.Human_id)>0)
                 {
                     return View("check_success");
                 }

@@ -501,7 +501,7 @@
                 MTName: null,
                 MKName: null,
                 MName: null,
-                SalaryStandardName: $("#SalaryStandardId option:checked").text(),
+                SalaryStandardName: null,
                 ZPLX: null,
                 GJ: null,
                 MZ: null,
@@ -710,6 +710,8 @@
                     var t = this;
                     $.post("/SalaryStandard/GetSalaryStandardController", function (rs) {
                         t.SSs = eval("(" + rs + ")");
+                        t.SalaryStandardName = eval("(" + rs + ")")[0].Standardname;
+                        t.SalarySum = eval("(" + rs + ")")[0].Salarysum;
                     });
                 },
                 SetSalaryStandardName: function () {

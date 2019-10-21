@@ -36,24 +36,24 @@
             <tr>
                 <td class="TD_STYLE1">用户名称</td>
                 <td class="TD_STYLE2">
-                    @Html.TextBox("U_name", null)
+                    @Html.TextBox("U_name", null,new { @class = "INPUT_STYLE2" })
                     @Html.ValidationMessage("U_name")
                 </td>
                 <td class="TD_STYLE1">用户密码</td>
                 <td class="TD_STYLE2">
-                    @Html.TextBox("U_password", null, new { @type = "password" })
+                    @Html.TextBox("U_password", null, new { @type = "password", @class = "INPUT_STYLE2" })
                     @Html.ValidationMessage("U_password")
                 </td>
             </tr>
             <tr>
                 <td class="TD_STYLE1">真实姓名</td>
                 <td class="TD_STYLE2">
-                    @Html.TextBox("U_true_name", null)
+                    @Html.TextBox("U_true_name", null, new { @class = "INPUT_STYLE2" })
                     @Html.ValidationMessage("U_true_name")
                 </td>
                 <td class="TD_STYLE1">用户身份</td>
                 <td class="TD_STYLE2">
-                    @Html.DropDownList("U_oid", ViewBag.s as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    @Html.DropDownList("U_oid", ViewBag.s as IEnumerable<SelectListItem>, new {  @class = "SELECT_STYLE1 form-control" })
                 </td>
             </tr>
         </table>

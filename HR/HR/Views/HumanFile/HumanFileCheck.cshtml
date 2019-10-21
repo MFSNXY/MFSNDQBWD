@@ -32,12 +32,8 @@
     <script type="text/javascript"
             src="../../javascript/human_check.js">
     </script>
-    @*<script type="text/javascript"
-            src="../../javascript/human_input_check.js">
-    </script>*@
     <script src="~/jquery.validate.js"></script>
     <script src="~/jquery.validate.unobtrusive.js"></script>
-    <script src="~/vue-2.4.0.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#HumanBirthday").blur(function () {
@@ -98,6 +94,7 @@
             $('#aaa').val(year + "-" + mon + "-" + day + " " + hours + ":" + minutes + ":" + seconds);
         }, 1000);
     </script>
+    <script src="~/vue-2.4.0.js"></script>
     <style type="text/css">
         .aa {
             border: 1px solid black;
@@ -106,7 +103,7 @@
 </head>
 <body>
     <div id="aa">
-        <form action="/HumanFile/HumanFileCheckUpdate" method="post" >
+        <form action="/HumanFile/HumanFileCheckUpdate" method="post">
             <input type="hidden" name="Id" value="@Model.Id" />
             <table width="100%">
                 <tr>
@@ -325,9 +322,7 @@
                     <td class="TD_STYLE1">
                         帐号
                     </td>
-                    <td class="TD_STYLE2 aa">
-                        @Model.HumanAccount
-                    </td>
+                    <td class="TD_STYLE2 aa">@Model.HumanAccount</td>
                     <td class="TD_STYLE1">
                         复核人
                     </td>
@@ -377,148 +372,33 @@
                         个人履历
                     </td>
                     <td colspan="7" class="TD_STYLE2 aa">
-                        <textarea name="item.humanHistroyRecords" rows="4"
+                        <textarea name="humanHistroyRecords" rows="4"
                                   class="TEXTAREA_STYLE1" readonly="readonly">
                             @Model.HumanHistoryRecords
-                            </textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="TD_STYLE1">
-                            家庭关系信息
-                        </td>
-                        <td colspan="7" class="TD_STYLE2 aa">
-                            <textarea name="item.humanFamilyMembership" rows="4"
-                                      class="TEXTAREA_STYLE1" readonly="readonly">
-                                @Model.HumanFamilyMembership
-                                </textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="TD_STYLE1">
-                                备注
-                            </td>
-                            <td colspan="7" class="TD_STYLE2 aa">
-                                <textarea name="item.remark" rows="4" class="TEXTAREA_STYLE1" readonly="readonly">@Model.Remark</textarea>
-                            </td>
-                        </tr>
-                    </table>
-        </form> 
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        家庭关系信息
+                    </td>
+                    <td colspan="7" class="TD_STYLE2 aa">
+                        <textarea name="humanFamilyMembership" rows="4"
+                                  class="TEXTAREA_STYLE1" readonly="readonly">
+                            @Model.HumanFamilyMembership
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        备注
+                    </td>
+                    <td colspan="7" class="TD_STYLE2 aa">
+                        <textarea name="remark" rows="4" class="TEXTAREA_STYLE1" readonly="readonly">@Model.Remark</textarea>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
-    <script type="text/javascript" >
-        var vm = new Vue({
-            el: "#aa",
-            data: {
-                SalaryStandardName: $("#SalaryStandardId option:checked").text(),
-                ZPLX: null,
-                GJ: null,
-                MZ: null,
-                ZJXY: null,
-                ZZMM: null,
-                XL: null,
-                JYNX: null,
-                XLZY: null,
-                TC: null,
-                AH: null,
-                ZC: null,
-                HGJ: "@Model.HumanNationality",
-                HMZ: "@Model.HumanRace",
-                HZJXY: "@Model.HumanReligion",
-                HZZMM: "@Model.HumanParty",
-                HXL: "@Model.HumanEducatedDegree",
-                HJYNX: "@Model.HumanEducatedYears",
-                HXLZY: "@Model.HumanEducatedMajor",
-                HTC: "@Model.HumanSpecility",
-                HAH: "@Model.HumanHobby",
-                HZC: "@Model.HumanProDesignation",
-                SEX: "@Model.HumanSex",
-                XC:"@Model.SalaryStandardId"
-            },
-            methods: {
-                SetSalaryStandardName: function () {
-                    this.SalaryStandardName = $("#SalaryStandardId option:checked").text();
-                },
-                GetZPLX: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=招聘类型", function (rs) {
-                        t.ZPLX = eval("(" + rs + ")");
-                    });
-                },
-                GetGJ: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=国籍", function (rs) {
-                        t.GJ = eval("(" + rs + ")");
-                    });
-                },
-                GetMZ: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=民族", function (rs) {
-                        t.MZ = eval("(" + rs + ")");
-                    });
-                },
-                GetZJXY: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=宗教信仰", function (rs) {
-                        t.ZJXY = eval("(" + rs + ")");
-                    });
-                },
-                GetZZMM: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=政治面貌", function (rs) {
-                        t.ZZMM = eval("(" + rs + ")");
-                    });
-                },
-                GetXL: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=学历", function (rs) {
-                        t.XL = eval("(" + rs + ")");
-                    });
-                },
-                GetJYNX: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=教育年限", function (rs) {
-                        t.JYNX = eval("(" + rs + ")");
-                    });
-                },
-                GetXLZY: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=学历专业", function (rs) {
-                        t.XLZY = eval("(" + rs + ")");
-                    });
-                },
-                GetTC: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=特长", function (rs) {
-                        t.TC = eval("(" + rs + ")");
-                    });
-                },
-                GetAH: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=爱好", function (rs) {
-                        t.AH = eval("(" + rs + ")");
-                    });
-                },
-                GetZC: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=职称", function (rs) {
-                        t.ZC = eval("(" + rs + ")");
-                    });
-                }
-            },
-            created: function () {
-                this.GetZPLX();
-                this.GetGJ();
-                this.GetMZ();
-                this.GetZJXY();
-                this.GetZZMM();
-                this.GetXL();
-                this.GetJYNX();
-                this.GetXLZY();
-                this.GetTC();
-                this.GetAH();
-                this.GetZC();
-            }
-        });
-    </script>
 </body>
 </html>

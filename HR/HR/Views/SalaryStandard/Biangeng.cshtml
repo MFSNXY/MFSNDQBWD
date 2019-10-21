@@ -37,7 +37,7 @@
             <tr>
                 <td>
                     <div align="right">
-                        <input type="button" value="变更" class="BUTTON_STYLE1" v-on:click="xunhuan">
+                        <input type="button"  value="变更" class="BUTTON_STYLE1" v-on:click="xunhuan">
                         @*<input id='Submit1' type='button' class='BUTTON_STYLE1' v-on:click="xunhuan" value='复核通过' />*@
                         <input type="button" value="返回" onclick="history.back();" class="BUTTON_STYLE1">
                     </div>
@@ -68,7 +68,7 @@
                     薪酬总额
                 </td>
                 <td width="17%" class="TD_STYLE2">
-                    @Html.TextBox("Salarysum", Model.Salarysum, new { @class = "INPUT_STYLE2", @id = "sumSalary" })
+                    @Html.TextBox("Salarysum", Model.Salarysum, new { @class = "INPUT_STYLE2", @id = "sumSalary", @readonly = "readonly" })
                     @*<input type="text" name="standard.salarySum" value="0.0" id="sumSalary" class="INPUT_STYLE2">*@
                 </td>
                 <td width="12%" class="TD_STYLE1">
@@ -83,7 +83,7 @@
                     制定人
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.TextBox("Designer", Model.Designer, new { @class = "INPUT_STYLE2", @id = "designer" })
+                    @Html.TextBox("Designer", Model.Designer, new { @class = "INPUT_STYLE2", @id = "designer", @readonly = "readonly" })
                     @*<input type="text" name="standard.designer" id="designer" value="杨阳" class="INPUT_STYLE2">*@
 
                 </td>
@@ -91,7 +91,7 @@
                     变更人
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.TextBox("Changer", Model.Changer, new { @class = "INPUT_STYLE2", @id = "fhr" })
+                    @Html.TextBox("Changer", (((View_UserModel)Session["user"]).U_true_name), new { @class = "INPUT_STYLE2", @id = "fhr"})
                     @*<input type="text" name="standard.checker" value="better_admin" class="INPUT_STYLE2">*@
                 </td>
                 <td class="TD_STYLE1">
