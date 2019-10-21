@@ -53,11 +53,11 @@
                     </td>
                 </tr>
                 <tr v-for="(item,i) in dt">
-                    <td>{{item.Majorkindid}}</td>
-                    <td>{{item.Majorkindname}}</td>
-                    <td>{{item.Majorid}}</td>
-                    <td>{{item.Majorname}}</td>
-                    <td>
+                    <td class="TD_STYLE2">{{item.Majorkindid}}</td>
+                    <td class="TD_STYLE2">{{item.Majorkindname}}</td>
+                    <td class="TD_STYLE2">{{item.Majorid}}</td>
+                    <td class="TD_STYLE2">{{item.Majorname}}</td>
+                    <td class="TD_STYLE2">
                         <a v-bind:href="['/ConfigMajor/Del/'+item.Id]" onclick="return confirm('确定删除吗？')">删除</a>
 
                     </td>

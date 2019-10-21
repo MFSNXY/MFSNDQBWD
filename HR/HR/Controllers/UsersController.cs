@@ -15,6 +15,7 @@ namespace HR.Controllers
         IView_UserBLL iub = IocContainer.IocCreate.CreateBLL<IView_UserBLL>("View_UserBLL");
         IUsersBLL iul = IocContainer.IocCreate.CreateBLL<IUsersBLL>("UsersBLL");
         IUsersmanBLL ius = IocCreate.CreateBLL<IUsersmanBLL>("UsersmanBLL");
+        IView_UserBLL ivb = IocCreate.CreateBLL<IView_UserBLL>("View_UserBLL");
         // GET: Users
         public ActionResult Index()
         {
@@ -89,7 +90,7 @@ namespace HR.Controllers
             string rs = "0";
             if (um != null)
             {
-                TempData["user"] = um;
+                Session["user"] = ivb.SelectView_UserBy(um.U_id)[0];
                 rs = "1";
             }
             return Content(rs);

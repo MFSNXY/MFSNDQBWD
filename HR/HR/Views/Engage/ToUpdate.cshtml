@@ -52,6 +52,11 @@
             $('#ChangeTime').val(year + "-" + mon + "-" + day + " " + hours + ":" + minutes + ":" + seconds);
         }, 1000);
     </script>
+    <style type="text/css">
+        .aa {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <div id="aa"> 
@@ -79,7 +84,7 @@
                     <td class="TD_STYLE1" width="11%">
                         I级机构
                     </td>
-                    <td width="14%" class="TD_STYLE2">
+                    <td width="14%" class="TD_STYLE2 aa">
                         <input type="hidden" name="FirstMid" value="@Model.FirstMid" />
                         <input type="hidden" name="FirstMName" value="@Model.FirstMName" />
                         @Model.FirstMName
@@ -88,7 +93,7 @@
                     <td width="11%" class="TD_STYLE1">
                         II级机构
                     </td>
-                    <td width="14%" class="TD_STYLE2">
+                    <td width="14%" class="TD_STYLE2 aa">
                         <input type="hidden" name="SecondMid" value="@Model.SecondMid" />
                         <input type="hidden" name="SecondMName" value="@Model.SecondMName" />
                         @Model.SecondMName
@@ -96,7 +101,7 @@
                     <td width="11%" class="TD_STYLE1">
                         III级机构
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="hidden" name="ThirdMid" value="@Model.ThirdMid" />
                         <input type="hidden" name="ThirdMName" value="@Model.ThirdMName" />
                         @Model.ThirdMName
@@ -104,7 +109,7 @@
                     <td width="11%" class="TD_STYLE1">
                         招聘类型
                     </td>
-                    <td class="TD_STYLE2" colspan="2">
+                    <td class="TD_STYLE2 aa" colspan="2">
 
                         <select name="EngageType" v-model="ZP" id="EngageType" class="SELECT_STYLE1">
                             <option v-for="(item,i) in ZPLX" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
@@ -115,7 +120,7 @@
                     <td class="TD_STYLE1">
                         职位分类
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="hidden" name="MajorKindid" value="@Model.MajorKindid" />
                         <input type="hidden" name="MajorKindName" value="@Model.MajorKindName" />
                         @Model.MajorKindName
@@ -123,7 +128,7 @@
                     <td class="TD_STYLE1">
                         职位名称
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="hidden" name="MajorId" value="@Model.MajorId" />
                         <input type="hidden" name="MajorName" value="@Model.MajorName" />
                         @Model.MajorName
@@ -131,14 +136,14 @@
                     <td class="TD_STYLE1">
                         招聘人数
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         @Html.TextBox("ManCount", @Model.ManCount, new { @class = "INPUT_STYLE2" })
                         @Html.ValidationMessage("ManCount")
                     </td>
                     <td class="TD_STYLE1">
                         截止日期
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         @Html.TextBox("Deadline", (@Model.Deadline).ToString("yyyy-MM-dd"), new { @class = "INPUT_STYLE2", @id = "Deadline" })
                         @Html.ValidationMessage("Deadline")
                     </td>
@@ -147,14 +152,14 @@
                     <td class="TD_STYLE1">
                         变更人
                     </td>
-                    <td class="TD_STYLE2">
-                        @Html.TextBox("Changer", "贱卖菠菜", new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                    <td class="TD_STYLE2 aa">
+                        @Html.TextBox("Changer", (((View_UserModel)Session["user"]).U_true_name), new { @class = "INPUT_STYLE2", @readonly = "readonly" })
                         @Html.ValidationMessage("Changer")
                     </td>
                     <td class="TD_STYLE1">
                         变更时间
                     </td>
-                    <td class="TD_STYLE2">
+                    <td class="TD_STYLE2 aa">
                         <input type="text" name="ChangeTime"
                                id="ChangeTime" readonly="readonly"
                                class="INPUT_STYLE2">
@@ -170,7 +175,7 @@
                     <td class="TD_STYLE1">
                         职位描述
                     </td>
-                    <td class="TD_STYLE2" colspan="8">
+                    <td class="TD_STYLE2 aa" colspan="8">
                         @Html.TextBox("Description", @Model.Description, new { @class = "INPUT_STYLE2" })
                         @Html.ValidationMessage("Description")    
                      </td>
@@ -180,7 +185,7 @@
                     <td class="TD_STYLE1">
                         招聘要求
                     </td>
-                    <td class="TD_STYLE2" colspan="8">
+                    <td class="TD_STYLE2 aa" colspan="8">
                         @Html.TextBox("Claim", Model.Claim, new { @class = "INPUT_STYLE2" })
                         @Html.ValidationMessage("Claim")    
                     </td>

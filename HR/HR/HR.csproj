@@ -236,6 +236,7 @@
     <Content Include="images\foot-bg.jpg" />
     <Content Include="images\go.bmp" />
     <Content Include="images\green.swf" />
+    <Content Include="images\images\123.png" />
     <Content Include="images\images\bonus.gif" />
     <Content Include="images\images\bonus1.gif" />
     <Content Include="images\images\config.gif" />

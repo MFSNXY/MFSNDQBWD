@@ -31,8 +31,8 @@
             </td>
             <td style="text-align: right;font-size:12px;width:35%;color:black;">
                 <br />
-                欢迎你：窝窝头(人事经理)&nbsp;
-                <input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href='../login.html'" />&nbsp;&nbsp;&nbsp;&nbsp;
+                欢迎你：@(((View_UserModel)Session["user"]).U_true_name)(@(((View_UserModel)Session["user"]).U_name1))&nbsp;
+                <input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="location='/Users/DengLu';" />&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
     </table>
