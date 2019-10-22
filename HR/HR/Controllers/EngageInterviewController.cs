@@ -70,6 +70,9 @@ namespace HR.Controllers
             {
                 flag = ieib.EngageInterviewAdd(eim) > 0 ? true : false;
             }
+            EngageResumeModel er = ierb.EngageResumeSelectBy(eim.ResumeId);
+            er.InterviewStatus = 2;
+            ierb.EngageResumeUpdate(er);
             if (flag)
             {
                 return Content("<script>alert('登记成功!');location='/EngageInterview/Index';</script>");
@@ -117,6 +120,9 @@ namespace HR.Controllers
             {
                 case "建议面试":
                     InterviewStatus = 1;
+                    EngageResumeModel ee = ierb.EngageResumeSelectBy(ei.ResumeId);
+                    ee.InterviewStatus = 1;
+                    ierb.EngageResumeUpdate(ee);
                     break;
                 case "建议笔试":
                     InterviewStatus = 2;

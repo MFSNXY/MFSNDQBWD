@@ -16,14 +16,17 @@ namespace HR.Controllers
 {
     public class HumanFileController : Controller
     {
+        IEngageResumeBLL ierb = IocCreate.CreateBLL<IEngageResumeBLL>("EngageResumeBLL");
+
         IConfigPublicCharBLL icp = IocCreate.CreateBLL<IConfigPublicCharBLL>("ConfigPublicCharBLL");
 
         IHumanFileBLL ihf = IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
 
         // GET: HumanFile
-        public ActionResult HumanFileRegister()
+        public ActionResult HumanFileRegister(int id)
         {
-            return View();
+            EngageResumeModel er = ierb.EngageResumeSelectBy(id);
+            return View(er);
         }
 
         public ActionResult HumanFileRegisterList()
@@ -49,11 +52,14 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(icp.ConfigMajorKindSelect()));
         }
 
-        public ActionResult Register(HumanFileModel hf)
+        public ActionResult Register(HumanFileModel hf,int ERid)
         {
-            hf.HumanId = "HF" + DateTime.Now.ToString("yyMMddssfff") + new Random().Next(100, 999);
+            //    hf.HumanId = "HF" + DateTime.Now.ToString("yyMMddssfff") + new Random().Next(100, 999);
             if (ihf.HumanFileAdd(hf) > 0)
             {
+                EngageResumeModel er = ierb.EngageResumeSelectBy(ERid);
+                er.InterviewStatus = 5;
+                ierb.EngageResumeUpdate(er);
                 TempData["hfid"] = hf.HumanId;
                 return Content("<script>alert('登记成功!');location='/HumanFile/HumanFilePicture?gn=1';</script>");
             }
@@ -196,7 +202,7 @@ namespace HR.Controllers
         public ActionResult HumanFileChangeGetHuman(int currentPage, int pageSize, string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
         {
             int rows = 0;
-            List<HumanFileModel> list = ihf.HumanFileQueryList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
+            List<HumanFileModel> list = ihf.HumanFileChangList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
             Dictionary<string, object> dic = new Dictionary<string, object>()
             {
                 {"list",list },

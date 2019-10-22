@@ -1,4 +1,4 @@
-﻿@model Model.HumanFileModel
+﻿@model Model.EngageResumeModel
 @{
     Layout = null;
 }
@@ -159,6 +159,7 @@
     <div id="aa">
             @using(Html.BeginForm("Register", "HumanFile", FormMethod.Post,new {@id="HFform" })) {
             <input type="hidden" value="0" name="CheckStatus" />
+            <input type="hidden" value="@Model.Id" name="ERid" />
             <table width="100%">
                 <tr>
                     <td>
@@ -214,7 +215,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <input type="hidden" name="HumanMajorKindName" v-model="MKName" />
-                        <select name="HumanMajorKindId" id="MajorKindid" class="SELECT_STYLE1" v-on:change="GetMs()">
+                        <select v-model="HumanMajorKindId" name="HumanMajorKindId" id="MajorKindid" class="SELECT_STYLE1" v-on:change="GetMs()">
                             <option id="qxz2">--请选择--</option>
                             <option v-for="(item,i) in MKs" v-bind:value="item.Majorkindid">{{item.Majorkindname}}</option>
                         </select>
@@ -224,7 +225,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <input type="hidden" name="HumanMajorName" v-model="MName" />
-                        <select name="HumanMajorId" flag="false" id="Majorid" class="SELECT_STYLE1" v-on:change="GetMName()" style="background-color:#eee;" disabled="disabled">
+                        <select v-model="HumanMajorId" name="HumanMajorId" flag="false" id="Majorid" class="SELECT_STYLE1" v-on:change="GetMName()" style="background-color:#eee;" disabled="disabled">
                             <option id="www">请选择职位分类</option>
                             <option v-for="(item,i) in Ms" v-bind:value="item.Majorid">{{item.Majorname}}</option>
                         </select>
@@ -250,7 +251,7 @@
                         性别
                     </td>
                     <td class="TD_STYLE2">
-                        <select id="HumanSex" name="HumanSex" class="SELECT_STYLE1">
+                        <select v-model="HumanSex" id="HumanSex" name="HumanSex" class="SELECT_STYLE1">
                             <option value="男" selected="selected">
                                 男
                             </option>
@@ -263,7 +264,7 @@
                         EMAIL
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" name="HumanEmail" id="humanEmail"  class="INPUT_STYLE2">
+                        <input type="text" v-model="@Model.HumanEmail" name="HumanEmail" id="humanEmail"  class="INPUT_STYLE2">
                     </td>
                 </tr>
                 <tr>
@@ -271,7 +272,7 @@
                         电话
                     </td>
                     <td class="TD_STYLE2">
-                        @Html.TextBox("HumanTelephone", null, new { @class = "INPUT_STYLE2" })
+                        @Html.TextBox("HumanTelephone", Model.HumanTelephone, new { @class = "INPUT_STYLE2" })
                         @Html.ValidationMessage("HumanTelephone")
                     </td>
                     <td class="TD_STYLE1">
@@ -284,7 +285,7 @@
                         手机
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" name="HumanMobilephone" class="INPUT_STYLE2" />
+                        <input type="text" v-model="@Model.HumanMobilephone" name="HumanMobilephone" class="INPUT_STYLE2" />
                     </td>
                 </tr>
                 <tr>
@@ -292,13 +293,13 @@
                         住址
                     </td>
                     <td colspan="3" class="TD_STYLE2">
-                        <input type="text" name="HumanAddress" class="INPUT_STYLE2" />
+                        <input type="text" value="@Model.HumanAddress" name="HumanAddress" class="INPUT_STYLE2" />
                     </td>
                     <td class="TD_STYLE1">
                         邮编
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" name="HumanPostcode" class="INPUT_STYLE2" />
+                        <input type="text"  value="@Model.HumanPostcode" name="HumanPostcode" class="INPUT_STYLE2" />
                     </td>
                 </tr>
                 <tr>
@@ -320,7 +321,7 @@
                         生日
                     </td>
                     <td width="13%" class="TD_STYLE2">
-                        <input type="text" readonly="readonly" name="HumanBirthday" class="INPUT_STYLE2" id = "HumanBirthday" />
+                        <input type="text" readonly="readonly" value="@Model.HumanBirthday" name="HumanBirthday" class="INPUT_STYLE2" id = "HumanBirthday" />
                     </td>
                     <td width="11%" class="TD_STYLE1">
                         民族
@@ -367,7 +368,7 @@
                         年龄
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="HumanAge" id="HumanAge" class="INPUT_STYLE2" readonly="readonly">
+                        <input type="text" name="HumanAge" value="@Model.HumanAge" id="HumanAge" class="INPUT_STYLE2" readonly="readonly">
                     </td>
                     <td class="TD_STYLE1">
                         学历
@@ -439,7 +440,7 @@
                         特长
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanSpecility" class="SELECT_STYLE1">
+                        <select v-model="HumanSpecility"  name="HumanSpecility" class="SELECT_STYLE1">
                             <option v-for="(item,i) in TC" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
@@ -447,7 +448,7 @@
                         爱好
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanHobby" class="SELECT_STYLE1">
+                        <select v-model="HumanHobby" name="HumanHobby" class="SELECT_STYLE1">
                             <option v-for="(item,i) in AH" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
@@ -514,7 +515,13 @@
                 AH: null,
                 ZC: null,
                 SalarySum:null,
-                SSs:null,
+                SSs: null,
+                HumanMajorKindId:@Model.HumanMajorKindId,
+                HumanMajorId:@Model.HumanMajorId,
+                HumanHobby:@Model.HumanHobby,
+                HumanSpecility:@Model.HumanSpecility,
+                HumanSex:@Model.HumanSex,
+                HumanReligion:@Model.HumanReligion,
             },
             methods: {
                 GetMFs: function () {

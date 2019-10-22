@@ -94,37 +94,39 @@ namespace HR.Controllers
         {
             EngageResumeModel er = ierb.EngageResumeSelectBy(id);
             er.PassPassComment = PassPassComment;
-            if (er.PassPassComment == "通过")
-            {
-                HumanFileModel hf = new HumanFileModel()
-                {
-                    HumanName = er.HumanName,
-                    HumanAddress=er.HumanAddress,
-                    HumanPostcode=er.HumanPostcode,
-                    HumanMajorKindId=er.HumanMajorKindId,
-                    HumanMajorKindName=er.HumanMajorKindName,
-                    HumanMajorId=er.HumanMajorId,
-                    HumanMajorName=er.HumanMajorName,
-                    HumanTelephone=er.HumanTelephone,
-                    HumanMobilephone=er.HumanMobilephone,
-                    HumanEmail=er.HumanEmail,
-                    HumanHobby=er.HumanHobby,
-                    HumanSpecility=er.HumanSpecility,
-                    HumanSex=er.HumanSex,
-                    HumanReligion=er.HumanReligion,
-                    HumanParty=er.HumanParty,
-                    HumanNationality=er.HumanNationality,
-                    HumanRace=er.HumanRace,
-                    HumanBirthday=er.HumanBirthday,
-                    HumanAge=er.HumanAge,
-                    HumanEducatedDegree=er.HumanEducatedDegree,
-                    HumanEducatedYears=er.HumanEducatedYears,
-                    HumanEducatedMajor=er.HumanEducatedMajor,
-                    Remark=er.Remark,
-                    HumanIdcard=er.HumanIdcard
-                };
-                ihf.HumanFileAdd(hf);
-            }
+            //if (er.PassPassComment == "通过")
+            //{
+            //    HumanFileModel hf = new HumanFileModel()
+            //    {
+            //        HumanId = "HF" + DateTime.Now.ToString("yyMMddssfff") + new Random().Next(100, 999),
+            //        HumanPicture = er.HumanPicture,
+            //        HumanName = er.HumanName,
+            //        HumanAddress=er.HumanAddress,
+            //        HumanPostcode=er.HumanPostcode,
+            //        HumanMajorKindId=er.HumanMajorKindId,
+            //        HumanMajorKindName=er.HumanMajorKindName,
+            //        HumanMajorId=er.HumanMajorId,
+            //        HumanMajorName=er.HumanMajorName,
+            //        HumanTelephone=er.HumanTelephone,
+            //        HumanMobilephone=er.HumanMobilephone,
+            //        HumanEmail=er.HumanEmail,
+            //        HumanHobby=er.HumanHobby,
+            //        HumanSpecility=er.HumanSpecility,
+            //        HumanSex=er.HumanSex,
+            //        HumanReligion=er.HumanReligion,
+            //        HumanParty=er.HumanParty,
+            //        HumanNationality=er.HumanNationality,
+            //        HumanRace=er.HumanRace,
+            //        HumanBirthday=er.HumanBirthday,
+            //        HumanAge=er.HumanAge,
+            //        HumanEducatedDegree=er.HumanEducatedDegree,
+            //        HumanEducatedYears=er.HumanEducatedYears,
+            //        HumanEducatedMajor=er.HumanEducatedMajor,
+            //        Remark=er.Remark,
+            //        HumanIdcard=er.HumanIdcard
+            //    };
+            //    ihf.HumanFileAdd(hf);
+            //}
             if (ierb.EngageResumeUpdate(er) > 0)
             {
                 return Content("<script>alert('提交成功!');location='/EngageEmploy/LYSP';</script>");

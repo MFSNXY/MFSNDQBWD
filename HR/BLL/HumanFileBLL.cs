@@ -78,5 +78,10 @@ namespace BLL
         {
             return ihd.HumanFileUp(humid);
         }
+
+        public List<HumanFileModel> HumanFileChangList(int currentPage, int pageSize, out int rows, string FirstMid, string SecondMid, string ThirdMid, string HumanMajorKindId, string HumanMajorId, DateTime? startTime, DateTime? endTime, string gjz)
+        {
+            return ihd.HumanFileChangList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
+        }
     }
 }
