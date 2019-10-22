@@ -71,7 +71,7 @@ namespace DAO
                 Remark=p.Remark,
                 SalaryStandardId=p.SalaryStandardId,
                 SalaryStandardName=p.SalaryStandardName,
-                SalaySum=p.SalaySum,
+                SalarySum=p.SalarySum,
                 SecondMid=p.SecondMid,
                 SecondMName=p.SecondMName,
                 ThirdMid=p.ThirdMid,
@@ -143,7 +143,7 @@ namespace DAO
                 Remark = p.Remark,
                 SalaryStandardId = p.SalaryStandardId,
                 SalaryStandardName = p.SalaryStandardName,
-                SalaySum = p.SalaySum,
+                SalarySum = p.SalarySum,
                 SecondMid = p.SecondMid,
                 SecondMName = p.SecondMName,
                 ThirdMid = p.ThirdMid,
@@ -161,7 +161,7 @@ namespace DAO
 
         public List<HumanFileModel> HumanFileFY(int currentPage, int pageSize, out int rows)
         {
-            var list = CreateContext().HumanFile.AsNoTracking().OrderBy(e => e.Id);
+            var list = CreateContext().HumanFile.AsNoTracking().Where(e => e.CheckStatus == 0 && e.HumanFileStatus == false).OrderBy(e => e.Id);
             rows = list.Count();
             var data = list
                  .Skip((currentPage - 1) * pageSize)
@@ -229,7 +229,7 @@ namespace DAO
                     Remark = p.Remark,
                     SalaryStandardId = p.SalaryStandardId,
                     SalaryStandardName = p.SalaryStandardName,
-                    SalaySum = p.SalaySum,
+                    SalarySum = p.SalarySum,
                     SecondMid = p.SecondMid,
                     SecondMName = p.SecondMName,
                     ThirdMid = p.ThirdMid,
@@ -306,7 +306,7 @@ namespace DAO
                     Remark = p.Remark,
                     SalaryStandardId = p.SalaryStandardId,
                     SalaryStandardName = p.SalaryStandardName,
-                    SalaySum = p.SalaySum,
+                    SalarySum = p.SalarySum,
                     SecondMid = p.SecondMid,
                     SecondMName = p.SecondMName,
                     ThirdMid = p.ThirdMid,
@@ -379,7 +379,7 @@ namespace DAO
                 Remark = p.Remark,
                 SalaryStandardId = p.SalaryStandardId,
                 SalaryStandardName = p.SalaryStandardName,
-                SalaySum = p.SalaySum,
+                SalarySum = p.SalarySum,
                 SecondMid = p.SecondMid,
                 SecondMName = p.SecondMName,
                 ThirdMid = p.ThirdMid,
@@ -464,7 +464,7 @@ namespace DAO
                     Remark = p.Remark,
                     SalaryStandardId = p.SalaryStandardId,
                     SalaryStandardName = p.SalaryStandardName,
-                    SalaySum = p.SalaySum,
+                    SalarySum = p.SalarySum,
                     SecondMid = p.SecondMid,
                     SecondMName = p.SecondMName,
                     ThirdMid = p.ThirdMid,
@@ -576,7 +576,7 @@ namespace DAO
                     Remark = p.Remark,
                     SalaryStandardId = p.SalaryStandardId,
                     SalaryStandardName = p.SalaryStandardName,
-                    SalaySum = p.SalaySum,
+                    SalarySum = p.SalarySum,
                     SecondMid = p.SecondMid,
                     SecondMName = p.SecondMName,
                     ThirdMid = p.ThirdMid,
@@ -687,7 +687,7 @@ namespace DAO
                     Remark = p.Remark,
                     SalaryStandardId = p.SalaryStandardId,
                     SalaryStandardName = p.SalaryStandardName,
-                    SalaySum = p.SalaySum,
+                    SalarySum = p.SalarySum,
                     SecondMid = p.SecondMid,
                     SecondMName = p.SecondMName,
                     ThirdMid = p.ThirdMid,
@@ -798,7 +798,7 @@ namespace DAO
                     Remark = p.Remark,
                     SalaryStandardId = p.SalaryStandardId,
                     SalaryStandardName = p.SalaryStandardName,
-                    SalaySum = p.SalaySum,
+                    SalarySum = p.SalarySum,
                     SecondMid = p.SecondMid,
                     SecondMName = p.SecondMName,
                     ThirdMid = p.ThirdMid,
@@ -888,7 +888,7 @@ namespace DAO
                     Remark = p.Remark,
                     SalaryStandardId = p.SalaryStandardId,
                     SalaryStandardName = p.SalaryStandardName,
-                    SalaySum = p.SalaySum,
+                    SalarySum = p.SalarySum,
                     SecondMid = p.SecondMid,
                     SecondMName = p.SecondMName,
                     ThirdMid = p.ThirdMid,

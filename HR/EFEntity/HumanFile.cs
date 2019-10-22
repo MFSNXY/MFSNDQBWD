@@ -47,7 +47,7 @@ namespace EFEntity
         public string Remark { get; set; }
         public string SalaryStandardId { get; set; }
         public string SalaryStandardName { get; set; }
-        public decimal SalaySum { get; set; }
+        public decimal SalarySum { get; set; }
         public decimal DemandSalaraySum { get; set; }
         public decimal PaidSalarySum { get; set; }
         public Int16 MajorChangeAmount { get; set; }

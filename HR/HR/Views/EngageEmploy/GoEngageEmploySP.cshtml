@@ -388,13 +388,13 @@
                                     面试人
                                 </td>
                                 <td class="TD_STYLE2">
-                                    <input type="text" name="engageInterview.register" value="@((Model["ei"] as EngageInterviewModel).Register)" class="INPUT_STYLE2" />
+                                    <input type="text" readonly="readonly" name="engageInterview.register" value="@((Model["ei"] as EngageInterviewModel).Register)" class="INPUT_STYLE2" />
                                 </td>
                                 <td class="TD_STYLE1">
                                     面试时间
                                 </td>
-                                <td class="TD_STYLE2">
-                                    <input type="text" name="engageInterview.registeTime" value="@((Model["ei"] as EngageInterviewModel).RegisteTime.ToString().Replace("/","-"))" class="INPUT_STYLE2" />
+                                <td class="TD_STYLE2"> 
+                                    <input type="text" readonly="readonly" name="engageInterview.registeTime" value="@((Model["ei"] as EngageInterviewModel).RegisteTime.ToString().Replace("/","-"))" class="INPUT_STYLE2" />
 
                                 </td>
                                 <td class="TD_STYLE1">

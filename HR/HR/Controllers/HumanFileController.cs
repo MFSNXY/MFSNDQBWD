@@ -26,6 +26,24 @@ namespace HR.Controllers
             return View();
         }
 
+        public ActionResult HumanFileRegisterList()
+        {
+            return View();
+        }
+
+        public ActionResult HumanFileGetRegisterList(int currentPage, int pageSize)
+        {
+            int rows = 0;
+            List<HumanFileModel> list = ihf.HumanFileFY(currentPage, pageSize, out rows);
+            Dictionary<string, object> dic = new Dictionary<string, object>()
+            {
+                {"list",list },
+                {"rows",rows }
+            };
+            return Content(JsonConvert.SerializeObject(dic));
+
+        }
+
         public ActionResult GetCPC()
         {
             return Content(JsonConvert.SerializeObject(icp.ConfigMajorKindSelect()));

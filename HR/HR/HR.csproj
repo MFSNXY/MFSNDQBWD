@@ -1153,6 +1153,7 @@
     <Content Include="Views\Usersman\Add.cshtml" />
     <Content Include="Views\Usersman\Index.cshtml" />
     <Content Include="Views\Usersman\Update.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileRegisterList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

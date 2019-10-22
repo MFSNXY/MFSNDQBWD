@@ -22,6 +22,7 @@
     <script src="~/jquery.validate.unobtrusive.js"></script>
     <script type="text/javascript">
         $(function () {
+            aw();
             $("#Deadline").blur(function () {
                 var thetime = $("#Deadline").val();
                 var d = new Date(Date.parse(thetime.replace(/-/g, "/")));
@@ -34,14 +35,17 @@
             });
         });
         setInterval(function () {
+            aw();
+        }, 1000);
+        function aw() {
             var year = new Date().getFullYear();
             var mon = new Date().getMonth() + 1;
             var day = new Date().getDate();
-            var hours = new Date().getHours();
+            var hour = new Date().getHours();
             var minutes = new Date().getMinutes();
             var seconds = new Date().getSeconds();
-            if (hours < 10) {
-                hours = '0' + hour;
+            if (hour < 10) {
+                hour = '0' + hour;
             }
             if (minutes < 10) {
                 minutes = '0' + minutes;
@@ -49,8 +53,8 @@
             if (seconds < 10) {
                 seconds = '0' + seconds;
             }
-            $('#ChangeTime').val(year + "-" + mon + "-" + day + " " + hours + ":" + minutes + ":" + seconds);
-        }, 1000);
+            $('#ChangeTime').val(year + "-" + mon + "-" + day + " " + hour + ":" + minutes + ":" + seconds);
+        }
     </script>
     <style type="text/css">
         .aa {
