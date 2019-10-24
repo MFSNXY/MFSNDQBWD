@@ -8,12 +8,16 @@ using IBLL;
 using BLL;
 using Newtonsoft.Json;
 using Model;
+using System.Net.Mail;
+using System.Net;
 
 namespace HR.Controllers
 {
     public class EngageEmployController : Controller
     {
         IHumanFileBLL ihf = IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
+
+        IEngageBLL ieb = IocCreate.CreateBLL<IEngageBLL>("EngageBLL");
 
         IEngageResumeBLL ierb = IocCreate.CreateBLL<IEngageResumeBLL>("EngageResumeBLL");
 
@@ -92,43 +96,45 @@ namespace HR.Controllers
 
         public ActionResult EngageEmploySP(int id, string PassPassComment)
         {
+            //1 修改录用表的状态
             EngageResumeModel er = ierb.EngageResumeSelectBy(id);
             er.PassPassComment = PassPassComment;
-            //if (er.PassPassComment == "通过")
-            //{
-            //    HumanFileModel hf = new HumanFileModel()
-            //    {
-            //        HumanId = "HF" + DateTime.Now.ToString("yyMMddssfff") + new Random().Next(100, 999),
-            //        HumanPicture = er.HumanPicture,
-            //        HumanName = er.HumanName,
-            //        HumanAddress=er.HumanAddress,
-            //        HumanPostcode=er.HumanPostcode,
-            //        HumanMajorKindId=er.HumanMajorKindId,
-            //        HumanMajorKindName=er.HumanMajorKindName,
-            //        HumanMajorId=er.HumanMajorId,
-            //        HumanMajorName=er.HumanMajorName,
-            //        HumanTelephone=er.HumanTelephone,
-            //        HumanMobilephone=er.HumanMobilephone,
-            //        HumanEmail=er.HumanEmail,
-            //        HumanHobby=er.HumanHobby,
-            //        HumanSpecility=er.HumanSpecility,
-            //        HumanSex=er.HumanSex,
-            //        HumanReligion=er.HumanReligion,
-            //        HumanParty=er.HumanParty,
-            //        HumanNationality=er.HumanNationality,
-            //        HumanRace=er.HumanRace,
-            //        HumanBirthday=er.HumanBirthday,
-            //        HumanAge=er.HumanAge,
-            //        HumanEducatedDegree=er.HumanEducatedDegree,
-            //        HumanEducatedYears=er.HumanEducatedYears,
-            //        HumanEducatedMajor=er.HumanEducatedMajor,
-            //        Remark=er.Remark,
-            //        HumanIdcard=er.HumanIdcard
-            //    };
-            //    ihf.HumanFileAdd(hf);
-            //}
+            //2 修改职位发布表的人数(-1)
             if (ierb.EngageResumeUpdate(er) > 0)
             {
+                if (er.EngageId > 0) {
+                    EngageModel em = ieb.EngageBy(er.EngageId);
+                    if (em != null)
+                    {
+                        if (em.ManCount > 0) {
+                            em.ManCount--;
+                            ieb.EngageUpdate(em);
+                        }
+                    }
+                }
+                if (er.HumanEmail != null && er.HumanEmail != "")
+                {
+                    MailMessage mail = new MailMessage();
+                    //发件人邮件地址
+                    mail.From = new MailAddress("XY13308469744@163.com");
+                    //接收人的邮件地址
+                    mail.To.Add(new MailAddress(er.HumanEmail));
+                    //主题
+                    mail.Subject = string.Format("恭喜{0}入职", er.HumanName);
+                    mail.Body = string.Format("{0}，你通过了我们公司的面试。快点来入职。", er.HumanName);
+
+                    //创建smtp协议对象
+                    SmtpClient sc = new SmtpClient("smtp.163.com")
+                    {
+                        UseDefaultCredentials = true,
+                        EnableSsl = false,
+                        DeliveryMethod = SmtpDeliveryMethod.Network
+                    }; ;
+                    //邮件服务发送的凭证
+                    sc.Credentials = new NetworkCredential("XY13308469744@163.com", "123456qq");
+                    //发送
+                    sc.Send(mail);
+                }
                 return Content("<script>alert('提交成功!');location='/EngageEmploy/LYSP';</script>");
             }
             else

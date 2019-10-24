@@ -63,7 +63,7 @@
                     </td>
                     <td class="TD_STYLE2" width="81%">
                         @Html.TextBox("Majorid", null, new { @class = "INPUT_STYLE1" })
-                        @Html.ValidationMessage("Majorid")
+                        @Html.ValidationMessage("Majorid", new { @style = "color:red;" })
                     </td>
                 </tr>
                 <tr>
@@ -72,7 +72,7 @@
                     </td>
                     <td class="TD_STYLE2" width="81%">
                         @Html.TextBox("Majorname", null, new { @class = "INPUT_STYLE1" })
-                        @Html.ValidationMessage("Majorname")
+                        @Html.ValidationMessage("Majorname", new { @style = "color:red;" })
                     </td>
                 </tr>
             </table>

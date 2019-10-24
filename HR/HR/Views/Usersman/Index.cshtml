@@ -94,15 +94,9 @@
                         type: "post",
                         data: "currentPage=" + t.currentPage + "&PageSize=" + t.PageSize,
                         success: function (rs) {
-                            t.nums = eval("(" + rs + ")");
-                            $.ajax({
-                                url: "../Usersman/GetRow",
-                                type: "post",
-                                success: function (rs) {
-                                    t.rows = rs;
-                                    t.pages = Math.ceil(t.rows / t.PageSize);
-                                }
-                            });
+                            t.nums = eval("(" + rs + ")")["list"];
+                            t.rows = eval("(" + rs + ")")["rows"];
+                            t.pages = Math.ceil(t.rows / t.PageSize);
                         }
                     });
                 },

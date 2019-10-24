@@ -15,12 +15,7 @@ namespace DAO
         public List<SalaryStandardDetailsModel> SalaryGrantdetailsSelectGZXQ(string id)
         {
             // string sql = "select * from dbo.SalaryGrant where Firstkindname!=''";\
-            string sql = string.Format(@"select d.*,s.Salarystandardid,g.* from dbo.SalaryGrantdetails g
-inner join dbo.SalaryGrant s
-on g.Salarygrantid=s.Salarygrantid
-inner join dbo.SalaryStandardDetails d
-on s.Salarystandardid=d.Standardid
-where g.Humanid='{0}'",id);
+            string sql = string.Format(@"select * from dbo.SalaryStandardDetails where Standardid='{0}'", id);
             DataTable dt = DBHelper.select(sql);
             List<SalaryStandardDetailsModel> list2 = new List<SalaryStandardDetailsModel>();
             foreach (DataRow item in dt.Rows)

@@ -215,7 +215,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <input type="hidden" name="HumanMajorKindName" v-model="MKName" />
-                        <select v-model="HumanMajorKindId" name="HumanMajorKindId" id="MajorKindid" class="SELECT_STYLE1" v-on:change="GetMs()">
+                        <select v-model="HumanMajorKindId" name="HumanMajorKindId" id="MajorKindid" class="SELECT_STYLE1" v-on:change="GetMs(null)">
                             <option id="qxz2">--请选择--</option>
                             <option v-for="(item,i) in MKs" v-bind:value="item.Majorkindid">{{item.Majorkindname}}</option>
                         </select>
@@ -245,7 +245,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         @Html.TextBox("HumanName",null,new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanName")
+                        @Html.ValidationMessage("HumanName", new { @style = "color:red;" })
                     </td>
                     <td class="TD_STYLE1">
                         性别
@@ -264,7 +264,7 @@
                         EMAIL
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" v-model="@Model.HumanEmail" name="HumanEmail" id="humanEmail"  class="INPUT_STYLE2">
+                        <input type="text" value="@Model.HumanEmail" name="HumanEmail" id="humanEmail"  class="INPUT_STYLE2">
                     </td>
                 </tr>
                 <tr>
@@ -273,7 +273,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         @Html.TextBox("HumanTelephone", Model.HumanTelephone, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanTelephone")
+                        @Html.ValidationMessage("HumanTelephone", new { @style = "color:red;" })
                     </td>
                     <td class="TD_STYLE1">
                         QQ
@@ -285,7 +285,7 @@
                         手机
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        <input type="text" v-model="@Model.HumanMobilephone" name="HumanMobilephone" class="INPUT_STYLE2" />
+                       <input type="text" value="@Model.HumanMobilephone" name="HumanMobilephone" class="INPUT_STYLE2" />
                     </td>
                 </tr>
                 <tr>
@@ -307,7 +307,7 @@
                         国籍
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanNationality" class="SELECT_STYLE1">
+                        <select v-model="HumanNationality" name="HumanNationality" class="SELECT_STYLE1">
                             <option v-for="(item,i) in GJ" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
@@ -327,7 +327,7 @@
                         民族
                     </td>
                     <td class="TD_STYLE2" width="14%">
-                        <select name="HumanRace" class="SELECT_STYLE1">
+                        <select v-model="HumanRace" name="HumanRace" class="SELECT_STYLE1">
                             <option v-for="(item,i) in MZ" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
@@ -337,7 +337,7 @@
                         宗教信仰
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanReligion" class="SELECT_STYLE1">
+                        <select v-model="HumanReligion" name="HumanReligion" class="SELECT_STYLE1">
                             <option v-for="(item,i) in ZJXY" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
@@ -345,7 +345,7 @@
                         政治面貌
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanParty" class="SELECT_STYLE1">
+                        <select v-model="HumanParty" name="HumanParty" class="SELECT_STYLE1">
                             <option v-for="(item,i) in ZZMM" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
@@ -354,7 +354,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         @Html.TextBox("HumanIdcard", null, new { @class = "INPUT_STYLE2",@onchange= "getCode(this)" })
-                        @Html.ValidationMessage("HumanIdcard")
+                        @Html.ValidationMessage("HumanIdcard", new { @style = "color:red;" })
                     </td>
                     <td class="TD_STYLE1">
                         社会保障号码
@@ -374,7 +374,7 @@
                         学历
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanEducatedDegree" class="SELECT_STYLE1">
+                        <select v-model="HumanEducatedDegree" name="HumanEducatedDegree" class="SELECT_STYLE1">
                             <option v-for="(item,i) in XL" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
@@ -382,7 +382,7 @@
                         教育年限
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanEducatedYears" class="SELECT_STYLE1">
+                        <select v-model="HumanEducatedYears" name="HumanEducatedYears" class="SELECT_STYLE1">
                             <option v-for="(item,i) in JYNX" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
@@ -390,7 +390,7 @@
                         学历专业
                     </td>
                     <td class="TD_STYLE2">
-                        <select name="HumanEducatedMajor" class="SELECT_STYLE1">
+                        <select v-model="HumanEducatedMajor" name="HumanEducatedMajor" class="SELECT_STYLE1">
                             <option v-for="(item,i) in XLZY" v-bind:value="item.Attribute_name">{{item.Attribute_name}}</option>
                         </select>
                     </td>
@@ -516,232 +516,242 @@
                 ZC: null,
                 SalarySum:null,
                 SSs: null,
-                HumanMajorKindId:@Model.HumanMajorKindId,
-                HumanMajorId:@Model.HumanMajorId,
-                HumanHobby:@Model.HumanHobby,
-                HumanSpecility:@Model.HumanSpecility,
-                HumanSex:@Model.HumanSex,
-                HumanReligion:@Model.HumanReligion,
-            },
+                HumanMajorKindId:"@Model.HumanMajorKindId",
+                HumanMajorId:"@Model.HumanMajorId",
+                HumanHobby:"@Model.HumanHobby",
+                HumanSpecility:"@Model.HumanSpecility",
+                HumanSex:"@Model.HumanSex",
+                HumanReligion:"@Model.HumanReligion",
+                HumanParty:"@Model.HumanParty",
+                HumanNationality:"@Model.HumanNationality",
+                HumanRace:"@Model.HumanRace",
+                HumanEducatedDegree:"@Model.HumanEducatedDegree",
+                HumanEducatedYears:"@Model.HumanEducatedYears",
+                HumanEducatedMajor: "@Model.HumanEducatedMajor",
+        },
             methods: {
-                GetMFs: function () {
-                    var t = this;
-                    $.ajax({
-                        url: "../MechanismFirst/GetMFs",
-                        type: "post",
-                        success: function (rs) {
-                            t.MFName = eval("(" + rs + ")")[0].FirstMName;
-                            t.MFs = eval("(" + rs + ")");
-                        }
-                    });
-                },
-                GetMSs: function () {
-                    var t = this;
-                    t.MFName = $("#FirstMid option:checked").text();
-                    $.ajax({
-                        url: "../MechanismThird/GetMSsWhereFirst",
-                        type: "post",
-                        data: "id=" + $("#FirstMid").val(),
-                        success: function (rs) {
-                            $("#qxz1").remove();
-                            if (eval("(" + rs + ")").length > 0) {
-                                $("#two").remove();
-                                t.MSName = eval("(" + rs + ")")[0].SecondMName;
-                                t.MSs = eval("(" + rs + ")");
-                                $("#SecondMid").attr("disabled", false);
-                                $("#SecondMid").attr("flag", "true");
-                                $("#ssd").attr("disabled", false);
-                                $("#SecondMid").css("backgroundColor", "#F5EDE1")
-                                t.GetMTs(eval("(" + rs + ")")[0].SecondMid);
-                            } else {
-                                $("#SecondMid").attr("flag", "false");
-                                t.Flag2 = false;
-                                t.MSName = "";
-                                t.MSs = [{ SecondMName: "暂无子机构,请重新选择I级机构", SecondMid: "0" }];
-                                $("#SecondMid").attr("disabled", "disabled");
-                                $("#ssd").attr("disabled", "disabled");
-                                $("#SecondMid").css("backgroundColor", "#EEE")
-                                t.GetMTs("0");
-                            }
-                        }
-                    });
-                },
-                GetMTs: function (ss) {
-                    var t = this;
-                    var sid = ss != null ? ss : $("#SecondMid").val();
-                    $.ajax({
-                        url: "../Engage/GetMTs",
-                        type: "post",
-                        data: "fid=" + $("#FirstMid").val() + "&sid=" + sid,
-                        success: function (rs) {
-                            t.MSName = $("#SecondMid option:checked").text();
-                            if (eval("(" + rs + ")").length > 0) {
-                                $("#third").remove();
-                                t.MTName = eval("(" + rs + ")")[0].ThirdMName;
-                                $("#ThirdMid").attr("flag", "true");
-                                t.MTs = eval("(" + rs + ")");
-                                $("#ThirdMid").attr("disabled", false);
-                                $("#ssd").attr("disabled", false);
-                                $("#ThirdMid").css("backgroundColor", "#F5EDE1")
-                            } else {
-                                $("#ThirdMid").attr("flag", "false");
-                                t.Flag2 = false;
-                                t.MTName = "";
-                                t.MTs = [{ ThirdMName: "暂无子机构,请重新选择II级机构", ThirdMid: "0" }];
-                                $("#ThirdMid").attr("disabled", "disabled");
-                                $("#ssd").attr("disabled", "disabled");
-                                $("#ThirdMid").css("backgroundColor", "#EEE")
-                            }
-                        }
-                    });
-                },
-                GetMTName: function () {
-                    this.MTName = $("#ThirdMid option:checked").text();
-                },
-                GetMK: function () {
-                    var t = this;
-                    $.ajax({
-                        url: "../ConfigMajorKind/Index2",
-                        type: "post",
-                        success: function (r) {
-                            var mdt = eval("(" + r + ")");
-                            t.MKName = mdt[0].Majorkindname;
-                            t.MKs = mdt;
-                        }
-                    });
-                },
-                GetMKName: function () {
-                    this.MKName = $("#MajorKindid option:checked").text();
-                },
-                GetMs: function () {
-                    var t = this;
-                    t.MKName = $("#MajorKindid option:checked").text();
-                    $.ajax({
-                        url: "../Engage/GetMs",
-                        type: "post",
-                        data:"id="+$("#MajorKindid").val(),
-                        success: function (r) {
-                            var mdt = eval("(" + r + ")");
-                            if (mdt.length > 0) {
-                                t.MName = mdt[0].Majorname;
-                                t.Ms = mdt;
-                                $("#www").remove();
-                                $("#qxz2").remove();
-                                t.MName = eval("(" + r + ")")[0].Majorname;
-                                t.Ms = eval("(" + r + ")");
-                                $("#Majorid").attr("disabled", false);
-                                $("#Majorid").attr("flag", "true");
-                                $("#ssd").attr("disabled", false);
-                                $("#Majorid").css("backgroundColor", "#F5EDE1")
-                            } else {
-                                t.MName = "";
-                                t.Ms = [{ Majorname: "请重新选择职位分类", Majorid: "0" }];
-                                $("#Majorid").attr("disabled", "disabled");
-                                $("#Majorid").attr("flag", "false");
-                                $("#ssd").attr("disabled", "disabled");
-                                $("#Majorid").css("backgroundColor", "#EEE")
-                            }
-                        }
-                    });
-                },
-                GetMName: function () {
-                    this.MName = $("#Majorid option:checked").text();
-                },
-                GetZPLX: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=招聘类型", function (rs) {
-                        t.ZPLX = eval("(" + rs + ")");
-                    });
-                },
-                GetGJ: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=国籍", function (rs) {
-                        t.GJ = eval("(" + rs + ")");
-                    });
-                },
-                GetMZ: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=民族", function (rs) {
-                        t.MZ = eval("(" + rs + ")");
-                    });
-                },
-                GetZJXY: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=宗教信仰", function (rs) {
-                        t.ZJXY = eval("(" + rs + ")");
-                    });
-                },
-                GetZZMM: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=政治面貌", function (rs) {
-                        t.ZZMM = eval("(" + rs + ")");
-                    });
-                },
-                GetXL: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=学历", function (rs) {
-                        t.XL = eval("(" + rs + ")");
-                    });
-                },
-                GetJYNX: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=教育年限", function (rs) {
-                        t.JYNX = eval("(" + rs + ")");
-                    });
-                },
-                GetXLZY: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=学历专业", function (rs) {
-                        t.XLZY = eval("(" + rs + ")");
-                    });
-                },
-                GetTC: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=特长", function (rs) {
-                        t.TC = eval("(" + rs + ")");
-                    });
-                },
-                GetAH: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=爱好", function (rs) {
-                        t.AH = eval("(" + rs + ")");
-                    });
-                },
-                GetZC: function () {
-                    var t = this;
-                    $.post("/PublicChar/GetPCs", "type=职称", function (rs) {
-                        t.ZC = eval("(" + rs + ")");
-                    });
-                },
-                GetSSs:function(){
-                    var t = this;
-                    $.post("/SalaryStandard/GetSalaryStandardController", function (rs) {
-                        t.SSs = eval("(" + rs + ")");
-                        t.SalaryStandardName = eval("(" + rs + ")")[0].Standardname;
-                        t.SalarySum = eval("(" + rs + ")")[0].Salarysum;
-                    });
-                },
-                SetSalaryStandardName: function () {
-                    this.SalaryStandardName = $("#SalaryStandardId option:checked").text();
-                    this.SalarySum = $("#SalaryStandardId option:checked").attr("ze");
-                },
-            },
-            created: function () {
-                this.GetMFs();
-                this.GetMK();
-                this.GetZPLX();
-                this.GetGJ();
-                this.GetMZ();
-                this.GetZJXY();
-                this.GetZZMM();
-                this.GetXL();
-                this.GetJYNX();
-                this.GetXLZY();
-                this.GetTC();
-                this.GetAH();
-                this.GetZC();
-                this.GetSSs();
+        GetMFs: function () {
+            var t = this;
+            $.ajax({
+                url: "../MechanismFirst/GetMFs",
+                type: "post",
+                success: function (rs) {
+                    t.MFName = eval("(" + rs + ")")[0].FirstMName;
+                    t.MFs = eval("(" + rs + ")");
+                }
+            });
+        },
+        GetMSs: function () {
+            var t = this;
+            t.MFName = $("#FirstMid option:checked").text();
+            $.ajax({
+                url: "../MechanismThird/GetMSsWhereFirst",
+                type: "post",
+                data: "id=" + $("#FirstMid").val(),
+                success: function (rs) {
+                    $("#qxz1").remove();
+                    if (eval("(" + rs + ")").length > 0) {
+                        $("#two").remove();
+                        t.MSName = eval("(" + rs + ")")[0].SecondMName;
+                        t.MSs = eval("(" + rs + ")");
+                        $("#SecondMid").attr("disabled", false);
+                        $("#SecondMid").attr("flag", "true");
+                        $("#ssd").attr("disabled", false);
+                        $("#SecondMid").css("backgroundColor", "#F5EDE1")
+                        t.GetMTs(eval("(" + rs + ")")[0].SecondMid);
+                    } else {
+                        $("#SecondMid").attr("flag", "false");
+                        t.Flag2 = false;
+                        t.MSName = "";
+                        t.MSs = [{ SecondMName: "暂无子机构,请重新选择I级机构", SecondMid: "0" }];
+                        $("#SecondMid").attr("disabled", "disabled");
+                        $("#ssd").attr("disabled", "disabled");
+                        $("#SecondMid").css("backgroundColor", "#EEE")
+                        t.GetMTs("0");
+                    }
+                }
+            });
+        },
+        GetMTs: function (ss) {
+            var t = this;
+            var sid = ss != null ? ss : $("#SecondMid").val();
+            $.ajax({
+                url: "../Engage/GetMTs",
+                type: "post",
+                data: "fid=" + $("#FirstMid").val() + "&sid=" + sid,
+                success: function (rs) {
+                    t.MSName = $("#SecondMid option:checked").text();
+                    if (eval("(" + rs + ")").length > 0) {
+                        $("#third").remove();
+                        t.MTName = eval("(" + rs + ")")[0].ThirdMName;
+                        $("#ThirdMid").attr("flag", "true");
+                        t.MTs = eval("(" + rs + ")");
+                        $("#ThirdMid").attr("disabled", false);
+                        $("#ssd").attr("disabled", false);
+                        $("#ThirdMid").css("backgroundColor", "#F5EDE1")
+                    } else {
+                        $("#ThirdMid").attr("flag", "false");
+                        t.Flag2 = false;
+                        t.MTName = "";
+                        t.MTs = [{ ThirdMName: "暂无子机构,请重新选择II级机构", ThirdMid: "0" }];
+                        $("#ThirdMid").attr("disabled", "disabled");
+                        $("#ssd").attr("disabled", "disabled");
+                        $("#ThirdMid").css("backgroundColor", "#EEE")
+                    }
+                }
+            });
+        },
+        GetMTName: function () {
+            this.MTName = $("#ThirdMid option:checked").text();
+        },
+        GetMK: function () {
+            var t = this;
+            $.ajax({
+                url: "../ConfigMajorKind/Index2",
+                type: "post",
+                success: function (r) {
+                    var mdt = eval("(" + r + ")");
+                    t.MKName = mdt[0].Majorkindname;
+                    t.MKs = mdt;
+                    t.GetMs("@Model.HumanMajorKindId");
+                }
+            });
+        },
+        GetMKName: function () {
+            this.MKName = $("#MajorKindid option:checked").text();
+        },
+        GetMs: function (id) {
+            var t = this;
+            t.MKName = $("#MajorKindid option:checked").text();
+            if (id == null) {
+                id = $("#MajorKindid").val();
             }
+            $.ajax({
+                url: "../Engage/GetMs",
+                type: "post",
+                data:"id="+id,
+                success: function (r) {
+                    var mdt = eval("(" + r + ")");
+                    if (mdt.length > 0) {
+                        t.MName = mdt[0].Majorname;
+                        t.Ms = mdt;
+                        $("#www").remove();
+                        $("#qxz2").remove();
+                        t.MName = eval("(" + r + ")")[0].Majorname;
+                        t.Ms = eval("(" + r + ")");
+                        $("#Majorid").attr("disabled", false);
+                        $("#Majorid").attr("flag", "true");
+                        $("#ssd").attr("disabled", false);
+                        $("#Majorid").css("backgroundColor", "#F5EDE1")
+                    } else {
+                        t.MName = "";
+                        t.Ms = [{ Majorname: "请重新选择职位分类", Majorid: "0" }];
+                        $("#Majorid").attr("disabled", "disabled");
+                        $("#Majorid").attr("flag", "false");
+                        $("#ssd").attr("disabled", "disabled");
+                        $("#Majorid").css("backgroundColor", "#EEE")
+                    }
+                }
+            });
+        },
+        GetMName: function () {
+            this.MName = $("#Majorid option:checked").text();
+        },
+        GetZPLX: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=招聘类型", function (rs) {
+                t.ZPLX = eval("(" + rs + ")");
+            });
+        },
+        GetGJ: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=国籍", function (rs) {
+                t.GJ = eval("(" + rs + ")");
+            });
+        },
+        GetMZ: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=民族", function (rs) {
+                t.MZ = eval("(" + rs + ")");
+            });
+        },
+        GetZJXY: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=宗教信仰", function (rs) {
+                t.ZJXY = eval("(" + rs + ")");
+            });
+        },
+        GetZZMM: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=政治面貌", function (rs) {
+                t.ZZMM = eval("(" + rs + ")");
+            });
+        },
+        GetXL: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=学历", function (rs) {
+                t.XL = eval("(" + rs + ")");
+            });
+        },
+        GetJYNX: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=教育年限", function (rs) {
+                t.JYNX = eval("(" + rs + ")");
+            });
+        },
+        GetXLZY: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=学历专业", function (rs) {
+                t.XLZY = eval("(" + rs + ")");
+            });
+        },
+        GetTC: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=特长", function (rs) {
+                t.TC = eval("(" + rs + ")");
+            });
+        },
+        GetAH: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=爱好", function (rs) {
+                t.AH = eval("(" + rs + ")");
+            });
+        },
+        GetZC: function () {
+            var t = this;
+            $.post("/PublicChar/GetPCs", "type=职称", function (rs) {
+                t.ZC = eval("(" + rs + ")");
+            });
+        },
+        GetSSs:function(){
+            var t = this;
+            $.post("/SalaryStandard/GetSalaryStandardController", function (rs) {
+                t.SSs = eval("(" + rs + ")");
+                t.SalaryStandardName = eval("(" + rs + ")")[0].Standardname;
+                t.SalarySum = eval("(" + rs + ")")[0].Salarysum;
+            });
+        },
+        SetSalaryStandardName: function () {
+            this.SalaryStandardName = $("#SalaryStandardId option:checked").text();
+            this.SalarySum = $("#SalaryStandardId option:checked").attr("ze");
+        },
+        },
+        created: function () {
+            this.GetMFs();
+            this.GetMK();
+            this.GetZPLX();
+            this.GetGJ();
+            this.GetMZ();
+            this.GetZJXY();
+            this.GetZZMM();
+            this.GetXL();
+            this.GetJYNX();
+            this.GetXLZY();
+            this.GetTC();
+            this.GetAH();
+            this.GetZC();
+            this.GetSSs();
+        }
         });
     </script>
 </body>

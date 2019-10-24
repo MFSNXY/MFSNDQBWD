@@ -51,6 +51,8 @@
     <Compile Include="IMechanismThirdDAO.cs" />
     <Compile Include="IPermissionDAO.cs" />
     <Compile Include="IPublicCharDAO.cs" />
+    <Compile Include="ISalaryGrantDAO.cs" />
+    <Compile Include="ISalaryGrantdetailsDAO.cs" />
     <Compile Include="ISalaryStandardDAO.cs" />
     <Compile Include="ISalaryStandardDetailsDAO.cs" />
     <Compile Include="IStandardDetailsDAO.cs" />

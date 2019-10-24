@@ -142,14 +142,14 @@
                     </td>
                     <td class="TD_STYLE2 aa">
                         @Html.TextBox("ManCount", @Model.ManCount, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("ManCount")
+                        @Html.ValidationMessage("ManCount", new { @style = "color:red;" })
                     </td>
                     <td class="TD_STYLE1">
                         截止日期
                     </td>
                     <td class="TD_STYLE2 aa">
                         @Html.TextBox("Deadline", (@Model.Deadline).ToString("yyyy-MM-dd"), new { @class = "INPUT_STYLE2", @id = "Deadline" })
-                        @Html.ValidationMessage("Deadline")
+                        @Html.ValidationMessage("Deadline", new { @style = "color:red;" })
                     </td>
                 </tr>
                 <tr>
@@ -158,7 +158,7 @@
                     </td>
                     <td class="TD_STYLE2 aa">
                         @Html.TextBox("Changer", (((View_UserModel)Session["user"]).U_true_name), new { @class = "INPUT_STYLE2", @readonly = "readonly" })
-                        @Html.ValidationMessage("Changer")
+                        @Html.ValidationMessage("Changer", new { @style = "color:red;" })
                     </td>
                     <td class="TD_STYLE1">
                         变更时间
@@ -181,7 +181,7 @@
                     </td>
                     <td class="TD_STYLE2 aa" colspan="8">
                         @Html.TextBox("Description", @Model.Description, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("Description")    
+                        @Html.ValidationMessage("Description", new { @style = "color:red;" })    
                      </td>
 
                 </tr>
@@ -191,7 +191,7 @@
                     </td>
                     <td class="TD_STYLE2 aa" colspan="8">
                         @Html.TextBox("Claim", Model.Claim, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("Claim")    
+                        @Html.ValidationMessage("Claim", new { @style = "color:red;" })    
                     </td>
 
                 </tr>

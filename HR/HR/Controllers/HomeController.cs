@@ -23,7 +23,8 @@ namespace HR.Controllers
 
         public ActionResult GetTree(int id=0)
         {
-            return Content(JsonConvert.SerializeObject(ipb.PermissionRole(id,0)));
+            List<PermissionModel> list = ipb.PermissionRole(id, ((int)Session["userRid"]));
+            return Content(JsonConvert.SerializeObject(list));
         }
 
 

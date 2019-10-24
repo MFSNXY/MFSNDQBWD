@@ -53,7 +53,7 @@
                  @*   <input type="text" name="FirstMName" value=""
                            class="INPUT_STYLE1">*@
                     @Html.TextBox("FirstMName",null,new { @class = "INPUT_STYLE1" })
-                    @Html.ValidationMessage("FirstMName")
+                    @Html.ValidationMessage("FirstMName", new { @style = "color:red;" })
                 </td>
             </tr>
             <tr>
@@ -64,7 +64,7 @@
                     @*<textarea name="SalaryId" rows="4"
                               class="TEXTAREA_STYLE1" ></textarea>*@
                     @Html.TextBox("SalaryId",null, new { @class = "INPUT_STYLE1" })
-                    @Html.ValidationMessage("SalaryId")
+                    @Html.ValidationMessage("SalaryId", new { @style = "color:red;" })
                 </td>
             </tr>
             <tr>
@@ -75,7 +75,7 @@
                     @*<textarea name="SalesId" rows="4"
                               class="TEXTAREA_STYLE1"  ></textarea>*@
                     @Html.TextBox("SalesId", null, new { @class = "INPUT_STYLE1" })
-                    @Html.ValidationMessage("SalesId")
+                    @Html.ValidationMessage("SalesId", new { @style = "color:red;" })
                 </td>
             </tr>
         </table>

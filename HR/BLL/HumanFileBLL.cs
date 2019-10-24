@@ -83,5 +83,31 @@ namespace BLL
         {
             return ihd.HumanFileChangList(currentPage, pageSize, out rows, FirstMid, SecondMid, ThirdMid, HumanMajorKindId, HumanMajorId, startTime, endTime, gjz);
         }
+
+        public List<SalaryGrantModel> HumanFileSelectEJ()
+        {
+            return ihd.HumanFileSelectEJ();
+        }
+
+        public List<XCFFST2Model> HumanFileSelectEJXQ(string fid)
+        {
+            return ihd.HumanFileSelectEJXQ(fid);
+        }
+
+        public List<SalaryGrantModel> HumanFileSelectYJ()
+        {
+            return ihd.HumanFileSelectYJ();
+        }
+
+        public List<XCFFSTModel> HumanFileSelectYJXQ(string fid)
+        {
+            return ihd.HumanFileSelectYJXQ(fid);
+        }
+
+        public string XCFFSTHID(string hid)
+        {
+            return ihd.XCFFSTHID(hid);
+        }
+
     }
 }

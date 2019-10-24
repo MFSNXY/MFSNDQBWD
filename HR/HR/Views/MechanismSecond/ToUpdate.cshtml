@@ -65,7 +65,7 @@
                     <td class="TD_STYLE2">
                         @*<input type="text" name="SecondMName" readonly="readonly" class="INPUT_STYLE1" value="@Model.SecondMName">*@
                         @Html.TextBox("SecondMName", @Model.SecondMName, new { @class = "INPUT_STYLE1" })
-                        @Html.ValidationMessage("SecondMName")
+                        @Html.ValidationMessage("SecondMName", new { @style = "color:red;" })
                     </td>
                 </tr>
                 <tr>
@@ -74,7 +74,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         @Html.TextBox("SalaryId", @Model.SalaryId, new { @class = "INPUT_STYLE1" })
-                        @Html.ValidationMessage("SalaryId")
+                        @Html.ValidationMessage("SalaryId", new { @style = "color:red;" })
                     </td>
                 </tr>
                 <tr>
@@ -83,7 +83,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         @Html.TextBox("SalesId", @Model.SalesId, new { @class = "INPUT_STYLE1" })
-                        @Html.ValidationMessage("SalesId")
+                        @Html.ValidationMessage("SalesId", new { @style = "color:red;" })
                     </td>
                 </tr>
             </table>

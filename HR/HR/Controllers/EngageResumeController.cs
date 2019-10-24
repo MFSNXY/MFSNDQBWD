@@ -27,6 +27,7 @@ namespace HR.Controllers
             ViewBag.Majorid = "0";
             ViewBag.MajorKindName = "";
             ViewBag.MajorName = "";
+            ViewBag.EngageId = 0;
             if (id > 0)
             {
                 EngageModel em = ieb.EngageBy(id);
@@ -34,6 +35,7 @@ namespace HR.Controllers
                 ViewBag.Majorid = em.MajorId;
                 ViewBag.MajorKindName = em.MajorKindName;
                 ViewBag.MajorName = em.MajorName;
+                ViewBag.EngageId = id;
             }
             return View();
         }

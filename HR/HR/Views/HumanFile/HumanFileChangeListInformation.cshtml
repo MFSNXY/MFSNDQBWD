@@ -210,7 +210,7 @@
                     </td>
                     <td class="TD_STYLE2 aa">
                         @Html.TextBox("HumanName", Model.HumanName, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanName")
+                        @Html.ValidationMessage("HumanName", new { @style = "color:red;" })
                     </td>
                     <td class="TD_STYLE1">
                         性别
@@ -234,7 +234,7 @@
                     </td>
                     <td class="TD_STYLE2 aa">
                         @Html.TextBox("HumanTelephone", Model.HumanTelephone, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanTelephone")
+                        @Html.ValidationMessage("HumanTelephone", new { @style = "color:red;" })
                     </td>
                     <td class="TD_STYLE1">
                         QQ
@@ -315,7 +315,7 @@
                     </td>
                     <td class="TD_STYLE2 aa">
                         @Html.TextBox("HumanIdcard", @Model.HumanIdcard, new { @class = "INPUT_STYLE2" })
-                        @Html.ValidationMessage("HumanIdcard")
+                        @Html.ValidationMessage("HumanIdcard", new { @style = "color:red;" })
                     </td>
                     <td class="TD_STYLE1">
                         社会保障号码

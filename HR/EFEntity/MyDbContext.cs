@@ -45,12 +45,17 @@ namespace EFEntity
         public DbSet<Qx> Qx { get; set; }
         public DbSet<Users> Users { get; set; }
 
+        public DbSet<SalaryGrant> SalaryGrant { get; set; }
+        public DbSet<SalaryGrantdetails> SalaryGrantdetails { get; set; }
         public DbSet<Usersman> Usersman { get; set; }
         public DbSet<View_User> View_User { get; set; }
         public DbSet<Authorityrole> Authorityrole { get; set; }
         public DbSet<View_Authorityrole> View_Authorityrole { get; set; }
 
         public DbSet<Major_change> Major_change { get; set; }
+
+        public DbSet<XCFFST> XCFFST { get; set; }
+        public DbSet<XCFFST2> XCFFST2 { get; set; }
 
     }
 }

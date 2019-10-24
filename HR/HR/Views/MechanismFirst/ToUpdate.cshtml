@@ -57,7 +57,7 @@
                     @*<input type="text" name="FirstMName" value="@Model.FirstMName"
                            readonly="readonly" class="INPUT_STYLE1">*@
                     @Html.TextBox("FirstMName", @Model.FirstMName, new { @class = "INPUT_STYLE1" })
-                    @Html.ValidationMessage("FirstMName")
+                    @Html.ValidationMessage("FirstMName", new { @style = "color:red;" })
                 </td>
             </tr>
             <tr>
@@ -68,7 +68,7 @@
                     @*<textarea name="SalaryId" rows="4"
                               class="TEXTAREA_STYLE1"  required="required">@Model.SalaryId</textarea>*@
                     @Html.TextBox("SalaryId", @Model.SalaryId, new { @class = "INPUT_STYLE1" })
-                    @Html.ValidationMessage("SalaryId")
+                    @Html.ValidationMessage("SalaryId", new { @style = "color:red;" })
                 </td>
             </tr>
             <tr>
@@ -79,7 +79,7 @@
                     @*<textarea name="SalesId" rows="4"
                               class="TEXTAREA_STYLE1"  required="required">@Model.SalesId</textarea>*@
                     @Html.TextBox("SalesId", @Model.SalesId, new { @class = "INPUT_STYLE1" })
-                    @Html.ValidationMessage("SalesId")
+                    @Html.ValidationMessage("SalesId", new { @style = "color:red;" })
                 </td>
             </tr>
         </table>

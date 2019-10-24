@@ -41,7 +41,7 @@
                 </td>
                 <td class="TD_STYLE2" width="81%">
                     @Html.TextBox("Attribute_kind", null, new { @class = "INPUT_STYLE1" })
-                    @Html.ValidationMessage("Attribute_kind")
+                    @Html.ValidationMessage("Attribute_kind", new { @style = "color:red;" })
                 </td>
             </tr>
             <tr>
@@ -50,7 +50,7 @@
                 </td>
                 <td class="TD_STYLE2">
                     @Html.TextBox("Attribute_name", null, new { @class = "INPUT_STYLE1" })
-                    @Html.ValidationMessage("Attribute_name")
+                    @Html.ValidationMessage("Attribute_name", new { @style = "color:red;" })
                 </td>
             </tr>
         </table>

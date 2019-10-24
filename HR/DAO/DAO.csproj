@@ -67,6 +67,8 @@
     <Compile Include="PermissionDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicCharDAO.cs" />
+    <Compile Include="SalaryGrantDAO.cs" />
+    <Compile Include="SalaryGrantdetailsDAO.cs" />
     <Compile Include="SalaryStandardDAO.cs" />
     <Compile Include="SalaryStandardDetailsDAO.cs" />
     <Compile Include="StandardDetailsDAO.cs" />

@@ -54,7 +54,7 @@ namespace HR.Controllers
 
         public ActionResult Register(HumanFileModel hf,int ERid)
         {
-            //    hf.HumanId = "HF" + DateTime.Now.ToString("yyMMddssfff") + new Random().Next(100, 999);
+            hf.HumanId = "HF" + DateTime.Now.ToString("yyMMddssfff") + new Random().Next(100, 999);
             if (ihf.HumanFileAdd(hf) > 0)
             {
                 EngageResumeModel er = ierb.EngageResumeSelectBy(ERid);

@@ -190,6 +190,7 @@
     <Compile Include="Controllers\Mobilization_auditController.cs" />
     <Compile Include="Controllers\PublicCharController.cs" />
     <Compile Include="Controllers\Register_locateController.cs" />
+    <Compile Include="Controllers\SalaryGrantController.cs" />
     <Compile Include="Controllers\SalaryStandardController.cs" />
     <Compile Include="Controllers\StandardDetailsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -1154,6 +1155,7 @@
     <Content Include="Views\Usersman\Index.cshtml" />
     <Content Include="Views\Usersman\Update.cshtml" />
     <Content Include="Views\HumanFile\HumanFileRegisterList.cshtml" />
+    <Content Include="Views\SalaryGrant\Query.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

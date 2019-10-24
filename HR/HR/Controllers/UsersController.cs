@@ -97,6 +97,7 @@ namespace HR.Controllers
             if (um != null)
             {
                 Session["user"] = ivb.SelectView_UserBy(um.U_id)[0];
+                Session["userRid"] = um.U_oid;
                 rs = "1";
             }
             return Content(rs);

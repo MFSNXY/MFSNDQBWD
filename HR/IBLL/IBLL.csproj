@@ -51,6 +51,8 @@
     <Compile Include="IMechanismThirdBLL.cs" />
     <Compile Include="IPermissionBLL.cs" />
     <Compile Include="IPublicCharBLL.cs" />
+    <Compile Include="ISalaryGrantBLL.cs" />
+    <Compile Include="ISalaryGrantdetailsBLL.cs" />
     <Compile Include="ISalaryStandardBLL.cs" />
     <Compile Include="ISalaryStandardDetailsBLL.cs" />
     <Compile Include="IStandardDetailsBLL.cs" />

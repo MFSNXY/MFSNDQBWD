@@ -71,7 +71,8 @@
                     {{item.Deadline|timeFormate}}
                 </td>
                 <td class="TD_STYLE2">
-                    <a v-bind:href="['../EngageResume/Index/'+item.Id]" >申请该职位</a>
+                    <a v-if="item.ManCount>0" v-bind:href="['../EngageResume/Index/'+item.Id]" >申请该职位</a>
+                    <span v-if="item.ManCount<1" >已无该职位申请</span>
                 </td>
             </tr>
         </table>

@@ -37,5 +37,11 @@ namespace IBLL
 
         List<HumanFileModel> HumanFileChangList(int currentPage, int pageSize, out int rows, string FirstMid, string SecondMid, string ThirdMid, string HumanMajorKindId, string HumanMajorId, DateTime? startTime, DateTime? endTime, string gjz);
 
+        List<SalaryGrantModel> HumanFileSelectYJ();
+        List<SalaryGrantModel> HumanFileSelectEJ();
+        List<XCFFSTModel> HumanFileSelectYJXQ(string fid);
+        List<XCFFST2Model> HumanFileSelectEJXQ(string fid);
+        string XCFFSTHID(string hid);
+
     }
 }

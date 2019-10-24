@@ -8,6 +8,7 @@ using IBLL;
 using IocContainer;
 using Model;
 using System.Data;
+using System.Web.Caching;
 
 namespace HR.Controllers
 {
@@ -21,17 +22,39 @@ namespace HR.Controllers
         {
             return View();
         }
-        public ActionResult Index2(int PageSize = 2, int currentPage = 1)
+        public ActionResult Index2(int PageSize, int currentPage)
         {
             int rows = 0;
-            return Content(JsonConvert.SerializeObject(iub.UsersmanFenYe(currentPage, PageSize, out rows)));
+            Cache ch = this.HttpContext.Cache;
+            List<UsersmanModel> list = null;
+            if (ch["curr"] == null)
+            {
+                ch["curr"] = currentPage;
+            }
+            if (ch["userlist"] == null|| (int)ch["curr"] != currentPage)
+            {
+                ch["curr"] = currentPage;
+                list = iub.UsersmanFenYe(currentPage, PageSize, out rows);
+                ch.Insert("userlist", list, null, DateTime.Now.AddMinutes(10), TimeSpan.Zero);
+                ch.Insert("rows", rows, null, DateTime.Now.AddMinutes(10), TimeSpan.Zero);
+            }
+            else
+            {
+                list = ch["userlist"] as List<UsersmanModel>;
+                rows = (int)ch["rows"];
+            }
+            Dictionary<string, object> dic = new Dictionary<string, object>()
+            {
+                {"list",list }, {"rows",rows }
+            };
+            return Content(JsonConvert.SerializeObject(dic));
         }
-        public ActionResult GetRow()
-        {
-            int rows = 0;
-            iub.UsersmanFenYe(1, 4, out rows);
-            return Content(rows + "");
-        }
+        //public ActionResult GetRow()
+        //{
+        //    int rows = 0;
+        //    iub.UsersmanFenYe(1, 4, out rows);
+        //    return Content(rows + "");
+        //}
         public ActionResult Add()
         {
             return View();
@@ -41,6 +64,8 @@ namespace HR.Controllers
         {
             if (iub.UsersmanAdd(um) > 0)
             {
+                Cache ch = this.HttpContext.Cache;
+                ch.Remove("userlist");
                 return RedirectToAction("Index");
             }
             else
@@ -54,6 +79,8 @@ namespace HR.Controllers
             um.U_oid = id;
             if (iub.UsersmanDelete(um) > 0)
             {
+                Cache ch = this.HttpContext.Cache;
+                ch.Remove("userlist");
                 return RedirectToAction("Index");
             }
             else
@@ -109,6 +136,8 @@ namespace HR.Controllers
                     }
                     if (cot == str.Length)
                     {
+                        Cache ch = this.HttpContext.Cache;
+                        ch.Remove("userlist");
                         Response.Write(1);
                         return RedirectToAction("Index");
                     }

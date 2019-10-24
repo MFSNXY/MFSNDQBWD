@@ -424,7 +424,7 @@
                         @*<input type="text" name="engageInterview.registeTime" onclick="aa('engageInterview.registeTime')"
                                class="INPUT_STYLE2" id="date">*@
                         @Html.TextBox("RegisteTime", null, new { @class = "INPUT_STYLE2", @id = "date", @onclick = "aa('RegisteTime')" , @required = "required", @readonly = "readonly" })
-                        @Html.ValidationMessage("RegisteTime")
+                        @Html.ValidationMessage("RegisteTime", new { @style = "color:red;" })
 
                     </td>
                     <td class="TD_STYLE1">

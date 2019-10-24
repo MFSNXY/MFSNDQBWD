@@ -61,12 +61,16 @@
     <Compile Include="Configer\MechanismThirdConfiger.cs" />
     <Compile Include="Configer\PermissionConfiger.cs" />
     <Compile Include="Configer\QxConfiger.cs" />
+    <Compile Include="Configer\SalaryGrantConfiger.cs" />
+    <Compile Include="Configer\SalaryGrantdetailsConfiger.cs" />
     <Compile Include="Configer\SalaryStandardConfiger.cs" />
     <Compile Include="Configer\SalaryStandardDetailsConfiger.cs" />
     <Compile Include="Configer\UsersConfiger.cs" />
     <Compile Include="Configer\UsersmanConfiger.cs" />
     <Compile Include="Configer\View_AuthorityroleConfiger.cs" />
     <Compile Include="Configer\View_UserConfiger.cs" />
+    <Compile Include="Configer\XCFFST2Configer.cs" />
+    <Compile Include="Configer\XCFFSTConfiger.cs" />
     <Compile Include="ConfigMajor.cs" />
     <Compile Include="Engage.cs" />
     <Compile Include="EngageInterview.cs" />
@@ -97,6 +101,8 @@
     <Compile Include="Usersman.cs" />
     <Compile Include="View_Authorityrole.cs" />
     <Compile Include="View_User.cs" />
+    <Compile Include="XCFFST.cs" />
+    <Compile Include="XCFFST2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

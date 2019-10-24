@@ -80,7 +80,7 @@
                 </td>
                     <td class="TD_STYLE2">
                         @Html.TextBox("ThirdMName", Model.ThirdMName, new { @class = "INPUT_STYLE1" })
-                        @Html.ValidationMessage("ThirdMName")
+                        @Html.ValidationMessage("ThirdMName", new { @style = "color:red;" })
                     <td class="TD_STYLE1">
             </tr>
             <tr>
@@ -89,7 +89,7 @@
             </td>
             <td class="TD_STYLE2">
                 @Html.TextBox("SalesId", @Model.SalesId, new { @class = "INPUT_STYLE1" })
-                @Html.ValidationMessage("SalesId")
+                @Html.ValidationMessage("SalesId", new { @style = "color:red;" })
             </td>
         </tr>
                 <tr>

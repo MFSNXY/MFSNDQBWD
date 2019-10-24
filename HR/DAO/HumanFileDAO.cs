@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IDAO;
 using EFEntity;
 using Model;
+using System.Data;
 
 namespace DAO
 {
@@ -1014,6 +1015,128 @@ namespace DAO
             string sql = string.Format(@"update dbo.HumanFile set MajorChangeAmount+=1 where HumanId='{0}'", humid);
             int s = CreateContext().Database.ExecuteSqlCommand(sql);
             return s;
+        }
+
+        public List<SalaryGrantModel> HumanFileSelectEJ()
+        {
+            string sql = (@"select * ,ManCount =(
+select Count(SecondMid)
+from dbo.HumanFile as b
+where a.SecondMid=b.SecondMid
+),SumMoney=(
+select Sum(SalarySum)
+from HumanFile as b
+where a.SecondMid=b.SecondMid
+),PaidSalarySum=(
+select Sum(PaidSalarySum)
+from HumanFile as b
+where a.SecondMid=b.SecondMid
+)
+from dbo.MechanismSecond  as a");
+            DataTable dt = DBHelper.select(sql);
+            List<SalaryGrantModel> list2 = new List<SalaryGrantModel>();
+            foreach (DataRow item in dt.Rows)
+            {
+
+                SalaryGrantModel sm = new SalaryGrantModel();
+                sm.Id = (int)item["Id"];
+                sm.Firstkindid = item["FirstMid"].ToString();
+                sm.Firstkindname = item["FirstMName"].ToString();
+                sm.Secondkindid = item["SecondMid"].ToString();
+                sm.Secondkindname = item["SecondMName"].ToString();
+                sm.Humanamount = (int)item["ManCount"];
+                sm.Salarygrantid = item["SalaryId"].ToString();
+                sm.Salarystandardsum = (item["SumMoney"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["SumMoney"]));
+                sm.Salarypaidsum = (item["PaidSalarySum"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["PaidSalarySum"]));
+
+                list2.Add(sm);
+            }
+            return list2;
+        }
+
+        //二级机构详情
+        public List<XCFFST2Model> HumanFileSelectEJXQ(string fid)
+        {
+            string sql = string.Format(@"select * from dbo.XCFFST2 where SecondMid='{0}'", fid);
+            DataTable dt = DBHelper.select(sql);
+            List<XCFFST2Model> list2 = new List<XCFFST2Model>();
+            foreach (DataRow item in dt.Rows)
+            {
+                XCFFST2Model sm = new XCFFST2Model();
+                sm.Id = (int)item["Id"];
+                sm.HumanId = item["HumanId"].ToString();
+                sm.SalaryId = item["SalaryId"].ToString();
+                sm.HumanName = item["HumanName"].ToString();
+                sm.SalaryStandardId = item["SalaryStandardId"].ToString();
+                sm.PaidSalarySum = (item["PaidSalarySum"] == DBNull.Value ? sm.PaidSalarySum : Convert.ToDecimal(item["PaidSalarySum"]));
+                sm.SalaySum = (item["SalarySum"] == DBNull.Value ? sm.SalaySum : Convert.ToDecimal(item["SalarySum"]));
+                list2.Add(sm);
+            }
+            return list2;
+        }
+
+
+        // 根据一级机构查询薪酬发放登记
+        public List<SalaryGrantModel> HumanFileSelectYJ()
+        {
+            string sql = (@"select * ,ManCount =(
+select Count(FirstMid)
+from dbo.HumanFile as b
+where a.FirstMid=b.FirstMid
+),SumMoney=(
+select Sum(SalarySum)
+from HumanFile as b
+where a.FirstMid=b.FirstMid
+),PaidSalarySum=(
+select Sum(PaidSalarySum)
+from HumanFile as b
+where a.FirstMid=b.FirstMid
+)
+from MechanismFirst  as a");
+            DataTable dt = DBHelper.select(sql);
+            List<SalaryGrantModel> list2 = new List<SalaryGrantModel>();
+            foreach (DataRow item in dt.Rows)
+            {
+                SalaryGrantModel sm = new SalaryGrantModel();
+                sm.Id = (int)item["Id"];
+                sm.Firstkindid = item["FirstMid"].ToString();
+                sm.Firstkindname = item["FirstMName"].ToString();
+                sm.Humanamount = (int)item["ManCount"];
+                sm.Salarygrantid = item["SalaryId"].ToString();
+                sm.Salarystandardsum = (item["SumMoney"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["SumMoney"]));
+                sm.Salarypaidsum = (item["PaidSalarySum"] == DBNull.Value ? sm.Salarystandardsum : Convert.ToDecimal(item["PaidSalarySum"]));
+                list2.Add(sm);
+            }
+            return list2;
+        }
+
+        //一级机构详情
+        public List<XCFFSTModel> HumanFileSelectYJXQ(string fid)
+        {
+            string sql = string.Format(@"select * from dbo.XCFFST where FirstMid='{0}'", fid);
+            DataTable dt = DBHelper.select(sql);
+            List<XCFFSTModel> list2 = new List<XCFFSTModel>();
+            foreach (DataRow item in dt.Rows)
+            {
+                XCFFSTModel sm = new XCFFSTModel();
+                sm.Id = (int)item["Id"];
+                sm.HumanId = item["HumanId"].ToString();
+                sm.SalaryId = item["SalaryId"].ToString();
+                sm.HumanName = item["HumanName"].ToString();
+                sm.SalaryStandardId = item["SalaryStandardId"].ToString();
+                sm.PaidSalarySum = (item["PaidSalarySum"] == DBNull.Value ? sm.PaidSalarySum : Convert.ToDecimal(item["PaidSalarySum"]));
+                sm.SalaySum = (item["SalarySum"] == DBNull.Value ? sm.SalaySum : Convert.ToDecimal(item["SalarySum"]));
+                list2.Add(sm);
+            }
+            return list2;
+        }
+
+        //根据档案编号查出薪酬标准单号
+        public string XCFFSTHID(string hid)
+        {
+            string sql = string.Format("select * from dbo.XCFFST where HumanId='{0}'", hid);
+            DataTable dt = DBHelper.select(sql);
+            return dt.Rows[0]["SalaryStandardId"].ToString();
         }
 
     }

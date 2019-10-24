@@ -32,6 +32,9 @@
                                 tools: [{
                                     iconCls: 'icon-mini-refresh',
                                     handler: function () {
+                                        var currTab = self.parent.$('#tabs').tabs('getSelected');
+                                        var url = $(currTab.panel('options').content).attr('src');
+                                        currTab.find("iframe").attr("src", url);
                                     }
                                 }]
                             });
