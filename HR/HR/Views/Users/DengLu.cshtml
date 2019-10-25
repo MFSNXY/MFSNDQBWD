@@ -9,6 +9,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>DengLu</title>
+    <link href="~/bootstrap.css" rel="stylesheet" />
     <style type=text/css>
         *{
             padding:0px;
@@ -30,6 +31,37 @@
             height:100%;
             transition:2s ease-in-out;
         }
+        #ee{
+            /*display:none;*/
+            /*border:1px solid red;*/
+            position:absolute;
+            width:450px;
+            height:250px;
+           text-align:center;
+           margin-left:480px;
+            transition:1.5s ease-in-out;
+           transform:translateY(-1000px);
+           color:black;
+           color:#5A5858;
+        }
+        #ff{
+             /*border:1px solid red;*/
+             display:inline-block;
+             height:75%;
+             width:80%;
+             margin:25px 0px 0px -395px;
+             position:absolute;
+            z-index:1;
+        }
+        .error{
+            color:red;
+        }
+        #pt {
+            /*border:1px solid red;*/
+            filter: blur(5px);
+            z-index: -1;
+            border-radius:10px;
+        }
     </style>
     <script src="~/javascript/jquery-1.7.2.js"></script>
     <script src="~/javascript/jquery.messager.js"></script>
@@ -39,97 +71,123 @@
         $(function () {
             $("#hh").toggle(function () {
                 $(this).css("filter", "blur(20px)");
+                $("#ee").css({ "transform": "translateY(-540px)" });
             }, function () {
                 $(this).css("filter", "blur(0px)");
+                $("#ee").css({ "transform": "translateY(-1000px)" });
+                $("[name='pid']").val("");
+                $("[name='uid']").val("");
+                $("[type='submit']").attr("disabled", false);
+                $(".error:eq(0)").text("");
+                $(".error:eq(0)").hide();
             });
+            $("[name='pid']").change(function () {
+                if ($(this).val().length < 6 && $(this).val()!="") {
+                    $("[type='submit']").attr("disabled", true);
+                    $(".error:eq(0)").text("密码不能少于6位");
+                    $(".error:eq(0)").show();
+                } else {
+                    $("[type='submit']").attr("disabled", false);
+                    $(".error:eq(0)").text("");
+                    $(".error:eq(0)").hide();
+                }
+            })
         });
     </script>
 </head>
 <body>
+    <form class="form-inline" id="aa" method="post" action="/Users/Dl" >
         <div id="aa">
-            <img id="hh" src="../../images/无标题.png"/>
-            <div>
-                <div style="height: 28px;color:red;" width=80>
-                    登 录 名：
-                </div>
-                <div style="height: 28px" width=150>
-                    <input id="userName" style="width: 130px" />
+            <img id="hh" src="../../images/无标题.png" />
+            <div id="ee">
+                <img id="pt" src="../../images/吃葡萄.png" />
+                <div id="ff">
+                    <div style="margin-top:15px;">
+                        <span>
+                            登 录 名：
+                        </span>
+                        <span>
+                            <input autocomplete="off" size="30" required="required" placeholder="请输入登录名" class="form-control" type="text" name="uid" />
+                        </span>
+                    </div>
+                    <div style="margin-top:15px;">
+                        <span>
+                            登录密码：
+                        </span>
+                        <span>
+                            <input size="30" required="required" placeholder="请输入登录密码" class="form-control" name="pid" type="password" />
+                            <span style="display:block;" class="error" ></span>
+                        </span>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <input type="submit" class="btn btn-default  btn-block" value="登录" />
+                    </div>
                 </div>
             </div>
-            <div>
-                <div style="height: 28px;color:red;">
-                    登录密码：
-                </div>
-                <div style="height: 28px">
-                    <input id="userPassword" style="width: 130px" type="password" />
-                </div>
-            </div>
-            <div>
-                <input type="button" value="登录" v-on:click="Dengl()" />
-            </div>
-            @*<table cellspacing=0 cellpadding=0 width=900 align=center border=0>
-                <tbody>
-                    <tr>
-                        <td style="height: 105px">
-                            <img src="~/images/login_11.gif" border=0/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td background=~/images/login_22.jpg height=300>
-                            <table height=300 cellpadding=0 width=900 border=0>
-                                <tbody>
-                                    <tr>
-                                        <td colspan=2 height=35></td>
-                                    </tr>
-                                    <tr>
-                                        <td width=360></td>
-                                        <td>
-                                            <table cellspacing=0 cellpadding=2 border=0>
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="height: 28px" width=80>
-                                                            登 录 名：
-                                                        </td>
-                                                        <td style="height: 28px" width=150>
-                                                            <input id="userName" style="width: 130px" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height: 28px">
-                                                            登录密码：
-                                                        </td>
-                                                        <td style="height: 28px">
-                                                            <input id="userPassword" style="width: 130px" type="password" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height: 18px"></td>
-                                                        <td style="height: 18px"></td>
-                                                        <td style="height: 18px"></td>
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="button" value="登录"  v-on:click="Dengl()" />
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="~/images/login_33.jpg" border=0/>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>*@
         </div>
-    <script type="text/javascript">
+    </form>
+    @*<table cellspacing=0 cellpadding=0 width=900 align=center border=0>
+            <tbody>
+                <tr>
+                    <td style="height: 105px">
+                        <img src="~/images/login_11.gif" border=0/>
+                    </td>
+                </tr>
+                <tr>
+                    <td background=~/images/login_22.jpg height=300>
+                        <table height=300 cellpadding=0 width=900 border=0>
+                            <tbody>
+                                <tr>
+                                    <td colspan=2 height=35></td>
+                                </tr>
+                                <tr>
+                                    <td width=360></td>
+                                    <td>
+                                        <table cellspacing=0 cellpadding=2 border=0>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="height: 28px" width=80>
+                                                        登 录 名：
+                                                    </td>
+                                                    <td style="height: 28px" width=150>
+                                                        <input id="userName" style="width: 130px" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height: 28px">
+                                                        登录密码：
+                                                    </td>
+                                                    <td style="height: 28px">
+                                                        <input id="userPassword" style="width: 130px" type="password" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height: 18px"></td>
+                                                    <td style="height: 18px"></td>
+                                                    <td style="height: 18px"></td>
+                                                </tr>
+                                                <tr>
+
+                                                    <td>
+                                                        <input type="button" value="登录"  v-on:click="Dengl()" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="~/images/login_33.jpg" border=0/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>*@
+    @*<script type="text/javascript">
         var va = new Vue({
             el: "#aa",
             data: {
@@ -143,9 +201,9 @@
                         type: "post",
                         data: "uid=" + $("#userName").val() + "&pid=" + $("#userPassword").val(),
                         success: function (msg) {
-                            if (msg>0) {
+                            if (msg > 0) {
                                 alert("登陆成功");
-                                location.href = "/Home/Index";
+                                
                             }
                             else {
                                 alert("登陆失败");
@@ -155,6 +213,6 @@
                 }
             }
         })
-    </script>
+    </script>*@
 </body>
 </html>

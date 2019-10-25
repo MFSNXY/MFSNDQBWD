@@ -93,14 +93,16 @@ namespace HR.Controllers
         public ActionResult Dl(string uid,string pid)
         {
             UsersModel um = iul.Dl(uid, pid);
-            string rs = "0";
             if (um != null)
             {
                 Session["user"] = ivb.SelectView_UserBy(um.U_id)[0];
                 Session["userRid"] = um.U_oid;
-                rs = "1";
+                return Content("<script>location.href = '/Home/Index';</script>");
             }
-            return Content(rs);
+            else
+            {
+                return Content("<script>alert('登陆失败!');location.href = '/Users/DengLu';</script>");
+            }
         }
 
 
