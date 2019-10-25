@@ -33,7 +33,10 @@ namespace HR.Controllers
             return View();
         }
 
-
+        public ActionResult Left()
+        {
+            return View();
+        }
 
     }
 }

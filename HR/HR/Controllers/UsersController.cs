@@ -97,11 +97,11 @@ namespace HR.Controllers
             {
                 Session["user"] = ivb.SelectView_UserBy(um.U_id)[0];
                 Session["userRid"] = um.U_oid;
-                return Content("<script>location.href = '/Home/Index';</script>");
+                return Content("1");
             }
             else
             {
-                return Content("<script>alert('登陆失败!');location.href = '/Users/DengLu';</script>");
+                return Content("0");
             }
         }
 
