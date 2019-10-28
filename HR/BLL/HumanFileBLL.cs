@@ -118,5 +118,10 @@ namespace BLL
         {
             return ihd.HumanFileUpdateGL();
         }
+
+        public int HumanFileSetAttachmentName(string hfid, string attic)
+        {
+            return ihd.HumanFileSetAttachmentName(hfid, attic);
+        }
     }
 }

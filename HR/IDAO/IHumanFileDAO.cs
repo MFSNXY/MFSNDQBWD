@@ -46,5 +46,7 @@ namespace IDAO
 
         int HumanFileUpdateGL();
 
+        int HumanFileSetAttachmentName(string hfid, string attic);
+
     }
 }

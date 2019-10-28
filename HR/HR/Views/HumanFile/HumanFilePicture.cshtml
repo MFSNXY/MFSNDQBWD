@@ -586,12 +586,12 @@
                     if (response == "1") {
                         //上传成功后跳转页面
                         alert("上传成功!");
-                        window.location.href = "/HumanFile/HumanFileRegisterList";
+                        window.location.href = "/HumanFile/HumanFileFile?gn="+@Request["gn"];
                     }else  if (response == "2") {
                         //上传成功后跳转页面
                         alert("上传成功!");
                         window.location.href = "/HumanFile/HumanFileChangeLocate";
-                    } 
+                    }
                     else {
                         alert("上传失败!");
                     }
@@ -610,6 +610,12 @@
             <tr>
                 <td colspan="2">
                     <font color="black">您正在做的业务是：人力资源--人力资源档案管理--图片上传</font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="button" value="下一步" class="BUTTON_STYLE1"
+                           onclick="location.href = '/HumanFile/HumanFileFile?gn=@Request["gn"]'">
                 </td>
             </tr>
             <tr>

@@ -1170,6 +1170,7 @@
     <Content Include="Views\HumanFile\HumanFileRegisterList.cshtml" />
     <Content Include="Views\SalaryGrant\Query.cshtml" />
     <Content Include="Views\Home\Left.cshtml" />
+    <Content Include="Views\HumanFile\HumanFileFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

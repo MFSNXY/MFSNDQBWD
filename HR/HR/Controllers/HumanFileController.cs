@@ -55,12 +55,13 @@ namespace HR.Controllers
         public ActionResult Register(HumanFileModel hf,int ERid)
         {
             hf.HumanId = "HF" + DateTime.Now.ToString("yyMMddssfff") + new Random().Next(100, 999);
+            hf.Zhuangtai = 0; 
             if (ihf.HumanFileAdd(hf) > 0)
             {
                 EngageResumeModel er = ierb.EngageResumeSelectBy(ERid);
                 er.InterviewStatus = 5;
                 ierb.EngageResumeUpdate(er);
-                TempData["hfid"] = hf.HumanId;
+                Session["hfid"] = hf.HumanId;
                 return Content("<script>alert('登记成功!');location='/HumanFile/HumanFilePicture?gn=1';</script>");
             }
             else
@@ -87,7 +88,7 @@ namespace HR.Controllers
             string path = Server.MapPath("~/HumanFileImage/" + DateTime.Now.ToString("yyyy/MM/dd")) + "/" + name + ext;
             new FileInfo(path).Directory.Create();
             file.SaveAs(path);
-            if (ihf.HumanFileSetPic((string)TempData["hfid"], path) > 0)
+            if (ihf.HumanFileSetPic((string)Session["hfid"], path) > 0)
             {
                 return Content(gn+"");
             }
@@ -221,7 +222,7 @@ namespace HR.Controllers
         {
             if (ihf.HumanFileUpdate(hf) > 0)
             {
-                TempData["hfid"] = hf.HumanId;
+                Session["hfid"] = hf.HumanId;
                 return Content("<script>alert('修改成功!');location='/HumanFile/HumanFilePicture?gn=2';</script>");
             }
             else
@@ -364,6 +365,41 @@ namespace HR.Controllers
             else
             {
                 return Content("<script>alert('永久删除失败!');</script>");
+            }
+        }
+
+        public ActionResult HumanFileFile()
+        {
+            return View();
+        }
+
+        public ActionResult HumanFileFileSC(HttpPostedFileBase accFile,int gn)
+        {
+            byte[] bts = MD5.Create().ComputeHash(accFile.InputStream);
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in bts)
+            {
+                sb.Append(b.ToString("X2"));
+            }
+            string name = sb.ToString();
+            string ext = Path.GetExtension(accFile.FileName);
+            string path = Server.MapPath("~/HumanFileFile/" + DateTime.Now.ToString("yyyy/MM/dd")) + "/" + name + ext;
+            new FileInfo(path).Directory.Create();
+            accFile.SaveAs(path);
+            if (ihf.HumanFileSetAttachmentName((string)Session["hfid"], path) > 0)
+            {
+                if (gn == 1)
+                {
+                    return Content("<script>alert('上传成功!'); window.location.href='/HumanFile/HumanFileRegisterList'</script>");
+                }
+                else
+                {
+                    return Content("<script>alert('上传成功!'); window.location.href='/HumanFile/HumanFileChangeLocate'</script>");
+                }
+            }
+            else
+            {
+                return Content("<script>alert('上传失败!'); window.location.href='/HumanFile/HumanFileFile?gn="+gn+"'</script>");
             }
         }
 

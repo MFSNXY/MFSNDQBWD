@@ -46,5 +46,7 @@ namespace IBLL
 
         int HumanFileUpdateGL();
 
+        int HumanFileSetAttachmentName(string hfid, string attic);
+
     }
 }

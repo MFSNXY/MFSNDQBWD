@@ -1167,6 +1167,10 @@ from MechanismFirst  as a");
             return list;
         }
 
+        public int HumanFileSetAttachmentName(string hfid, string attic)
+        {
+            return CreateContext().Database.ExecuteSqlCommand(string.Format("update HumanFile set AttachmentName='{0}' where HumanId='{1}'", attic, hfid));
+        }
 
     }
 }

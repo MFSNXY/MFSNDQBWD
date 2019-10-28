@@ -296,7 +296,7 @@
                         档案附件
                     </td>
                     <td colspan="7" class="TD_STYLE2 aa">
-                        <a href="#"></a>
+                        <a href="@((Model.AttachmentName==null?"":Model.AttachmentName.Substring(Model.AttachmentName.IndexOf(@"\HumanFileFile"))))">@((Model.AttachmentName == null ? "" : Model.AttachmentName.Substring(Model.AttachmentName.LastIndexOf(@"/") + 1)))</a>
                     </td>
                 </tr>
                 <tr>
