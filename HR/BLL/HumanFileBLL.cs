@@ -123,5 +123,11 @@ namespace BLL
         {
             return ihd.HumanFileSetAttachmentName(hfid, attic);
         }
+
+        public HumanFileModel HumanFileByid(string id)
+        {
+            return ihd.HumanFileByid(id);
+        }
+
     }
 }

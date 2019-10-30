@@ -32,7 +32,7 @@
             <td style="text-align: right;font-size:12px;width:35%;color:black;">
                 <br />
                 欢迎你：@(((View_UserModel)Session["user"]).U_true_name)(@(((View_UserModel)Session["user"]).U_name1))&nbsp;
-                <input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="window.parent.frames.location.href = '/Users/DengLu';" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="if(confirm('确认退出吗?')){ window.parent.frames.location.href = '/Users/DengLu'; }" />&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
     </table>

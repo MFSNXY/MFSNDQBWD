@@ -93,7 +93,7 @@ namespace DAO
             return list2;
         }
 
-        public List<SalaryGrantModel> SalaryGrantFYW(int currentPage, int pageSize, out int rows, string xcid, string gjz, DateTime? startTime, DateTime? endTime)
+        public List<SalaryGrantModel> SalaryGrantFYW(int currentPage, int pageSize, out int rows, string xcid, string gjz, string year, string months)
         {
             string sql = "select * from dbo.SalaryGrant where 1=1";
             if (xcid!=null&&xcid!="")
@@ -104,9 +104,16 @@ namespace DAO
             {
                 sql += string.Format(" and Register like '%{0}%'", gjz);
             }
-            if (startTime!=null&&endTime!=null)
+            if (year != null && year != "" && gjz != months && months != "")
             {
-                sql += string.Format(" and Registtime>='{0}' and Registtime<='{1}'", startTime, endTime);
+                if (year != "全部")
+                {
+                    sql += string.Format(" and  datepart(YEAR,Registtime)='{0}'", year);
+                }
+                if (months != "全部")
+                {
+                    sql += string.Format(" and  datepart(MONTH,Registtime)='{0}'", months);
+                }
             }
             var list = CreateContext().SalaryGrant.SqlQuery(sql).OrderBy(e => e.Id).ToList();
             rows = list.Count();

@@ -1,0 +1,204 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Checker</title>
+    <link href="~/bootstrap.css" rel="stylesheet" />
+    <script src="~/jquery-1.11.1.js"></script>
+    <script src="~/bootstrap.js"></script>
+    <script src="~/Scripts/vue-2.4.0.js"></script>
+    <style type="text/css" >
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        #hk{
+            display:inline-block;
+            /*position:absolute;*/
+            /*border:1px solid red;*/
+            height:560px;
+            margin-top:20px;
+            width:90%;
+            background-color:white;
+            opacity:0.95;
+            border-radius:30px;
+            transform:translateY(40px);
+            transition:1s ease-in-out;
+        }
+        #yuy{
+            margin:30px auto 0px;
+            background-color:#fff;
+            opacity:1;
+            width:95%;
+        }
+        .NameHH{
+            float:left;
+            margin-left:50px;
+        }
+        .CountHH{
+            float:right;
+            margin-right:50px;
+        }
+        .rrr{
+            height:45px;
+            cursor:pointer;
+        }
+    </style>
+    <script type="text/javascript" >
+        $(function () {
+            $("#hk").css("transform", "translateY(0px)");
+            $(".list-group-item").hover(function () {
+                $(this).css({ "backgroundColor": "#F5EDE1", "color": "#AD98A5" })
+            }, function () {
+                $(this).css({ "backgroundColor": "#FEFDFC","color":"black" })
+            });
+        });
+    </script>
+</head>
+<body style="background:url(../../images/无标题.png) 0px 0px no-repeat;text-align:center;" >
+    <div id="hk"> 
+        <div id="yuy" >
+            <ul class="list-group">
+                <li onclick="location = '/EngageResume/GetEngageResumeSX'" class="list-group-item rrr"><span class="NameHH">简历筛选</span><span class="CountHH">{{ERs}}例</span></li>
+                <li onclick="location = '/EngageInterview/EngageInterviewSX'" class="list-group-item rrr"><span class="NameHH">面试筛选</span><span class="CountHH">{{EIs}}例</span></li>
+                <li onclick="location = '/EngageEmploy/LYSP'" class="list-group-item rrr"><span class="NameHH">录用审批</span><span class="CountHH">{{LYSPs}}例</span></li>
+                <li onclick="location = '/HumanFile/HumanFileCheckList'" class="list-group-item rrr"><span class="NameHH">人力资源档案登记复核</span><span class="CountHH">{{HFs}}例</span></li>
+                <li onclick="location = '/SalaryStandard/Checklist'" class="list-group-item rrr"><span class="NameHH">薪酬标准登记复核</span><span class="CountHH">{{Es}}例</span></li>
+                <li onclick="location = '/SalaryGrant/SelectFH'" class="list-group-item rrr"><span class="NameHH">薪酬发放登记复核</span><span class="CountHH">{{FHEs}}例</span></li>
+                <li onclick="location = '/Mobilization_audit/check_list'" class="list-group-item rrr"><span class="NameHH">调动复核</span><span class="CountHH">{{DDERs}}例</span></li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript" >
+        var vm = new Vue({
+            el: "#hk",
+            data: {
+                ERs: null,
+                EIs: null,
+                LYSPs: null,
+                HFs: null,
+                Es: null,
+                FHEs: null,
+                DDERs:null,
+            },
+            methods: {
+                GetERs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "../EngageResume/GetEngageResumeSXJL",
+                        type: "post",
+                        data: "currentPage=" + 1 + "&pageSize=" + 1 ,
+                        success: function (rs) {
+                            t.ERs = eval("(" + rs + ")");
+                            $.ajax({
+                                url: "../EngageResume/GetRow",
+                                type: "post",
+                                success: function (rs) {
+                                    t.ERs = rs;
+                                }
+                            });
+                        }
+                    });
+                },
+                GetEIs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/EngageInterview/GetEngageInterviewSX",
+                        type: "post",
+                        data: "currentPage=" + 1 + "&pageSize=" + 1,
+                        success: function (rs) {
+                            var dic = eval("(" + rs + ")");
+                            t.EIs = dic["rows"];
+                        }
+                    });
+                },
+                GetLYSPs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/EngageEmploy/GetEngageEmployLYSP",
+                        type: "post",
+                        data: "currentPage=" + 1 + "&pageSize=" + 1,
+                        success: function (rs) {
+                            var dic = eval("(" + rs + ")");
+                            t.LYSPs = dic["rows"];
+                        }
+                    });
+                },
+                GetHFs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/HumanFile/GetHumanFileCheckList",
+                        type: "post",
+                        data: "currentPage=" + 1 + "&pageSize=" + 1,
+                        success: function (rs) {
+                            var dic = eval("(" + rs + ")");
+                            t.HFs = dic["rows"];
+                        }
+                    });
+                },
+                GetEs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "../SalaryStandard/DJFH",
+                        type: "post",
+                        data: "currentPage=" + 1 + "&pageSize=" + 1,
+                        success: function (rs) {
+                            $.ajax({
+                                url: "../SalaryStandard/GetRow",
+                                type: "post",
+                                success: function (rs) {
+                                    t.Es = rs;
+                                }
+                            });
+                        }
+                    });
+                },
+                GetFHEs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "../SalaryGrant/DJFH",
+                        type: "post",
+                        data: "currentPage=" + 1 + "&pageSize=" + 1,
+                        success: function (rs) {
+                            $.ajax({
+                                url: "../SalaryGrant/GetRow",
+                                type: "post",
+                                success: function (rs) {
+                                    t.FHEs = rs;
+                                }
+                            });
+                        }
+                    });
+                },
+                GetDDERs: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/Mobilization_audit/Index2",
+                        type: "post",
+                        data: "currentPage=" + 1 + "&pageSize=" + 1,
+                        success: function (rs) {
+                            var dic = eval("(" + rs + ")");
+                            t.DDERs = dic["rows"];
+                        }
+                    });
+                },
+            },
+            created: function () {
+                this.GetERs();
+                this.GetEIs();
+                this.GetLYSPs();
+                this.GetHFs();
+                this.GetEs();
+                this.GetFHEs();
+                this.GetDDERs();
+            }
+        });
+    </script>
+</body>
+</html>

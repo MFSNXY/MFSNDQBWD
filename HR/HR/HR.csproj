@@ -1171,6 +1171,7 @@
     <Content Include="Views\SalaryGrant\Query.cshtml" />
     <Content Include="Views\Home\Left.cshtml" />
     <Content Include="Views\HumanFile\HumanFileFile.cshtml" />
+    <Content Include="Views\Home\Checker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

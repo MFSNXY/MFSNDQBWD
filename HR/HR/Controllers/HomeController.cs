@@ -15,6 +15,9 @@ namespace HR.Controllers
     {
 
         IPermissionBLL ipb = IocCreate.CreateBLL<IPermissionBLL>("PermissionBLL");
+        
+
+
         // GET: Home
         public ActionResult Index()
         {
@@ -37,6 +40,19 @@ namespace HR.Controllers
         {
             return View();
         }
+
+        public ActionResult Checker()
+        {
+            Dictionary<string, List<object>> dic = new Dictionary<string, List<object>>();
+            return View();
+        }
+
+        public ActionResult GetCheak()
+        {
+
+            return View();
+        }
+
 
     }
 }

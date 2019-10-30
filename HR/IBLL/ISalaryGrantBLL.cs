@@ -23,7 +23,7 @@ namespace IBLL
         string SelectFID(string fid, string sid);
         List<SalaryGrantModel> SalaryGrantSelectEJA(string zz);
         List<SalaryGrantModel> SalaryGrantFY(int currentPage, int pageSize, out int rows);
-        List<SalaryGrantModel> SalaryGrantFYW(int currentPage, int pageSize, out int rows, string xcid, string gjz, DateTime? startTime, DateTime? endTime);
+        List<SalaryGrantModel> SalaryGrantFYW(int currentPage, int pageSize, out int rows, string xcid, string gjz, string year, string months);
 
     }
 }

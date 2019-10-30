@@ -1172,5 +1172,78 @@ from MechanismFirst  as a");
             return CreateContext().Database.ExecuteSqlCommand(string.Format("update HumanFile set AttachmentName='{0}' where HumanId='{1}'", attic, hfid));
         }
 
+        public HumanFileModel HumanFileByid(string id)
+        {
+            HumanFile p = CreateContext().HumanFile.AsNoTracking().Where(e => e.HumanId == id).SingleOrDefault();
+            #region
+            HumanFileModel hf = new HumanFileModel()
+            {
+                AttachmentName = p.AttachmentName,
+                DeleteTime = p.DeleteTime,
+                BonusAmount = p.BonusAmount,
+                FileChangAmount = p.FileChangAmount,
+                Changer = p.Changer,
+                HumanQQ = p.HumanQQ,
+                ChangeTime = p.ChangeTime,
+                Checker = p.Checker,
+                CheckStatus = p.CheckStatus,
+                CheckTime = p.CheckTime,
+                FirstMid = p.FirstMid,
+                DemandSalaraySum = p.DemandSalaraySum,
+                FirstMName = p.FirstMName,
+                HumanAccount = p.HumanAccount,
+                HumanAddress = p.HumanAddress,
+                HumanAge = p.HumanAge,
+                HumanBank = p.HumanBank,
+                HumanBirthday = p.HumanBirthday,
+                MajorChangeAmount = p.MajorChangeAmount,
+                HumanBirthplace = p.HumanBirthplace,
+                HumanEducatedDegree = p.HumanEducatedDegree,
+                HumanEducatedMajor = p.HumanEducatedMajor,
+                TrainingAmount = p.TrainingAmount,
+                HumanEducatedYears = p.HumanEducatedYears,
+                HumanEmail = p.HumanEmail,
+                HumanFamilyMembership = p.HumanFamilyMembership,
+                HumanFileStatus = p.HumanFileStatus,
+                HumanHistoryRecords = p.HumanHistoryRecords,
+                HumanHobby = p.HumanHobby,
+                HumanId = p.HumanId,
+                HumanIdcard = p.HumanIdcard,
+                HumanMajorId = p.HumanMajorId,
+                HumanMajorKindId = p.HumanMajorKindId,
+                HumanMajorKindName = p.HumanMajorKindName,
+                HumanMajorName = p.HumanMajorName,
+                HumanMobilephone = p.HumanMobilephone,
+                RecoveryTime = p.RecoveryTime,
+                HumanName = p.HumanName,
+                HumanNationality = p.HumanNationality,
+                HumanParty = p.HumanParty,
+                HumanPicture = p.HumanPicture,
+                HumanPostcode = p.HumanPostcode,
+                HumanProDesignation = p.HumanProDesignation,
+                HumanRace = p.HumanRace,
+                HumanReligion = p.HumanReligion,
+                HumanSex = p.HumanSex,
+                HumanSpecility = p.HumanSpecility,
+                HumanTelephone = p.HumanTelephone,
+                Id = p.Id,
+                LastlyChangeTime = p.LastlyChangeTime,
+                PaidSalarySum = p.PaidSalarySum,
+                Register = p.Register,
+                RegisteTime = p.RegisteTime,
+                Remark = p.Remark,
+                SalaryStandardId = p.SalaryStandardId,
+                SalaryStandardName = p.SalaryStandardName,
+                SalarySum = p.SalarySum,
+                SecondMid = p.SecondMid,
+                SecondMName = p.SecondMName,
+                ThirdMid = p.ThirdMid,
+                ThirdMName = p.ThirdMName
+            };
+            #endregion
+            return hf;
+        }
+
+
     }
 }

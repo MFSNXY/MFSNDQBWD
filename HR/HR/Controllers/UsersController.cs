@@ -16,6 +16,7 @@ namespace HR.Controllers
         IUsersBLL iul = IocContainer.IocCreate.CreateBLL<IUsersBLL>("UsersBLL");
         IUsersmanBLL ius = IocCreate.CreateBLL<IUsersmanBLL>("UsersmanBLL");
         IView_UserBLL ivb = IocCreate.CreateBLL<IView_UserBLL>("View_UserBLL");
+
         // GET: Users
         public ActionResult Index()
         {
@@ -97,6 +98,10 @@ namespace HR.Controllers
             {
                 Session["user"] = ivb.SelectView_UserBy(um.U_id)[0];
                 Session["userRid"] = um.U_oid;
+                if (um.U_oid == 30)
+                {
+                    return Content("2");
+                }
                 return Content("1");
             }
             else

@@ -51,7 +51,7 @@ namespace HR.Controllers
             SalaryStandardModel ssm = new SalaryStandardModel();
             ssm.Standardid = Request["Standardid"];
             ssm.Standardname = Request["Standardname"];
-            ssm.Salarysum = Convert.ToDecimal(Request["Salarysum"]);
+            ssm.Salarysum = Request["Salarysum"] == null || Request["Salarysum"] == "" ? ssm.Salarysum : Convert.ToDecimal(Request["Salarysum"]);
             ssm.Designer = Request["Designer"];
             ssm.Register = Request["Register"];
             ssm.Registtime = DateTime.Parse(Request["Registtime"]);
@@ -68,7 +68,7 @@ namespace HR.Controllers
                 sd.Itemname = item["names"].ToString();
                 sd.Standardid = Request["Standardid"];
                 sd.Standardname = Request["Standardname"];
-                sd.Salary = Convert.ToDecimal(item["money"]);
+                sd.Salary = item["money"] == null || item["money"] == "" ? sd.Salary : Convert.ToDecimal(item["money"]);
                 if (isd.SalaryStandardDetailsAdd(sd) > 0)
                 {
                     r2++;
@@ -131,7 +131,7 @@ namespace HR.Controllers
         {
             SalaryStandardModel sg = new SalaryStandardModel();
             sg.Id = Convert.ToInt32(Request["Id"]);
-            sg.Salarysum = Convert.ToDecimal(Request["Salarysum"]);
+            sg.Salarysum = Request["Salarysum"] == null || Request["Salarysum"] == "" ? sg.Salarysum : Convert.ToDecimal(Request["Salarysum"]);
             sg.Changer = Request["Changer"];
             sg.Changetime = Convert.ToDateTime(Request["Changetime"]);
             sg.Remark = Request["Remark"];
@@ -145,7 +145,7 @@ namespace HR.Controllers
             {
                 SalaryStandardDetailsModel sm = new SalaryStandardDetailsModel();
                 sm.Id = int.Parse(item["Id"].ToString());
-                sm.Salary = Convert.ToDecimal(item["money"]);
+                sm.Salary = item["money"] == null || item["money"] == "" ? sm.Salary : Convert.ToDecimal(item["money"]);
 
                 if (isd.SalaryStandardDetailsUpdate(sm) > 0)
                 {
@@ -165,7 +165,7 @@ namespace HR.Controllers
         {
             SalaryStandardModel sg = new SalaryStandardModel();
             sg.Id = Convert.ToInt32(Request["Id"]);
-            sg.Salarysum =Convert.ToDecimal(Request["Salarysum"]);
+            sg.Salarysum = Request["Salarysum"] == null || Request["Salarysum"] == "" ? sg.Salarysum : Convert.ToDecimal(Request["Salarysum"]);
             sg.Checker= Request["Checker"];
             sg.Checktime = Convert.ToDateTime(Request["Checktime"]);
             sg.Checkcomment = Request["Checkcomment"];
@@ -179,7 +179,7 @@ namespace HR.Controllers
             {
                 SalaryStandardDetailsModel sm = new SalaryStandardDetailsModel();
                 sm.Id = int.Parse(item["Id"].ToString());
-                sm.Salary = Convert.ToDecimal(item["money"]);
+                sm.Salary = item["money"] == null || item["money"] == "" ? sm.Salary : Convert.ToDecimal(item["money"]);
 
                 if (isd.SalaryStandardDetailsUpdate(sm) > 0)
                 {

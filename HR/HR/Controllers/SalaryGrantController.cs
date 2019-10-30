@@ -195,10 +195,11 @@ namespace HR.Controllers
                 sm.Salarygrantid = item["SalaryId"].ToString();
                 sm.Humanid = item["HumanId"].ToString();
                 sm.Humanname = item["HumanName"].ToString();
-                sm.Bounssum = Convert.ToDecimal(item["Bounssum"]);
-                sm.Salesum = Convert.ToDecimal(item["Salesum"]);
-                sm.Deductsum = Convert.ToDecimal(item["Deductsum"]);
-                sm.Salarypaidsum = Convert.ToDecimal(item["Salarypaidsum"]);
+                object ass = item["Bounssum"];
+                sm.Bounssum = item["Bounssum"]==null|| item["Bounssum"] == ""? sm.Bounssum: Convert.ToDecimal(item["Bounssum"]);
+                sm.Salesum = item["Salesum"] == null || item["Salesum"] == "" ? sm.Salesum : Convert.ToDecimal(item["Salesum"]);
+                sm.Deductsum = item["Deductsum"] == null || item["Deductsum"] == "" ? sm.Deductsum : Convert.ToDecimal(item["Deductsum"]);
+                sm.Salarypaidsum = item["Salarypaidsum"] == null || item["Salarypaidsum"] == "" ? sm.Salarypaidsum : Convert.ToDecimal(item["Salarypaidsum"]);
                 HumanFileModel hf = new HumanFileModel();
                 hf.Id = Convert.ToInt32(item["Id"]);
                 ihb.HumanFileUpdate1(hf);
@@ -243,10 +244,10 @@ namespace HR.Controllers
             {
                 SalaryGrantdetailsModel sm = new SalaryGrantdetailsModel();
                 sm.Id = int.Parse(item["Id"].ToString());
-                sm.Bounssum = Convert.ToDecimal(item["Bounssum"]);
-                sm.Salesum = Convert.ToDecimal(item["Salesum"]);
-                sm.Deductsum = Convert.ToDecimal(item["Deductsum"]);
-                sm.Salarypaidsum = Convert.ToDecimal(item["Salarypaidsum"]);
+                sm.Bounssum = item["Bounssum"] == null || item["Bounssum"] == "" ? sm.Bounssum : Convert.ToDecimal(item["Bounssum"]);
+                sm.Salesum = item["Salesum"] == null || item["Salesum"] == "" ? sm.Salesum : Convert.ToDecimal(item["Salesum"]);
+                sm.Deductsum = item["Deductsum"] == null || item["Deductsum"] == "" ? sm.Deductsum : Convert.ToDecimal(item["Deductsum"]);
+                sm.Salarypaidsum = item["Salarypaidsum"] == null || item["Salarypaidsum"] == "" ? sm.Salarypaidsum : Convert.ToDecimal(item["Salarypaidsum"]);
                 if (igb.SalaryGrantdetailsUpdate(sm) > 0)
                 {
                     r2++;
@@ -287,19 +288,19 @@ namespace HR.Controllers
             return View();
         }
 
-        public ActionResult XCFFCX(string Salarystandardid = "", string GJZ="", DateTime? startDate=null, DateTime? endDate=null)
+        public ActionResult XCFFCX(string Salarystandardid = "", string GJZ="", string year = null, string months = null)
         {
             TempData["Salarystandardid"] = Salarystandardid;
             TempData["GJZ"] = GJZ;
-            TempData["startDate"] = startDate;
-            TempData["endDate"] = endDate;
+            TempData["year"] = year;
+            TempData["months"] = months;
             return View();
         }
 
-        public ActionResult XCFFCX2(int currentPage, int pageSize,string Salarystandardid = "", string GJZ = "", DateTime? startDate = null, DateTime? endDate = null)
+        public ActionResult XCFFCX2(int currentPage, int pageSize,string Salarystandardid = "", string GJZ = "", string year = null, string months = null)
         {
             int rows = 0;
-            List<SalaryGrantModel> list = isb.SalaryGrantFYW(currentPage, pageSize, out rows, Salarystandardid, GJZ, startDate, endDate);
+            List<SalaryGrantModel> list = isb.SalaryGrantFYW(currentPage, pageSize, out rows, Salarystandardid, GJZ, year, months);
             TempData["rows"] = rows;
             return Content(JsonConvert.SerializeObject(list));
         }

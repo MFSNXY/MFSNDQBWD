@@ -48,5 +48,7 @@ namespace IBLL
 
         int HumanFileSetAttachmentName(string hfid, string attic);
 
+        HumanFileModel HumanFileByid(string id);
+
     }
 }

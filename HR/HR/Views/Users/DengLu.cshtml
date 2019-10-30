@@ -123,9 +123,13 @@
                         $("#topDiv").css({ "transform": "translateY(-0px)" });
                         $("#leftDiv").css({ "transform": "translateX(-0px)" });
                         $("#top").attr("src", "/Home/Top");
-                        $("#left").attr("src", "/Home/Left");
+                        var url = "/Home/Left";
+                        if (rs == 2) {
+                            url = "/Home/Checker";
+                        }
+                        $("#left").attr("src",url);
                     } else {
-                        alert("登陆失败!");
+                        alert("登陆失败,用户名或密码错误!");
                     }
                 });
                 return false;
@@ -144,7 +148,6 @@
             </div>
             <img id="bjthh" src="../../images/无标题.png" />
             <div id="ee">
-                <embed autostart="true" hidden="hidden" src="~/Music/%e3%81%84%e3%81%a8%e3%81%af%e3%81%8b%e3%81%aa%e3%81%97%20(%e8%99%9a%e6%97%a0%e7%bc%a5%e7%bc%88)%20-%20%e5%90%89%e6%a3%ae%e4%bf%a1%20(%e3%82%88%e3%81%97%e3%82%82%e3%82%8a%20%e3%81%be%e3%81%93%e3%81%a8).mp3" loop="true">
                 <img id="pt" src="../../images/吃葡萄.png" />
                 <div id="ff">
                     <div style="margin-top:15px;">
@@ -165,7 +168,7 @@
                         </span>
                     </div>
                     <div style="margin-top:20px;">
-                        <input type="submit" class="btn btn-default  btn-block" value="登录" />
+                        <input type="submit" class="btn btn-default  btn-block" value="  登  录 " />
                     </div>
                 </div>
             </div>

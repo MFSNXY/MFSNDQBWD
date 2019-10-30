@@ -29,9 +29,9 @@ namespace BLL
             return icd.SalaryGrantFY(currentPage, pageSize, out rows);
         }
 
-        public List<SalaryGrantModel> SalaryGrantFYW(int currentPage, int pageSize, out int rows, string xcid, string gjz, DateTime? startTime, DateTime? endTime)
+        public List<SalaryGrantModel> SalaryGrantFYW(int currentPage, int pageSize, out int rows, string xcid, string gjz, string year, string months)
         {
-            return icd.SalaryGrantFYW(currentPage, pageSize, out rows, xcid, gjz, startTime, endTime);
+            return icd.SalaryGrantFYW(currentPage, pageSize, out rows, xcid, gjz, year, months);
         }
 
         public List<SalaryGrantModel> SalaryGrantSelect()
