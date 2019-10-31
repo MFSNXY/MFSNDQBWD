@@ -165,8 +165,8 @@
                         新薪酬标准
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="hidden" v-model="XBs" name="New_salary_standard_name" />
-                        <select name="New_salary_standard_id " id="salary_standard_id" width="15%" class="SELECT_STYLE1" v-on:change="GetBz()">
+                        <input type="text" v-model="XBs" name="New_salary_standard_name" />
+                        <select v-model="XCid" name="New_salary_standard_id " id="salary_standard_id" width="15%" class="SELECT_STYLE1" v-on:change="GetBz()">
                             <option v-for="(item,i) in BZs" v-bind:ze="item.Salarysum" v-bind:value="item.Standardid">{{item.Standardname}}</option>
                         </select>
                     </td>
@@ -304,8 +304,9 @@
                 Zw: "@Model.New_major_kind_id",
                 Zwmc: "@Model.New_major_id",
                 BZs: null,
-                ZEs: null,
-                XBs: null
+                ZEs: "@Model.New_salary_sum",
+                XBs: "@Model.New_salary_standard_name",
+                XCid:"@Model.New_salary_standard_id",
             },
             methods: {
                 GetMFs: function () {
@@ -441,7 +442,7 @@
                 GetMName: function () {
                     this.MName = $("#Majorid option:checked").text();
                 },
-                Bzs: function () {
+                Bzs: function (id) {
                     var b = this;
                     $.ajax({
                         url: "/Register_locate/Xc",
@@ -449,7 +450,10 @@
                         success: function (msg) {
                             var ms = eval("(" + msg + ")");
                             b.BZs = ms;
-                            b.ZEs = ms[0].Salarysum;
+                            if (ms[0].Standardid==id){
+                                b.ZEs = ms[0].Salarysum;
+                                b.XBs = ms[0].Standardname;
+                            }
                         }
                     })
                 },
@@ -461,7 +465,7 @@
             created: function () {
                 this.GetMFs();
                 this.GetMK();
-                this.Bzs();
+                this.Bzs("@Model.New_salary_standard_id");
             }
         });
     </script>

@@ -51,9 +51,9 @@ namespace BLL
         {
             return ist.Major_changeSelectSh(currentPage, pageSize, out rows);
         }
-        public List<Major_changeModel> Major_changeSelectDcx(string mkid, string mid, string gjz, string zwfl, string zwmc, DateTime? startTime, DateTime? endTime)
+        public List<Major_changeModel> Major_changeSelectDcx(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, string zwfl, string zwmc, DateTime? startTime, DateTime? endTime)
         {
-            return ist.Major_changeSelectDcx(mkid, mid, gjz, zwfl, zwmc, startTime, endTime);
+            return ist.Major_changeSelectDcx(currentPage, pageSize,out rows, mkid, mid, gjz, zwfl, zwmc, startTime, endTime);
         }
     }
 }

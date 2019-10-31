@@ -20,6 +20,7 @@ namespace HR.Controllers
         IConfigMajorBLL icb = IocCreate.CreateBLL<IConfigMajorBLL>("ConfigMajorBLL");
         ISalaryStandardBLL isb = IocCreate.CreateBLL<ISalaryStandardBLL>("SalaryStandardBLL");
         IHumanFileBLL ihb = IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
+        IConfigMajorKindBLL ickb = IocCreate.CreateBLL<IConfigMajorKindBLL>("ConfigMajorKindBLL");
         // GET: Register_locate
         public ActionResult Index()
         {
@@ -65,7 +66,7 @@ namespace HR.Controllers
         }
         public ActionResult Index3()
         {
-            return Content(JsonConvert.SerializeObject(icb.ConfigMajorSelect()));
+            return Content(JsonConvert.SerializeObject(ickb.ConfigMajorKindSelect()));
         }
         public ActionResult GetMs(string id)
         {

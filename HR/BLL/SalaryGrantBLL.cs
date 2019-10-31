@@ -79,9 +79,9 @@ namespace BLL
             return icd.SelectFID(fid, sid);
         }
 
-        public int SelectPD(string fid, string sid)
+        public int SelectPD(string fid, string sid, string thid)
         {
-            return icd.SelectPD(fid, sid);
+            return icd.SelectPD(fid, sid, thid);
         }
 
         public int SelectPDSID(string sid, string hid)

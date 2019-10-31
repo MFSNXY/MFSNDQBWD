@@ -67,6 +67,7 @@
     <Compile Include="View_AuthorityroleModel.cs" />
     <Compile Include="View_UserModel.cs" />
     <Compile Include="XCFFST2Model.cs" />
+    <Compile Include="XCFFST3Model.cs" />
     <Compile Include="XCFFSTModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

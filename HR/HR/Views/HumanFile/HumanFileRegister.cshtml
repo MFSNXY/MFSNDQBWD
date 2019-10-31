@@ -214,7 +214,7 @@
                         职位分类
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="HumanMajorKindName" v-model="MKName" />
+                        <input type="hidden" name="HumanMajorKindName" v-model="MKName" />
                         <select v-model="HumanMajorKindId" name="HumanMajorKindId" id="MajorKindid" class="SELECT_STYLE1" v-on:change="GetMs(null)">
                             <option id="qxz2">--请选择--</option>
                             <option v-for="(item,i) in MKs" v-bind:value="item.Majorkindid">{{item.Majorkindname}}</option>
@@ -500,7 +500,7 @@
                 MFName: null,
                 MSName: null,
                 MTName: null,
-                MKName: null,
+                MKName:  "@Model.HumanMajorKindName",
                 MName: null,
                 SalaryStandardName: null,
                 ZPLX: null,
@@ -516,7 +516,7 @@
                 ZC: null,
                 SalarySum:null,
                 SSs: null,
-                HumanMajorKindId:"@Model.HumanMajorKindId",
+                HumanMajorKindId: "@Model.HumanMajorKindId",
                 HumanMajorId:"@Model.HumanMajorId",
                 HumanHobby:"@Model.HumanHobby",
                 HumanSpecility:"@Model.HumanSpecility",
@@ -611,20 +611,21 @@
                 type: "post",
                 success: function (r) {
                     var mdt = eval("(" + r + ")");
-                    t.MKName = mdt[0].Majorkindname;
+                    if(t.MKName==null){
+                        t.MKName = mdt[0].Majorkindname;
+                    }
                     t.MKs = mdt;
                     t.GetMs("@Model.HumanMajorKindId");
                 }
             });
         },
-        GetMKName: function () {
-            this.MKName = $("#MajorKindid option:checked").text();
-        },
         GetMs: function (id) {
             var t = this;
-            t.MKName = $("#MajorKindid option:checked").text();
+            var flag = false;
             if (id == null) {
                 id = $("#MajorKindid").val();
+                t.MKName = $("#MajorKindid option:checked").text();
+                flag = true;
             }
             $.ajax({
                 url: "../Engage/GetMs",
@@ -633,6 +634,9 @@
                 success: function (r) {
                     var mdt = eval("(" + r + ")");
                     if (mdt.length > 0) {
+                        if (flag) {
+                            t.HumanMajorId = mdt[0].Majorid;
+                        }
                         t.MName = mdt[0].Majorname;
                         t.Ms = mdt;
                         $("#www").remove();

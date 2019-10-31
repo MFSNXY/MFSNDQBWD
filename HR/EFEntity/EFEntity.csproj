@@ -70,6 +70,7 @@
     <Compile Include="Configer\View_AuthorityroleConfiger.cs" />
     <Compile Include="Configer\View_UserConfiger.cs" />
     <Compile Include="Configer\XCFFST2Configer.cs" />
+    <Compile Include="Configer\XCFFST3Configer.cs" />
     <Compile Include="Configer\XCFFSTConfiger.cs" />
     <Compile Include="ConfigMajor.cs" />
     <Compile Include="Engage.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="View_User.cs" />
     <Compile Include="XCFFST.cs" />
     <Compile Include="XCFFST2.cs" />
+    <Compile Include="XCFFST3.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

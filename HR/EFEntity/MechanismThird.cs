@@ -17,6 +17,7 @@ namespace EFEntity
         public string ThirdMName { get; set; }
         public string SalesId { get; set; }
         public string IsRetail { get; set; }
+        public string SalaryId { get; set; }
 
     }
 }

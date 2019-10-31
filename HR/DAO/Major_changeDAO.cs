@@ -307,9 +307,17 @@ namespace DAO
         public List<Major_changeModel> Major_changeSelectSX(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, DateTime? startTime, DateTime? endTime)
         {
             string sql = "select * from Major_change where 1=1 ";
-            if (mkid != null && mkid != "" && mid != null && mid != ""&&gjz!=null&&gjz!="")
+            if (mkid != null && mkid != "" && mkid != "0")
             {
-                sql += string.Format(" and  first_kind_id={0} and second_kind_id={1} and third_kind_id={2} ", mkid, mid,gjz);
+                sql += string.Format(" and  first_kind_id={0} ", mkid);
+            }
+            if (mid != null && mid != "" && mid != "0")
+            {
+                sql += string.Format("  and second_kind_id={0}",mid);
+            }
+            if (gjz != null && gjz != "" && gjz != "0")
+            {
+                sql += string.Format("  and third_kind_id={0}", gjz);
             }
             if (startTime != null && endTime != null)
             {
@@ -421,20 +429,41 @@ namespace DAO
             }
             return list2;
         }
-        public List<Major_changeModel> Major_changeSelectDcx(string mkid, string mid, string gjz,string zwfl,string zwmc, DateTime? startTime, DateTime? endTime)
+        public List<Major_changeModel> Major_changeSelectDcx(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz,string zwfl,string zwmc, DateTime? startTime, DateTime? endTime)
         {
             string sql = "select * from Major_change where 1=1 ";
-            if (mkid != null && mkid != "" && mid != null && mid != "" && gjz != null && gjz != ""&&zwfl==null&&zwfl==""&&zwmc==null&&zwmc=="")
+            if (mkid != null && mkid != "" && mkid != "0")
             {
-                sql += string.Format(" and  first_kind_id={0} and second_kind_id={1} and third_kind_id={2} and new_major_kind_id={3} and major_id={4}", mkid, mid, gjz,zwfl,zwmc);
+                sql += string.Format(" and  new_first_kind_id={0} ", mkid);
+            }
+            if (mid != null && mid != "" && mid != "0")
+            {
+                sql += string.Format("  and new_second_kind_id={0}", mid);
+            }
+            if (gjz != null && gjz != "" && gjz != "0")
+            {
+                sql += string.Format("  and new_third_kind_id={0}", gjz);
+            }
+            if (zwfl != null && zwfl != "" && zwfl != "0")
+            {
+                sql += string.Format("  and new_major_kind_id={0}", zwfl);
+            }
+            if (zwmc != null && zwmc != "" && zwmc != "0")
+            {
+                sql += string.Format("  and new_major_id={0}", zwmc);
             }
             if (startTime != null && endTime != null)
             {
                 sql += (string.Format(" and  regist_time>= '{0}' and check_time<='{1}' ", startTime, endTime));
             }
-            var list = CreateContext().Major_change.SqlQuery(sql).Where(e=>e.check_status==1).ToList();
+            var list = CreateContext().Major_change.SqlQuery(sql).Where(e => e.check_status == 1).OrderBy(e => e.mch_id).ToList();
+            rows = list.Count();
+            var data = list
+                 .Skip((currentPage - 1) * pageSize)
+                 .Take(pageSize)
+                 .ToList();
             List<Major_changeModel> list2 = new List<Major_changeModel>();
-            foreach (var item in list)
+            foreach (var item in data)
             {
                 Major_changeModel er = new Major_changeModel()
                 {

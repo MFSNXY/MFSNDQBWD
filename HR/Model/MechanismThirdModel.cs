@@ -23,5 +23,6 @@ namespace Model
         [Required(ErrorMessage = "请输入销售责任人编号")]
         public string SalesId { get; set; }
         public string IsRetail { get; set; }
+        public string SalaryId { get; set; }
     }
 }

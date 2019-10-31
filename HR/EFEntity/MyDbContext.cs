@@ -56,6 +56,7 @@ namespace EFEntity
 
         public DbSet<XCFFST> XCFFST { get; set; }
         public DbSet<XCFFST2> XCFFST2 { get; set; }
+        public DbSet<XCFFST3> XCFFST3 { get; set; }
 
     }
 }

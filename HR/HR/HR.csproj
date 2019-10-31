@@ -53,6 +53,14 @@
     <Reference Include="log4net">
       <HintPath>E:\Y2资料   作业\项目\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -211,6 +219,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="MyHub1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TestJob.cs" />
@@ -1007,6 +1016,8 @@
     <Content Include="images\images\Thumbs.db" />
     <Content Include="images\Thumbs.db" />
     <Content Include="javascript\input_control\validation-config.dtd" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Wp2\jquery.js" />
     <Content Include="Wp2\style.css" />
     <Content Include="Wp2\upload.js" />
@@ -1123,7 +1134,6 @@
     <Content Include="Views\SalaryGrant\Index.cshtml" />
     <Content Include="Views\SalaryGrant\YJJG.cshtml" />
     <Content Include="Views\SalaryGrant\EJJG.cshtml" />
-    <Content Include="Views\SalaryGrant\SJJG.cshtml" />
     <Content Include="Views\SalaryGrant\SelectFH.cshtml" />
     <Content Include="Views\SalaryGrant\Commit.cshtml" />
     <Content Include="Views\SalaryGrant\Check.cshtml" />
@@ -1172,6 +1182,7 @@
     <Content Include="Views\Home\Left.cshtml" />
     <Content Include="Views\HumanFile\HumanFileFile.cshtml" />
     <Content Include="Views\Home\Checker.cshtml" />
+    <Content Include="Views\SalaryGrant\SJJG.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -68,22 +68,19 @@ namespace DAO
             }
             return list2;
         }
-
+        /// <summary>
+        /// 查询rid角色下的权限
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <param name="rid"></param>
+        /// <returns></returns>
         public List<PermissionModel> PermissionRole(int pid, int rid)
         {
-            var list = CreateContext().Permissions.SqlQuery(string.Format(@"select [id],[text],[state],[Url],[Pid],checked=
-                                                                            case 
-                                                                            when Perid is null then 0
-                                                                            else 1
-                                                                            end
-                                                                            from [dbo].[Permission] p
-                                                                            left join (
-                                                                            select Perid
-                                                                            from [dbo].[PermissionsRole]
-                                                                            where [Rid]={1}
-                                                                            ) rp on
-                                                                            p.id=rp.Perid
-                                                                            where [Pid]={0}", pid, rid)).ToList();
+            var list = CreateContext().Permissions.SqlQuery(string.Format(@"select [id], [text], [Pid], [Url], [state] from
+                                                                            [dbo].[Permission] p 
+                                                                            inner join (select [aut_id] from [dbo].[Authorityrole] where [u_oid]={1} ) rp on 
+                                                                            p.id=rp.[aut_id]
+                                                                            where PID={0}", pid, rid)).ToList();
             List<PermissionModel> list2 = new List<PermissionModel>();
             foreach (var p in list)
             {

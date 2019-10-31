@@ -17,6 +17,6 @@ namespace IBLL
         List<Major_changeModel> Major_changeFenYe(int currentPage, int PageSize, out int rows);
         List<Major_changeModel> Major_changeSelectSX(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, DateTime? startTime, DateTime? endTime);
         List<Major_changeModel> Major_changeSelectSh(int currentPage, int pageSize, out int rows);
-        List<Major_changeModel> Major_changeSelectDcx(string mkid, string mid, string gjz, string zwfl, string zwmc, DateTime? startTime, DateTime? endTime);
+        List<Major_changeModel> Major_changeSelectDcx(int currentPage, int pageSize, out int rows, string mkid, string mid, string gjz, string zwfl, string zwmc, DateTime? startTime, DateTime? endTime);
     }
 }

@@ -12,9 +12,29 @@
     <link href="~/css/table.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/vue-2.4.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#ww").submit(function () {
+                if ($("#ThirdMid").val() == "" || $("#ThirdMid").val()=="0") {
+                    alert("请选择机构！");
+                    return false;
+                }
+                if ($("#Majorid").val() == "" || $("#Majorid").val() == "0") {
+                    alert("请选择职位名称");
+                    return false;
+                }
+                if ($("#ThirdMid").val() ==(@Model.ThirdMid)) {
+                    alert("请选择除原机构以外的机构！");
+                    return false;
+                }
+                return true;
+            });
+        });
+    </script>
+
 </head>
 <body>
-@using (Html.BeginForm("up", "Register_locate", FormMethod.Post))
+@using (Html.BeginForm("up", "Register_locate", FormMethod.Post,new {@id="ww" }))
 {
         <table width="100%">
             <tr>
@@ -116,6 +136,7 @@
                     <td width="15%" class="TD_STYLE2">
                         <input type="hidden" name="New_first_kind_name" v-model="MFName" />
                          <select name="New_first_kind_id" id="FirstMid" class="SELECT_STYLE1" v-on:change="GetMSs()">
+                             <option id="qxz1">--请选择--</option>
                             <option v-for="(item,i) in MFs" v-bind:value="item.FirstMId">{{item.FirstMName}}</option>
                         </select>
                     </td>
@@ -149,6 +170,7 @@
                     <td class="TD_STYLE2">
                         <input type="hidden" name="New_major_kind_name" v-model="MKName" />
                         <select name="New_major_kind_id" id="MajorKindid" width="15%" class="SELECT_STYLE1" v-on:change="GetMs()">
+                            <option id="dwd">--请选择--</option>
                             <option v-for="(item,i) in MKs" v-bind:value="item.Majorkindid">{{item.Majorkindname}}</option>
                         </select>
                     </td>
@@ -291,6 +313,7 @@
                 GetMSs: function () {
                     var t = this;
                     t.MFName = $("#FirstMid option:checked").text();
+                    $("#qxz1").remove();
                     $.ajax({
                         url: "/Register_locate/GetMSsWhereFirst",
                         type: "post",
@@ -358,6 +381,7 @@
                 GetMs: function () {
                     var t = this;
                     t.MKName = $("#MajorKindid option:checked").text();
+                    $("#dwd").remove();
                     $.ajax({
                         url: "/Register_locate/GetMs",
                         type: "post",

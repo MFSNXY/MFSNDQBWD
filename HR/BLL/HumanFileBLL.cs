@@ -129,5 +129,14 @@ namespace BLL
             return ihd.HumanFileByid(id);
         }
 
+        public List<SalaryGrantModel> HumanFileSelectSJ()
+        {
+            return ihd.HumanFileSelectSJ();
+        }
+
+        public List<XCFFST3Model> HumanFileSelectSJXQ(string fid)
+        {
+            return ihd.HumanFileSelectSJXQ(fid);
+        }
     }
 }

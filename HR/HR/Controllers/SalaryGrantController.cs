@@ -29,6 +29,10 @@ namespace HR.Controllers
             le2.sid = 2;
             le2.mc = "二级机构发放方式";
             list.Add(le2);
+            lei le3 = new lei();
+            le3.sid = 3;
+            le3.mc = "三级机构发放方式";
+            list.Add(le3);
             SelectList sl = new SelectList(list, "sid", "mc", 0);
             ViewBag.s = sl;
             return View();
@@ -59,7 +63,17 @@ namespace HR.Controllers
             List<SalaryGrantModel> list = list = ihb.HumanFileSelectEJ();
             return Content(JsonConvert.SerializeObject(list));
         }
-        
+
+        public ActionResult SJJG()
+        {
+            return View();
+        }
+        public ActionResult SJJG2()
+        {
+            List<SalaryGrantModel> list = list = ihb.HumanFileSelectSJ();
+            return Content(JsonConvert.SerializeObject(list));
+        }
+
         [ActionName("ad")]
         public ActionResult Cha(lei sm)
         {
@@ -75,6 +89,10 @@ namespace HR.Controllers
             {
                 return RedirectToAction("EJJG");
             }
+            else if (i ==3)
+            {
+                return RedirectToAction("SJJG");
+            }
             else
             {
                 return View();
@@ -89,7 +107,7 @@ namespace HR.Controllers
             return View();
         }
 
-        public ActionResult Commit(string id,int sid,int Humanamount,decimal Salarypaidsum,decimal Salarystandardsum, string Firstkindid, string Secondkindid,string Firstkindname,string Secondkindname)
+        public ActionResult Commit(string id,int sid,int Humanamount,decimal Salarypaidsum,decimal Salarystandardsum, string Firstkindid, string Secondkindid,string Thirdkindid,string Thirdkindname,string Firstkindname,string Secondkindname)
         {
             SalaryGrantModel sg = new SalaryGrantModel();
             sg.Salarygrantid = id;
@@ -97,10 +115,12 @@ namespace HR.Controllers
             sg.Firstkindname = Firstkindname;
             sg.Secondkindid = Secondkindid;
             sg.Secondkindname = Secondkindname;
+            sg.Thirdkindid = Thirdkindid;
+            sg.Thirdkindname = Thirdkindname;
             sg.Humanamount = Humanamount;
             sg.Salarypaidsum = Salarystandardsum;
             sg.Salarystandardsum = Salarypaidsum;
-            int pd = isb.SelectPD(Firstkindid, Secondkindid);
+            int pd = isb.SelectPD(Firstkindid, Secondkindid, Thirdkindid);
             if (pd>0)
             {
 
@@ -115,6 +135,7 @@ namespace HR.Controllers
             ViewBag.Humanamount = Humanamount;
             ViewBag.Firstkindid = Firstkindid;
             ViewBag.Secondkindid = Secondkindid;
+            ViewBag.Thirdkindid = Thirdkindid;
             ViewBag.id = id;
             ViewBag.sid = sid;
             return View();
@@ -127,7 +148,7 @@ namespace HR.Controllers
             return View();
         }
 
-        public ActionResult Commit2(string Salarygrantid,int Id, string Firstkindid, string Secondkindid)
+        public ActionResult Commit2(string Salarygrantid,int Id, string Firstkindid, string Secondkindid,string Thirdkindid)
         {
             
             string sgid = Salarygrantid;
@@ -138,9 +159,14 @@ namespace HR.Controllers
                 List<XCFFSTModel> list = ihb.HumanFileSelectYJXQ(Firstkindid);
                 return Content(JsonConvert.SerializeObject(list));
             }
-            else
+            else if (Firstkindid != null && Secondkindid != ""&& Thirdkindid=="")
             {
                 List<XCFFST2Model> list = ihb.HumanFileSelectEJXQ(Secondkindid);
+                return Content(JsonConvert.SerializeObject(list));
+            }
+            else
+            {
+                List<XCFFST3Model> list = ihb.HumanFileSelectSJXQ(Thirdkindid);
                 return Content(JsonConvert.SerializeObject(list));
             }
             
@@ -178,6 +204,7 @@ namespace HR.Controllers
             SalaryGrantModel sg = new SalaryGrantModel();
             sg.Firstkindid = Request["Fid"];
             sg.Secondkindid= Request["Seid"];
+            sg.Thirdkindid = Request["Thid"];
             sg.Register = Request["Register"];
             sg.Registtime =Convert.ToDateTime(Request["Registtime"]);
             sg.Checker = Request["Checker"];

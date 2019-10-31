@@ -18,7 +18,7 @@ namespace IDAO
         //List<SalaryGrantModel> SalaryGrantSelectYJ();
         //List<SalaryGrantModel> SalaryGrantSelectEJ();
         //List<SalaryGrantModel> SalaryGrantSelectSJ();
-        int SelectPD(string fid, string sid);
+        int SelectPD(string fid, string sid, string thid);
         int SelectPDSID(string sid, string hid);
         string SelectFID(string fid, string sid);
         List<SalaryGrantModel> SalaryGrantSelectEJA(string zz);

@@ -375,10 +375,14 @@ Checktime = '{4}',Checkstatus='{5}' where Id='{6}' ", ck.Salarypaidsum, ck.Regis
             return dt.Rows[0]["Id"].ToString();
         }
 
-        public int SelectPD(string fid, string sid)
+        public int SelectPD(string fid, string sid,string thid)
         {
             MyDbContext db = CreateContext();
             string sql = string.Format("select * from dbo.SalaryGrant where 1=1");
+            if (thid != null)
+            {
+                sql += string.Format(" and Thirdkindid='{0}'", thid);
+            }
             if (sid != null)
             {
                 sql += string.Format(" and Secondkindid='{0}'", sid);
@@ -387,6 +391,7 @@ Checktime = '{4}',Checkstatus='{5}' where Id='{6}' ", ck.Salarypaidsum, ck.Regis
             {
                 sql += string.Format(" and Firstkindid='{0}'",fid);
             }
+           
             
             int sum = db.SalaryGrant.SqlQuery(sql).ToList().Count;
             return sum;

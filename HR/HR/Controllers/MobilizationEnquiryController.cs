@@ -30,10 +30,16 @@ namespace HR.Controllers
             TempData["endTime"] = endTime;
             return View("list");
         }
-        public ActionResult list(string mkid = "", string mid = "", string gjz = "", string zwfl = "", string zwmc = "", DateTime? startTime = null, DateTime? endTime = null)
+        public ActionResult list(int currentPage,int pageSize,string mkid = "", string mid = "", string gjz = "", string zwfl = "", string zwmc = "", DateTime? startTime = null, DateTime? endTime = null)
         {
-            List<Major_changeModel> list = imc.Major_changeSelectDcx(mkid, mid, gjz, zwfl, zwmc, startTime, endTime);
-            return Content(JsonConvert.SerializeObject(list));
+            int rows = 0;
+            List<Major_changeModel> list = imc.Major_changeSelectDcx(currentPage, pageSize,out rows, mkid, mid, gjz, zwfl, zwmc, startTime, endTime);
+            Dictionary<string, object> dic = new Dictionary<string, object>()
+            {
+                {"list",list },
+                {"rows",rows }
+            };
+            return Content(JsonConvert.SerializeObject(dic));
         }
 
         public ActionResult detail(int id)

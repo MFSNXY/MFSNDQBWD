@@ -38,8 +38,10 @@ namespace IDAO
 
         List<SalaryGrantModel> HumanFileSelectYJ();
         List<SalaryGrantModel> HumanFileSelectEJ();
+        List<SalaryGrantModel> HumanFileSelectSJ();
         List<XCFFSTModel> HumanFileSelectYJXQ(string fid);
         List<XCFFST2Model> HumanFileSelectEJXQ(string fid);
+        List<XCFFST3Model> HumanFileSelectSJXQ(string fid);
         string XCFFSTHID(string hid);
 
         int HumanFileUpdate1(HumanFileModel ck);
