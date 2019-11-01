@@ -1183,6 +1183,7 @@
     <Content Include="Views\HumanFile\HumanFileFile.cshtml" />
     <Content Include="Views\Home\Checker.cshtml" />
     <Content Include="Views\SalaryGrant\SJJG.cshtml" />
+    <Content Include="Views\Home\Main.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

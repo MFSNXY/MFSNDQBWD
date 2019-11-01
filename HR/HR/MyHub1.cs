@@ -8,9 +8,9 @@ namespace HR
 {
     public class MyHub1 : Hub
     {
-        public void Hello()
+        public void Chima(string name,string msg)
         {
-            Clients.All.hello();
+            Clients.Others.HSTT(name,msg);
         }
     }
 }

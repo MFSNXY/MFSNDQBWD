@@ -11,6 +11,13 @@
     <title>Checker</title>
     <link href="~/bootstrap.css" rel="stylesheet" />
     <script src="~/jquery-1.11.1.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="/signalR/Hubs" type="text/javascript"></script>
+    <script src="~/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+    <script src="~/jquery-easyui-1.3.5/plugins/jquery.messager.js"></script>
+    <link href="~/jquery-easyui-1.3.5/themes/default/easyui.css" rel="stylesheet" />
+    <script src="~/jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
+    <link href="~/jquery-easyui-1.3.5/themes/icon.css" rel="stylesheet" />
     <script src="~/bootstrap.js"></script>
     <script src="~/Scripts/vue-2.4.0.js"></script>
     <style type="text/css" >
@@ -65,28 +72,45 @@
     <div id="hk"> 
         <div id="yuy" >
             <ul class="list-group">
-                <li onclick="location = '/EngageResume/GetEngageResumeSX'" class="list-group-item rrr"><span class="NameHH">简历筛选</span><span class="CountHH">{{ERs}}例</span></li>
-                <li onclick="location = '/EngageInterview/EngageInterviewSX'" class="list-group-item rrr"><span class="NameHH">面试筛选</span><span class="CountHH">{{EIs}}例</span></li>
-                <li onclick="location = '/EngageEmploy/LYSP'" class="list-group-item rrr"><span class="NameHH">录用审批</span><span class="CountHH">{{LYSPs}}例</span></li>
-                <li onclick="location = '/HumanFile/HumanFileCheckList'" class="list-group-item rrr"><span class="NameHH">人力资源档案登记复核</span><span class="CountHH">{{HFs}}例</span></li>
-                <li onclick="location = '/SalaryStandard/Checklist'" class="list-group-item rrr"><span class="NameHH">薪酬标准登记复核</span><span class="CountHH">{{Es}}例</span></li>
-                <li onclick="location = '/SalaryGrant/SelectFH'" class="list-group-item rrr"><span class="NameHH">薪酬发放登记复核</span><span class="CountHH">{{FHEs}}例</span></li>
-                <li onclick="location = '/Mobilization_audit/check_list'" class="list-group-item rrr"><span class="NameHH">调动复核</span><span class="CountHH">{{DDERs}}例</span></li>
+                <li onclick="location = '/EngageResume/GetEngageResumeSX'" class="list-group-item rrr"><span class="NameHH">简历筛选</span><span class="CountHH"><span id="ERs" ></span>例</span></li>
+                <li onclick="location = '/EngageInterview/EngageInterviewSX'" class="list-group-item rrr"><span class="NameHH">面试筛选</span><span class="CountHH"><span id="EIs"></span>例</span></li>
+                <li onclick="location = '/EngageEmploy/LYSP'" class="list-group-item rrr"><span class="NameHH">录用审批</span><span class="CountHH"><span id="LYSPs"></span>例</span></li>
+                <li onclick="location = '/HumanFile/HumanFileCheckList'" class="list-group-item rrr"><span class="NameHH">人力资源档案登记复核</span><span class="CountHH"><span id="HFs"></span>例</span></li>
+                <li onclick="location = '/SalaryStandard/Checklist'" class="list-group-item rrr"><span class="NameHH">薪酬标准登记复核</span><span class="CountHH"><span id="Es"></span>例</span></li>
+                <li onclick="location = '/SalaryGrant/SelectFH'" class="list-group-item rrr"><span class="NameHH">薪酬发放登记复核</span><span class="CountHH"><span id="FHEs"></span>例</span></li>
+                <li onclick="location = '/Mobilization_audit/check_list'" class="list-group-item rrr"><span class="NameHH">调动复核</span><span class="CountHH"><span id="DDERs"></span>例</span></li>
             </ul>
         </div>
     </div>
     <script type="text/javascript" >
+        $(function () {
+            $.connection.hub.start().done(function () {
+                //alert('连接OK');
+            });
+            $.connection.myHub1.client.HSTT = function (name, msg) {
+                //if (name=="张三") {
+                //    //alert(name + message);
+                //    //获取详细信息
+                vm.GetERs();
+                vm.GetEIs();
+                vm.GetLYSPs();
+                vm.GetHFs();
+                vm.GetEs();
+                vm.GetFHEs();
+                vm.GetDDERs();
+                    $.messager.show({
+                        title: name,
+                        msg: msg+"新增一条数据!",
+                        timeout: 6000,
+                        showType: 'slide'
+                    });
+                //}
+            };
+        });
+        
         var vm = new Vue({
             el: "#hk",
-            data: {
-                ERs: null,
-                EIs: null,
-                LYSPs: null,
-                HFs: null,
-                Es: null,
-                FHEs: null,
-                DDERs:null,
-            },
+            data: {},
             methods: {
                 GetERs: function () {
                     var t = this;
@@ -100,7 +124,7 @@
                                 url: "../EngageResume/GetRow",
                                 type: "post",
                                 success: function (rs) {
-                                    t.ERs = rs;
+                                    $("#ERs").text(rs);
                                 }
                             });
                         }
@@ -114,7 +138,7 @@
                         data: "currentPage=" + 1 + "&pageSize=" + 1,
                         success: function (rs) {
                             var dic = eval("(" + rs + ")");
-                            t.EIs = dic["rows"];
+                            $("#EIs").text(dic["rows"]);
                         }
                     });
                 },
@@ -126,7 +150,7 @@
                         data: "currentPage=" + 1 + "&pageSize=" + 1,
                         success: function (rs) {
                             var dic = eval("(" + rs + ")");
-                            t.LYSPs = dic["rows"];
+                            $("#LYSPs").text(dic["rows"]);
                         }
                     });
                 },
@@ -138,7 +162,7 @@
                         data: "currentPage=" + 1 + "&pageSize=" + 1,
                         success: function (rs) {
                             var dic = eval("(" + rs + ")");
-                            t.HFs = dic["rows"];
+                            $("#HFs").text(dic["rows"]);
                         }
                     });
                 },
@@ -153,7 +177,7 @@
                                 url: "../SalaryStandard/GetRow",
                                 type: "post",
                                 success: function (rs) {
-                                    t.Es = rs;
+                                    $("#Es").text(rs);
                                 }
                             });
                         }
@@ -170,7 +194,7 @@
                                 url: "../SalaryGrant/GetRow",
                                 type: "post",
                                 success: function (rs) {
-                                    t.FHEs = rs;
+                                    $("#FHEs").text(rs);
                                 }
                             });
                         }
@@ -184,7 +208,7 @@
                         data: "currentPage=" + 1 + "&pageSize=" + 1,
                         success: function (rs) {
                             var dic = eval("(" + rs + ")");
-                            t.DDERs = dic["rows"];
+                            $("#DDERs").text(dic["rows"]);
                         }
                     });
                 },

@@ -53,11 +53,12 @@
         function ly() {
             document.getElementById("passPasscomment").value = "通过";
         }
+       
     </script>
 </head>
 <body>
     <div>
-        <form action="/EngageEmploy/EngageEmploySP" method="post">
+        <form  action="/EngageEmploy/EngageEmploySP" method="post">
             @*<input type="hidden" name="operate" value="doAdopt">*@
             <input type="hidden" name="Id" value="@((Model["er"] as EngageResumeModel).Id)" />
             <table width="100%">

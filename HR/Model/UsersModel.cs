@@ -15,6 +15,7 @@ namespace Model
         [Required(ErrorMessage = "真实名字不能为空<br/>")]
         public string U_true_name { get; set; }
         [Required(ErrorMessage = "密码不能为空<br/>")]
+        [RegularExpression("^.{6,}$", ErrorMessage ="密码不能少于六位")]
         public string U_password { get; set; }
         public int U_oid { get; set; }
     }

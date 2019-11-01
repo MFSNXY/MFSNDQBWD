@@ -12,6 +12,8 @@
     <link href="~/css/table.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/vue-2.4.0.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="/signalR/Hubs" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("#ww").submit(function () {
@@ -27,7 +29,10 @@
                     alert("请选择除原机构以外的机构！");
                     return false;
                 }
-                return true;
+                $.connection.hub.start().done(function(){
+                    $.connection.myHub1.server.chima("@(((View_UserModel)Session["user"]).U_true_name)","调动复核");
+                    return true;
+                });
             });
         });
     </script>

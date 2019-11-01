@@ -98,9 +98,10 @@ namespace HR.Controllers
             {
                 Session["user"] = ivb.SelectView_UserBy(um.U_id)[0];
                 Session["userRid"] = um.U_oid;
+                TempData["url"] = "/Home/Left";
                 if (um.U_oid == 30)
                 {
-                    return Content("2");
+                    TempData["url"] = "/Home/Checker";
                 }
                 return Content("1");
             }

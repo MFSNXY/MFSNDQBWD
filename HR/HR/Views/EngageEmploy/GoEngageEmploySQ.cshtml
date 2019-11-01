@@ -38,6 +38,8 @@
             src="../../../javascript/select.js">
 
     </script>
+    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="/signalR/Hubs" type="text/javascript"></script>
     <script  type="text/javascript">
         $(function () {
             $(".zp").hover(function () {
@@ -46,6 +48,15 @@
             function () {
                 $(".dt").hide();
             });
+            $("#ty").submit(function () {
+                if (document.getElementById("passCheckcomment").value == "通过") {
+                    $.connection.hub.start().done(function(){
+                        $.connection.myHub1.server.chima("@(((View_UserModel)Session["user"]).U_true_name)","录用审批");
+                        return true; 
+                    });
+                }
+                return true;
+            });
         });
         function sf() {
             document.getElementById("passCheckcomment").value = "不通过";
@@ -53,11 +64,13 @@
         function ly() {
             document.getElementById("passCheckcomment").value = "通过";
         }
+
+      
     </script>
 </head>
 <body>
     <div>
-        <form action="/EngageEmploy/EngageEmploySQ"  method="post" >
+        <form id="ty" action="/EngageEmploy/EngageEmploySQ"  method="post" >
             @*<input type="hidden" name="operate" value="doAdopt">*@
             <input type="hidden" name="Id" value="@((Model["er"] as EngageResumeModel).Id)" />
             <table width="100%">

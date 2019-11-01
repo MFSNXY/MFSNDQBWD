@@ -40,6 +40,8 @@
     <script type="text/javascript"
             src="../../../javascript/comm/time.js">
     </script>
+    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="/signalR/Hubs" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("#InterviewCount").val("第"+@ViewBag.InterviewCount+"次面试")
@@ -49,13 +51,19 @@
             function(){
                 $(".dt").hide();
             });
+            $("#ty").submit(function () {
+                $.connection.hub.start().done(function(){
+                    $.connection.myHub1.server.chima("@(((View_UserModel)Session["user"]).U_true_name)","面试筛选");
+                    return true; 
+                });
+            });
         });
     </script>
     <script src="~/vue-2.4.0.js"></script>
 </head>
 <body>
     <div id="aa">
-        <form action="/EngageInterview/EngageInterviewRegister" method="post">
+        <form id="ty" action="/EngageInterview/EngageInterviewRegister" method="post">
             @*<input type="hidden" id="HumanMajorKindId" value="@TempData["HumanMajorKindId"]" />
             <input type="hidden" id="HumanMajorId" value="@TempData["HumanMajorId"]" />
             <input type="hidden" id="GJZ" value="@TempData["GJZ"]" />
