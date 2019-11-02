@@ -165,7 +165,7 @@
                         新薪酬标准
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" v-model="XBs" name="New_salary_standard_name" />
+                        <input type="hidden" v-model="XBs" name="New_salary_standard_name" />
                         <select v-model="XCid" name="New_salary_standard_id " id="salary_standard_id" width="15%" class="SELECT_STYLE1" v-on:change="GetBz()">
                             <option v-for="(item,i) in BZs" v-bind:ze="item.Salarysum" v-bind:value="item.Standardid">{{item.Standardname}}</option>
                         </select>
@@ -306,7 +306,9 @@
                 BZs: null,
                 ZEs: "@Model.New_salary_sum",
                 XBs: "@Model.New_salary_standard_name",
-                XCid:"@Model.New_salary_standard_id",
+                XCid: "@Model.New_salary_standard_id",
+                XZWFL:"@Model.New_major_kind_id",
+                XZWMC:"@Model.New_major_id",
             },
             methods: {
                 GetMFs: function () {

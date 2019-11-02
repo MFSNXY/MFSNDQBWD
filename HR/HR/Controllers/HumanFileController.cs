@@ -23,17 +23,33 @@ namespace HR.Controllers
         //IHumanFileBLL ihf = IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
         public IHumanFileBLL ihf { get; set; }
         // GET: HumanFile
+
+            /// <summary>
+            /// 人力资源登记页面
+            /// </summary>
+            /// <param name="id"></param>
+            /// <returns></returns>
         public ActionResult HumanFileRegister(int id)
         {
             EngageResumeModel er = ierb.EngageResumeSelectBy(id);
             return View(er);
         }
 
+        /// <summary>
+        /// 人力资源可登记列表页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult HumanFileRegisterList()
         {
             return View();
         }
 
+        /// <summary>
+        /// 获取可登记简历
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public ActionResult HumanFileGetRegisterList(int currentPage, int pageSize)
         {
             int rows = 0;
@@ -47,11 +63,21 @@ namespace HR.Controllers
 
         }
 
+        /// <summary>
+        /// 获取公共属性
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetCPC()
         {
             return Content(JsonConvert.SerializeObject(icp.ConfigMajorKindSelect()));
         }
 
+        /// <summary>
+        /// 人力资源登记
+        /// </summary>
+        /// <param name="hf"></param>
+        /// <param name="ERid"></param>
+        /// <returns></returns>
         public ActionResult Register(HumanFileModel hf,int ERid)
         {
             hf.HumanId = "HF" + DateTime.Now.ToString("yyMMddssfff") + new Random().Next(100, 999);
@@ -70,11 +96,21 @@ namespace HR.Controllers
             }
         }
 
+        /// <summary>
+        /// 人力资源上传图片页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult HumanFilePicture()
         {
             return View();
         }
 
+        /// <summary>
+        /// 人力资源上传图片
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="gn"></param>
+        /// <returns></returns>
         public ActionResult HumanFileSCPicture(HttpPostedFileBase file,int gn)
         {
             byte[] bts = MD5.Create().ComputeHash(file.InputStream);
@@ -98,11 +134,20 @@ namespace HR.Controllers
             }
         }
 
+        /// <summary>
+        /// 人力资源待复核列表页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult HumanFileCheckList()
         {
             return View();
         }
-
+        /// <summary>
+        /// 获取人力资源待复核列表
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public ActionResult GetHumanFileCheckList(int currentPage, int pageSize)
         {
             int rows = 0;
@@ -116,12 +161,22 @@ namespace HR.Controllers
 
         }
         
+        /// <summary>
+        /// 人力资源复核明细页面
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult HumanFileCheck(int id)
         {
             HumanFileModel hf = ihf.HumanFileBy(id);
             return View(hf);
         }
 
+        /// <summary>
+        /// 人力资源复核
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public ActionResult HumanFileCheckUpdate(HumanFileModel e)
         {
             HumanFileModel hf = ihf.HumanFileBy(e.Id);
@@ -138,21 +193,46 @@ namespace HR.Controllers
             }
         }
 
+        /// <summary>
+        /// 人力资源查询搜索页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult HumanFileQueryLocate()
         {
             return View();
         }
 
+        /// <summary>
+        /// 人力资源关键字搜索
+        /// </summary>
+        /// <returns></returns>
         public ActionResult HumanFileQueryKeywords()
         {
             return View();
         }
+        
+        /// <summary>
+        /// 人力资源查询明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult HumanFileQueryListInformation(int id)
         {
             return View(ihf.HumanFileBy(id));
         }
 
-
+        /// <summary>
+        /// 人力资源查询列表页面
+        /// </summary>
+        /// <param name="FirstMid"></param>
+        /// <param name="SecondMid"></param>
+        /// <param name="ThirdMid"></param>
+        /// <param name="HumanMajorKindId"></param>
+        /// <param name="HumanMajorId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="gjz"></param>
+        /// <returns></returns>
         public ActionResult HumanFileQueryList(string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
         {
             TempData["FirstMid"] = FirstMid;
@@ -166,6 +246,20 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取人力资源查询列表
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="FirstMid"></param>
+        /// <param name="SecondMid"></param>
+        /// <param name="ThirdMid"></param>
+        /// <param name="HumanMajorKindId"></param>
+        /// <param name="HumanMajorId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="gjz"></param>
+        /// <returns></returns>
         public ActionResult HumanFileGetHuman(int currentPage, int pageSize, string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
         {
             int rows = 0;
@@ -178,15 +272,36 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(dic));
         }
 
+        /// <summary>
+        /// 人力资源变更条件搜索
+        /// </summary>
+        /// <returns></returns>
         public ActionResult HumanFileChangeLocate()
         {
             return View();
         }
 
+        /// <summary>
+        /// 人力资源变更关键字搜索
+        /// </summary>
+        /// <returns></returns>
         public ActionResult HumanFileChangeKeywords()
         {
             return View();
         }
+
+        /// <summary>
+        /// 人力资源变更列表页面
+        /// </summary>
+        /// <param name="FirstMid"></param>
+        /// <param name="SecondMid"></param>
+        /// <param name="ThirdMid"></param>
+        /// <param name="HumanMajorKindId"></param>
+        /// <param name="HumanMajorId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="gjz"></param>
+        /// <returns></returns>
         public ActionResult HumanFileChangeList(string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
         {
             TempData["FirstMid"] = FirstMid;
@@ -200,6 +315,20 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取人力资源变更列表
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="FirstMid"></param>
+        /// <param name="SecondMid"></param>
+        /// <param name="ThirdMid"></param>
+        /// <param name="HumanMajorKindId"></param>
+        /// <param name="HumanMajorId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="gjz"></param>
+        /// <returns></returns>
         public ActionResult HumanFileChangeGetHuman(int currentPage, int pageSize, string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null, string gjz = "")
         {
             int rows = 0;
@@ -212,12 +341,21 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(dic));
         }
     
-
+        /// <summary>
+        /// 人力资源变更明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult HumanFileChangeListInformation(int id)
         {
             return View(ihf.HumanFileBy(id));
         }
 
+        /// <summary>
+        /// 人力资源变更
+        /// </summary>
+        /// <param name="hf"></param>
+        /// <returns></returns>
         public ActionResult HumanFileChangeUpdate(HumanFileModel hf)
         {
             if (ihf.HumanFileUpdate(hf) > 0)

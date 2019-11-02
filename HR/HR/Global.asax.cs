@@ -22,11 +22,11 @@ namespace HR
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
             IScheduler sched = new StdSchedulerFactory().GetScheduler();
             //创建一个工作对象
             JobDetailImpl jdBossReport = new JobDetailImpl("jdTest", typeof(TestJob));
-
             int day = int.Parse(ConfigurationManager.AppSettings["day"]);
             int huor = int.Parse(ConfigurationManager.AppSettings["hour"]);
             int mi = int.Parse(ConfigurationManager.AppSettings["mi"]);
@@ -39,6 +39,7 @@ namespace HR
             //计划启动
             sched.Start();
 
+           // BundleConfig.RegisterBundles(BundleTable.Bundles);
             ContainerBuilder cb = new ContainerBuilder();
             //把当前程序集中的 Controller 都注册
             cb.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
