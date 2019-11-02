@@ -12,10 +12,14 @@ namespace HR.Controllers
 {
     public class UsersController : Controller
     {
-        IView_UserBLL iub = IocContainer.IocCreate.CreateBLL<IView_UserBLL>("View_UserBLL");
-        IUsersBLL iul = IocContainer.IocCreate.CreateBLL<IUsersBLL>("UsersBLL");
-        IUsersmanBLL ius = IocCreate.CreateBLL<IUsersmanBLL>("UsersmanBLL");
-        IView_UserBLL ivb = IocCreate.CreateBLL<IView_UserBLL>("View_UserBLL");
+        //IView_UserBLL iub = IocContainer.IocCreate.CreateBLL<IView_UserBLL>("View_UserBLL");
+        public IView_UserBLL iub { get; set; }
+        //IUsersBLL iul = IocContainer.IocCreate.CreateBLL<IUsersBLL>("UsersBLL");
+        public IUsersBLL iul { get; set; }
+        //IUsersmanBLL ius = IocCreate.CreateBLL<IUsersmanBLL>("UsersmanBLL");
+        public IUsersmanBLL ius { get; set; }
+        //IView_UserBLL ivb = IocCreate.CreateBLL<IView_UserBLL>("View_UserBLL");
+        public IView_UserBLL ivb { get; set; }
 
         // GET: Users
         public ActionResult Index()

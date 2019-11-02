@@ -1,10 +1,13 @@
-﻿using Quartz;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -35,6 +38,19 @@ namespace HR
             sched.ScheduleJob(jdBossReport, triggerBossReport);
             //计划启动
             sched.Start();
+
+            ContainerBuilder cb = new ContainerBuilder();
+            //把当前程序集中的 Controller 都注册
+            cb.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
+            //注册实现IUserBLL的实现类
+            //  cb.RegisterType<UserBLL>().As<IUserBLL>();
+            Assembly ass = Assembly.Load("BLL");
+            cb.RegisterAssemblyTypes(ass).AsImplementedInterfaces().PropertiesAutowired().SingleInstance();
+            IContainer ioc = cb.Build();
+
+            //注册系统级别的 DependencyResolver，这样当 MVC 框架创建 Controller 等对象的时候都是管 Autofac 要对象。
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(ioc));
+
         }
     }
 }

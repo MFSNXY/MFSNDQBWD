@@ -16,12 +16,12 @@ namespace HR.Controllers
 {
     public class HumanFileController : Controller
     {
-        IEngageResumeBLL ierb = IocCreate.CreateBLL<IEngageResumeBLL>("EngageResumeBLL");
-
-        IConfigPublicCharBLL icp = IocCreate.CreateBLL<IConfigPublicCharBLL>("ConfigPublicCharBLL");
-
-        IHumanFileBLL ihf = IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
-
+        //IEngageResumeBLL ierb = IocCreate.CreateBLL<IEngageResumeBLL>("EngageResumeBLL");
+        public IEngageResumeBLL ierb { get; set; }
+        //IConfigPublicCharBLL icp = IocCreate.CreateBLL<IConfigPublicCharBLL>("ConfigPublicCharBLL");
+        public IConfigPublicCharBLL icp { get; set; }
+        //IHumanFileBLL ihf = IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
+        public IHumanFileBLL ihf { get; set; }
         // GET: HumanFile
         public ActionResult HumanFileRegister(int id)
         {

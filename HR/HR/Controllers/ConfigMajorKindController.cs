@@ -12,7 +12,8 @@ namespace HR.Controllers
     public class ConfigMajorKindController : Controller
     {
         // GET: ConfigMajorKind
-        IConfigMajorKindBLL isb = IocContainer.IocCreate.CreateBLL<IConfigMajorKindBLL>("ConfigMajorKindBLL");
+        //IConfigMajorKindBLL isb = IocContainer.IocCreate.CreateBLL<IConfigMajorKindBLL>("ConfigMajorKindBLL");
+        public IConfigMajorKindBLL isb { get; set; }
         public ActionResult Index()
         {
             return View();
