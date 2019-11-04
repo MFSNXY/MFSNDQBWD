@@ -44,5 +44,10 @@ namespace BLL
         {
             return ied.EngageUpdate(p);
         }
+
+        public EngageModel GetEngage(int engid)
+        {
+            return ied.GetEngage(engid);
+        }
     }
 }

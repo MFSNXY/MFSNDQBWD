@@ -18,6 +18,10 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取所有职称
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index2()
         {
             string zwlx = "职称";
@@ -25,6 +29,11 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(list));
         }
 
+        /// <summary>
+        /// 删除职称
+        /// </summary>
+        /// <param name="cm"></param>
+        /// <returns></returns>
         public ActionResult Del(ConfigPublicCharModel cm)
         {
             ConfigPublicCharModel ck = new ConfigPublicCharModel();

@@ -28,6 +28,12 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取待申请的简历
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public ActionResult GetEngageEmployLYSQ(int currentPage, int pageSize)
         {
             int rows = 0;
@@ -40,6 +46,11 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(dic));
         }
 
+        /// <summary>
+        /// 简历录用申请明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult GoEngageEmploySQ(int id)
         {
             EngageResumeModel er = ierb.EngageResumeSelectBy(id);
@@ -51,6 +62,12 @@ namespace HR.Controllers
             return View(dic);
         }
 
+        /// <summary>
+        /// 简历录用申请
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="PassCheckComment"></param>
+        /// <returns></returns>
         public ActionResult EngageEmploySQ(int id,string PassCheckComment)
         {
             EngageResumeModel er = ierb.EngageResumeSelectBy(id);
@@ -65,12 +82,21 @@ namespace HR.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 简历录用审批
+        /// </summary>
+        /// <returns></returns>
         public ActionResult LYSP()
         {
             return View();
         }
 
+        /// <summary>
+        /// 获取待审批的简历
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public ActionResult GetEngageEmployLYSP(int currentPage, int pageSize)
         {
             int rows = 0;
@@ -83,6 +109,11 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(dic));
         }
 
+        /// <summary>
+        /// 简历审批明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult GoEngageEmploySP(int id)
         {
             EngageResumeModel er = ierb.EngageResumeSelectBy(id);
@@ -94,14 +125,19 @@ namespace HR.Controllers
             return View(dic);
         }
 
+        /// <summary>
+        /// 简历审批
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="PassPassComment"></param>
+        /// <returns></returns>
         public ActionResult EngageEmploySP(int id, string PassPassComment)
         {
-            //1 修改录用表的状态
             EngageResumeModel er = ierb.EngageResumeSelectBy(id);
             er.PassPassComment = PassPassComment;
-            //2 修改职位发布表的人数(-1)
             if (ierb.EngageResumeUpdate(er) > 0)
             {
+            //修改职位发布表的人数(-1)
                 if (er.EngageId > 0) {
                     EngageModel em = ieb.EngageBy(er.EngageId);
                     if (em != null)
@@ -134,8 +170,6 @@ namespace HR.Controllers
                     }; ;
                     //邮件服务发送的凭证
                     sc.Credentials = new NetworkCredential("XY13308469744@163.com", "123456qq");
-                    //sc.Credentials = new NetworkCredential("jw_112255@163.com", "jw88185566");
-                    //发送
                     sc.Send(mail);
                 }
                 return Content("<script>alert('提交成功!');location='/EngageEmploy/LYSP';</script>");
@@ -146,11 +180,21 @@ namespace HR.Controllers
             }
         }
 
+        /// <summary>
+        /// 录用查询
+        /// </summary>
+        /// <returns></returns>
         public ActionResult LYCX()
         {
             return View();
         }
 
+        /// <summary>
+        /// 获取录用查询列表
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public ActionResult GetEngageEmployLYCX(int currentPage, int pageSize)
         {
             int rows = 0;
@@ -163,6 +207,11 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(dic));
         }
 
+        /// <summary>
+        /// 录用查询明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult EngageEmployLYCX(int id)
         {
             EngageResumeModel er = ierb.EngageResumeSelectBy(id);

@@ -19,6 +19,12 @@ namespace HR.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 获取待审核的调动列表
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public ActionResult Index2(int currentPage,int pageSize)
         {
             int rows = 0;
@@ -30,15 +36,32 @@ namespace HR.Controllers
             };
             return Content(JsonConvert.SerializeObject(dic));
         }
+
+        /// <summary>
+        /// 调动审核明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult check(int id)
         {
             List<Major_changeModel> list = imc.SelectMajor_changeBy(id);
             return View(list[0]);
         }
+
+        /// <summary>
+        /// 调动审核成功
+        /// </summary>
+        /// <returns></returns>
         public ActionResult check_success()
         {
             return View();
         }
+
+        /// <summary>
+        /// 调动审核
+        /// </summary>
+        /// <param name="mc"></param>
+        /// <returns></returns>
         [ActionName("up")]
         public ActionResult Update(Major_changeModel mc)
         {
@@ -49,6 +72,7 @@ namespace HR.Controllers
             mcm.Check_status = mc.Check_status;
             if (mcm.Check_status==1)
             {
+                //审核通过
                 HumanFileModel hf = ihb.HumanFileByid(mc.Human_id);
                 hf.FirstMid = mcm.New_first_kind_id;
                 hf.FirstMName = mcm.New_first_kind_name;
@@ -74,6 +98,7 @@ namespace HR.Controllers
             }
             else
             {
+                //审核不通过
                 if (imc.Major_changeDelete(mcm) > 0) {
                     return View("check_success");
                 }

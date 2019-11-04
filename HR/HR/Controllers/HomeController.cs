@@ -24,13 +24,21 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取按角色id获取所有的权限
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult GetTree(int id=0)
         {
             List<PermissionModel> list = ipb.PermissionRole(id, ((int)Session["userRid"]));
             return Content(JsonConvert.SerializeObject(list));
         }
 
-
+        /// <summary>
+        /// 顶部页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Top()
         {
             return View();
@@ -71,7 +79,10 @@ namespace HR.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// 获取审核人的权限
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetSHPermissionRole()
         {
             List<PermissionModel> list = ipb.PermissionRole();

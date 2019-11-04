@@ -119,6 +119,20 @@ namespace DAO
             return Update(cmk);
         }
 
+        public string GetBH()
+        {
+            string sql = "select top 1 [Majorid] from [dbo].[ConfigMajor] order by cast([Majorid] as int) desc";
+            string bb = "0";
+            try
+            {
+                bb = DBHelper.SelecSinger(sql).ToString();
+            }
+            catch(Exception)
+            {
+                bb = "0";
+            }
+            return bb;
+        }
        
     }
 }

@@ -25,11 +25,20 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取所有的一级机构
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetMFs()
         {
             return Content(JsonConvert.SerializeObject(imb.MechanismFirstSelect()));
         }
 
+        /// <summary>
+        /// 删除一级机构
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult DeleteMF(int id)
         {
             if (imb2.MechanismSecondSelectFirst(imb.MechanismFirstBy(id).FirstMId).Count>0||imb3.MechanismThirdSelectFirst(imb.MechanismFirstBy(id).FirstMId).Count>0)
@@ -42,7 +51,10 @@ namespace HR.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 一级机构添加页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ToAdd()
         {
             string mid = DateTime.Now.ToString("yyMMddmmss") + new Random().Next(100, 999);
@@ -50,6 +62,11 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 一级机构添加
+        /// </summary>
+        /// <param name="mf"></param>
+        /// <returns></returns>
         public ActionResult Add(MechanismFirstModel mf)
         {
             if (imb.MechanismFirstAdd(mf)>0) {
@@ -61,13 +78,22 @@ namespace HR.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 一级机构修改页面
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult ToUpdate(int id)
         {
             MechanismFirstModel mf = imb.MechanismFirstBy(id);
             return View(mf);
         }
 
+        /// <summary>
+        /// 一级机构修改
+        /// </summary>
+        /// <param name="mf"></param>
+        /// <returns></returns>
         public ActionResult Update(MechanismFirstModel mf)
         {
             if (imb.MechanismFirstUpdate(mf) > 0)

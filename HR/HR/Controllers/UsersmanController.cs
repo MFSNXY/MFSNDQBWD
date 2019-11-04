@@ -22,15 +22,24 @@ namespace HR.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 查询所有角色
+        /// </summary>
+        /// <param name="PageSize"></param>
+        /// <param name="currentPage"></param>
+        /// <returns></returns>
         public ActionResult Index2(int PageSize, int currentPage)
         {
             int rows = 0;
             Cache ch = this.HttpContext.Cache;
             List<UsersmanModel> list = null;
+            //判断是否存入角色列表
             if (ch["curr"] == null)
             {
                 ch["curr"] = currentPage;
             }
+            //是否存在角色列表，是否更改页码
             if (ch["userlist"] == null|| (int)ch["curr"] != currentPage)
             {
                 ch["curr"] = currentPage;
@@ -49,16 +58,21 @@ namespace HR.Controllers
             };
             return Content(JsonConvert.SerializeObject(dic));
         }
-        //public ActionResult GetRow()
-        //{
-        //    int rows = 0;
-        //    iub.UsersmanFenYe(1, 4, out rows);
-        //    return Content(rows + "");
-        //}
+
+        /// <summary>
+        /// 角色添加页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Add()
         {
             return View();
         }
+
+        /// <summary>
+        /// 角色添加
+        /// </summary>
+        /// <param name="um"></param>
+        /// <returns></returns>
         [ActionName("ad")]
         public ActionResult Adds(UsersmanModel um)
         {
@@ -73,6 +87,12 @@ namespace HR.Controllers
                 return View(um);
             }
         }
+
+        /// <summary>
+        /// 角色删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Del(int id)
         {
             UsersmanModel um = new UsersmanModel();
@@ -88,26 +108,34 @@ namespace HR.Controllers
                 return View(um);
             }
         }
+
+        /// <summary>
+        /// 角色修改明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Update(int id)
         {
             List<UsersmanModel> list = iub.SelectUsersmanBy(id);
             return View(list[0]);
         }
+
+        /// <summary>
+        /// 按角色查询所拥有的权限
+        /// </summary>
+        /// <param name="RoleID"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult SelectPid(int RoleID, int id = 0)
         {
-            //List<PermissionModel> list = new List<PermissionModel>();
-            //DataTable dt = new DataTable();
-            //if (Request["id"]==null)
-            //{
-            //    list = ipb.qx(0,(int)TempData["js"]);
-            //}
-            //else
-            //{
-            //    list = ipb.qx(Convert.ToInt32(Request["id"]), Convert.ToInt32(TempData["js"]));
-            //}
             List<QxModel> list = list = ipb.qx(id,RoleID);
             return Content(JsonConvert.SerializeObject(list));
         }
+        /// <summary>
+        /// 角色修改
+        /// </summary>
+        /// <param name="um"></param>
+        /// <returns></returns>
         [ActionName("up")]
         public ActionResult XiuGai(UsersmanModel um)
         {
@@ -122,8 +150,10 @@ namespace HR.Controllers
                     t= iab.AuthorityroleDel(um.U_oid);
                     flag = true;
                 }
+                //修改角色权限
                 if ((flag&&t>0)||(!flag))
                 {
+                    //循环添加权限
                     foreach (var item in str)
                     {
                         AuthorityroleModel rp = new AuthorityroleModel();

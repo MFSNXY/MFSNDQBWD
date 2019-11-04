@@ -25,16 +25,31 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 职位发布登记
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ToAddEngageRelease()
         {
             return View();
         }
 
+        /// <summary>
+        /// 按一级二级id获取三级机构
+        /// </summary>
+        /// <param name="fid"></param>
+        /// <param name="sid"></param>
+        /// <returns></returns>
         public ActionResult GetMTs(string fid,string sid)
         {
             return Content(JsonConvert.SerializeObject(imb.MechanismThirdSelectFS(fid, sid)));
         }
 
+        /// <summary>
+        /// 添加职位发布
+        /// </summary>
+        /// <param name="em"></param>
+        /// <returns></returns>
         public ActionResult AddEngageRelease(EngageModel em)
         {
             em.ChangeTime = DateTime.Now;
@@ -48,16 +63,30 @@ namespace HR.Controllers
             }
         }
 
+        /// <summary>
+        /// 职位发布变更
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SelectUpdate()
         {
             return View();
         }
+        /// <summary>
+        /// 获取职位发布列表
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public ActionResult GetEngages(int currentPage,int pageSize)
         {
             int rows = 0;
             return Content(JsonConvert.SerializeObject(ieb.EngageFY(currentPage, pageSize, out rows)));
         }
-
+        
+        /// <summary>
+        /// 获取行数
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetRow()
         {
             int rows = 0;
@@ -65,16 +94,31 @@ namespace HR.Controllers
             return Content(rows+"");
         }
 
+        /// <summary>
+        /// 职位发布删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Delete(int id)
         {
             return Content(ieb.EngageDelete(id).ToString());
         }
 
+        /// <summary>
+        /// 变更页面
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult ToUpdate(int id)
         {
             return View(ieb.EngageBy(id));
         }
 
+        /// <summary>
+        /// 职位发布修改
+        /// </summary>
+        /// <param name="em"></param>
+        /// <returns></returns>
         public ActionResult Update(EngageModel em)
         {
             if (ieb.EngageUpdate(em) > 0)
@@ -87,11 +131,20 @@ namespace HR.Controllers
             }
         }
 
+        /// <summary>
+        /// 职位发布查询
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SelectFB()
         {
             return View();
         }
 
+        /// <summary>
+        /// 获取职称
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult GetMs(string id)
         {
             return Content(JsonConvert.SerializeObject(icb.ConfigMajorSelectMKId(id)));

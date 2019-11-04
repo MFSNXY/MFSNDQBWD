@@ -22,5 +22,7 @@ namespace IBLL
 
         List<EngageModel> EngageFY(int currentPage, int pageSize, out int rows);
 
+        EngageModel GetEngage(int engid);
+
     }
 }

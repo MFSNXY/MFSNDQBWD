@@ -22,16 +22,23 @@ namespace HR.Controllers
         public IConfigPublicCharBLL icp { get; set; }
         //IHumanFileBLL ihf = IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
         public IHumanFileBLL ihf { get; set; }
+        public IEngageBLL ieb { get; set; }
         // GET: HumanFile
 
-            /// <summary>
-            /// 人力资源登记页面
-            /// </summary>
-            /// <param name="id"></param>
-            /// <returns></returns>
+        /// <summary>
+        /// 人力资源登记页面
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult HumanFileRegister(int id)
         {
             EngageResumeModel er = ierb.EngageResumeSelectBy(id);
+            ViewBag.ff = "false";
+            if (er.EngageId > 0)
+            {
+                ViewBag.ff = "true";
+                ViewBag.Enagage = ieb.GetEngage(er.EngageId);
+            }
             return View(er);
         }
 

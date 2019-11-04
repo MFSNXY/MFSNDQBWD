@@ -173,5 +173,34 @@ namespace DAO
             };
             return Update(e);
         }
+
+        public EngageModel GetEngage(int engid)
+        {
+            Engage p = CreateContext().Engages.Where(e => e.Id == engid).SingleOrDefault();
+            return new EngageModel()
+            {
+                Id = p.Id,
+                Changer = p.Changer,
+                ChangeTime = p.ChangeTime,
+                Claim = p.Claim,
+                Deadline = p.Deadline,
+                Description = p.Description,
+                EngageType = p.EngageType,
+                FirstMid = p.FirstMid,
+                FirstMName = p.FirstMName,
+                MajorId = p.MajorId,
+                MajorKindid = p.MajorKindid,
+                MajorKindName = p.MajorKindName,
+                MajorName = p.MajorName,
+                ManCount = p.ManCount,
+                Register = p.Register,
+                RegistTime = p.RegistTime,
+                SecondMid = p.SecondMid,
+                SecondMName = p.SecondMName,
+                ThirdMid = p.ThirdMid,
+                ThirdMName = p.ThirdMName
+            };
+        }
+
     }
 }

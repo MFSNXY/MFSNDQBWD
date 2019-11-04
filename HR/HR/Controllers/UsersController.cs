@@ -27,7 +27,12 @@ namespace HR.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// 获取所有用户
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public ActionResult Index2(int currentPage,int pageSize)
         {
             int rows = 0;
@@ -39,6 +44,11 @@ namespace HR.Controllers
             };
             return Content(JsonConvert.SerializeObject(dic));
         }
+
+        /// <summary>
+        /// 用户添加页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Add()
         {
             List<UsersmanModel> list = ius.UsersmanSelect();
@@ -46,6 +56,12 @@ namespace HR.Controllers
             ViewBag.s = sl;
             return View();
         }
+
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="um"></param>
+        /// <returns></returns>
         [ActionName("ad")]
         public ActionResult Adds(UsersModel um)
         {
@@ -58,6 +74,12 @@ namespace HR.Controllers
                 return View(um);
             }
         }
+
+        /// <summary>
+        /// 用户修改页面
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Update(int id)
         {
             List<UsersModel> um = iul.SelectUsersBy(id);
@@ -66,6 +88,12 @@ namespace HR.Controllers
             ViewBag.s = sl;
             return View(um[0]);
         }
+
+        /// <summary>
+        /// 修改用户
+        /// </summary>
+        /// <param name="um"></param>
+        /// <returns></returns>
         [ActionName("up")]
         public ActionResult Updates(UsersModel um)
         {
@@ -78,6 +106,12 @@ namespace HR.Controllers
                 return View(um);
             }
         }
+
+        /// <summary>
+        /// 用户删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Del(int id)
         {
             UsersModel um = new UsersModel();

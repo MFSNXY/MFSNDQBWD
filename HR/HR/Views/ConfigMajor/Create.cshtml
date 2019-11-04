@@ -62,8 +62,9 @@
                         职位编号
                     </td>
                     <td class="TD_STYLE2" width="81%">
-                        @Html.TextBox("Majorid", null, new { @class = "INPUT_STYLE1" })
-                        @Html.ValidationMessage("Majorid", new { @style = "color:red;" })
+                        <input name="Majorid" value="@ViewBag.bh" readonly="readonly" class="INPUT_STYLE1" />
+                        @*@Html.TextBox("Majorid", null, new { @class = "INPUT_STYLE1" })
+                        @Html.ValidationMessage("Majorid", new { @style = "color:red;" })*@
                     </td>
                 </tr>
                 <tr>

@@ -19,15 +19,28 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取所有公共属性
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index2()
         {
             List<PublicCharModel> list = ipb.PublicCharSelect();
             return Content(JsonConvert.SerializeObject(list));
         }
+        /// <summary>
+        /// 公共属性添加页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Add()
         {
             return View();
         }
+        /// <summary>
+        /// 公共属性添加
+        /// </summary>
+        /// <param name="pm"></param>
+        /// <returns></returns>
         [ActionName("ad")]
         public ActionResult Adds(PublicCharModel pm)
         {
@@ -40,6 +53,11 @@ namespace HR.Controllers
                 return View(pm);
             }
         }
+        /// <summary>
+        /// 公共属性删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Del(int id)
         {
             PublicCharModel pc = new PublicCharModel();
@@ -54,6 +72,11 @@ namespace HR.Controllers
             }
         }
 
+        /// <summary>
+        /// 按分类获取公共属性
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public ActionResult GetPCs(string type)
         {
             return Content(JsonConvert.SerializeObject(ipb.PublicCharGet(type)));

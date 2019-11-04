@@ -126,7 +126,10 @@ namespace HR.Controllers
             ViewBag.list2 = list2;
             return View(ck);
         }
-
+        /// <summary>
+        ///  /// 薪酬标准变更点击提交的方法
+        /// </summary>
+        /// <returns></returns>
         public ActionResult bg()
         {
             SalaryStandardModel sg = new SalaryStandardModel();
@@ -160,7 +163,10 @@ namespace HR.Controllers
             }
             return Content(flag);
         }
-
+        /// <summary>
+        ///  薪酬标准登记点击提交的方法
+        /// </summary>
+        /// <returns></returns>
         public ActionResult xg()
         {
             SalaryStandardModel sg = new SalaryStandardModel();

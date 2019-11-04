@@ -42,5 +42,10 @@ namespace BLL
         {
             return icd.ConfigMajorUpdate(ck);
         }
+
+        public string GetBH()
+        {
+            return icd.GetBH();
+        }
     }
 }

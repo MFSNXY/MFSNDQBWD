@@ -15,6 +15,8 @@ namespace IDAO
         List<ConfigMajorModel> ConfigMajorSelect();
         List<ConfigMajorModel> ConfigMajorSelectBy(int id);
         List<ConfigMajorModel> ConfigMajorSelectMKId(string id);
-       
+
+        string GetBH();
+
     }
 }

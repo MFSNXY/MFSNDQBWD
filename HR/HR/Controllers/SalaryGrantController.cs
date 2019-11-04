@@ -17,6 +17,10 @@ namespace HR.Controllers
         IHumanFileBLL ihb = IocContainer.IocCreate.CreateBLL<IHumanFileBLL>("HumanFileBLL");
         ISalaryGrantdetailsBLL igb = IocContainer.IocCreate.CreateBLL<ISalaryGrantdetailsBLL>("SalaryGrantdetailsBLL");
         ISalaryStandardDetailsBLL ilb = IocContainer.IocCreate.CreateBLL<ISalaryStandardDetailsBLL>("SalaryStandardDetailsBLL");
+        /// <summary>
+        /// 加载薪酬发放登记页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
 
@@ -42,38 +46,65 @@ namespace HR.Controllers
             return View();
         }
 
-        //I级机构
+        /// <summary>
+        /// 一级机构
+        /// </summary>
+        /// <returns></returns>
         public ActionResult YJJG()
         {
             return View();
         }
+        /// <summary>
+        /// 按一级机构查询
+        /// </summary>
+        /// <returns></returns>
         public ActionResult YJJG2()
         {
             List<SalaryGrantModel> list = ihb.HumanFileSelectYJ();
             return Content(JsonConvert.SerializeObject(list));
         }
 
-        //二级机构
+        /// <summary>
+        /// 二级机构
+        /// </summary>
+        /// <returns></returns>
         public ActionResult EJJG()
         {
             return View();
         }
+        /// <summary>
+        /// 按二级机构查询
+        /// </summary>
+        /// <returns></returns>
         public ActionResult EJJG2()
         {
             List<SalaryGrantModel> list = list = ihb.HumanFileSelectEJ();
             return Content(JsonConvert.SerializeObject(list));
         }
 
+        /// <summary>
+        /// 三级机构
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SJJG()
         {
             return View();
         }
+        /// <summary>
+        /// 按三级机构查询
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SJJG2()
         {
             List<SalaryGrantModel> list = list = ihb.HumanFileSelectSJ();
             return Content(JsonConvert.SerializeObject(list));
         }
 
+        /// <summary>
+        /// 按查询机构跳转
+        /// </summary>
+        /// <param name="sm"></param>
+        /// <returns></returns>
         [ActionName("ad")]
         public ActionResult Cha(lei sm)
         {
@@ -100,13 +131,21 @@ namespace HR.Controllers
 
         }
 
-
-
-        //public ActionResult zz()
-        //{
-        //    return View();
-        //}
-
+        /// <summary>
+        /// 薪酬发放登记
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="sid"></param>
+        /// <param name="Humanamount"></param>
+        /// <param name="Salarypaidsum"></param>
+        /// <param name="Salarystandardsum"></param>
+        /// <param name="Firstkindid"></param>
+        /// <param name="Secondkindid"></param>
+        /// <param name="Thirdkindid"></param>
+        /// <param name="Thirdkindname"></param>
+        /// <param name="Firstkindname"></param>
+        /// <param name="Secondkindname"></param>
+        /// <returns></returns>
         public ActionResult Commit(string id,int sid,int Humanamount,decimal Salarypaidsum,decimal Salarystandardsum, string Firstkindid, string Secondkindid,string Thirdkindid,string Thirdkindname,string Firstkindname,string Secondkindname)
         {
             SalaryGrantModel sg = new SalaryGrantModel();
@@ -141,6 +180,12 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 薪酬发放复核明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="sid"></param>
+        /// <returns></returns>
         public ActionResult Check(string id, int sid)
         {
             ViewBag.id = id;
@@ -148,6 +193,15 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 薪酬发放复核
+        /// </summary>
+        /// <param name="Salarygrantid"></param>
+        /// <param name="Id"></param>
+        /// <param name="Firstkindid"></param>
+        /// <param name="Secondkindid"></param>
+        /// <param name="Thirdkindid"></param>
+        /// <returns></returns>
         public ActionResult Commit2(string Salarygrantid,int Id, string Firstkindid, string Secondkindid,string Thirdkindid)
         {
             
@@ -172,6 +226,14 @@ namespace HR.Controllers
             
         }
 
+        /// <summary>
+        /// 获取薪酬发放明细集合
+        /// </summary>
+        /// <param name="Salarygrantid"></param>
+        /// <param name="Id"></param>
+        /// <param name="Firstkindid"></param>
+        /// <param name="Secondkindid"></param>
+        /// <returns></returns>
         public ActionResult FuheCx(string Salarygrantid, int Id, string Firstkindid, string Secondkindid)
         {
 
@@ -180,7 +242,11 @@ namespace HR.Controllers
             List<SalaryGrantdetailsModel> list = igb.SalaryGrantdetailsSelectID(sgid);
             return Content(JsonConvert.SerializeObject(list));
         }
-
+        /// <summary>
+        /// 获取薪酬发放明细
+        /// </summary>
+        /// <param name="SalaryStandardId"></param>
+        /// <returns></returns>
         public ActionResult Commit3(string SalaryStandardId)
         {
 
@@ -189,16 +255,27 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(list));
         }
 
+        /// <summary>
+        /// 薪酬发放登记成功
+        /// </summary>
+        /// <returns></returns>
         public ActionResult registersuccess()
         {
             return View();
         }
 
+        /// <summary>
+        /// 薪酬发放复核成功
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ckeckstersuccess()
         {
             return View();
         }
-
+        /// <summary>
+        /// 薪酬发放登记点击提交的方法
+        /// </summary>
+        /// <returns></returns>
         public ActionResult xg()
         {
             SalaryGrantModel sg = new SalaryGrantModel();
@@ -253,6 +330,10 @@ namespace HR.Controllers
             return Content(flag);
         }
 
+        /// <summary>
+        /// 薪酬发放复核点击提交的方法
+        /// </summary>
+        /// <returns></returns>
         public ActionResult xg2()
         {
             SalaryGrantModel sg = new SalaryGrantModel();
@@ -350,6 +431,11 @@ namespace HR.Controllers
             List<SalaryGrantdetailsModel> list = igb.SalaryGrantdetailsSelectID(sgid);
             return Content(JsonConvert.SerializeObject(list));
         }
+        /// <summary>
+        /// 薪酬发放复核的工资详情的方法
+        /// </summary>
+        /// <param name="Humanid"></param>
+        /// <returns></returns>
         public ActionResult QueryHid(string Humanid)
         {
             string hid = Humanid;

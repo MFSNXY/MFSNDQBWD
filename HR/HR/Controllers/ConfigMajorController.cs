@@ -16,26 +16,45 @@ namespace HR.Controllers
         public IConfigMajorBLL isb { get; set; }
         //IConfigMajorKindBLL ilb = IocContainer.IocCreate.CreateBLL<IConfigMajorKindBLL>("ConfigMajorKindBLL");
         public IConfigMajorKindBLL ilb { get; set; }
+
+        /// <summary>
+        /// 职位主页
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// 获取所有职位
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index2()
         {
             List<ConfigMajorModel> list = isb.ConfigMajorSelect();
             return Content(JsonConvert.SerializeObject(list));
         }
 
+        /// <summary>
+        /// 职位添加页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             List<ConfigMajorKindModel> list = ilb.ConfigMajorKindSelect();
             
             SelectList sl = new SelectList(list, "Majorkindid", "Majorkindname", 1);
             ViewBag.s = sl;
+            ViewBag.bh = Convert.ToInt32(isb.GetBH()) + 1;
             return View();
         }
 
+        /// <summary>
+        /// 职位添加
+        /// </summary>
+        /// <param name="sm"></param>
+        /// <returns></returns>
         [ActionName("ad")]
         public ActionResult Create(ConfigMajorModel sm)
         {
@@ -53,6 +72,11 @@ namespace HR.Controllers
 
         }
 
+        /// <summary>
+        /// 职位删除
+        /// </summary>
+        /// <param name="cm"></param>
+        /// <returns></returns>
         public ActionResult Del(ConfigMajorModel cm)
         {
             ConfigMajorModel ck = new ConfigMajorModel();

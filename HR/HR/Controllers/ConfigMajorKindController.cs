@@ -19,17 +19,30 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取所有职位分类
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index2()
         {
             List<ConfigMajorKindModel> list = isb.ConfigMajorKindSelect();
             return Content(JsonConvert.SerializeObject(list));
         }
 
+        /// <summary>
+        /// 职位分类添加页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
         }
 
+        /// <summary>
+        /// 职位分类添加
+        /// </summary>
+        /// <param name="sm"></param>
+        /// <returns></returns>
         [ActionName("ad")]
         public ActionResult Create(ConfigMajorKindModel sm)
         {
@@ -46,6 +59,11 @@ namespace HR.Controllers
 
         }
 
+        /// <summary>
+        /// 职位分类删除
+        /// </summary>
+        /// <param name="cm"></param>
+        /// <returns></returns>
         public ActionResult Del(ConfigMajorKindModel cm)
         {
             ConfigMajorKindModel ck = new ConfigMajorKindModel();

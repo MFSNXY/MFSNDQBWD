@@ -21,8 +21,15 @@ namespace HR.Controllers
         IEngageResumeBLL ierb = IocCreate.CreateBLL<IEngageResumeBLL>("EngageResumeBLL");
         IEngageBLL ieb = IocCreate.CreateBLL<IEngageBLL>("EngageBLL");
         // GET: EngageResume
+
+            /// <summary>
+            /// 简历登记页面
+            /// </summary>
+            /// <param name="id"></param>
+            /// <returns></returns>
         public ActionResult Index(int id=0)
         {
+            //判断是否申请了职位
             ViewBag.MajorKindid = 0;
             ViewBag.Majorid = "0";
             ViewBag.MajorKindName = "";
@@ -40,6 +47,11 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 简历登记
+        /// </summary>
+        /// <param name="er"></param>
+        /// <returns></returns>
         public ActionResult Add(EngageResumeModel er)
         {
             er.RegistTime = DateTime.Now;
@@ -59,11 +71,24 @@ namespace HR.Controllers
             
         }
 
+        /// <summary>
+        /// 简历筛选页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult JLSX()
         {
             return View();
         }
 
+        /// <summary>
+        /// 简历筛选条件
+        /// </summary>
+        /// <param name="HumanMajorKindId"></param>
+        /// <param name="HumanMajorId"></param>
+        /// <param name="GJZ"></param>
+        /// <param name="StartTime"></param>
+        /// <param name="EndTime"></param>
+        /// <returns></returns>
         public ActionResult GetEngageResumeSX(string HumanMajorKindId="",string HumanMajorId="",string GJZ="",DateTime? StartTime=null,DateTime? EndTime=null)
         {
             TempData["HumanMajorKindId"] = HumanMajorKindId;
@@ -74,6 +99,17 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取筛选后的简历列表
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="HumanMajorKindId"></param>
+        /// <param name="HumanMajorId"></param>
+        /// <param name="GJZ"></param>
+        /// <param name="StartTime"></param>
+        /// <param name="EndTime"></param>
+        /// <returns></returns>
         public ActionResult GetEngageResumeSXJL(int currentPage, int pageSize, string HumanMajorKindId = "", string HumanMajorId = "", string GJZ = "", DateTime? StartTime = null, DateTime? EndTime = null)
         {
             int rows = 0;
@@ -87,11 +123,21 @@ namespace HR.Controllers
             return Content(TempData["rows"].ToString());
         }
 
+        /// <summary>
+        /// 简历复核明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult FH(int id)
         {
             return View(ierb.EngageResumeSelectBy(id));
         }
 
+        /// <summary>
+        /// 添加图片
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         public ActionResult AddImage(HttpPostedFileBase file)
         {
             try {
@@ -115,6 +161,11 @@ namespace HR.Controllers
             return Content("1");
         }
 
+        /// <summary>
+        /// 简历复核
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public ActionResult EngageResumeFH(EngageResumeModel a)
         {
             EngageResumeModel er = ierb.EngageResumeSelectBy(a.Id);
@@ -136,12 +187,24 @@ namespace HR.Controllers
             }
 
         }
-
+        /// <summary>
+        /// 有效简历筛选页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult YXSX()
         {
             return View();
         }
 
+        /// <summary>
+        /// 有效筛选条件
+        /// </summary>
+        /// <param name="HumanMajorKindId"></param>
+        /// <param name="HumanMajorId"></param>
+        /// <param name="GJZ"></param>
+        /// <param name="StartTime"></param>
+        /// <param name="EndTime"></param>
+        /// <returns></returns>
         public ActionResult GetEngageResumeYXSX(string HumanMajorKindId = "", string HumanMajorId = "", string GJZ = "", DateTime? StartTime = null, DateTime? EndTime = null)
         {
             TempData["HumanMajorKindId"] = HumanMajorKindId;
@@ -152,6 +215,17 @@ namespace HR.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取所有有效简历列表
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="HumanMajorKindId"></param>
+        /// <param name="HumanMajorId"></param>
+        /// <param name="GJZ"></param>
+        /// <param name="StartTime"></param>
+        /// <param name="EndTime"></param>
+        /// <returns></returns>
         public ActionResult GetEngageResumeYXJL(int currentPage, int pageSize, string HumanMajorKindId = "", string HumanMajorId = "", string GJZ = "", DateTime? StartTime = null, DateTime? EndTime = null)
         {
             int rows = 0;
@@ -164,6 +238,11 @@ namespace HR.Controllers
             return Content(JsonConvert.SerializeObject(dic));
         }
 
+        /// <summary>
+        /// 简历明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult JLXX(int id)
         {
             return View(ierb.EngageResumeSelectBy(id));
