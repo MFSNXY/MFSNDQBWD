@@ -59,6 +59,31 @@
             });
         });
     </script>
+    <script type="text/javascript">
+         function aaa() {
+            var year = new Date().getFullYear();
+            var mon = new Date().getMonth() + 1;
+            var day = new Date().getDate();
+            var hours = new Date().getHours();
+            var minutes = new Date().getMinutes();
+            var seconds = new Date().getSeconds();
+            if (hours < 10) {
+                hours = '0' + hours;
+            }
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+            $('#nowTime').val(year + "-" + mon + "-" + day + " " + hours + ":" + minutes + ":" + seconds);
+        }
+
+        setInterval(function () {
+            aaa();
+        }, 1000);
+    </script>
+    </script>
     <script src="~/vue-2.4.0.js"></script>
 </head>
 <body>
@@ -429,10 +454,9 @@
                         面试时间
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageInterview.registeTime" onclick="aa('engageInterview.registeTime')"
-                               class="INPUT_STYLE2" id="date">*@
-                        @Html.TextBox("RegisteTime", null, new { @class = "INPUT_STYLE2", @id = "date", @onclick = "aa('RegisteTime')" , @required = "required", @readonly = "readonly" })
-                        @Html.ValidationMessage("RegisteTime", new { @style = "color:red;" })
+                        <input type="text" name="RegisteTime"  class="INPUT_STYLE2" id="nowTime">
+                        @*@Html.TextBox("RegisteTime", null, new { @class = "INPUT_STYLE2", @id = "date", @onclick = "aa('RegisteTime')" , @required = "required", @readonly = "readonly" })
+                        @Html.ValidationMessage("RegisteTime", new { @style = "color:red;" })*@
 
                     </td>
                     <td class="TD_STYLE1">

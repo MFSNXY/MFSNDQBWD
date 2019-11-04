@@ -11,6 +11,7 @@
     <title>HumanFileFile</title>
     <link rel="stylesheet"
           href="../../css/table.css" type="text/css">
+    <script src="~/jquery-1.11.1.js"></script>
     <script type="text/javascript"
             src="../../javascript/comm/comm.js">
     </script>
@@ -18,10 +19,29 @@
     <link href="~/Wp2/webuploader.css" rel="stylesheet" />
     <script src="~/Wp2/jquery.js"></script>
     <script src="~/Wp2/webuploader.js"></script>
+
+    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="/signalR/Hubs" type="text/javascript"></script>
+    <script type="text/javascript" >
+        $(function () {
+            $("#aa").submit(function () {
+                $.connection.hub.start().done(function () {
+                    $.connection.myHub1.server.chima("@(((View_UserModel)Session["user"]).U_true_name)", "人力资源档案登记复核");
+                    return true;
+                });
+            });
+            $("#wc").click(function () {
+                 $.connection.hub.start().done(function () {
+                     $.connection.myHub1.server.chima("@(((View_UserModel)Session["user"]).U_true_name)", "人力资源档案登记复核");
+                     location.href = '/HumanFile/HumanFileRegisterList';
+                });
+            })
+        });
+    </script>
 </head>
 <body>
     <div>
-        <form action="/HumanFile/HumanFileFileSC?gn=@Request["gn"]" enctype="multipart/form-data" method="post">
+        <form action="/HumanFile/HumanFileFileSC?gn=@Request["gn"]" id="aa" enctype="multipart/form-data" method="post">
             <table width="100%">
                 <tr>
                     <td colspan="2">
@@ -31,7 +51,7 @@
                 <tr>
                     <td align="right">
                         <input type="submit" value="上传" class="BUTTON_STYLE1">
-                        <input type="button" value="完成" onclick="location.href = '/HumanFile/HumanFileRegisterList'"  class="BUTTON_STYLE1">
+                        <input type="button" id="wc" value="完成"   class="BUTTON_STYLE1">
                     </td>
                 </tr>
                 <tr>

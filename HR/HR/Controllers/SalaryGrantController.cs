@@ -102,10 +102,10 @@ namespace HR.Controllers
 
 
 
-        public ActionResult zz()
-        {
-            return View();
-        }
+        //public ActionResult zz()
+        //{
+        //    return View();
+        //}
 
         public ActionResult Commit(string id,int sid,int Humanamount,decimal Salarypaidsum,decimal Salarystandardsum, string Firstkindid, string Secondkindid,string Thirdkindid,string Thirdkindname,string Firstkindname,string Secondkindname)
         {

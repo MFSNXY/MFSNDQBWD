@@ -81,7 +81,15 @@ namespace HR.Controllers
         public ActionResult Register(HumanFileModel hf,int ERid)
         {
             hf.HumanId = "HF" + DateTime.Now.ToString("yyMMddssfff") + new Random().Next(100, 999);
-            hf.Zhuangtai = 0; 
+            hf.Zhuangtai = 0;
+            #region 移动图片
+            string name = hf.HumanPicture.Substring(hf.HumanPicture.LastIndexOf('/'));
+            string path = Server.MapPath("~/HumanFileImage/" + DateTime.Now.ToString("yyyy/MM/dd")) + "/" + name;
+            new FileInfo(path).Directory.Create();
+            FileInfo file1 = new FileInfo(hf.HumanPicture);
+            file1.CopyTo(path);
+            hf.HumanPicture = path;
+            #endregion
             if (ihf.HumanFileAdd(hf) > 0)
             {
                 EngageResumeModel er = ierb.EngageResumeSelectBy(ERid);

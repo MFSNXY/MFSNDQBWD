@@ -138,9 +138,9 @@
                     <td class="TD_STYLE2" colspan="2">
                         <input type="text" value="@((Model["er"] as EngageResumeModel).EngageType)" class="INPUT_STYLE2" readonly="readonly" />
                     </td>
-                    <td rowspan="6">
-                        <img class="zp" style="margin-left:100px;width:100px;height:100px;" src="@((Model["er"] as EngageResumeModel).HumanPicture.Substring((Model["er"] as EngageResumeModel).HumanPicture.IndexOf(@"\Image")))" />
-                        <img class="dt" style="position:absolute;width:400px;height:400px;margin:-110px 0px 0px -320px;display:none;" src="@((Model["er"] as EngageResumeModel).HumanPicture.Substring((Model["er"] as EngageResumeModel).HumanPicture.IndexOf(@"\Image")))" />
+                    <td width="5%"  rowspan="6">
+                        <img class="zp" style="margin:0px 20px;width:100px;height:100px;"  src="@((Model["er"] as EngageResumeModel).HumanPicture.Substring((Model["er"] as EngageResumeModel).HumanPicture.IndexOf(@"\Image")))" />
+                        <img class="dt" style="position:absolute;width:400px;height:400px;margin:-110px 0px 0px -400px;display:none;" src="@((Model["er"] as EngageResumeModel).HumanPicture.Substring((Model["er"] as EngageResumeModel).HumanPicture.IndexOf(@"\Image")))" />
                     </td>
                 </tr>
                 <tr>
@@ -448,7 +448,7 @@
                         筛选人
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="Checker" value="@(((View_UserModel)Session["user"]).U_true_name)" required="required" class="INPUT_STYLE2" />
+                        <input type="text" name="Checker" value="@(((View_UserModel)Session["SHuser"]).U_true_name)" required="required" class="INPUT_STYLE2" />
 
                     </td>
                     <td class="TD_STYLE1">

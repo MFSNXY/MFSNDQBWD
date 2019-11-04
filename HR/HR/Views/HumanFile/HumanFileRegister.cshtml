@@ -41,8 +41,6 @@
     <script src="~/jquery.validate.js"></script>
     <script src="~/jquery.validate.unobtrusive.js"></script>
     <script src="~/vue-2.4.0.js"></script>
-    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
-    <script src="/signalR/Hubs" type="text/javascript"></script>
     <script type="text/javascript">
  			window.onload=check();
 		function tick() {
@@ -117,9 +115,6 @@
                 if ($("#SecondMid").attr("flag") == "true") {
                     if ($("#ThirdMid").attr("flag") == "true") {
                         if ($("#Majorid").attr("flag") == "true") {
-                            $.connection.hub.start().done(function(){
-                                $.connection.myHub1.server.chima("@(((View_UserModel)Session["user"]).U_true_name)", "人力资源档案登记复核");
-                            });
                             return true;
                         } else {
                             alert("请选择职位名称!");
@@ -131,6 +126,16 @@
                     alert("请选择II级机构!");
                 }
                 return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $(".zp").hover(function(){
+                $(".dt").show();
+            },
+            function(){
+                $(".dt").hide();
             });
         });
     </script>
@@ -212,7 +217,11 @@
                             <option v-for="(item,i) in MTs" v-bind:value="item.ThirdMid">{{item.ThirdMName}}</option>
                         </select>
                     </td>
-                    <td rowspan="5" style="text-align: center;"></td>
+                    <td rowspan="5" style="text-align: center;">
+                        <input type="hidden" name="HumanPicture" value="@Model.HumanPicture" />
+                        <img class="zp" style="margin:10px;width:100px;height:100px;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
+                        <img class="dt" style="position:absolute;width:400px;height:400px;margin:-114px 0px 0px -400px;display:none;" src="@Model.HumanPicture.Substring(@Model.HumanPicture.IndexOf(@"\Image"))" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="TD_STYLE1">

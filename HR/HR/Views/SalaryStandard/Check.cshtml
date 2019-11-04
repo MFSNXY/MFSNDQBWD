@@ -87,7 +87,7 @@
                     复核人
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.TextBox("Checker", (((View_UserModel)Session["user"]).U_true_name), new { @class = "INPUT_STYLE2", @id = "fhr", @readonly = "readonly" })
+                    @Html.TextBox("Checker", (((View_UserModel)Session["SHuser"]).U_true_name), new { @class = "INPUT_STYLE2", @id = "fhr", @readonly = "readonly" })
                     @*<input type="text" name="standard.checker" value="better_admin" class="INPUT_STYLE2">*@
                 </td>
                 <td class="TD_STYLE1">
