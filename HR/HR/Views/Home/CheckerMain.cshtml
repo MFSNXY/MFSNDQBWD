@@ -94,11 +94,11 @@
     <script src="~/javascript/jquery-1.7.2.js"></script>
     <script src="~/javascript/jquery.messager.js"></script>
     <script src="~/Scripts/vue-2.4.0.js"></script>
-    <script type="text/javascript" >
+    <script type="text/javascript">
         $(function () {
             //Session["SHurl"] = "/Home/Checker";
             //Session["url"] = "/Home/Left";
-            if ( "@Session["userRid"]" != "") {
+            if ("@Session["SHRid"]" != "" ) {
                 //$("#ee").css({ "transform": "translateY(-1000px)" });
                 //$("#bjthh").css("filter", "blur(0px)");
                 //$("#bjthh").unbind();
@@ -106,11 +106,11 @@
                 //$("#bjthh").fadeOut(2000);
                 //$("#topDiv").css({ "transform": "translateY(-0px)" });
                 //$("#leftDiv").css({ "transform": "translateX(-0px)" });
-                $("#top").attr("src", "/Home/Top");
+                $("#top").attr("src", "/Home/Top2");
                 //if ($("#flag").val() == "2") {
-                //    $("#left").attr("src", "/Home/Checker");
+                    $("#left").attr("src", "/Home/Checker");
                 //} else {
-                    $("#left").attr("src", "/Home/Left");
+                    //$("#left").attr("src", "/Home/Left");
                 //}
             } else {
                 location = "/Users/DengLu";
@@ -126,7 +126,7 @@
         </div>
         <div id="leftDiv" data-options="region:'west',title:'导航栏',split:true">
             <iframe id="left" width="100%" height="100%" frameborder="0"></iframe>
-        </div> 
+        </div>
     </div>
 </body>
 </html>

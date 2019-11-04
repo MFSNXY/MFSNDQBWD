@@ -56,6 +56,7 @@
                     <td align="right">
 
                         <input type="submit" value="开始" class="BUTTON_STYLE1" >
+                        <input type="button" value="返回" class="BUTTON_STYLE1" onclick="location='/Home/Checker'">
                     </td>
                 </tr>
             </table>
@@ -89,10 +90,11 @@
                             </option>
                         </select>*@
                         <select name="HumanMajorKindId" id="MajorKindid" class="SELECT_STYLE2" style="width: 290px;height: 100px;" size="5" v-on:change="GetMs()">
+                            <option>全部</option>
                             <option v-for="(item,i) in MKs" v-bind:value="item.Majorkindid">{{item.Majorkindname}}</option>
                         </select>
                         <select name="HumanMajorId" id="Majorid" class="SELECT_STYLE2" style="width: 290px;height: 100px;" size="5" v-on:change="GetMName()" style="background-color:#eee;" disabled="disabled">
-                            <option id="www">请选择职位分类</option>
+                            <option>全部</option>
                             <option v-for="(item,i) in Ms" v-bind:value="item.Majorid">{{item.Majorname}}</option>
                         </select>
                     </td>

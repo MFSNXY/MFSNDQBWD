@@ -131,7 +131,11 @@
             $("#wwwww").submit(function () {
                 $.post("/Users/Dl", $("#wwwww").serialize(), function (rs) {
                     if (rs > 0) {
-                        location = '/Home/Main';
+                        if (rs == "1") {
+                            location = '/Home/Main';
+                        } else {
+                            location = '/Home/CheckerMain';
+                        }
                         //$("#ee").css({ "transform": "translateY(-1000px)" });
                         //$("#bjthh").css("filter", "blur(0px)");
                         //$("#bjthh").unbind();

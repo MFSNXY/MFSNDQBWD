@@ -59,6 +59,24 @@ namespace HR.Controllers
             return View();
         }
 
+        public ActionResult CheckerMain()
+        {
+
+            return View();
+        }
+
+        public ActionResult Top2()
+        {
+
+            return View();
+        }
+
+
+        public ActionResult GetSHPermissionRole()
+        {
+            List<PermissionModel> list = ipb.PermissionRole();
+            return Content(JsonConvert.SerializeObject(list));
+        }
 
     }
 }

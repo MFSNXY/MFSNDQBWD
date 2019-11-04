@@ -91,23 +91,39 @@ namespace HR.Controllers
                 return View(um);
             }
         }
+
+        /// <summary>
+        /// 登陆页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult DengLu()
         {
             return View();
         }
+
+        /// <summary>
+        /// 用户登陆
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
         public ActionResult Dl(string uid,string pid)
         {
             UsersModel um = iul.Dl(uid, pid);
             if (um != null)
             {
-                Session["user"] = ivb.SelectView_UserBy(um.U_id)[0];
-                Session["userRid"] = um.U_oid;
-                TempData["url"] = "/Home/Left";
                 if (um.U_oid == 30)
                 {
-                    TempData["url"] = "/Home/Checker";
+                    Session["SHuser"] = ivb.SelectView_UserBy(um.U_id)[0];
+                    Session["SHRid"] = um.U_oid;
+                    return Content("2");
                 }
-                return Content("1");
+                else
+                {
+                    Session["user"] = ivb.SelectView_UserBy(um.U_id)[0];
+                    Session["userRid"] = um.U_oid;
+                    return Content("1");
+                }
             }
             else
             {
@@ -115,7 +131,10 @@ namespace HR.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetUsers()
         {
             return Content(JsonConvert.SerializeObject(iul.UsersSelect()));

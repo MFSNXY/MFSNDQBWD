@@ -19,8 +19,8 @@
             <font color="black"> 您在做的业务是-人力资源-调动管理-调动查询列表 </font>
             <br /><br /><br />
             <font> 当前待复核的调动人数:{{rows}}例</font><br />
-            <input type="hidden" name="HumanMajorKindId" value="@TempData["mkid"]" />
-            <input type="hidden" name="HumanMajorId" value="@TempData["mid"]" />
+            <input type="hidden" name="mkid" value="@TempData["mkid"]" />
+            <input type="hidden" name="mid" value="@TempData["mid"]" />
             <input type="hidden" name="GJZ" value="@TempData["gjz"]" />
             <input type="hidden" name="zwfl" value="@TempData["zwfl"]" />
             <input type="hidden" name="zwmc" value="@TempData["zwmc"]" />
@@ -111,13 +111,13 @@
                     if (this.currentPage + 1 <= this.pages) {
                         this.currentPage += 1;
                     }
-                    this.GetERs();
+                    this.cx();
                 },
                 Prev: function () {
                     if (this.currentPage - 1 >= 1) {
                         this.currentPage -= 1;
                     }
-                    this.GetERs();
+                    this.cx();
                 },
                 SetCurrent: function () {
                     if ($("#currPage").val() < 1 || $("#currPage").val() > this.pages || isNaN($("#currPage").val())) {
@@ -126,7 +126,7 @@
                     } else {
                         this.currentPage = Number($("#currPage").val());
                     }
-                    this.GetERs();
+                    this.cx();
                 },
             },
             created: function () {

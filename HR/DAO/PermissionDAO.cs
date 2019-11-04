@@ -96,6 +96,34 @@ namespace DAO
             return list2;
         }
 
+        /// <summary>
+        /// 查询审核人的权限
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <param name="rid"></param>
+        /// <returns></returns>
+        public List<PermissionModel> PermissionRole()
+        {
+            var list = CreateContext().Permissions.SqlQuery(string.Format(@"select [id], [text], [Pid], [Url], [state] from
+                                                                            [dbo].[Permission] p 
+                                                                            inner join (select [aut_id] from [dbo].[Authorityrole] where [u_oid]=30 ) rp on 
+                                                                            p.id=rp.[aut_id]
+                                                                            where [state]='open'")).ToList();
+            List<PermissionModel> list2 = new List<PermissionModel>();
+            foreach (var p in list)
+            {
+                PermissionModel pp = new PermissionModel()
+                {
+                    id = p.id,
+                    state = p.state,
+                    text = p.text,
+                    Url = p.Url
+                };
+                list2.Add(pp);
+            }
+            return list2;
+        }
+
         public List<PermissionModel> PermissionSelect()
         {
             List<Permission> list = Select();

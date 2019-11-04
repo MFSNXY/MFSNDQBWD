@@ -27,5 +27,7 @@ namespace IDAO
         List<PermissionModel> PermissionSelectPid(int pid);
         List<QxModel> qx(int c, int d);
 
+        List<PermissionModel> PermissionRole();
+
     }
 }

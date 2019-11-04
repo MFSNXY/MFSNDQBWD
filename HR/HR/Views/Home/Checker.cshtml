@@ -35,7 +35,7 @@
             background-color:white;
             opacity:0.95;
             border-radius:30px;
-            transform:translateY(40px);
+            /*transform:translateY(40px);*/
             transition:1s ease-in-out;
         }
         #yuy{
@@ -56,15 +56,22 @@
             height:45px;
             cursor:pointer;
         }
+        .rrr:hover{
+            background-color: #F5EDE1; 
+            color: #AD98A5;
+        }
     </style>
     <script type="text/javascript" >
         $(function () {
-            $("#hk").css("transform", "translateY(0px)");
-            $(".list-group-item").hover(function () {
-                $(this).css({ "backgroundColor": "#F5EDE1", "color": "#AD98A5" })
-            }, function () {
-                $(this).css({ "backgroundColor": "#FEFDFC","color":"black" })
-            });
+            //$("#hk").css("transform", "translateY(0px)");
+            //$(document).on(".rrr", "hover", function () {
+            //    $(this).css({ "backgroundColor": "#F5EDE1", "color": "#AD98A5" })
+            //})
+            //$(".rrr").hover(function () {
+            //    $(this).css({ "backgroundColor": "#F5EDE1", "color": "#AD98A5" })
+            //}, function () {
+            //    $(this).css({ "backgroundColor": "#FEFDFC","color":"black" })
+            //});
         });
     </script>
 </head>
@@ -72,6 +79,8 @@
     <div id="hk"> 
         <div id="yuy" >
             <ul class="list-group">
+                <li v-for="(item,i) in ps" v-bind:onclick="['location = \''+item.Url+'\'']" class="list-group-item rrr" ><span class="NameHH">{{item.text}}</span><span class="CountHH"><span v-bind:id="['id'+i]"></span>例</span></li>
+              @* 
                 <li onclick="location = '/EngageResume/GetEngageResumeSX'" class="list-group-item rrr"><span class="NameHH">简历筛选</span><span class="CountHH"><span id="ERs" ></span>例</span></li>
                 <li onclick="location = '/EngageInterview/EngageInterviewSX'" class="list-group-item rrr"><span class="NameHH">面试筛选</span><span class="CountHH"><span id="EIs"></span>例</span></li>
                 <li onclick="location = '/EngageEmploy/LYSP'" class="list-group-item rrr"><span class="NameHH">录用审批</span><span class="CountHH"><span id="LYSPs"></span>例</span></li>
@@ -79,7 +88,8 @@
                 <li onclick="location = '/SalaryStandard/Checklist'" class="list-group-item rrr"><span class="NameHH">薪酬标准登记复核</span><span class="CountHH"><span id="Es"></span>例</span></li>
                 <li onclick="location = '/SalaryGrant/SelectFH'" class="list-group-item rrr"><span class="NameHH">薪酬发放登记复核</span><span class="CountHH"><span id="FHEs"></span>例</span></li>
                 <li onclick="location = '/Mobilization_audit/check_list'" class="list-group-item rrr"><span class="NameHH">调动复核</span><span class="CountHH"><span id="DDERs"></span>例</span></li>
-            </ul>
+            *@ 
+           </ul>
         </div>
     </div>
     <script type="text/javascript" >
@@ -110,8 +120,16 @@
         
         var vm = new Vue({
             el: "#hk",
-            data: {},
+            data: {
+                ps:null,
+            },
             methods: {
+                GetPs:function(){
+                    var t=this;
+                    $.post("/Home/GetSHPermissionRole",function(rs){
+                        t.ps=eval("("+rs+")");
+                    });
+                },
                 GetERs: function () {
                     var t = this;
                     $.ajax({
@@ -124,7 +142,8 @@
                                 url: "../EngageResume/GetRow",
                                 type: "post",
                                 success: function (rs) {
-                                    $("#ERs").text(rs);
+                                    //$("#ERs").text(rs);
+                                    $("#id0").text(rs);
                                 }
                             });
                         }
@@ -138,7 +157,8 @@
                         data: "currentPage=" + 1 + "&pageSize=" + 1,
                         success: function (rs) {
                             var dic = eval("(" + rs + ")");
-                            $("#EIs").text(dic["rows"]);
+                            //$("#EIs").text(dic["rows"]);
+                            $("#id1").text(dic["rows"]);
                         }
                     });
                 },
@@ -150,7 +170,8 @@
                         data: "currentPage=" + 1 + "&pageSize=" + 1,
                         success: function (rs) {
                             var dic = eval("(" + rs + ")");
-                            $("#LYSPs").text(dic["rows"]);
+                            //$("#LYSPs").text(dic["rows"]);
+                            $("#id2").text(dic["rows"]);
                         }
                     });
                 },
@@ -162,7 +183,8 @@
                         data: "currentPage=" + 1 + "&pageSize=" + 1,
                         success: function (rs) {
                             var dic = eval("(" + rs + ")");
-                            $("#HFs").text(dic["rows"]);
+                            //$("#HFs").text(dic["rows"]);
+                            $("#id3").text(dic["rows"]);
                         }
                     });
                 },
@@ -177,7 +199,8 @@
                                 url: "../SalaryStandard/GetRow",
                                 type: "post",
                                 success: function (rs) {
-                                    $("#Es").text(rs);
+                                    //$("#Es").text(rs);
+                                    $("#id4").text(rs);
                                 }
                             });
                         }
@@ -194,7 +217,8 @@
                                 url: "../SalaryGrant/GetRow",
                                 type: "post",
                                 success: function (rs) {
-                                    $("#FHEs").text(rs);
+                                    //$("#FHEs").text(rs);
+                                    $("#id5").text(rs);
                                 }
                             });
                         }
@@ -208,12 +232,14 @@
                         data: "currentPage=" + 1 + "&pageSize=" + 1,
                         success: function (rs) {
                             var dic = eval("(" + rs + ")");
-                            $("#DDERs").text(dic["rows"]);
+                            //$("#DDERs").text(dic["rows"]);
+                            $("#id6").text(dic["rows"]);
                         }
                     });
                 },
             },
             created: function () {
+                this.GetPs();
                 this.GetERs();
                 this.GetEIs();
                 this.GetLYSPs();

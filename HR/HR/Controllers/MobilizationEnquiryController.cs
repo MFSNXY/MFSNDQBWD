@@ -19,13 +19,13 @@ namespace HR.Controllers
             return View();
         }
         [ActionName("cx")]
-        public ActionResult dcx(string mkid="", string mid="", string gjz="", string zwfl="", string zwmc="", DateTime? startTime=null, DateTime? endTime=null)
+        public ActionResult dcx(string FirstMid = "", string SecondMid = "", string ThirdMid = "", string HumanMajorKindId = "", string HumanMajorId = "", DateTime? startTime = null, DateTime? endTime = null)
         {
-            TempData["mkid"] = mkid;
-            TempData["mid"] = mid;
-            TempData["gjz"] = gjz;
-            TempData["zwfl"] = zwfl;
-            TempData["zwmc"] = zwmc;
+            TempData["mkid"] = FirstMid;
+            TempData["mid"] = SecondMid;
+            TempData["gjz"] = ThirdMid;
+            TempData["zwfl"] = HumanMajorKindId;
+            TempData["zwmc"] = HumanMajorId;
             TempData["stateTime"] = startTime;
             TempData["endTime"] = endTime;
             return View("list");

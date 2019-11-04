@@ -1192,6 +1192,8 @@
     <Content Include="Views\Home\Checker.cshtml" />
     <Content Include="Views\SalaryGrant\SJJG.cshtml" />
     <Content Include="Views\Home\Main.cshtml" />
+    <Content Include="Views\Home\CheckerMain.cshtml" />
+    <Content Include="Views\Home\Top2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

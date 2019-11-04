@@ -59,5 +59,9 @@ namespace BLL
             return ipd.qx(c, d);
         }
 
+        public List<PermissionModel> PermissionRole()
+        {
+            return ipd.PermissionRole();
+        }
     }
 }
